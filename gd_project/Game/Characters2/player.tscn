@@ -89,6 +89,7 @@ offset_bottom = 1.0
 color = Color(0, 0, 0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Harpoon/Projectile"]
+process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_right = 640
