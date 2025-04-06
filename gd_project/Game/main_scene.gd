@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var MENU_LEVEL_FINISHED = preload("res://Game/GUI/menu_level_finished.tscn")
+@onready var MENU_LEVEL_SELECTION = preload("res://GUI/Map.tscn")
 
 @onready var LEVEL_TEST_DEFAULT = preload("res://Game/Levels/level_test.tscn")
 
@@ -8,18 +9,29 @@ extends Node2D
 
 var current_level : Level
 var current_menu;
+var map_menu: Map;
 
 func _ready():
+	setup_game()
 	for child in get_children():
 		if child is Level:
 			print("detected level override")
 			current_level = child;
 			current_level.on_level_finished.connect(on_level_finished)
 			return
-	setup_game()
+
 
 func setup_game():
 	print("classic game setup")
+	map_menu = MENU_LEVEL_SELECTION.instantiate()
+	menu_container.add_child(map_menu)
+	
+	# code à lancer après avoir cliqué sur le bouton "PLAY"
+	map_menu.generate_new_map()
+	map_menu.unlock_floor(0)
+	map_menu.hide_map()
+	#connect signalsto setup_new_level
+	map_menu.map_exited.connect(_on_map_exited)
 
 func on_level_finished():
 	print("main game detected level finished")
@@ -31,7 +43,22 @@ func on_level_finished():
 func on_score_menu_closed():
 	current_menu.queue_free()
 	current_level.queue_free()
+	map_menu.show_map()
 	
+func start_new_level():
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
 	current_level.on_level_finished.connect(on_level_finished)
 	add_child(current_level)
+
+func _on_map_exited(room: Room) -> void:
+	map_menu.hide_map()
+	map_menu.unlock_next_rooms()
+	match room.type:
+		Room.Type.CLASSIC:
+			start_new_level()
+		Room.Type.SHOP:
+			start_new_level()
+		Room.Type.MINI_BOSS:
+			start_new_level()
+		Room.Type.BOSS:
+			start_new_level()

@@ -3,16 +3,16 @@ extends Area2D
 
 signal selected(room: Room)
 
-const SCALE := Vector2(0.1, 0.1)
+const SCALE := Vector2(1, 1)
 const ICONS := {
 	Room.Type.NOT_ASSIGNED: [null, Vector2.ONE],
-	Room.Type.CLASSIC: [preload("res://GUI/icon.svg"), SCALE],
-	Room.Type.MINI_BOSS: [preload("res://GUI/icon_boss.jpg"), SCALE],
-	Room.Type.BOSS: [preload("res://GUI/icon_boss.jpg"), SCALE],
-	Room.Type.SHOP: [preload("res://GUI/icon_shop.jpg"), SCALE],
+	Room.Type.CLASSIC: [3, SCALE],
+	Room.Type.MINI_BOSS: [1, SCALE],
+	Room.Type.BOSS: [1, SCALE],
+	Room.Type.SHOP: [0, SCALE],
 }
 
-@onready var sprite_2d: Sprite2D = $RoomVisuals/Sprite2D
+@onready var icon: AnimatedSprite2D = $RoomVisuals/AnimatedSprite2D
 @onready var line_2d: Line2D = $RoomVisuals/Line2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -32,11 +32,11 @@ func set_room(new_data: Room) -> void:
 	position = room.position
 	line_2d.rotation_degrees = randi_range(0, 360)
 	
-	sprite_2d.texture = ICONS[room.type][0]
-	sprite_2d.scale = ICONS[room.type][1]
+	icon.frame = ICONS[room.type][0]
+	icon.scale = ICONS[room.type][1]
 
 func show_selected() -> void:
-	line_2d.modulate = Color.PALE_GREEN
+	line_2d.modulate = Color.WHITE
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if not available or not event.is_action_pressed("left_mouse"):

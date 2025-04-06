@@ -1,7 +1,43 @@
-[gd_scene load_steps=8 format=3 uid="uid://x8ulty73bcdl"]
+[gd_scene load_steps=13 format=3 uid="uid://x8ulty73bcdl"]
 
 [ext_resource type="Script" uid="uid://c0kmlmewb3vxa" path="res://GUI/map_room.gd" id="1_wiavm"]
-[ext_resource type="Texture2D" uid="uid://isdro2qkybgv" path="res://GUI/icon.svg" id="2_wiavm"]
+[ext_resource type="Texture2D" uid="uid://e5xemx6k5mkj" path="res://GUI/icons.png" id="2_wiavm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh5km"]
+atlas = ExtResource("2_wiavm")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj0d6"]
+atlas = ExtResource("2_wiavm")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ye35i"]
+atlas = ExtResource("2_wiavm")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqogc"]
+atlas = ExtResource("2_wiavm")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qian6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh5km")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wj0d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ye35i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqogc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vw6kk"]
 radius = 16.0
@@ -101,9 +137,8 @@ closed = true
 width = 5.0
 default_color = Color(0.310762, 0.451059, 0.235512, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="RoomVisuals"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_wiavm")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RoomVisuals"]
+sprite_frames = SubResource("SpriteFrames_qian6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 8
