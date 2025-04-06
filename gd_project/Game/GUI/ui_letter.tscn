@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvj6y7xphbmgn"]
+[gd_scene load_steps=3 format=3 uid="uid://bvj6y7xphbmgn"]
 
 [ext_resource type="Script" uid="uid://dd5f66eyg5gry" path="res://Game/GUI/ui_letter.gd" id="1_xaksk"]
+[ext_resource type="Texture2D" uid="uid://cr5qslpn6gjkb" path="res://assets/images/lettre.png" id="2_uo1cg"]
 
 [node name="UILetter" type="Control"]
 custom_minimum_size = Vector2(50, 0)
@@ -12,10 +13,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xaksk")
 
-[node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 0)
+[node name="Button" type="TextureButton" parent="."]
 layout_mode = 0
-offset_right = 45.0
-offset_bottom = 42.0
+offset_left = 1.0
+offset_right = 25.0
+offset_bottom = 23.0
+texture_normal = ExtResource("2_uo1cg")
 
+[node name="Letter" type="Label" parent="Button"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.5
+offset_right = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "J"
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
