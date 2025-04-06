@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name Fish1
 
 signal on_captured(letter)
 
