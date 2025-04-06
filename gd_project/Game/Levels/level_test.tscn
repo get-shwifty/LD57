@@ -29,3 +29,5 @@ LETTERS = "T"
 [node name="Fish5" parent="." instance=ExtResource("3_6ih1o")]
 position = Vector2(285, 53)
 LETTERS = "DE"
+
+[node name="UIContainer" type="CanvasLayer" parent="."]

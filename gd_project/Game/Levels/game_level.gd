@@ -2,10 +2,18 @@ extends Level
 
 class_name GameLevel
 
+@onready var MENU_WORD_COMPOSITION = preload("res://Game/GUI/menu_word_composition.tscn")
+
+@onready var ui_container = $UIContainer;
+
 var fishes : Array[Fish] = []
 var player : Player;
 
-var current_word : String = ""
+var word_composing_menu : Control;
+
+var score_objective : int;
+
+var current_letters : String = ""
 var current_score : int = 0
 
 func _ready():
@@ -24,7 +32,7 @@ func setup_level():
 
 func fish_captured(fish : Fish):
 	print("captured " + fish.get_letters())
-	current_word += fish.get_letters()
+	current_letters += fish.get_letters()
 
 func check_remaining_fishes():
 	for fish in fishes:
@@ -39,21 +47,42 @@ func oxygen_depleted():
 
 func finish_level():
 	print("level finished")
-	if !current_word.is_empty():
-		confirm_current_word()
 	on_level_finished.emit()
 	
-func confirm_current_word():
-	print("confirmed word " + current_word)
-	current_score += get_word_score(current_word)
-	current_word = ""	
+func confirm_word(word : String):
+	cancel_word_compose()
+	
+	print("confirmed word " + word)
+	current_score += get_word_score(word)
+	for letter in word:
+		var idx = current_letters.find(letter)
+		current_letters = current_letters.erase(idx)
+	
+	if current_score >= score_objective:
+		finish_level()
+
+func get_letter_pool():
+	return current_letters
 	
 func _process(delta):
-	if Input.is_action_just_pressed("game_confirm_word"):
-		confirm_current_word()
+	if !is_composing_word() && Input.is_action_just_pressed("game_compose_word"):
+		start_word_compose()
 
 func get_word_score(word : String) -> int:
 	return word.length()
 
 func get_score():
 	return current_score;
+
+func is_composing_word() -> bool:
+	return word_composing_menu != null
+
+func start_word_compose():
+	word_composing_menu = MENU_WORD_COMPOSITION.instantiate()
+	ui_container.add_child(word_composing_menu)
+	word_composing_menu.on_word_confirmed.connect(confirm_word)
+	word_composing_menu.initialize(self)
+
+func cancel_word_compose():
+	word_composing_menu.queue_free()
+	word_composing_menu = null
