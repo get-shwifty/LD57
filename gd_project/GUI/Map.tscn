@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw3v0sr71ds7l"]
+
+[ext_resource type="Script" uid="uid://c6di4ajqsqm26" path="res://GUI/map_generator.gd" id="1_ktjkf"]
+[ext_resource type="Script" uid="uid://b7woe163sweur" path="res://GUI/map.gd" id="1_v258p"]
+
+[sub_resource type="Gradient" id="Gradient_ktjkf"]
+offsets = PackedFloat32Array(0, 0.684524, 1)
+colors = PackedColorArray(0, 0.100207, 0.19466, 1, 0.276093, 0.557458, 0.639529, 1, 0.723445, 0.992843, 0.867072, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v258p"]
+gradient = SubResource("Gradient_ktjkf")
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_v258p")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Lines" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true
+
+[node name="Rooms" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(161, 89)
+
+[node name="MapGenerator" type="Node" parent="."]
+script = ExtResource("1_ktjkf")
+
+[node name="MapBackground" type="CanvasLayer" parent="."]
+layer = -1
+rotation = 1.5708
+transform = Transform2D(-4.37114e-08, 1, -1, -4.37114e-08, 0, 0)
+
+[node name="Background" type="TextureRect" parent="MapBackground"]
+anchors_preset = -1
+anchor_left = -0.003
+anchor_top = -1.783
+anchor_right = 0.661
+offset_left = -0.04
+offset_top = 0.940033
+offset_right = 43.48
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.862527, 0.994627)
+texture = SubResource("GradientTexture1D_v258p")
+flip_h = true
