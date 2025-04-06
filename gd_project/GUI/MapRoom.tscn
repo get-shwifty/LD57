@@ -1,46 +1,50 @@
-[gd_scene load_steps=13 format=3 uid="uid://x8ulty73bcdl"]
+[gd_scene load_steps=14 format=3 uid="uid://x8ulty73bcdl"]
 
 [ext_resource type="Script" uid="uid://c0kmlmewb3vxa" path="res://GUI/map_room.gd" id="1_wiavm"]
 [ext_resource type="Texture2D" uid="uid://e5xemx6k5mkj" path="res://GUI/icons.png" id="2_wiavm"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hh5km"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiavm"]
 atlas = ExtResource("2_wiavm")
-region = Rect2(20, 0, 20, 20)
+region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wj0d6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i3lx"]
 atlas = ExtResource("2_wiavm")
-region = Rect2(40, 0, 20, 20)
+region = Rect2(24, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ye35i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qian6"]
 atlas = ExtResource("2_wiavm")
-region = Rect2(0, 20, 20, 20)
+region = Rect2(48, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qqogc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nle43"]
 atlas = ExtResource("2_wiavm")
-region = Rect2(0, 0, 20, 20)
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvhms"]
+atlas = ExtResource("2_wiavm")
+region = Rect2(24, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qian6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hh5km")
+"texture": SubResource("AtlasTexture_wiavm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wj0d6")
+"texture": SubResource("AtlasTexture_0i3lx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ye35i")
+"texture": SubResource("AtlasTexture_qian6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qqogc")
+"texture": SubResource("AtlasTexture_nle43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvhms")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vw6kk"]
-radius = 16.0
 
 [sub_resource type="Animation" id="Animation_vw6kk"]
 length = 0.001
@@ -122,7 +126,11 @@ _data = {
 &"select": SubResource("Animation_tu1x4")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vw6kk"]
+radius = 16.0
+
 [node name="MapRoom" type="Area2D"]
+position = Vector2(160, 80)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_wiavm")
@@ -140,14 +148,27 @@ default_color = Color(0.310762, 0.451059, 0.235512, 1)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RoomVisuals"]
 sprite_frames = SubResource("SpriteFrames_qian6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 8
-visibility_layer = 8
-shape = SubResource("CircleShape2D_vw6kk")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_au1ei")
 }
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.52, 0.480002)
+shape = SubResource("CircleShape2D_vw6kk")
+
+[node name="Control" type="Control" parent="."]
+show_behind_parent = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 11.0
+offset_bottom = 12.0
+scale = Vector2(0.825358, 0.801099)
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

@@ -25,13 +25,11 @@ func setup_game():
 	print("classic game setup")
 	map_menu = MENU_LEVEL_SELECTION.instantiate()
 	menu_container.add_child(map_menu)
-	
 	# code à lancer après avoir cliqué sur le bouton "PLAY"
 	map_menu.generate_new_map()
 	map_menu.unlock_floor(0)
-	map_menu.hide_map()
-	#connect signalsto setup_new_level
 	map_menu.map_exited.connect(_on_map_exited)
+	map_menu.hide_map()
 
 func on_level_finished():
 	print("main game detected level finished")
@@ -51,6 +49,7 @@ func start_new_level():
 	add_child(current_level)
 
 func _on_map_exited(room: Room) -> void:
+	print(map_menu.camera_2d.position)  
 	map_menu.hide_map()
 	map_menu.unlock_next_rooms()
 	match room.type:

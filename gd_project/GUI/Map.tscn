@@ -16,7 +16,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(161, 89)
+position = Vector2(160, 90)
 
 [node name="MapGenerator" type="Node" parent="."]
 script = ExtResource("1_ktjkf")
@@ -30,9 +30,9 @@ anchor_left = -0.003
 anchor_top = -1.783
 anchor_right = 0.661
 offset_left = 0.96
-offset_top = 269.94
+offset_top = 320.94
 offset_right = 159.48
-offset_bottom = 309.0
+offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.862527, 0.994627)

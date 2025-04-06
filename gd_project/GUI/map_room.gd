@@ -6,10 +6,10 @@ signal selected(room: Room)
 const SCALE := Vector2(1, 1)
 const ICONS := {
 	Room.Type.NOT_ASSIGNED: [null, Vector2.ONE],
-	Room.Type.CLASSIC: [3, SCALE],
-	Room.Type.MINI_BOSS: [1, SCALE],
-	Room.Type.BOSS: [1, SCALE],
-	Room.Type.SHOP: [0, SCALE],
+	Room.Type.CLASSIC: [0, SCALE],
+	Room.Type.MINI_BOSS: [4, SCALE],
+	Room.Type.BOSS: [2, SCALE],
+	Room.Type.SHOP: [1, SCALE],
 }
 
 @onready var icon: AnimatedSprite2D = $RoomVisuals/AnimatedSprite2D
@@ -47,3 +47,10 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 
 func _on_map_room_selected() -> void:
 	selected.emit(room)
+
+
+func _on_control_mouse_entered() -> void:
+	Popups.ItemPopup(null, null)
+
+func _on_control_mouse_exited() -> void:
+	Popups.HideItemPopup()
