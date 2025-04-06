@@ -10,5 +10,6 @@ script = ExtResource("1_rdhbp")
 [node name="Room" parent="." instance=ExtResource("2_1krt2")]
 
 [node name="Player" parent="." instance=ExtResource("3_3j40w")]
+position = Vector2(319, 59)
 
 [node name="UIContainer" type="CanvasLayer" parent="."]

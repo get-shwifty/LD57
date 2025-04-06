@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=10 format=3 uid="uid://foipsmnjhbbe"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
-[ext_resource type="Script" uid="uid://cqdipeqeac1rc" path="res://alexis/path_follow_2d.gd" id="2_0f8fv"]
+[ext_resource type="Texture2D" uid="uid://ct56eue7unl5k" path="res://assets/images/maquette_new_palette.png" id="2_0f8fv"]
+[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_at57x"]
+[ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_4awi4"]
+[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
@@ -12,48 +15,88 @@ size = Vector2(644, 2)
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 55, 126, 0, 0, 0, 0, 90, 143, 0, 0, 0, 0, 134, 152, 0, 0, 0, 0, 188, 150, 0, 0, 0, 0, 229, 156, 0, 0, 0, 0, 254, 155, 0, 0, 0, 0, 279, 132, 0, 0, 0, 0, 290, 79, 0, 0, 0, 0, 284, 48, 0, 0, 0, 0, 260, 30, 0, 0, 0, 0, 212, 19, 0, 0, 0, 0, 158, 10, 0, 0, 0, 0, 105, 11, 0, 0, 0, 0, 72, 19, 0, 0, 0, 0, 44, 29, 0, 0, 0, 0, 25, 53, 0, 0, 0, 0, 23, 82, 0, 0, 0, 0, 55, 126)
+"points": PackedVector2Array(0, 0, 0, 0, 60.8095, 106.379, 0, 0, 0, 0, 53.341, 136.915, 0, 0, 0, 0, 90.6837, 150.275, 0, 0, 0, 0, 128.026, 123.556, 0, 0, 0, 0, 189.642, 125.464, 0, 0, 0, 0, 217.649, 157.909, 0, 0, 0, 0, 260.593, 156, 0, 0, 0, 0, 279, 132, 0, 0, 0, 0, 290, 79, 0, 0, 0, 0, 284.866, 49.1242, 0, 0, 0, 0, 254.992, 39.5817, 0, 0, 0, 0, 234.453, 72.0262, 0, 0, 0, 0, 195.243, 58.6667, 0, 0, 0, 0, 180.306, 37.6732, 0, 0, 0, 0, 159.768, 18.5882, 0, 0, 0, 0, 107.488, 14.7712, 0, 0, 0, 0, 107.488, 14.7712, 0, 0, 0, 0, 72, 19, 0, 0, 0, 0, 44, 29, 0, 0, 0, 0, 30.9353, 54.8497, 0, 0, 0, 0, 55.2081, 75.8432, 0, 0, 0, 0, 60.8095, 106.379)
 }
-point_count = 18
+point_count = 22
 
 [node name="Room1" type="Node2D"]
 script = ExtResource("1_0f8fv")
+metadata/_edit_lock_ = true
 
-[node name="LeftWall" type="StaticBody2D" parent="."]
+[node name="Walls" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
 collision_layer = 5
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
 position = Vector2(-1, 180)
 shape = SubResource("RectangleShape2D_1bvp3")
 
-[node name="RightWall" type="StaticBody2D" parent="."]
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
 position = Vector2(640, 0)
 collision_layer = 5
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
 position = Vector2(1, 180)
 shape = SubResource("RectangleShape2D_1bvp3")
 
-[node name="TopWall" type="StaticBody2D" parent="."]
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
 collision_layer = 5
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
 position = Vector2(320, -1)
 shape = SubResource("RectangleShape2D_lquwl")
 
-[node name="TopWall2" type="StaticBody2D" parent="."]
+[node name="TopWall2" type="StaticBody2D" parent="Walls"]
 position = Vector2(0, 360)
 collision_layer = 5
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall2"]
 position = Vector2(320, 1)
 shape = SubResource("RectangleShape2D_lquwl")
 
+[node name="World" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Wallpaper" type="Sprite2D" parent="World"]
+position = Vector2(320, 157)
+scale = Vector2(2, 2)
+texture = ExtResource("2_at57x")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 540)
+
+[node name="BackLayer" type="Sprite2D" parent="World"]
+position = Vector2(320, 240)
+texture = ExtResource("2_at57x")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="RockC" type="Sprite2D" parent="World"]
+position = Vector2(464, 28)
+texture = ExtResource("2_0f8fv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(348, 912, 172, 164)
+
+[node name="RockA" parent="World" instance=ExtResource("3_4awi4")]
+position = Vector2(8, 188)
+
+[node name="RockA2" parent="World" instance=ExtResource("3_4awi4")]
+position = Vector2(179, 105)
+
+[node name="RockA3" parent="World" instance=ExtResource("3_4awi4")]
+position = Vector2(615, 354)
+
+[node name="RockB" parent="World" instance=ExtResource("4_oxc8n")]
+position = Vector2(249, 320)
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_right = 640.0
 offset_bottom = 360.0
 
@@ -70,14 +113,3 @@ path_to_follow = NodePath("../Path2D")
 position = Vector2(-26.2734, -10.9589)
 scale = Vector2(2.14232, 2.09589)
 curve = SubResource("Curve2D_1bvp3")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(55, 126)
-rotation = 0.452154
-script = ExtResource("2_0f8fv")
-
-[node name="ColorRect" type="ColorRect" parent="Path2D/PathFollow2D"]
-offset_left = -16.0
-offset_top = -3.0
-offset_bottom = 3.0
-color = Color(1, 0, 1, 1)
