@@ -11,7 +11,7 @@ var player : Player;
 
 var word_composing_menu : Control;
 
-var score_objective : int;
+var score_objective : int
 
 var current_letters : String = ""
 var current_score : int = 0
@@ -26,9 +26,10 @@ func _ready():
 		if child is Player:
 			player = child
 			child.on_oxygen_depleted.connect(oxygen_depleted)
+	setup_level()
 
 func setup_level():
-	pass
+	score_objective = 5;
 
 func fish_captured(fish : Fish):
 	print("captured " + fish.get_letters())
@@ -50,8 +51,6 @@ func finish_level():
 	on_level_finished.emit()
 	
 func confirm_word(word : String):
-	cancel_word_compose()
-	
 	print("confirmed word " + word)
 	current_score += get_word_score(word)
 	for letter in word:
@@ -81,8 +80,10 @@ func start_word_compose():
 	word_composing_menu = MENU_WORD_COMPOSITION.instantiate()
 	ui_container.add_child(word_composing_menu)
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
+	word_composing_menu.on_menu_closed.connect(close_word_compose)
 	word_composing_menu.initialize(self)
 
-func cancel_word_compose():
+func close_word_compose():
 	word_composing_menu.queue_free()
 	word_composing_menu = null
+	

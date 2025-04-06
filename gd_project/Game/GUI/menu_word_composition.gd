@@ -42,4 +42,12 @@ func confirm_word():
 	var word = ""
 	for l in word_container.get_children():
 		word += l.get_letter()	
+		
+	for child in word_container.get_children():
+		child.queue_free()
+	
 	on_word_confirmed.emit(word)
+	
+	if pool_container.get_child_count() <= 0:
+		on_menu_closed.emit()
+	
