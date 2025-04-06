@@ -5,9 +5,10 @@ class_name GameLevel
 @onready var MENU_WORD_COMPOSITION = preload("res://Game/GUI/menu_word_composition.tscn")
 
 @onready var ui_container = $UIContainer;
+@onready var room: LevelRoom = $Room
+@onready var player: Player = $Player
 
 var fishes : Array[Fish] = []
-var player : Player;
 
 var word_composing_menu : Control;
 
@@ -17,23 +18,18 @@ var current_letters : String = ""
 var current_score : int = 0
 
 func _ready():
-	var test = get_children()
-	for child in get_children():
-		if child is Fish:
-			fishes.append(child)
-			child.on_captured.connect(fish_captured.bind(child))
-			check_remaining_fishes()
-		if child is Player:
-			player = child
-			child.on_oxygen_depleted.connect(oxygen_depleted)
+	room.set_letters([]) # TODO
+	room.on_captured.connect(fish_captured)
+	player.oxygen.on_oxygen_depleted.connect(oxygen_depleted)
+
 	setup_level()
 
 func setup_level():
-	score_objective = 5;
+	score_objective = 5
 
-func fish_captured(fish : Fish):
-	print("captured " + fish.get_letters())
-	current_letters += fish.get_letters()
+func fish_captured(letter):
+	current_letters += letter
+	prints("captured " + letter, current_letters)
 
 func check_remaining_fishes():
 	for fish in fishes:

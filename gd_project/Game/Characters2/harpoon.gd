@@ -37,7 +37,9 @@ func _physics_process(delta: float) -> void:
 			
 			var collision = projectile.move_and_collide(projectile_velocity * delta)
 			if collision:
-				# TODO fish?
+				var collider = collision.get_collider()
+				if collider is Fish:
+					collider.capture_letter(collision)
 				projectile_velocity = Vector2.ZERO
 			projectile_fired_time = -PROJ_DEST_DURATION
 		elif projectile_fired_time < 0:

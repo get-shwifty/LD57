@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv5efl4bcaq73"]
+[gd_scene load_steps=6 format=3 uid="uid://bv5efl4bcaq73"]
 
 [ext_resource type="Script" uid="uid://cihl6w3tmo3v0" path="res://Game/Characters2/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://6ph3jq3w637p" path="res://Game/Characters2/harpoon.gd" id="2_obqfy"]
+[ext_resource type="Script" uid="uid://vdrfqo6lcnm5" path="res://Game/Characters2/oxygen.gd" id="3_m4rnn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2yge"]
 radius = 7.0
@@ -59,3 +60,13 @@ limit_bottom = 360
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
+
+[node name="Oxygen" type="Node2D" parent="."]
+script = ExtResource("3_m4rnn")
+
+[node name="Label" type="Label" parent="Oxygen"]
+offset_left = 2.0
+offset_top = -23.0
+offset_right = 42.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8

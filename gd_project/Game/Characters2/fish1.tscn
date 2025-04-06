@@ -24,3 +24,18 @@ shape = SubResource("CapsuleShape2D_h2yge")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(40, 0)
+
+[node name="LetterCtn" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="LetterCtn"]
+offset_left = -10.0
+offset_top = -7.0
+offset_right = 10.0
+offset_bottom = 7.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "P"
+horizontal_alignment = 1
+vertical_alignment = 1
+ellipsis_char = ""
+uppercase = true

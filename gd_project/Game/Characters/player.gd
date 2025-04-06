@@ -1,7 +1,5 @@
 extends Node2D
 
-class_name Player
-
 @export var MOVE_SPEED : float = 500
 @export var START_OXYGEN : float = 1
 @export var OXYGEN_CONSUMPTION_RATE : float = 1

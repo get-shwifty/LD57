@@ -1,7 +1,5 @@
 extends Node2D
 
-class_name Fish
-
 @export var LETTERS : String = ""
 
 signal on_captured;

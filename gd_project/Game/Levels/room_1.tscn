@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=7 format=3 uid="uid://foipsmnjhbbe"]
 
+[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
 [ext_resource type="Script" uid="uid://cqdipeqeac1rc" path="res://alexis/path_follow_2d.gd" id="2_0f8fv"]
 
@@ -16,6 +17,7 @@ _data = {
 point_count = 18
 
 [node name="Room1" type="Node2D"]
+script = ExtResource("1_0f8fv")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
 collision_layer = 5
