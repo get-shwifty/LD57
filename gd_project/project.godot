@@ -13,7 +13,6 @@ config_version=5
 config/name="LD57"
 run/main_scene="uid://dak56fxyyyt85"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://alexis/icon.svg"
 
 [display]
 

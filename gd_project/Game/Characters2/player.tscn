@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv5efl4bcaq73"]
+
+[ext_resource type="Script" uid="uid://cihl6w3tmo3v0" path="res://Game/Characters2/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://6ph3jq3w637p" path="res://Game/Characters2/harpoon.gd" id="2_obqfy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2yge"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
+radius = 1.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_4flbx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h2yge")
+
+[node name="Harpoon" type="Node2D" parent="."]
+script = ExtResource("2_obqfy")
+
+[node name="ColorRect" type="ColorRect" parent="Harpoon"]
+offset_left = 7.0
+offset_top = -1.0
+offset_right = 9.0
+offset_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="ProjectileStart" type="Marker2D" parent="Harpoon"]
+position = Vector2(8, 0)
+
+[node name="Projectile" type="CharacterBody2D" parent="Harpoon"]
+position = Vector2(8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Harpoon/Projectile"]
+shape = SubResource("CircleShape2D_1bvp3")
+
+[node name="ColorRect2" type="ColorRect" parent="Harpoon/Projectile"]
+offset_left = -5.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="Harpoon/Projectile"]
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 360
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true

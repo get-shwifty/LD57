@@ -37,13 +37,13 @@ func process_capture(delta: float) -> void:
 	
 func process_movement(delta: float) -> void:
 	var movement_vector : Vector2 = Vector2.ZERO;
-	if Input.is_action_pressed("game_up"):
+	if Input.is_action_pressed("move_up"):
 		movement_vector.y += -1;
-	if Input.is_action_pressed("game_down"):
+	if Input.is_action_pressed("move_down"):
 		movement_vector.y += 1;
-	if Input.is_action_pressed("game_left"):
+	if Input.is_action_pressed("move_left"):
 		movement_vector.x += -1;
-	if Input.is_action_pressed("game_right"):
+	if Input.is_action_pressed("move_right"):
 		movement_vector.x += 1;
 	
 	movement_vector *= MOVE_SPEED;

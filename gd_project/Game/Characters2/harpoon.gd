@@ -1,7 +1,7 @@
 extends Node2D
 class_name Harpoon
 
-@export var GRAVITY : float = 98
+@export var GRAVITY : float = 142
 @export_category("Projectile")
 @export var PROJ_START_SPEED: float = 300
 @export var PROJ_END_SPEED: float = 200
@@ -14,7 +14,6 @@ class_name Harpoon
 
 enum { ARMED, FIRED, RETURNING }
 var state = ARMED
-
 
 var projectile_velocity: Vector2
 var projectile_fired_time : float
