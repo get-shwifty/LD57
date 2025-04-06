@@ -11,7 +11,7 @@ signal map_exited(room: Room)
 @onready var lines: Node2D = %Lines
 @onready var rooms: Node2D = %Rooms
 @onready var visuals: Node2D = $Visuals
-@onready var camera_2d: Camera2D = $Camera2D
+#@onready var camera_2d: Camera2D = get_parent().get_node('Camera2D')
 
 var map_data: Array[Array]
 var floors_climbed: int
@@ -25,16 +25,17 @@ func _ready() -> void:
 	#unlock_floor(0) # Permet d'activer le premier étage en entier
 
 ## Surcharge de la fonction input pour permettre le scroll vertical
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("scroll_up"):
-		print("SCROLL")
-		print(camera_2d.position.y)
-		camera_2d.position.y -= SCROLL_SPEED
-		print(camera_2d.position.y)
-	if event.is_action_pressed("scroll_down"):
-		camera_2d.position.y += SCROLL_SPEED
-	
-	camera_2d.position.y = clamp(camera_2d.position.y, 0, camera_edge_y) # Permet de ne pas scroller à l'infini
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("scroll_up"):
+		##print("SCROLL UP")
+		##print(camera_2d.position.y)
+		#camera_2d.position.y -= SCROLL_SPEED
+		##print(camera_2d.position.y)
+	#if event.is_action_pressed("scroll_down"):
+		##print("SCROLL DOWN")
+		#camera_2d.position.y += SCROLL_SPEED
+	#
+	#camera_2d.position.y = clamp(camera_2d.position.y, 0, camera_edge_y) # Permet de ne pas scroller à l'infini
 
 func generate_new_map() -> void:
 	floors_climbed = 0
@@ -70,11 +71,11 @@ func unlock_next_rooms() -> void:
 
 func show_map() -> void:
 	show()
-	camera_2d.enabled = true
+	#camera_2d.enabled = true
 	
 func hide_map() -> void:
 	hide()
-	camera_2d.enabled = false
+	#camera_2d.enabled = false
 	
 func _spawn_room(room: Room) -> void:
 	var new_map_room := MAP_ROOM.instantiate() as MapRoom

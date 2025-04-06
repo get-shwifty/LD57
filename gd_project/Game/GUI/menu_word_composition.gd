@@ -8,14 +8,18 @@ extends Control
 signal on_word_confirmed
 signal on_menu_closed
 
+func _ready():
+	initialize()
+	
 func _process(delta: float):
 	if Input.is_action_just_pressed("ui_accept"):
 		confirm_word()
 	if Input.is_action_just_pressed("ui_cancel"):
 		close_menu()
 
-func initialize(level : GameLevel):
-	setup_letter_pool(level.get_letter_pool())
+func initialize():
+	setup_letter_pool("AJAK")
+	#setup_letter_pool(level.get_letter_pool())
 
 func setup_letter_pool(letters : String):
 	for l in letters:

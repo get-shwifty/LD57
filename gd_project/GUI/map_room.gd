@@ -1,15 +1,15 @@
 class_name MapRoom
-extends Area2D
+extends Node2D
 
 signal selected(room: Room)
 
 const SCALE := Vector2(1, 1)
 const ICONS := {
 	Room.Type.NOT_ASSIGNED: [null, Vector2.ONE],
-	Room.Type.CLASSIC: [3, SCALE],
-	Room.Type.MINI_BOSS: [1, SCALE],
-	Room.Type.BOSS: [1, SCALE],
-	Room.Type.SHOP: [0, SCALE],
+	Room.Type.CLASSIC: [0, SCALE],
+	Room.Type.MINI_BOSS: [4, SCALE],
+	Room.Type.BOSS: [2, SCALE],
+	Room.Type.SHOP: [1, SCALE],
 }
 
 @onready var icon: AnimatedSprite2D = $RoomVisuals/AnimatedSprite2D
@@ -21,7 +21,6 @@ var room: Room : set = set_room
 
 func set_available(new_value: bool) -> void:
 	available = new_value
-	
 	if available:
 		animation_player.play("highlight")
 	elif not room.selected:
@@ -38,12 +37,18 @@ func set_room(new_data: Room) -> void:
 func show_selected() -> void:
 	line_2d.modulate = Color.WHITE
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if not available or not event.is_action_pressed("left_mouse"):
+func _on_map_room_selected() -> void:
+	if not available :
 		return
 	
 	room.selected = true
 	animation_player.play("select")
-
-func _on_map_room_selected() -> void:
 	selected.emit(room)
+
+
+func _on_button_mouse_entered() -> void:
+	Popups.ItemPopup()
+	
+
+func _on_button_mouse_exited() -> void:
+	Popups.HideItemPopup()

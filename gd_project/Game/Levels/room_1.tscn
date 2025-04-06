@@ -72,7 +72,6 @@ metadata/_edit_lock_ = true
 
 [node name="Wallpaper" type="Sprite2D" parent="World"]
 position = Vector2(320, 157)
-scale = Vector2(2, 2)
 texture = ExtResource("2_at57x")
 region_enabled = true
 region_rect = Rect2(0, 0, 640, 540)
@@ -82,6 +81,19 @@ position = Vector2(320, 240)
 texture = ExtResource("2_at57x")
 region_enabled = true
 region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer2" type="Sprite2D" parent="World"]
+position = Vector2(319, 239)
+texture = ExtResource("2_at57x")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer3" type="Sprite2D" parent="World"]
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(320, 240)
+texture = ExtResource("2_at57x")
+region_enabled = true
+region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
 
 [node name="RockC" type="Sprite2D" parent="World"]
 position = Vector2(464, 28)
