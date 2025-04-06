@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://foipsmnjhbbe"]
+
+[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
+[ext_resource type="Script" uid="uid://cqdipeqeac1rc" path="res://alexis/path_follow_2d.gd" id="2_0f8fv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(2, 364)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(644, 2)
+
+[sub_resource type="Curve2D" id="Curve2D_1bvp3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 55, 126, 0, 0, 0, 0, 90, 143, 0, 0, 0, 0, 134, 152, 0, 0, 0, 0, 188, 150, 0, 0, 0, 0, 229, 156, 0, 0, 0, 0, 254, 155, 0, 0, 0, 0, 279, 132, 0, 0, 0, 0, 290, 79, 0, 0, 0, 0, 284, 48, 0, 0, 0, 0, 260, 30, 0, 0, 0, 0, 212, 19, 0, 0, 0, 0, 158, 10, 0, 0, 0, 0, 105, 11, 0, 0, 0, 0, 72, 19, 0, 0, 0, 0, 44, 29, 0, 0, 0, 0, 25, 53, 0, 0, 0, 0, 23, 82, 0, 0, 0, 0, 55, 126)
+}
+point_count = 18
+
+[node name="Room1" type="Node2D"]
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2(-1, 180)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2(640, 0)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+position = Vector2(1, 180)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2(320, -1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="TopWall2" type="StaticBody2D" parent="."]
+position = Vector2(0, 360)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall2"]
+position = Vector2(320, 1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Fish" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_gjbq7")]
+position = Vector2(193, 277)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish2" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_gjbq7")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-26.2734, -10.9589)
+scale = Vector2(2.14232, 2.09589)
+curve = SubResource("Curve2D_1bvp3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(55, 126)
+rotation = 0.452154
+script = ExtResource("2_0f8fv")
+
+[node name="ColorRect" type="ColorRect" parent="Path2D/PathFollow2D"]
+offset_left = -16.0
+offset_top = -3.0
+offset_bottom = 3.0
+color = Color(1, 0, 1, 1)

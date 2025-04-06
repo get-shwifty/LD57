@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvj6y7xphbmgn"]
+
+[ext_resource type="Script" uid="uid://dd5f66eyg5gry" path="res://Game/GUI/ui_letter.gd" id="1_xaksk"]
+
+[node name="UILetter" type="Control"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xaksk")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 42.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
