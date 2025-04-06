@@ -10,8 +10,8 @@ const PATHS := 3
 const MIN_START_POINTS := 1
 const CLASSIC_ROOM_WEIGHT := 10.0
 const SHOP_ROOM_WEIGHT := 4.0
-const MINI_BOSS_ROOM_WEIGHT := 2.5
-const LIMIT_MIN_FOR_MINI_BOSS_SPAWN := 3
+const MINI_BOSS_ROOM_WEIGHT := 5.0
+const LIMIT_MIN_FOR_MINI_BOSS_SPAWN := 5
 
 var random_room_type_weight = {
 	Room.Type.CLASSIC: 0.0,
@@ -140,8 +140,8 @@ func _setup_boss_room() -> void:
 ## Permet d'attribuer un poids aléatoire à chaque type de salle
 func _setup_random_room_weights() -> void:
 	random_room_type_weight[Room.Type.CLASSIC] = CLASSIC_ROOM_WEIGHT
-	random_room_type_weight[Room.Type.MINI_BOSS] = CLASSIC_ROOM_WEIGHT + MINI_BOSS_ROOM_WEIGHT
-	random_room_type_weight[Room.Type.SHOP] = CLASSIC_ROOM_WEIGHT + MINI_BOSS_ROOM_WEIGHT + SHOP_ROOM_WEIGHT
+	random_room_type_weight[Room.Type.SHOP] = CLASSIC_ROOM_WEIGHT + MINI_BOSS_ROOM_WEIGHT
+	random_room_type_weight[Room.Type.MINI_BOSS] = CLASSIC_ROOM_WEIGHT + MINI_BOSS_ROOM_WEIGHT + SHOP_ROOM_WEIGHT
 	
 	random_room_type_total_weight = random_room_type_weight[Room.Type.MINI_BOSS]
 	
@@ -162,6 +162,14 @@ func _setup_room_types() -> void:
 			for next_room: Room in room.next_rooms:
 				if next_room.type == Room.Type.NOT_ASSIGNED:
 					_set_room_randomly(next_room)
+	
+	# Après un mini-boss, on veut une salle d'upgrade
+	for current_floor in map_data:
+		for room: Room in current_floor:
+			for next_room: Room in room.next_rooms:
+				if room.type == Room.Type.MINI_BOSS:
+					next_room.type = Room.Type.SHOP
+	
 
 func _set_room_randomly(room_to_set: Room) -> void:
 	var mini_boss_below_N := true
@@ -217,7 +225,6 @@ func _has_parent_of_type(room: Room, type: Room.Type) -> bool:
 
 func _get_random_room_type_by_weight() -> Room.Type:
 	var roll := randf_range(0.0, random_room_type_total_weight)
-	
 	for type: Room.Type in random_room_type_weight:
 		if random_room_type_weight[type] > roll:
 			return type

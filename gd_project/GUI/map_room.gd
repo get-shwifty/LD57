@@ -7,7 +7,7 @@ const SCALE := Vector2(0.1, 0.1)
 const ICONS := {
 	Room.Type.NOT_ASSIGNED: [null, Vector2.ONE],
 	Room.Type.CLASSIC: [preload("res://GUI/icon.svg"), SCALE],
-	Room.Type.MINI_BOSS: [preload("res://GUI/icon_mini_boss.jpg"), SCALE],
+	Room.Type.MINI_BOSS: [preload("res://GUI/icon_boss.jpg"), SCALE],
 	Room.Type.BOSS: [preload("res://GUI/icon_boss.jpg"), SCALE],
 	Room.Type.SHOP: [preload("res://GUI/icon_shop.jpg"), SCALE],
 }
