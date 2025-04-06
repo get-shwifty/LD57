@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxqc0dkvqkkhg"]
+
+[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://alexis/fish1.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cihl6w3tmo3v0" path="res://alexis/player.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cqdipeqeac1rc" path="res://alexis/path_follow_2d.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://6ph3jq3w637p" path="res://alexis/harpoon.gd" id="4_1bvp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(2, 364)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(644, 2)
+
+[sub_resource type="Curve2D" id="Curve2D_1bvp3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 55, 126, 0, 0, 0, 0, 90, 143, 0, 0, 0, 0, 134, 152, 0, 0, 0, 0, 188, 150, 0, 0, 0, 0, 229, 156, 0, 0, 0, 0, 254, 155, 0, 0, 0, 0, 279, 132, 0, 0, 0, 0, 290, 79, 0, 0, 0, 0, 284, 48, 0, 0, 0, 0, 260, 30, 0, 0, 0, 0, 212, 19, 0, 0, 0, 0, 158, 10, 0, 0, 0, 0, 105, 11, 0, 0, 0, 0, 72, 19, 0, 0, 0, 0, 44, 29, 0, 0, 0, 0, 25, 53, 0, 0, 0, 0, 23, 82, 0, 0, 0, 0, 55, 126)
+}
+point_count = 18
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2yge"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
+radius = 1.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Room" type="Node2D" parent="."]
+
+[node name="LeftWall" type="StaticBody2D" parent="Room"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/LeftWall"]
+position = Vector2(-1, 180)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="RightWall" type="StaticBody2D" parent="Room"]
+position = Vector2(640, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/RightWall"]
+position = Vector2(1, 180)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="TopWall" type="StaticBody2D" parent="Room"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/TopWall"]
+position = Vector2(320, -1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="TopWall2" type="StaticBody2D" parent="Room"]
+position = Vector2(0, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room/TopWall2"]
+position = Vector2(320, 1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="ColorRect" type="ColorRect" parent="Room"]
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Fish" parent="Room" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_ig7tw")]
+position = Vector2(193, 277)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish2" parent="Room" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_ig7tw")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Path2D" type="Path2D" parent="Room"]
+position = Vector2(-26.2734, -10.9589)
+scale = Vector2(2.14232, 2.09589)
+curve = SubResource("Curve2D_1bvp3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Room/Path2D"]
+position = Vector2(55, 126)
+rotation = 0.452154
+script = ExtResource("2_h2yge")
+
+[node name="ColorRect" type="ColorRect" parent="Room/Path2D/PathFollow2D"]
+offset_left = -16.0
+offset_top = -3.0
+offset_bottom = 3.0
+color = Color(1, 0, 1, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(136, 64)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_0xm2m")
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_h2yge")
+
+[node name="Harpoon" type="Node2D" parent="Player"]
+script = ExtResource("4_1bvp3")
+
+[node name="ColorRect" type="ColorRect" parent="Player/Harpoon"]
+offset_left = 7.0
+offset_top = -1.0
+offset_right = 9.0
+offset_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="ProjectileStart" type="Marker2D" parent="Player/Harpoon"]
+position = Vector2(8, 0)
+
+[node name="Projectile" type="CharacterBody2D" parent="Player/Harpoon"]
+position = Vector2(8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Harpoon/Projectile"]
+shape = SubResource("CircleShape2D_1bvp3")
+
+[node name="ColorRect2" type="ColorRect" parent="Player/Harpoon/Projectile"]
+offset_left = -5.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="Player/Harpoon/Projectile"]
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 360
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
