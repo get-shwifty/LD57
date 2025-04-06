@@ -55,10 +55,16 @@ offset_right = 6.0
 offset_bottom = 6.0
 color = Color(0, 0, 1, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2DR" type="CollisionShape2D" parent="."]
 position = Vector2(4, -4)
-rotation = -2.17285
+rotation = -2.17294
 shape = SubResource("CapsuleShape2D_8xcms")
+
+[node name="CollisionShape2DL" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -4)
+rotation = -4.06269
+shape = SubResource("CapsuleShape2D_8xcms")
+disabled = true
 
 [node name="Harpoon" type="Node2D" parent="."]
 script = ExtResource("2_obqfy")
@@ -89,6 +95,7 @@ offset_bottom = 1.0
 color = Color(0, 0, 0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Harpoon/Projectile"]
+process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_right = 640
