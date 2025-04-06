@@ -211,6 +211,7 @@ class ScoreOperation:
 		self.origin_artefact_idx = origin_artefact_idx
 
 static func fill_word_dependent_context(word : Array[Letter], context : VariableContext):
+	var fishes_in_word : Dictionary[Letter.FishType, bool]
 	for letter in word:
 		context.letter_count += 1
 		if letter.character.is_vowel:
@@ -219,4 +220,5 @@ static func fill_word_dependent_context(word : Array[Letter], context : Variable
 			context.consonant_count += 1
 		if letter.bonus_type != Letter.BonusType.None:
 			context.bonus_letter_count += 1
-		## TODO fish type count
+		fishes_in_word[letter.fish_type] = true;
+	context.fish_type_count = fishes_in_word.size()
