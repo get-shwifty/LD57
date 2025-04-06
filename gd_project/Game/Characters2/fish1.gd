@@ -29,6 +29,7 @@ func get_target():
 
 func _process(_delta: float) -> void:
 	$LetterCtn.global_rotation = 0
+	$Visual.scale.y = -1 if velocity.x < 0 else 1
 
 func _physics_process(delta: float) -> void:
 	time_since_move_start += delta

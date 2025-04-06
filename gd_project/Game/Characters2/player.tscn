@@ -1,21 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv5efl4bcaq73"]
+[gd_scene load_steps=10 format=3 uid="uid://bv5efl4bcaq73"]
 
 [ext_resource type="Script" uid="uid://cihl6w3tmo3v0" path="res://Game/Characters2/player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://ctamu37lbsy13" path="res://assets/images/chien.png" id="2_8xcms"]
 [ext_resource type="Script" uid="uid://6ph3jq3w637p" path="res://Game/Characters2/harpoon.gd" id="2_obqfy"]
 [ext_resource type="Script" uid="uid://vdrfqo6lcnm5" path="res://Game/Characters2/oxygen.gd" id="3_m4rnn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_h2yge"]
-radius = 7.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8c3w"]
+atlas = ExtResource("2_8xcms")
+region = Rect2(0, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0eht"]
+atlas = ExtResource("2_8xcms")
+region = Rect2(60, 0, 60, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vo8gn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8c3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0eht")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8xcms"]
+radius = 12.7724
+height = 41.614
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
 radius = 1.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_4flbx")
 
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual"]
+position = Vector2(-8, 0)
+sprite_frames = SubResource("SpriteFrames_vo8gn")
+autoplay = "default"
+frame_progress = 0.162477
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -6.0
 offset_top = -6.0
 offset_right = 6.0
@@ -23,7 +56,9 @@ offset_bottom = 6.0
 color = Color(0, 0, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_h2yge")
+position = Vector2(4, -4)
+rotation = -2.17285
+shape = SubResource("CapsuleShape2D_8xcms")
 
 [node name="Harpoon" type="Node2D" parent="."]
 script = ExtResource("2_obqfy")
@@ -36,10 +71,12 @@ offset_bottom = 1.0
 color = Color(0, 0, 0, 1)
 
 [node name="ProjectileStart" type="Marker2D" parent="Harpoon"]
-position = Vector2(8, 0)
+position = Vector2(25, 0)
 
 [node name="Projectile" type="CharacterBody2D" parent="Harpoon"]
 position = Vector2(8, 0)
+collision_layer = 2
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Harpoon/Projectile"]
 shape = SubResource("CircleShape2D_1bvp3")
@@ -52,7 +89,6 @@ offset_bottom = 1.0
 color = Color(0, 0, 0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Harpoon/Projectile"]
-process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_right = 640
