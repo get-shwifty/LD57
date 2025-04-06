@@ -7,12 +7,14 @@ extends Node2D
 
 @onready var menu_container = $CanvasLayer/MenuContainer
 
-var current_level : Level
+var current_level: Level
 var current_menu;
 var map_menu: Map;
 
 func _ready():
 	setup_game()
+	test_scoring()
+	
 	for child in get_children():
 		if child is Level:
 			print("detected level override")
@@ -50,7 +52,6 @@ func start_new_level():
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
 	current_level.on_level_finished.connect(on_level_finished)
 	add_child(current_level)
-	
 
 func _on_map_exited(room: Room) -> void:
 	map_menu.hide_map()
@@ -64,3 +65,56 @@ func _on_map_exited(room: Room) -> void:
 			start_new_level()
 		Room.Type.BOSS:
 			start_new_level()
+	
+func test_scoring():
+	var context: VariableContext = VariableContext.new()
+	context.reset()
+	context.grapple_count = 2
+	context.remaining_oxygen = 3
+	
+	var artefacts: Array[Artefact] = setup_artifacts();
+	
+	var word: Array[Letter] = [];
+	word.append(Letter.new(Alphabet.get_character("H")))
+	word.append(Letter.new(Alphabet.get_character("E")))
+	word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
+	word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
+	word.append(Letter.new(Alphabet.get_character("O")))
+	
+	var dict = DictionaryHelper.new(DictionaryHelper.Language.English)
+	
+	if dict.is_word_valid(word):
+		print("word is valid")
+	else:
+		print("word is invalid")
+	var score = ScoreCalculator.compute_score(word, artefacts, context)
+	var word_string = ""
+	for l in word:
+		word_string += l.character.character
+	print("Word \"" + word_string + "\" scored " + str(score.final_score))
+
+func setup_artifacts() -> Array[Artefact]:
+	var artefacts: Array[Artefact] = []
+	
+	var vowel_booster = Artefact.new()
+	vowel_booster.name = "Vowel Booster"
+	vowel_booster.trigger = Artefact.TriggerType.Letter
+	vowel_booster.target = Artefact.TargetType.LetterAdd
+	vowel_booster.value = ComputedValue.new(0, VariableContext.VariableType.ConsonantCount)
+	vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
+	artefacts.append(vowel_booster)
+	
+	var oddness_boost = Artefact.new()
+	oddness_boost.name = "Love the oddness"
+	vowel_booster.trigger = Artefact.TriggerType.Word
+	oddness_boost.target = Artefact.TargetType.WordMult
+	oddness_boost.value = ComputedValue.new(2)
+	oddness_boost.conditions.append(Condition.new(
+		Comparison.new(
+			ComputedValue.new(0, VariableContext.VariableType.LetterCount),
+			Comparison.Operator.Odd,
+			null)
+		, null))
+	artefacts.append(oddness_boost)
+	
+	return artefacts
