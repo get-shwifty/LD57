@@ -7,17 +7,6 @@
 [node name="Map" type="Node2D"]
 script = ExtResource("1_v258p")
 
-[node name="Visuals" type="Node2D" parent="."]
-
-[node name="Lines" type="Node2D" parent="Visuals"]
-unique_name_in_owner = true
-
-[node name="Rooms" type="Node2D" parent="Visuals"]
-unique_name_in_owner = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(160, 90)
-
 [node name="MapGenerator" type="Node" parent="."]
 script = ExtResource("1_ktjkf")
 
@@ -36,3 +25,12 @@ offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ua3gp")
+metadata/_edit_use_anchors_ = true
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Lines" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true
+
+[node name="Rooms" type="Node2D" parent="Visuals"]
+unique_name_in_owner = true

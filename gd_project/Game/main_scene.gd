@@ -30,7 +30,8 @@ func setup_game():
 	map_menu.unlock_floor(0)
 	map_menu.map_exited.connect(_on_map_exited)
 	map_menu.hide_map()
-
+	#print(map_menu.camera_2d.is_current()) 
+ 
 func on_level_finished():
 	print("main game detected level finished")
 	current_menu = MENU_LEVEL_FINISHED.instantiate();
@@ -42,14 +43,16 @@ func on_score_menu_closed():
 	current_menu.queue_free()
 	current_level.queue_free()
 	map_menu.show_map()
+	#map_menu.camera_2d.enabled = true
+	#map_menu.camera_2d.make_current()
 	
 func start_new_level():
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
 	current_level.on_level_finished.connect(on_level_finished)
 	add_child(current_level)
+	
 
 func _on_map_exited(room: Room) -> void:
-	print(map_menu.camera_2d.position)  
 	map_menu.hide_map()
 	map_menu.unlock_next_rooms()
 	match room.type:
