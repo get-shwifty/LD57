@@ -147,8 +147,6 @@ func update_score():
 	
 	
 func process_score(score: ScoreCalculator.ScoreBreakdown):
-	disable_mouse_inputs()
-	
 	for action in score.operations:
 		var tween_letter: Tween = get_tree().create_tween()
 		var tween_artefact: Tween = get_tree().create_tween()
@@ -172,8 +170,6 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 	$CenterContainer/VBoxContainer/Score/Total.text = str(score.final_score)
 	victory.play()
 	on_ui_finished.emit()
-	
-	enable_mouse_inputs()
 	
 
 func _play_bubble_sound():

@@ -1,6 +1,7 @@
 extends Level
-
 class_name GameLevel
+
+signal level_finished(points)
 
 @onready var MENU_WORD_COMPOSITION = preload("res://Game/GUI/menu_word_composition.tscn")
 
@@ -8,8 +9,7 @@ class_name GameLevel
 @onready var room: LevelRoom = $Room
 @onready var player: Player = room.get_node("Player")
 @onready var word_composing_menu: MenuWordComposition = $UIContainer/MenuWordComposition
-
-var score_objective : int
+@onready var score: Score = $UIContainer/ScoreUI
 
 var letters_pool : Array[Letter] = []
 var artefacts = get_artefacts()
@@ -31,14 +31,14 @@ func _ready():
 	setup_level()
 
 func setup_level():
-	score_objective = 5
+	score.objective = 25
 	word_composing_menu.set_letters(letters_pool)
 	word_composing_menu.artefacts = artefacts
 	word_composing_menu.setup_artefacts_grid()
 
 	var letters = Alphabet.get_random_characters().map(func (c): return Letter.new(c))
 	room.set_letters(letters)
-	
+
 
 func fish_captured(letter: Letter):
 	letters_pool.append(letter)
@@ -46,23 +46,32 @@ func fish_captured(letter: Letter):
 	
 func oxygen_depleted():
 	print("oxygen depleted")
-	finish_level()
+	level_finished.emit(0)
 
-func finish_level():
-	print("level finished")
-	on_level_finished.emit()
-	
 func confirm_word(word: Array[Letter]):
 	var variable_context: VariableContext = VariableContext.new()
 	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)
 	for letter in word:
 		letters_pool.erase(letter)
-	word_composing_menu.process_score(breakdown)
+
 	waiting_for_ui = true
+	word_composing_menu.disable_mouse_inputs()
+	word_composing_menu.process_score(breakdown)
+
 	await word_composing_menu.on_ui_finished
+
 	waiting_for_ui = false
-	word_composing_menu.set_letters(letters_pool)
-	compose_word()
+	score.current += breakdown.final_score
+	
+	if score.current > score.objective:
+		score.hide()
+		word_composing_menu.hide()
+		level_finished.emit(score.current)
+		print("YEP")
+	else:
+		word_composing_menu.set_letters(letters_pool)
+		compose_word()
+		word_composing_menu.enable_mouse_inputs()
 
 func _process(delta):
 	if waiting_for_ui:
