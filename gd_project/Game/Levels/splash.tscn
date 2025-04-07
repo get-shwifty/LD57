@@ -1,0 +1,246 @@
+[gd_scene load_steps=25 format=3 uid="uid://bbpwi6g8le3uu"]
+
+[ext_resource type="Script" uid="uid://bd2aro2yyxb5d" path="res://Game/Levels/splash.gd" id="1_1o6ei"]
+[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_d4njp"]
+[ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_03p00"]
+[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_khucl"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="6_kd03i"]
+[ext_resource type="PackedScene" uid="uid://tsng1mrq77pc" path="res://Game/Levels/elements/Rayons.tscn" id="7_gn3a3"]
+[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="8_1o6ei"]
+[ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="9_rvlao"]
+[ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="10_k1srn"]
+[ext_resource type="PackedScene" uid="uid://bbrb36psdtbqj" path="res://Game/Characters2/jelly.tscn" id="11_l80ey"]
+[ext_resource type="PackedScene" uid="uid://cxfk2dv5dgugg" path="res://Game/Characters2/playerOnly4Splash.tscn" id="12_a03xr"]
+[ext_resource type="Texture2D" uid="uid://c2380hqx3xi2q" path="res://assets/images/Splash/v2/S1.png" id="13_1o6ei"]
+[ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="13_d4njp"]
+[ext_resource type="Texture2D" uid="uid://cg64roi3lu86d" path="res://assets/images/Splash/v2/S2.png" id="14_rvlao"]
+[ext_resource type="Texture2D" uid="uid://b7sxneaoqxqac" path="res://assets/images/Splash/v2/S3.png" id="15_k1srn"]
+[ext_resource type="Texture2D" uid="uid://bsl83ft4etn4g" path="res://assets/images/Splash/v2/S4.png" id="16_l80ey"]
+[ext_resource type="Texture2D" uid="uid://dgo1emc55px3g" path="res://assets/images/Splash/v2/S5.png" id="17_8nbks"]
+[ext_resource type="Texture2D" uid="uid://commjq8g0smki" path="res://assets/images/Splash/v2/S6.png" id="18_dl62i"]
+[ext_resource type="Texture2D" uid="uid://by1cuk4lnnw3g" path="res://assets/images/Splash/v2/S7.png" id="19_20ptk"]
+
+[sub_resource type="Curve2D" id="Curve2D_1bvp3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 24.8672, 150.752, 0, 0, 0, 0, 53.341, 136.915, 0, 0, 0, 0, 90.6837, 150.275, 0, 0, 0, 0, 98.9581, 193.235, 0, 0, 0, 0, 124.164, 196.098, 0, 0, 0, 0, 108.761, 159.837, 0, 0, 0, 0, 116.696, 129.778, 0, 0, 0, 0, 142.836, 123.098, 0, 0, 0, 0, 163.374, 129.301, 0, 0, 0, 0, 167.575, 139.32, 0, 0, 0, 0, 182.046, 177.49, 0, 0, 0, 0, 260.593, 156, 0, 0, 0, 0, 279, 132, 0, 0, 0, 0, 290, 79, 0, 0, 0, 0, 284.866, 49.1242, 0, 0, 0, 0, 254.992, 39.5817, 0, 0, 0, 0, 238.993, 60.5948, 0, 0, 0, 0, 212.387, 61.549, 0, 0, 0, 0, 189.981, 68.2288, 0, 0, 0, 0, 184.846, 74.9085, 0, 0, 0, 0, 187.647, 83.4967, 0, 0, 0, 0, 194.649, 91.6079, 0, 0, 0, 0, 200.717, 102.582, 0, 0, 0, 0, 203.984, 129.301, 0, 0, 0, 0, 193.715, 149.817, 0, 0, 0, 0, 86.355, 185.124, 0, 0, 0, 0, -22.8724, 140.275, 0, 0, 0, 0, -9.33567, 69.183, 0, 0, 0, 0, -24.2728, 38.1699, 0, 0, 0, 0, 3.73427, 39.6013, 0, 0, 0, 0, 14.9371, 57.732, 0, 0, 0, 0, 18.3322, 84.9085, 0, 0, 0, 0, 23, 154.092)
+}
+point_count = 33
+
+[sub_resource type="Curve2D" id="Curve2D_at57x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -129, 114, 0, 0, 0, 0, -125, 111, 0, 0, 0, 0, -117, 106, 0, 0, 0, 0, -99.275, 104, 0, 0, 0, 0, -86.975, 106, 0, 0, 0, 0, -80, 107, 0, 0, 0, 0, -65, 109, 0, 0, 0, 0, -53, 120, 0, 0, 0, 0, -47, 126)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_6caqy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -225.959, 270.572, 0, 0, 0, 0, 214.859, 123.27, 0, 0, 0, 0, 299.483, 105.865, 0, 0, 0, 0, 323.269, 103.539, 0, 0, 0, 0, 354.982, 102.764, 0, 0, 0, 0, 383, 104, 0, 0, 0, 0, 399.591, 110.865, 0, 0, 0, 0, 410.163, 114.98, 0, 0, 0, 0, 424.169, 127.146, 0, 0, 0, 0, 449.54, 161.258, 0, 0, 0, 0, 455.09, 183.742, 0, 0, 0, 0, 463.018, 420.976)
+}
+point_count = 12
+
+[sub_resource type="Curve2D" id="Curve2D_3anfj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 351, 352, 0, 0, 0, 0, 351, 6)
+}
+point_count = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnkpt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_1o6ei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_rvlao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_k1srn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_l80ey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8nbks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_dl62i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_rvlao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_k1srn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_l80ey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8nbks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_dl62i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_20ptk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="RoomSPlash" type="Node2D"]
+script = ExtResource("1_1o6ei")
+metadata/_edit_lock_ = true
+
+[node name="World" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Wallpaper" type="Sprite2D" parent="World"]
+position = Vector2(498, 305)
+texture = ExtResource("2_d4njp")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 540)
+
+[node name="BackLayer" type="Sprite2D" parent="World"]
+position = Vector2(500, 329)
+texture = ExtResource("2_d4njp")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer2" type="Sprite2D" parent="World"]
+position = Vector2(499, 328)
+texture = ExtResource("2_d4njp")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="Rayons" parent="World" instance=ExtResource("7_gn3a3")]
+position = Vector2(-32, 26)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="decor" type="Node2D" parent="."]
+position = Vector2(180, 89)
+
+[node name="Groupe Pierre Algue A" type="Node" parent="decor"]
+
+[node name="RockA6" parent="decor/Groupe Pierre Algue A" instance=ExtResource("4_03p00")]
+z_index = 2
+position = Vector2(588, 237)
+
+[node name="Algue24" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+position = Vector2(616, 222)
+
+[node name="Algue26" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+z_index = 1
+position = Vector2(627, 228)
+
+[node name="Algue27" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+z_index = 1
+position = Vector2(607, 211)
+
+[node name="Algue30" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+z_index = 1
+position = Vector2(547, 210)
+
+[node name="Algue31" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+z_index = 1
+position = Vector2(557, 206)
+
+[node name="Algue25" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+z_index = 1
+position = Vector2(595, 202)
+
+[node name="Algue28" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+z_index = 2
+position = Vector2(565, 200)
+
+[node name="Algue21" parent="decor/Groupe Pierre Algue A" instance=ExtResource("13_d4njp")]
+z_index = 3
+position = Vector2(570, 201)
+rotation = -1.5708
+
+[node name="Algue22" parent="decor/Groupe Pierre Algue A" instance=ExtResource("13_d4njp")]
+z_index = 2
+position = Vector2(570, 201)
+rotation = -1.5708
+
+[node name="Algue29" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+z_index = 2
+position = Vector2(584, 201)
+
+[node name="RockB" parent="decor" instance=ExtResource("5_khucl")]
+position = Vector2(249, 320)
+
+[node name="Algue1" parent="decor" instance=ExtResource("6_kd03i")]
+position = Vector2(292, 274)
+
+[node name="Algue2" parent="decor" instance=ExtResource("6_kd03i")]
+position = Vector2(244, 293)
+
+[node name="fish" type="Node2D" parent="."]
+position = Vector2(180, 89)
+
+[node name="Fish" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_1o6ei")]
+position = Vector2(-48, 279)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish6" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_1o6ei")]
+position = Vector2(473, 55)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Crab2" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("9_rvlao")]
+position = Vector2(369, 130)
+rotation = -0.000609994
+path_to_follow = NodePath("../Path2DCrab")
+forward = false
+
+[node name="Path2D" type="Path2D" parent="fish"]
+position = Vector2(-99, -37)
+scale = Vector2(2.14232, 2.09589)
+curve = SubResource("Curve2D_1bvp3")
+
+[node name="Path2DCrab" type="Path2D" parent="fish"]
+position = Vector2(491.854, 18)
+scale = Vector2(0.97561, 1)
+curve = SubResource("Curve2D_at57x")
+
+[node name="Murene" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_k1srn")]
+position = Vector2(-429, 310)
+path_to_follow = NodePath("../Path2DMurene")
+
+[node name="Path2DMurene" type="Path2D" parent="fish"]
+position = Vector2(-143, -34)
+scale = Vector2(1.26129, 1.28986)
+curve = SubResource("Curve2D_6caqy")
+
+[node name="Path2DJelly" type="Path2D" parent="fish"]
+curve = SubResource("Curve2D_3anfj")
+
+[node name="Jelly" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("11_l80ey")]
+z_index = 4
+position = Vector2(352, 363)
+path_to_follow = NodePath("../Path2DJelly")
+
+[node name="Playersplash" parent="." instance=ExtResource("12_a03xr")]
+position = Vector2(432, 242)
+
+[node name="TITLE" type="AnimatedSprite2D" parent="."]
+position = Vector2(480, 277)
+sprite_frames = SubResource("SpriteFrames_hnkpt")
+autoplay = "default"
+
+[node name="Start_Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 418.0
+offset_top = 246.0
+offset_right = 543.0
+offset_bottom = 299.0
+text = "
+"
+flat = true
+
+[connection signal="pressed" from="Start_Button" to="." method="_on_button_pressed"]

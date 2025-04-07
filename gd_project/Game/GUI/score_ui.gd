@@ -11,5 +11,9 @@ var current:
 		current = value
 		$VBoxContainer/HBoxContainer2/Label2.text = str(value)
 
+var oxygen:
+	set(value):
+		$VBoxContainer/HBoxContainer3/Label2.text = str(value).pad_decimals(1)
+
 func _ready():
 	current = 0

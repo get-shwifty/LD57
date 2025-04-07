@@ -1,0 +1,189 @@
+[gd_scene load_steps=17 format=3 uid="uid://bbpwi6g8le3uu"]
+
+[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_a03xr"]
+[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_d4njp"]
+[ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_03p00"]
+[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_khucl"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="6_kd03i"]
+[ext_resource type="PackedScene" uid="uid://tsng1mrq77pc" path="res://Game/Levels/elements/Rayons.tscn" id="7_gn3a3"]
+[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="8_1o6ei"]
+[ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="9_rvlao"]
+[ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="10_k1srn"]
+[ext_resource type="PackedScene" uid="uid://bbrb36psdtbqj" path="res://Game/Characters2/jelly.tscn" id="11_l80ey"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="12_8nbks"]
+[ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="13_d4njp"]
+
+[sub_resource type="Curve2D" id="Curve2D_1bvp3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 24.8672, 150.752, 0, 0, 0, 0, 53.341, 136.915, 0, 0, 0, 0, 90.6837, 150.275, 0, 0, 0, 0, 100.019, 145.503, 0, 0, 0, 0, 114.023, 136.438, 0, 0, 0, 0, 128.026, 123.556, 0, 0, 0, 0, 142.836, 123.098, 0, 0, 0, 0, 163.374, 129.301, 0, 0, 0, 0, 167.575, 139.32, 0, 0, 0, 0, 182.046, 177.49, 0, 0, 0, 0, 260.593, 156, 0, 0, 0, 0, 279, 132, 0, 0, 0, 0, 290, 79, 0, 0, 0, 0, 284.866, 49.1242, 0, 0, 0, 0, 254.992, 39.5817, 0, 0, 0, 0, 234.453, 72.0262, 0, 0, 0, 0, 195.243, 58.6667, 0, 0, 0, 0, 180.306, 37.6732, 0, 0, 0, 0, 159.768, 18.5882, 0, 0, 0, 0, 107.488, 14.7712, 0, 0, 0, 0, 107.488, 14.7712, 0, 0, 0, 0, 72, 19, 0, 0, 0, 0, 44, 29, 0, 0, 0, 0, 30.9353, 54.8497, 0, 0, 0, 0, 18.3322, 84.9085, 0, 0, 0, 0, 23, 154.092)
+}
+point_count = 26
+
+[sub_resource type="Curve2D" id="Curve2D_at57x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -132, 120, 0, 0, 0, 0, -120, 96, 0, 0, 0, 0, -96, 84, 0, 0, 0, 0, -80, 72, 0, 0, 0, 0, -60, 72, 0, 0, 0, 0, -44, 52, 0, 0, 0, 0, -40, 48, 0, 0, 0, 0, -28, 52)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_6caqy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 109.412, 158.933, 0, 0, 0, 0, 214.859, 123.27, 0, 0, 0, 0, 299.483, 105.865, 0, 0, 0, 0, 323.269, 103.539, 0, 0, 0, 0, 354.982, 102.764, 0, 0, 0, 0, 383, 104, 0, 0, 0, 0, 399.591, 110.865, 0, 0, 0, 0, 410.163, 114.98, 0, 0, 0, 0, 424.169, 127.146, 0, 0, 0, 0, 449.54, 161.258, 0, 0, 0, 0, 455.09, 183.742, 0, 0, 0, 0, 459.847, 223.281)
+}
+point_count = 12
+
+[sub_resource type="Curve2D" id="Curve2D_3anfj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 351, 352, 0, 0, 0, 0, 351, 6)
+}
+point_count = 2
+
+[node name="RoomSPlash" type="Node2D"]
+script = ExtResource("1_a03xr")
+metadata/_edit_lock_ = true
+
+[node name="World" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Wallpaper" type="Sprite2D" parent="World"]
+position = Vector2(498, 305)
+texture = ExtResource("2_d4njp")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 540)
+
+[node name="BackLayer" type="Sprite2D" parent="World"]
+position = Vector2(500, 329)
+texture = ExtResource("2_d4njp")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer2" type="Sprite2D" parent="World"]
+position = Vector2(499, 328)
+texture = ExtResource("2_d4njp")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="Rayons" parent="World" instance=ExtResource("7_gn3a3")]
+position = Vector2(-32, 26)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Player" parent="." instance=ExtResource("12_8nbks")]
+position = Vector2(433, 259)
+
+[node name="decor" type="Node2D" parent="."]
+position = Vector2(180, 89)
+
+[node name="Groupe Pierre Algue A" type="Node" parent="decor"]
+
+[node name="RockA6" parent="decor/Groupe Pierre Algue A" instance=ExtResource("4_03p00")]
+z_index = 1
+position = Vector2(588, 237)
+
+[node name="Algue24" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+position = Vector2(616, 222)
+
+[node name="Algue26" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+position = Vector2(627, 228)
+
+[node name="Algue27" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+position = Vector2(607, 211)
+
+[node name="Algue25" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+position = Vector2(595, 202)
+
+[node name="Algue28" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+z_index = 1
+position = Vector2(565, 200)
+
+[node name="Algue21" parent="decor/Groupe Pierre Algue A" instance=ExtResource("13_d4njp")]
+z_index = 1
+position = Vector2(570, 201)
+rotation = -1.5708
+
+[node name="Algue29" parent="decor/Groupe Pierre Algue A" instance=ExtResource("6_kd03i")]
+z_index = 1
+position = Vector2(584, 201)
+
+[node name="RockB" parent="decor" instance=ExtResource("5_khucl")]
+position = Vector2(249, 320)
+
+[node name="Algue1" parent="decor" instance=ExtResource("6_kd03i")]
+position = Vector2(292, 274)
+
+[node name="Algue2" parent="decor" instance=ExtResource("6_kd03i")]
+position = Vector2(244, 293)
+
+[node name="fish" type="Node2D" parent="."]
+position = Vector2(180, 89)
+
+[node name="Fish" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_1o6ei")]
+position = Vector2(-48, 279)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish2" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_1o6ei")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish3" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_1o6ei")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish4" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_1o6ei")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish5" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_1o6ei")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish6" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_1o6ei")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish7" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_1o6ei")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Crab" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("9_rvlao")]
+position = Vector2(204, 336)
+path_to_follow = NodePath("../Path2DCrab")
+
+[node name="Crab2" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("9_rvlao")]
+position = Vector2(264, 308)
+rotation = -0.000609994
+path_to_follow = NodePath("../Path2DCrab")
+forward = false
+
+[node name="Path2D" type="Path2D" parent="fish"]
+position = Vector2(-99, -37)
+scale = Vector2(2.14232, 2.09589)
+curve = SubResource("Curve2D_1bvp3")
+
+[node name="Path2DCrab" type="Path2D" parent="fish"]
+position = Vector2(320, 240)
+curve = SubResource("Curve2D_at57x")
+
+[node name="Murene" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_k1srn")]
+position = Vector2(-8, 173)
+path_to_follow = NodePath("../Path2DMurene")
+
+[node name="Path2DMurene" type="Path2D" parent="fish"]
+position = Vector2(-143, -34)
+scale = Vector2(1.26129, 1.28986)
+curve = SubResource("Curve2D_6caqy")
+
+[node name="Path2DJelly" type="Path2D" parent="fish"]
+curve = SubResource("Curve2D_3anfj")
+
+[node name="Jelly" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("11_l80ey")]
+position = Vector2(352, 363)
+path_to_follow = NodePath("../Path2DJelly")

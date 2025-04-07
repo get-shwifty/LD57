@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_cqcen"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_nr8t6"]
-[ext_resource type="PackedScene" path="res://Game/Levels/elements/Rayons.tscn" id="3_bb06m"]
+[ext_resource type="PackedScene" uid="uid://tsng1mrq77pc" path="res://Game/Levels/elements/Rayons.tscn" id="3_bb06m"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_408u2"]
 [ext_resource type="PackedScene" uid="uid://tro3e72ajsru" path="res://Game/Levels/elements/arche.tscn" id="4_mjnah"]
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_2b4d4"]

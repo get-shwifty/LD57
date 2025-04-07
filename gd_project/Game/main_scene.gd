@@ -5,47 +5,54 @@ extends Node2D
 
 @onready var LEVEL_TEST_DEFAULT = preload("res://Game/Levels/level_test.tscn")
 @onready var game_over_scene = preload("res://GUI/game_over.tscn")
+@onready var start_scene = preload("res://Game/Levels/splash.tscn")
 
 @onready var menu_container = $CanvasLayer/MenuContainer
 
-var current_level : Level
+@onready var ROOMS_METADATA = {
+	preload("res://Game/Levels/room_1-1.tscn"): RoomMetadata.new(1, 0, 0, 0, 0),
+	preload("res://Game/Levels/room_2.tscn"): RoomMetadata.new(2, 0, 0, 0, 0),
+	preload("res://Game/Levels/room_3.tscn"): RoomMetadata.new(3, 0, 0, 0, 0),
+	preload("res://Game/Levels/room_4.tscn"): RoomMetadata.new(4, 0, 0, 0, 0),
+	preload("res://Game/Levels/room_5.tscn"): RoomMetadata.new(5, 0, 0, 0, 0),
+	preload("res://Game/Levels/room_6.tscn"): RoomMetadata.new(6, 0, 0, 0, 0),
+	preload("res://Game/Levels/room_7.tscn"): RoomMetadata.new(7, 0, 0, 0, 0),
+}
+
+var current_level: Level
 var current_menu
 var map_menu: Map
 var game_end
+var game_start
 
 var total_points: float = 0
 var artefacts: Array[Artefact]
 
-#func _ready():
-	#setup_game()
-	#for child in get_children():
-		#if child is Level:
-			#print("detected level override")
-			#current_level = child;
-			#current_level.on_level_finished.connect(on_level_finished)
-			#return
+func _ready():
+	game_start = start_scene.instantiate()
+	add_child(game_start)
 
+	game_start.start_game.connect(setup_game)
+	print("YOOO")
 
 func setup_game():
 	print("game setup")
+	remove_child(game_start)
 	map_menu = MENU_LEVEL_SELECTION.instantiate()
 	menu_container.add_child(map_menu)
 	map_menu.generate_new_map()
 	map_menu.unlock_floor(0)
 	map_menu.map_exited.connect(_on_map_exited)
-	
+
+	artefacts = []
+	total_points = 0
 	for starting_artefact in ArtefactRepository.starting:
 		artefacts.append(starting_artefact)
- 
-func _on_start_button_pressed() -> void:
-	$StartButton.queue_free()
-	setup_game()
 
 
 func on_level_finished(points):
 	if points == 0:
-		# TODO game over
-		get_tree().quit()
+		game_over()
 	else:
 		total_points += points
 		
@@ -58,8 +65,7 @@ func on_level_finished(points):
 func on_score_menu_closed(new_artefact):
 	if new_artefact != null:
 		artefacts.append(new_artefact)
-	current_menu.queue_free()
-	current_level.queue_free()
+	clean()
 	map_menu.show_map()
 	#map_menu.camera_2d.enabled = true
 	#map_menu.camera_2d.make_current()
@@ -69,7 +75,6 @@ func start_new_level():
 	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
 	current_level.setup_level(artefacts.slice(0))
-	
 
 func _on_map_exited(room: Room) -> void:
 	map_menu.hide_map()
@@ -94,5 +99,30 @@ func game_over() -> void:
 	
 
 func restart_game() -> void:
-	menu_container.remove_child(game_end)
+	clean()
 	setup_game()
+
+func clean():
+	if game_end:
+		game_end.queue_free()
+		game_end = null
+	if current_menu:
+		current_menu.queue_free()
+		current_menu = null
+	if current_level:
+		current_level.queue_free()
+		current_level = null
+
+class RoomMetadata:
+	var room_index: int
+	var clown_count: int
+	var medusa_count: int
+	var murena_count: int
+	var crab_count: int
+
+	func _init(idx: int, clown: int, medusa: int, murena: int, crab: int):
+		self.room_index = idx
+		self.clown_count = clown
+		self.medusa_count = medusa
+		self.murena_count = murena
+		self.crab_count = crab

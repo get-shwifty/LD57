@@ -162,176 +162,178 @@ position = Vector2(429, -23)
 rotation = 3.14159
 scale = Vector2(2, 2)
 
+[node name="Algue1" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(504, 183)
+
+[node name="Algue13" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(453, 233)
+
+[node name="Algue14" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(426, 236)
+
+[node name="Algue17" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(293, 113)
+rotation = 3.14159
+
+[node name="Algue18" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(333, 117)
+rotation = 3.14159
+
+[node name="Algue19" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(346, 118)
+rotation = 3.14159
+
+[node name="Algue20" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(407, 113)
+rotation = 3.14159
+
+[node name="Algue21" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(445, 116)
+rotation = 3.14159
+
+[node name="Algue22" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(483, 119)
+rotation = 3.14159
+
+[node name="Algue23" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(501, 124)
+rotation = 3.14159
+
+[node name="Algue24" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(523, 127)
+rotation = 3.14159
+
+[node name="Algue25" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(488, 2)
+rotation = 3.14159
+
+[node name="Algue26" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(506, -4)
+rotation = 3.14159
+
+[node name="Algue15" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(401, 251)
+
+[node name="Algue16" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(381, 258)
+
+[node name="Algue2" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(516, 183)
+
+[node name="Algue3" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(529, 185)
+
+[node name="Algue4" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(540, 189)
+
+[node name="Algue5" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(555, 189)
+
+[node name="Algue6" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(611, 119)
+
+[node name="Algue7" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(621, 118)
+
+[node name="Algue8" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(632, 117)
+
+[node name="Algue9" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(644, 122)
+
+[node name="Algue10" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(656, 123)
+
+[node name="Algue11" parent="World" instance=ExtResource("9_5r4a5")]
+position = Vector2(663, 129)
+
+[node name="Algue" parent="World" instance=ExtResource("10_vd6cr")]
+position = Vector2(679, 145)
+
+[node name="Algue12" parent="World" instance=ExtResource("10_vd6cr")]
+position = Vector2(677, 159)
+
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="Fish" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
+[node name="Player" parent="." instance=ExtResource("8_ev1y8")]
+position = Vector2(46, 50)
+
+[node name="Fish" type="Node2D" parent="."]
+
+[node name="Fish" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
 position = Vector2(118, 77)
 path_to_follow = NodePath("../Path2D")
 
-[node name="Crab" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(34, 142)
 path_to_follow = NodePath("../Path2DCrab")
 
-[node name="Crab3" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab3" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(504, 29)
 path_to_follow = NodePath("../Path2DCrab2")
 
-[node name="Crab4" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab4" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(524, 112)
 path_to_follow = NodePath("../Path2DCrab2")
 
-[node name="Crab5" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab5" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(333, 345)
 path_to_follow = NodePath("../Path2D2")
 
-[node name="Crab6" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab6" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(439, 238)
 path_to_follow = NodePath("../Path2D2")
 
-[node name="Crab7" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab7" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(592, 149)
 path_to_follow = NodePath("../Path2D2")
 
-[node name="Crab8" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab8" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(88, 335)
 path_to_follow = NodePath("../Path2D2Crab3")
 
-[node name="Crab9" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab9" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(-6, 230)
 path_to_follow = NodePath("../Path2D2Crab3")
 
-[node name="Crab10" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab10" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(40, 349)
 path_to_follow = NodePath("../Path2D2Crab3")
 
-[node name="Crab2" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab2" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
 z_index = 1
 position = Vector2(22, 111)
 path_to_follow = NodePath("../Path2DCrab")
 forward = false
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="Fish"]
 position = Vector2(-26.2734, -10.9589)
 scale = Vector2(2.14232, 2.09589)
 curve = SubResource("Curve2D_1bvp3")
 
-[node name="Path2DCrab" type="Path2D" parent="."]
+[node name="Path2DCrab" type="Path2D" parent="Fish"]
 position = Vector2(35, 282)
 rotation = 2.24275
 curve = SubResource("Curve2D_at57x")
 
-[node name="Player" parent="." instance=ExtResource("8_ev1y8")]
-position = Vector2(46, 50)
-
-[node name="Path2DCrab2" type="Path2D" parent="."]
+[node name="Path2DCrab2" type="Path2D" parent="Fish"]
 curve = SubResource("Curve2D_ev1y8")
 
-[node name="Path2D2Crab3" type="Path2D" parent="."]
+[node name="Path2D2Crab3" type="Path2D" parent="Fish"]
 position = Vector2(40, 349)
 curve = SubResource("Curve2D_5r4a5")
 
-[node name="Path2D2" type="Path2D" parent="."]
+[node name="Path2D2" type="Path2D" parent="Fish"]
 curve = SubResource("Curve2D_vd6cr")
-
-[node name="Algue1" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(504, 183)
-
-[node name="Algue13" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(453, 233)
-
-[node name="Algue14" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(426, 236)
-
-[node name="Algue17" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(293, 113)
-rotation = 3.14159
-
-[node name="Algue18" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(333, 117)
-rotation = 3.14159
-
-[node name="Algue19" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(346, 118)
-rotation = 3.14159
-
-[node name="Algue20" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(407, 113)
-rotation = 3.14159
-
-[node name="Algue21" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(445, 116)
-rotation = 3.14159
-
-[node name="Algue22" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(483, 119)
-rotation = 3.14159
-
-[node name="Algue23" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(501, 124)
-rotation = 3.14159
-
-[node name="Algue24" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(523, 127)
-rotation = 3.14159
-
-[node name="Algue25" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(488, 2)
-rotation = 3.14159
-
-[node name="Algue26" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(506, -4)
-rotation = 3.14159
-
-[node name="Algue15" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(401, 251)
-
-[node name="Algue16" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(381, 258)
-
-[node name="Algue2" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(516, 183)
-
-[node name="Algue3" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(529, 185)
-
-[node name="Algue4" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(540, 189)
-
-[node name="Algue5" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(555, 189)
-
-[node name="Algue6" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(611, 119)
-
-[node name="Algue7" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(621, 118)
-
-[node name="Algue8" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(632, 117)
-
-[node name="Algue9" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(644, 122)
-
-[node name="Algue10" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(656, 123)
-
-[node name="Algue11" parent="." instance=ExtResource("9_5r4a5")]
-position = Vector2(663, 129)
-
-[node name="Algue" parent="." instance=ExtResource("10_vd6cr")]
-position = Vector2(679, 145)
-
-[node name="Algue12" parent="." instance=ExtResource("10_vd6cr")]
-position = Vector2(677, 159)

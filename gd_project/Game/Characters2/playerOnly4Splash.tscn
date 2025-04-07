@@ -1,27 +1,27 @@
-[gd_scene load_steps=29 format=3 uid="uid://bv5efl4bcaq73"]
+[gd_scene load_steps=29 format=3 uid="uid://cxfk2dv5dgugg"]
 
-[ext_resource type="Script" uid="uid://cihl6w3tmo3v0" path="res://Game/Characters2/player.gd" id="1_4flbx"]
-[ext_resource type="Texture2D" uid="uid://ctamu37lbsy13" path="res://assets/images/chien.png" id="2_8xcms"]
-[ext_resource type="Script" uid="uid://6ph3jq3w637p" path="res://Game/Characters2/harpoon.gd" id="2_obqfy"]
-[ext_resource type="Texture2D" uid="uid://dqienl6l0l5tl" path="res://assets/images/breath-bubbles/bulle_1.png" id="2_ymr8s"]
-[ext_resource type="Script" uid="uid://vdrfqo6lcnm5" path="res://Game/Characters2/oxygen.gd" id="3_m4rnn"]
-[ext_resource type="Texture2D" uid="uid://btijy6ijfdv3k" path="res://assets/images/breath-bubbles/bulle_2.png" id="3_yg8ch"]
-[ext_resource type="Texture2D" uid="uid://c84hhvijxuoms" path="res://assets/images/breath-bubbles/bulle_3.png" id="4_4ri6y"]
-[ext_resource type="Texture2D" uid="uid://c26jrcabscac0" path="res://assets/images/harpon_tir.png" id="4_uhrti"]
-[ext_resource type="AudioStream" uid="uid://duxfklkvvaq3e" path="res://assets/sounds/bruitages/fish/POISSON-TOUCHE-Prop1.mp3" id="5_vo8gn"]
-[ext_resource type="Texture2D" uid="uid://c270hasrnaql5" path="res://assets/images/breath-bubbles/bulle_4.png" id="5_ybndx"]
-[ext_resource type="AudioStream" uid="uid://drienmilo0gug" path="res://assets/sounds/bruitages/player/SON-TIR-HARPON.mp3" id="6_j0eht"]
-[ext_resource type="Texture2D" uid="uid://b8xs7wo3qwr76" path="res://assets/images/breath-bubbles/bulle_5.png" id="6_ot82d"]
-[ext_resource type="Texture2D" uid="uid://cj33gmbi1kkmb" path="res://assets/images/breath-bubbles/bulle_6.png" id="7_dj8wx"]
-[ext_resource type="Texture2D" uid="uid://ieb3tosalmbo" path="res://assets/images/harpon_dogo_2.png" id="7_qh20h"]
-[ext_resource type="Texture2D" uid="uid://bobov3evacsyd" path="res://assets/images/breath-bubbles/bulle_7.png" id="8_sxo18"]
-[ext_resource type="AudioStream" uid="uid://c25n0h1ncfdf8" path="res://assets/sounds/bruitages/player/BRUIT DEPLACEMENT-BULLES.mp3" id="8_uhrti"]
-[ext_resource type="Texture2D" uid="uid://b0oxwys4jiw0v" path="res://assets/images/breath-bubbles/bulle_8.png" id="9_d7qgf"]
-[ext_resource type="Texture2D" uid="uid://b0hktv0rfr7ss" path="res://assets/images/breath-bubbles/bulle_9.png" id="10_vjm82"]
-[ext_resource type="Texture2D" uid="uid://do631wovjl5f7" path="res://assets/images/breath-bubbles/bulle_10.png" id="11_j0vox"]
-[ext_resource type="Texture2D" uid="uid://bamtkx7nbik2j" path="res://assets/images/breath-bubbles/bulle_11.png" id="12_3ep4j"]
-[ext_resource type="Texture2D" uid="uid://w2x6x3hhrii1" path="res://assets/images/breath-bubbles/bulle_12.png" id="13_kvie4"]
-[ext_resource type="Texture2D" uid="uid://cdrkr032fgfg5" path="res://assets/images/breath-bubbles/bulle_13.png" id="14_pdo3f"]
+[ext_resource type="Script" uid="uid://cihl6w3tmo3v0" path="res://Game/Characters2/player.gd" id="1_c1tet"]
+[ext_resource type="Texture2D" uid="uid://dqienl6l0l5tl" path="res://assets/images/breath-bubbles/bulle_1.png" id="2_pgb3m"]
+[ext_resource type="Texture2D" uid="uid://btijy6ijfdv3k" path="res://assets/images/breath-bubbles/bulle_2.png" id="3_habjb"]
+[ext_resource type="Texture2D" uid="uid://c84hhvijxuoms" path="res://assets/images/breath-bubbles/bulle_3.png" id="4_qlw31"]
+[ext_resource type="Texture2D" uid="uid://c270hasrnaql5" path="res://assets/images/breath-bubbles/bulle_4.png" id="5_d8bl0"]
+[ext_resource type="Texture2D" uid="uid://b8xs7wo3qwr76" path="res://assets/images/breath-bubbles/bulle_5.png" id="6_2556o"]
+[ext_resource type="Texture2D" uid="uid://cj33gmbi1kkmb" path="res://assets/images/breath-bubbles/bulle_6.png" id="7_xomar"]
+[ext_resource type="Texture2D" uid="uid://bobov3evacsyd" path="res://assets/images/breath-bubbles/bulle_7.png" id="8_2m4iv"]
+[ext_resource type="Texture2D" uid="uid://b0oxwys4jiw0v" path="res://assets/images/breath-bubbles/bulle_8.png" id="9_768ar"]
+[ext_resource type="Texture2D" uid="uid://b0hktv0rfr7ss" path="res://assets/images/breath-bubbles/bulle_9.png" id="10_ewspl"]
+[ext_resource type="Texture2D" uid="uid://do631wovjl5f7" path="res://assets/images/breath-bubbles/bulle_10.png" id="11_6p852"]
+[ext_resource type="Texture2D" uid="uid://bamtkx7nbik2j" path="res://assets/images/breath-bubbles/bulle_11.png" id="12_ixkea"]
+[ext_resource type="Texture2D" uid="uid://w2x6x3hhrii1" path="res://assets/images/breath-bubbles/bulle_12.png" id="13_777xl"]
+[ext_resource type="Texture2D" uid="uid://cdrkr032fgfg5" path="res://assets/images/breath-bubbles/bulle_13.png" id="14_xocli"]
+[ext_resource type="Texture2D" uid="uid://ctamu37lbsy13" path="res://assets/images/chien.png" id="15_3q01o"]
+[ext_resource type="Script" uid="uid://6ph3jq3w637p" path="res://Game/Characters2/harpoon.gd" id="16_5364y"]
+[ext_resource type="Texture2D" uid="uid://ieb3tosalmbo" path="res://assets/images/harpon_dogo_2.png" id="17_hcdqx"]
+[ext_resource type="Texture2D" uid="uid://c26jrcabscac0" path="res://assets/images/harpon_tir.png" id="18_ajmy0"]
+[ext_resource type="AudioStream" uid="uid://drienmilo0gug" path="res://assets/sounds/bruitages/player/SON-TIR-HARPON.mp3" id="19_pkbu7"]
+[ext_resource type="AudioStream" uid="uid://duxfklkvvaq3e" path="res://assets/sounds/bruitages/fish/POISSON-TOUCHE-Prop1.mp3" id="20_sk1qq"]
+[ext_resource type="Script" uid="uid://vdrfqo6lcnm5" path="res://Game/Characters2/oxygen.gd" id="21_a27sh"]
+[ext_resource type="AudioStream" uid="uid://c25n0h1ncfdf8" path="res://assets/sounds/bruitages/player/BRUIT DEPLACEMENT-BULLES.mp3" id="22_7tpso"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_74ovk"]
 animations = [{
@@ -30,43 +30,43 @@ animations = [{
 "texture": null
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ymr8s")
+"texture": ExtResource("2_pgb3m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_yg8ch")
+"texture": ExtResource("3_habjb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_4ri6y")
+"texture": ExtResource("4_qlw31")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ybndx")
+"texture": ExtResource("5_d8bl0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ot82d")
+"texture": ExtResource("6_2556o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_dj8wx")
+"texture": ExtResource("7_xomar")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_sxo18")
+"texture": ExtResource("8_2m4iv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_d7qgf")
+"texture": ExtResource("9_768ar")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_vjm82")
+"texture": ExtResource("10_ewspl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_j0vox")
+"texture": ExtResource("11_6p852")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_3ep4j")
+"texture": ExtResource("12_ixkea")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_kvie4")
+"texture": ExtResource("13_777xl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_pdo3f")
+"texture": ExtResource("14_xocli")
 }, {
 "duration": 1.0,
 "texture": null
@@ -77,11 +77,11 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8c3w"]
-atlas = ExtResource("2_8xcms")
+atlas = ExtResource("15_3q01o")
 region = Rect2(0, 0, 60, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0eht"]
-atlas = ExtResource("2_8xcms")
+atlas = ExtResource("15_3q01o")
 region = Rect2(60, 0, 60, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vo8gn"]
@@ -109,7 +109,7 @@ radius = 1.0
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
-script = ExtResource("1_4flbx")
+script = ExtResource("1_c1tet")
 
 [node name="Visual" type="Node2D" parent="."]
 
@@ -146,7 +146,8 @@ shape = SubResource("CapsuleShape2D_8xcms")
 disabled = true
 
 [node name="Harpoon" type="Node2D" parent="."]
-script = ExtResource("2_obqfy")
+position = Vector2(1000, 1000)
+script = ExtResource("16_5364y")
 
 [node name="ColorRect" type="ColorRect" parent="Harpoon"]
 offset_left = 7.0
@@ -161,12 +162,13 @@ position = Vector2(25, 0)
 [node name="Sprite2D2" type="Sprite2D" parent="Harpoon"]
 z_index = 2
 position = Vector2(12, 0)
-texture = ExtResource("7_qh20h")
+texture = ExtResource("17_hcdqx")
 
 [node name="Projectile" type="CharacterBody2D" parent="Harpoon"]
-position = Vector2(8, 0)
+position = Vector2(1000, 1000)
 collision_layer = 32
 collision_mask = 5
+up_direction = Vector2(0.0001, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Harpoon/Projectile"]
 shape = SubResource("CircleShape2D_1bvp3")
@@ -189,23 +191,23 @@ drag_horizontal_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Harpoon/Projectile"]
 position = Vector2(-8, 0)
-texture = ExtResource("4_uhrti")
+texture = ExtResource("18_ajmy0")
 
 [node name="HarpoonFire" type="AudioStreamPlayer" parent="Harpoon"]
-stream = ExtResource("6_j0eht")
+stream = ExtResource("19_pkbu7")
 volume_db = -18.108
 pitch_scale = 0.59
 
 [node name="ProjectileTouch" type="AudioStreamPlayer" parent="Harpoon"]
-stream = ExtResource("5_vo8gn")
+stream = ExtResource("20_sk1qq")
 volume_db = -11.607
 pitch_scale = 0.3
 
 [node name="Oxygen" type="Node2D" parent="."]
-script = ExtResource("3_m4rnn")
+position = Vector2(1000, 1000)
+script = ExtResource("21_a27sh")
 
 [node name="Label" type="Label" parent="Oxygen"]
-visible = false
 offset_left = 2.0
 offset_top = -23.0
 offset_right = 42.0
@@ -216,6 +218,6 @@ theme_override_font_sizes/font_size = 8
 autoplay = true
 
 [node name="Move" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_uhrti")
+stream = ExtResource("22_7tpso")
 volume_db = -19.572
 pitch_scale = 0.77
