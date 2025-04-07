@@ -1,5 +1,6 @@
 class_name ArtefactRepository
 
+static var starting = generate_starting()
 static var bonuses = generate_bonuses()
 static var maluses = generate_maluses()
 
@@ -198,7 +199,6 @@ static func generate_maluses() -> Array[Artefact]:
 	var artefact : Artefact = null
 	
 	
-	
 	artefact = Artefact.new()
 	artefact.name = "Crabastrophic"
 	artefact.description = "-100 points if word contains a crab"
@@ -277,10 +277,40 @@ static func generate_maluses() -> Array[Artefact]:
 	
 	return artefacts
 
+static func generate_starting() -> Array[Artefact]:
+	var artefacts : Array[Artefact] = []
+	var artefact : Artefact = null
+	
+	artefact = Artefact.new()
+	artefact.name = "Under pressure"
+	artefact.description = "Add remaining oxygen to world mult"
+	artefact.trigger = Artefact.TriggerType.Word
+	artefact.target = Artefact.TargetType.WordMult
+	artefact.value = ComputedValue.new(0, VariableContext.VariableType.RemainingOxygen)
+	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return true;
+	artefacts.append(artefact)
+	
+	artefact = Artefact.new()
+	artefact.name = "Size matters"
+	artefact.description = "Add letter count squared to word points"
+	artefact.trigger = Artefact.TriggerType.Word
+	artefact.target = Artefact.TargetType.WordAdd
+	artefact.value = func(vc: VariableContext, cc: ConditionContext):
+		return pow(cc.letter_count, 2) 
+	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return true;
+	artefacts.append(artefact)
+	
+	return artefacts
+	
 static func get_artefact(name : String):
 	for a in bonuses:
 		if a.name == name:
 			return a;
 	for a in maluses:
+		if a.name == name:
+			return a;
+	for a in starting:
 		if a.name == name:
 			return a;
