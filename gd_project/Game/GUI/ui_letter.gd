@@ -1,8 +1,10 @@
 extends Control
+class_name UILetter
 
 signal on_letter_selected
 
 var letter: Letter;
+@onready var points: Label = %Points;
 
 func initialize(letter_ : Letter):
 	letter = letter_

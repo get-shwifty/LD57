@@ -100,3 +100,26 @@ func get_artefacts() -> Array[Artefact]:
 	#vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
 	
 	return [artefact1]
+
+func setup_artifacts() -> Array[Artefact]:
+	var artefacts: Array[Artefact] = []
+	var vowel_booster = Artefact.new()
+	vowel_booster.name = "Vowel Booster"
+	vowel_booster.trigger = Artefact.TriggerType.Letter
+	vowel_booster.target = Artefact.TargetType.LetterAdd
+	vowel_booster.value = ComputedValue.new(0, VariableContext.VariableType.ConsonantCount)
+	vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
+	artefacts.append(vowel_booster)
+	var oddness_boost = Artefact.new()
+	oddness_boost.name = "Love the oddness"
+	vowel_booster.trigger = Artefact.TriggerType.Word
+	oddness_boost.target = Artefact.TargetType.WordMult
+	oddness_boost.value = ComputedValue.new(2)
+	oddness_boost.conditions.append(Condition.new(
+			Comparison.new(
+				ComputedValue.new(0, VariableContext.VariableType.LetterCount),
+			Comparison.Operator.Odd,
+			null)
+		, null))
+	artefacts.append(oddness_boost)
+	return artefacts
