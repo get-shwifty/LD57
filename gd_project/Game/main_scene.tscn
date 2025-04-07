@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://co5otvtlvk4du" path="res://Game/main_scene.gd" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://d3elieuk1ty6m" path="res://Game/Levels/level_test.tscn" id="2_2c62f"]
-[ext_resource type="AudioStream" uid="uid://bo3qkfxhjdw38" path="res://assets/sounds/0_THEME_1.mp3" id="3_o5vtq"]
+[ext_resource type="AudioStream" uid="uid://d2kohnw6ue60x" path="res://assets/sounds/0_THEME_1.ogg" id="3_f1nas"]
 [ext_resource type="AudioStream" uid="uid://5wn1wt266w3y" path="res://assets/sounds/bruitages/ambiance/VAGUES.mp3" id="4_f1nas"]
 
 [node name="MainScene" type="Node2D"]
@@ -18,7 +18,7 @@ anchors_preset = 0
 mouse_filter = 1
 
 [node name="Music_1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_o5vtq")
+stream = ExtResource("3_f1nas")
 volume_db = -10.0
 autoplay = true
 parameters/looping = true
