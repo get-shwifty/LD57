@@ -53,6 +53,7 @@ text = "x"
 [node name="Multiplicateur" type="Label" parent="CenterContainer/VBoxContainer/Score"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
+text = "1"
 
 [node name="=" type="Label" parent="CenterContainer/VBoxContainer/Score"]
 layout_mode = 2

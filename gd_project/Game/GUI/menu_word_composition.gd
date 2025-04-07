@@ -24,7 +24,6 @@ extends Control
 	
 @onready var UI_LETTER = preload("res://Game/GUI/ui_letter.tscn")
 
-@onready var pool_container = $CenterContainer/VBoxContainer/PoolContainer
 @onready var word_container = $CenterContainer/VBoxContainer/WordContainer
 @onready var grid_container = $CenterContainer/VBoxContainer/GridContainer
 
@@ -37,7 +36,8 @@ signal on_menu_closed
 static var dico: DictionaryHelper = DictionaryHelper.new(DictionaryHelper.Language.English)
 
 func _ready():
-	initialize()
+	pass
+	#initialize()
 	
 func _process(delta: float):
 	if Input.is_action_just_pressed("ui_accept"):
@@ -45,13 +45,13 @@ func _process(delta: float):
 	if Input.is_action_just_pressed("ui_cancel"):
 		close_menu()
 
-func initialize():
-	var word: Array[Letter] = [];
-	word.append(Letter.new(Alphabet.get_character("H")))
-	word.append(Letter.new(Alphabet.get_character("E")))
-	word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
-	word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
-	word.append(Letter.new(Alphabet.get_character("O")))
+func initialize(word: Array[Letter]):
+	#var word: Array[Letter] = [];
+	#word.append(Letter.new(Alphabet.get_character("H")))
+	#word.append(Letter.new(Alphabet.get_character("E")))
+	#word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
+	#word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
+	#word.append(Letter.new(Alphabet.get_character("O")))
 	setup_letter_pool(word)
 
 func setup_letter_pool(letters : Array[Letter]):
@@ -96,7 +96,7 @@ func confirm_word():
 	
 	on_word_confirmed.emit(word)
 	
-	if pool_container.get_child_count() <= 0:
+	if grid_container.get_child_count() <= 0:
 		on_menu_closed.emit()
 
 func update_score():
@@ -107,9 +107,13 @@ func update_score():
 	$CenterContainer/VBoxContainer/Score/Points.text = str(score)
 	
 	
-	
-	
-	
+func process_score(score: ScoreCalculator.ScoreBreakdown):
+	for action in score.operations:
+		if action.letter_add_delta:
+			action.evaluated_letter_idx
+			pass
+
+
 	
 	
 	
