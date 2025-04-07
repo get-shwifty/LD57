@@ -10,6 +10,7 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 	cond_context.is_word_palindrom = is_palidrom(word)
 	cond_context.first_letter = word[0]
 	cond_context.last_letter = word[-1]
+	cond_context.word = word
 	
 	print("variable context is " + var_context.to_string())
 	
@@ -38,8 +39,7 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 			if a.artefact.target == Artefact.TargetType.LetterMult:
 				breakdown.register_operation(true, a, index_letter)
 				
-		match current_letter.bonus_type:
-			Letter.BonusType.LetterMult1 || Letter.BonusType.LetterMult2:
+		if current_letter.bonus_type == Letter.BonusType.LetterMult1 || current_letter.bonus_type == Letter.BonusType.LetterMult2:
 				breakdown.register_operation(true, null, index_letter)
 		
 		for a in applicable_artifacts:
@@ -50,8 +50,7 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 			if a.artefact.target == Artefact.TargetType.WordMult:
 				breakdown.register_operation(true, a, index_letter)
 		
-		match current_letter.bonus_type:
-			Letter.BonusType.WordMult1 || Letter.BonusType.WordMult2:
+		if current_letter.bonus_type == Letter.BonusType.WordMult1 || current_letter.bonus_type == Letter.BonusType.WordMult2:
 				breakdown.register_operation(true, null, index_letter, true)
 	
 	cond_context.reset_letter_dependant_context()
@@ -81,7 +80,7 @@ static func get_applicable_artefacts(is_evaluating_letter : bool, artefacts : Ar
 	var applicable_artefacts : Array[ApplicableArtefact] = []
 	var artefact_idx = 0
 	for a in artefacts:
-		if (a.trigger == Artefact.TriggerType.Letter) == is_evaluating_letter:
+		if (a.trigger == Artefact.TriggerType.Letter) != is_evaluating_letter:
 			artefact_idx += 1
 			continue
 
@@ -126,7 +125,8 @@ class ScoreBreakdown:
 		current_word_mult = initial_word_mult
 	
 	func register_operation(is_operating_on_letter : bool, artefact : ApplicableArtefact, letter_index : int = -1, evaluate_letter_word_mult : bool = false ):
-		var operation = ScoreOperation.new(letter_index, artefact.artefact_idx)
+		var artefact_idx = artefact.artefact_idx if artefact != null else -1
+		var operation = ScoreOperation.new(letter_index, artefact_idx)
 		
 		if is_operating_on_letter:
 			if artefact == null:
@@ -151,7 +151,7 @@ class ScoreBreakdown:
 					Artefact.TargetType.WordAdd:
 						operation.word_add_delta = artefact.artefact.value.get_value(var_context)
 		else:
-			match artefact.artefact.TargetType:
+			match artefact.artefact.target:
 				Artefact.TargetType.LetterAdd || Artefact.TargetType.LetterMult:
 					printerr("invalid target type")
 				Artefact.TargetType.WordMult:
@@ -172,7 +172,7 @@ class ScoreBreakdown:
 		if operation.word_add_delta != 0:
 			current_word_add += operation.word_add_delta
 		if operation.word_mult_delta != 0:
-			current_word_mult += operation.word_add_delta
+			current_word_mult += operation.word_mult_delta
 			
 		operation.new_letter_score = current_letter_score
 		operation.new_word_add = current_word_add

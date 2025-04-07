@@ -48,8 +48,8 @@ func finish_level():
 	
 func confirm_word(word: Array[Letter]):
 	var variable_contexte: VariableContext = VariableContext.new()
-	var artifacts = setup_artifacts()
-	var breakdown = ScoreCalculator.compute_score(word, artifacts, variable_contexte)
+	var artefacts = get_artefacts()
+	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_contexte)
 
 	for letter in word:
 		current_letters.erase(letter)
@@ -86,26 +86,42 @@ func start_word_compose():
 func close_word_compose():
 	word_composing_menu.queue_free()
 	word_composing_menu = null
-
-func setup_artifacts() -> Array[Artefact]:
+	
+func get_artefacts() -> Array[Artefact]:
 	var artefacts: Array[Artefact] = []
+	
 	var vowel_booster = Artefact.new()
 	vowel_booster.name = "Vowel Booster"
 	vowel_booster.trigger = Artefact.TriggerType.Letter
 	vowel_booster.target = Artefact.TargetType.LetterAdd
 	vowel_booster.value = ComputedValue.new(0, VariableContext.VariableType.ConsonantCount)
-	vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
+	vowel_booster.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return cc.current_letter.character.is_vowel
+	#vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
 	artefacts.append(vowel_booster)
+	
 	var oddness_boost = Artefact.new()
 	oddness_boost.name = "Love the oddness"
-	vowel_booster.trigger = Artefact.TriggerType.Word
+	oddness_boost.trigger = Artefact.TriggerType.Word
 	oddness_boost.target = Artefact.TargetType.WordMult
 	oddness_boost.value = ComputedValue.new(2)
-	oddness_boost.conditions.append(Condition.new(
-			Comparison.new(
-				ComputedValue.new(0, VariableContext.VariableType.LetterCount),
-			Comparison.Operator.Odd,
-			null)
-		, null))
+	oddness_boost.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return vc.letter_count % 2 != 0
+	#oddness_boost.conditions.append(Condition.new(
+			#Comparison.new(
+				#ComputedValue.new(0, VariableContext.VariableType.LetterCount),
+			#Comparison.Operator.Odd,
+			#null)
+		#, null))
 	artefacts.append(oddness_boost)
+	
+	var vowel_first = Artefact.new()
+	vowel_first.name = "First letter is a vowel"
+	vowel_first.trigger = Artefact.TriggerType.Letter
+	vowel_first.target = Artefact.TargetType.LetterMult
+	vowel_first.value = ComputedValue.new(2)
+	vowel_first.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return cc.previous_letter == null and cc.current_letter.character.is_vowel
+	artefacts.append(vowel_first)
+
 	return artefacts
