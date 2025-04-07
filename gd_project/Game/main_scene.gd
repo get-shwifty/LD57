@@ -62,6 +62,7 @@ func start_new_level():
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
 	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
+	current_level.setup_level(artefacts)
 	
 
 func _on_map_exited(room: Room) -> void:

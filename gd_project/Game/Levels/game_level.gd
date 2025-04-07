@@ -12,14 +12,13 @@ signal level_finished(points)
 @onready var score: Score = $UIContainer/ScoreUI
 
 var letters_pool : Array[Letter] = []
-var artefacts = get_artefacts()
 var current_score : int = 0
 var waiting_for_ui = false
+var artefacts : Array[Artefact]
 
 func _ready():
 	assert(player != null)
 	room.on_captured.connect(fish_captured)
-	
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
 
 	letters_pool.append(Letter.new(Alphabet.get_character("H")))
@@ -29,7 +28,7 @@ func _ready():
 	letters_pool.append(Letter.new(Alphabet.get_character("O")))
 
 
-func setup_level():
+func setup_level(artefacts : Array[Artefact]):
 	score.objective = 25
 	word_composing_menu.set_letters(letters_pool)
 	word_composing_menu.artefacts = artefacts
