@@ -420,97 +420,6 @@ texture = ExtResource("7_rquay")
 region_enabled = true
 region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
 
-[node name="fish" type="Node" parent="."]
-
-[node name="Crab" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_fbahp")]
-position = Vector2(99, 345)
-path_to_follow = NodePath("../Path2Dcrab")
-
-[node name="Crab2" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_fbahp")]
-position = Vector2(90, 403)
-path_to_follow = NodePath("../Path2Dcrab")
-
-[node name="Crab3" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_fbahp")]
-position = Vector2(81, 484)
-path_to_follow = NodePath("../Path2Dcrab")
-
-[node name="Crab4" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_fbahp")]
-position = Vector2(80, 550)
-path_to_follow = NodePath("../Path2Dcrab")
-
-[node name="Fish" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("9_47733")]
-position = Vector2(178, 32)
-path_to_follow = NodePath("../Path2D")
-
-[node name="Jelly" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
-position = Vector2(278, 979)
-path_to_follow = NodePath("../Path2D2jellyfish1")
-
-[node name="Jelly2" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
-position = Vector2(209, 901)
-path_to_follow = NodePath("../Path2D2jellyfish2")
-
-[node name="Jelly3" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
-position = Vector2(234, 728)
-path_to_follow = NodePath("../Path2D2jellyfish3")
-
-[node name="Jelly4" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
-z_index = 1
-position = Vector2(150, 803)
-path_to_follow = NodePath("../Path2D2jellyfish4")
-
-[node name="Jelly5" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
-z_index = 1
-position = Vector2(119, 638)
-path_to_follow = NodePath("../Path2D2jellyfish5")
-
-[node name="Jelly6" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
-z_index = 1
-position = Vector2(189, 455)
-path_to_follow = NodePath("../Path2D2jellyfish6")
-
-[node name="Jelly7" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
-z_index = 1
-position = Vector2(159, 361)
-path_to_follow = NodePath("../Path2D2jellyfish7")
-
-[node name="Murene" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("11_am45c")]
-position = Vector2(70, 200)
-path_to_follow = NodePath("../Path2Dmuraine")
-
-[node name="Path2Dmuraine" type="Path2D" parent="fish"]
-curve = SubResource("Curve2D_58av0")
-
-[node name="Path2D" type="Path2D" parent="fish"]
-curve = SubResource("Curve2D_vmy6b")
-
-[node name="Path2Dcrab" type="Path2D" parent="fish"]
-curve = SubResource("Curve2D_vntu5")
-
-[node name="Path2D2jellyfish7" type="Path2D" parent="fish"]
-curve = SubResource("Curve2D_t48j1")
-
-[node name="Path2D2jellyfish6" type="Path2D" parent="fish"]
-curve = SubResource("Curve2D_23ynh")
-
-[node name="Path2D2jellyfish1" type="Path2D" parent="fish"]
-position = Vector2(94, 408)
-curve = SubResource("Curve2D_23ynh")
-
-[node name="Path2D2jellyfish2" type="Path2D" parent="fish"]
-position = Vector2(24, 366)
-curve = SubResource("Curve2D_23ynh")
-
-[node name="Path2D2jellyfish3" type="Path2D" parent="fish"]
-curve = SubResource("Curve2D_tb47f")
-
-[node name="Path2D2jellyfish4" type="Path2D" parent="fish"]
-curve = SubResource("Curve2D_ws10t")
-
-[node name="Path2D2jellyfish5" type="Path2D" parent="fish"]
-position = Vector2(-32, -152)
-curve = SubResource("Curve2D_ws10t")
-
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_right = 640.0
@@ -518,3 +427,94 @@ offset_bottom = 360.0
 
 [node name="Player" parent="." instance=ExtResource("12_ekrv3")]
 position = Vector2(48, 64)
+
+[node name="Fish" type="Node2D" parent="."]
+
+[node name="Crab" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_fbahp")]
+position = Vector2(99, 345)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab2" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_fbahp")]
+position = Vector2(90, 403)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab3" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_fbahp")]
+position = Vector2(81, 484)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab4" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_fbahp")]
+position = Vector2(80, 550)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Fish" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("9_47733")]
+position = Vector2(178, 32)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Jelly" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
+position = Vector2(278, 979)
+path_to_follow = NodePath("../Path2D2jellyfish1")
+
+[node name="Jelly2" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
+position = Vector2(209, 901)
+path_to_follow = NodePath("../Path2D2jellyfish2")
+
+[node name="Jelly3" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
+position = Vector2(234, 728)
+path_to_follow = NodePath("../Path2D2jellyfish3")
+
+[node name="Jelly4" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
+z_index = 1
+position = Vector2(150, 803)
+path_to_follow = NodePath("../Path2D2jellyfish4")
+
+[node name="Jelly5" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
+z_index = 1
+position = Vector2(119, 638)
+path_to_follow = NodePath("../Path2D2jellyfish5")
+
+[node name="Jelly6" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
+z_index = 1
+position = Vector2(189, 455)
+path_to_follow = NodePath("../Path2D2jellyfish6")
+
+[node name="Jelly7" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
+z_index = 1
+position = Vector2(159, 361)
+path_to_follow = NodePath("../Path2D2jellyfish7")
+
+[node name="Murene" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("11_am45c")]
+position = Vector2(70, 200)
+path_to_follow = NodePath("../Path2Dmuraine")
+
+[node name="Path2Dmuraine" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_58av0")
+
+[node name="Path2D" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_vmy6b")
+
+[node name="Path2Dcrab" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_vntu5")
+
+[node name="Path2D2jellyfish7" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_t48j1")
+
+[node name="Path2D2jellyfish6" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_23ynh")
+
+[node name="Path2D2jellyfish1" type="Path2D" parent="Fish"]
+position = Vector2(94, 408)
+curve = SubResource("Curve2D_23ynh")
+
+[node name="Path2D2jellyfish2" type="Path2D" parent="Fish"]
+position = Vector2(24, 366)
+curve = SubResource("Curve2D_23ynh")
+
+[node name="Path2D2jellyfish3" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_tb47f")
+
+[node name="Path2D2jellyfish4" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_ws10t")
+
+[node name="Path2D2jellyfish5" type="Path2D" parent="Fish"]
+position = Vector2(-32, -152)
+curve = SubResource("Curve2D_ws10t")
