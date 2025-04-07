@@ -14,15 +14,6 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 
-[node name="StartButton" type="Button" parent="."]
-offset_left = 103.0
-offset_top = 61.0
-offset_right = 227.0
-offset_bottom = 92.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "START FISHING"
-
 [node name="Music_1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_f1nas")
 volume_db = -10.0
@@ -34,5 +25,3 @@ stream = ExtResource("4_f1nas")
 volume_db = -21.624
 pitch_scale = 0.72
 autoplay = true
-
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

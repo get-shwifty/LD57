@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://bbpwi6g8le3uu"]
 
-[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_a03xr"]
+[ext_resource type="Script" uid="uid://bd2aro2yyxb5d" path="res://Game/Levels/splash.gd" id="1_1o6ei"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_d4njp"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_03p00"]
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_khucl"]
@@ -89,7 +89,7 @@ animations = [{
 }]
 
 [node name="RoomSPlash" type="Node2D"]
-script = ExtResource("1_a03xr")
+script = ExtResource("1_1o6ei")
 metadata/_edit_lock_ = true
 
 [node name="World" type="Node2D" parent="."]
@@ -228,11 +228,19 @@ path_to_follow = NodePath("../Path2DJelly")
 [node name="Playersplash" parent="." instance=ExtResource("12_a03xr")]
 position = Vector2(432, 242)
 
-[node name="Start_Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="TITLE" type="AnimatedSprite2D" parent="Start_Button"]
+[node name="TITLE" type="AnimatedSprite2D" parent="."]
 position = Vector2(480, 277)
 sprite_frames = SubResource("SpriteFrames_hnkpt")
 autoplay = "default"
+
+[node name="Start_Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 418.0
+offset_top = 246.0
+offset_right = 543.0
+offset_bottom = 299.0
+text = "
+"
+flat = true
+
+[connection signal="pressed" from="Start_Button" to="." method="_on_button_pressed"]
