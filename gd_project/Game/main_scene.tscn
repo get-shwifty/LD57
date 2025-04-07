@@ -31,7 +31,7 @@ parameters/looping = true
 
 [node name="Atmosphere_1" type="AudioStreamPlayer" parent="Music_1"]
 stream = ExtResource("4_f1nas")
-volume_db = -19.57
+volume_db = -21.624
 pitch_scale = 0.72
 autoplay = true
 
