@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=15 format=3 uid="uid://foipsmnjhbbe"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_at57x"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_4awi4"]
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
+[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_1.tscn" id="6_6caqy"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
-[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="8_6caqy"]
+[ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="8_6caqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
@@ -24,6 +25,12 @@ point_count = 22
 [sub_resource type="Curve2D" id="Curve2D_at57x"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -132, 120, 0, 0, 0, 0, -120, 96, 0, 0, 0, 0, -96, 84, 0, 0, 0, 0, -80, 72, 0, 0, 0, 0, -60, 72, 0, 0, 0, 0, -44, 52, 0, 0, 0, 0, -40, 48, 0, 0, 0, 0, -28, 52)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_6caqy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 198, 133, 0, 0, 0, 0, 269, 113, 0, 0, 0, 0, 324, 107, 0, 0, 0, 0, 383, 104, 0, 0, 0, 0, 421, 106, 0, 0, 0, 0, 463, 108, 0, 0, 0, 0, 490, 91, 0, 0, 0, 0, 508, 64)
 }
 point_count = 8
 
@@ -115,6 +122,12 @@ position = Vector2(615, 354)
 [node name="RockB" parent="World" instance=ExtResource("4_oxc8n")]
 position = Vector2(249, 320)
 
+[node name="Algue1" parent="World" instance=ExtResource("6_6caqy")]
+position = Vector2(292, 274)
+
+[node name="Algue2" parent="World" instance=ExtResource("6_6caqy")]
+position = Vector2(244, 293)
+
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_right = 640.0
@@ -173,5 +186,9 @@ curve = SubResource("Curve2D_1bvp3")
 position = Vector2(320, 240)
 curve = SubResource("Curve2D_at57x")
 
-[node name="Player" parent="." instance=ExtResource("8_6caqy")]
-position = Vector2(233, 268)
+[node name="Murene" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_6caqy")]
+position = Vector2(222, 125)
+path_to_follow = NodePath("../Path2DMurene")
+
+[node name="Path2DMurene" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6caqy")

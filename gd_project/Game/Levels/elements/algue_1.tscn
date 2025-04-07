@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0bj0jqqfv0eb"]
+
+[ext_resource type="Script" uid="uid://cafiqh5ndsbft" path="res://Game/Levels/elements/algue.gd" id="1_rytof"]
+[ext_resource type="Texture2D" uid="uid://c4rbfjtegjvw1" path="res://assets/images/algues1.png" id="2_mvtd3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6f7o"]
+atlas = ExtResource("2_mvtd3")
+region = Rect2(0, 0, 26, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy0pr"]
+atlas = ExtResource("2_mvtd3")
+region = Rect2(26, 0, 26, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6i4v"]
+atlas = ExtResource("2_mvtd3")
+region = Rect2(52, 0, 26, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk4lc"]
+atlas = ExtResource("2_mvtd3")
+region = Rect2(78, 0, 26, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3cpac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6f7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy0pr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6i4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bk4lc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Algue1" type="Node2D"]
+script = ExtResource("1_rytof")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3cpac")

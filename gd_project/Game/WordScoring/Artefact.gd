@@ -15,6 +15,8 @@ enum TriggerType
 }
 
 var name : String
+var description : String
+var is_malus : bool
 var target : TargetType;
 var trigger : TriggerType;
 var value : ComputedValue;
