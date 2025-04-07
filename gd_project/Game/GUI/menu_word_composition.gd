@@ -24,7 +24,9 @@ class_name MenuWordComposition
 
 	
 @onready var UI_LETTER = preload("res://Game/GUI/ui_letter.tscn")
+@onready var UI_ARTEFACT = preload("res://Game/GUI/ui_artefact.tscn")
 
+@onready var artefacts_container = $Artefacts
 @onready var word_container = $CenterContainer/VBoxContainer/WordContainer
 @onready var grid_container = $CenterContainer/VBoxContainer/GridContainer
 @onready var sound_click_on_letter: AudioStreamPlayer = $SoundClickOnLetter
@@ -62,14 +64,21 @@ func _process(delta: float):
 	if Input.is_action_just_pressed("ui_cancel"):
 		close_menu()
 
-func initialize(word: Array[Letter]):
+func initialize(word: Array[Letter], artefacts: Array[Artefact]):
 	#var word: Array[Letter] = [];
 	#word.append(Letter.new(Alphabet.get_character("H")))
 	#word.append(Letter.new(Alphabet.get_character("E")))
 	#word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
 	#word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
 	#word.append(Letter.new(Alphabet.get_character("O")))
+	setup_artefacts_grid(artefacts)
 	setup_letter_pool(word)
+
+func setup_artefacts_grid(artefacts: Array[Artefact]):
+	for art in artefacts:
+		var artefact_ui = UI_ARTEFACT.instantiate()
+		artefact_ui.initialize(art)
+		artefacts_container.add_child(artefact_ui)
 
 func setup_letter_pool(letters : Array[Letter]):
 	for l in letters:
@@ -125,7 +134,7 @@ func update_score():
 	$CenterContainer/VBoxContainer/Score/Points.text = str(score)
 	
 	
-func process_score(score: ScoreCalculator.ScoreBreakdown):
+func process_score(score: ScoreCalculator.ScoreBreakdown, artefcats: Array[Artefact]):
 	for action in score.operations:
 		if action.letter_add_delta:
 			var letter_ui: UILetter = word_container.get_children()[action.evaluated_letter_idx]
