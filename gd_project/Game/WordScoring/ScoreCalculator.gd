@@ -150,7 +150,7 @@ class ScoreBreakdown:
 		
 		if is_operating_on_letter:
 			if artefact == null:
-				if evaluate_letter_word_mult:
+				if !evaluate_letter_word_mult:
 					if word[letter_index].bonus_type == Letter.BonusType.LetterMult1:
 						operation.letter_mult_delta += 2
 					elif word[letter_index].bonus_type == Letter.BonusType.LetterMult2:
