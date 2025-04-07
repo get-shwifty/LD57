@@ -7,7 +7,7 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 	fill_word_dependent_context(word, var_context)
 	
 	var cond_context = ConditionContext.new()
-	cond_context.is_word_palindrom = false; # TODO
+	cond_context.is_word_palindrom = is_palidrom(word)
 	cond_context.first_letter = word[0]
 	cond_context.last_letter = word[-1]
 	
@@ -69,6 +69,13 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 	
 	return breakdown
 
+static func is_palidrom(word : Array[Letter]) -> bool:
+	for index in range(0, word.size()/2):
+		var left_letter = word[index].character.character
+		var right_letter = word[-index-1].character.character
+		if left_letter != right_letter:
+			return false
+	return true
 
 static func get_applicable_artefacts(is_evaluating_letter : bool, artefacts : Array[Artefact], var_context : VariableContext, cond_context : ConditionContext) -> Array[ApplicableArtefact]:
 	var applicable_artefacts : Array[ApplicableArtefact] = []
@@ -204,6 +211,7 @@ class ScoreOperation:
 		self.origin_artefact_idx = origin_artefact_idx
 
 static func fill_word_dependent_context(word : Array[Letter], context : VariableContext):
+	var fishes_in_word : Dictionary[Letter.FishType, bool]
 	for letter in word:
 		context.letter_count += 1
 		if letter.character.is_vowel:
@@ -212,4 +220,5 @@ static func fill_word_dependent_context(word : Array[Letter], context : Variable
 			context.consonant_count += 1
 		if letter.bonus_type != Letter.BonusType.None:
 			context.bonus_letter_count += 1
-		## TODO fish type count
+		fishes_in_word[letter.fish_type] = true;
+	context.fish_type_count = fishes_in_word.size()
