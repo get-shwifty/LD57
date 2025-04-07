@@ -82,7 +82,7 @@ static func get_applicable_artefacts(is_evaluating_letter : bool, artefacts : Ar
 	var applicable_artefacts : Array[ApplicableArtefact] = []
 	var artefact_idx = 0
 	for a in artefacts:
-		if (a.trigger == Artefact.TriggerType.Letter) == is_evaluating_letter:
+		if (a.trigger == Artefact.TriggerType.Letter) != is_evaluating_letter:
 			artefact_idx += 1
 			continue
 
