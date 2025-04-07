@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c26jrcabscac0"
-path="res://.godot/imported/harpon_tir.png-4b1ab7cf746cf7256f9ccba6efa84e59.ctex"
+uid="uid://dqienl6l0l5tl"
+path="res://.godot/imported/bulle_1.png-82ce385d2081046dc9bb3abafa1cb1df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/harpon_tir.png"
-dest_files=["res://.godot/imported/harpon_tir.png-4b1ab7cf746cf7256f9ccba6efa84e59.ctex"]
+source_file="res://assets/images/breath-bubbles/bulle_1.png"
+dest_files=["res://.godot/imported/bulle_1.png-82ce385d2081046dc9bb3abafa1cb1df.ctex"]
 
 [params]
 
