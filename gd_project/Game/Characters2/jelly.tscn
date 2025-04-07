@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://bbrb36psdtbqj"]
+
+[ext_resource type="Script" uid="uid://byqr0hkok6g2m" path="res://Game/Characters2/jelly.gd" id="1_4bgqc"]
+[ext_resource type="Texture2D" uid="uid://x1bs2f0pv66b" path="res://assets/images/jelly.png" id="2_4bgqc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_men41"]
+atlas = ExtResource("2_4bgqc")
+region = Rect2(0, 0, 25, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i64tu"]
+atlas = ExtResource("2_4bgqc")
+region = Rect2(25, 0, 25, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aycaf"]
+atlas = ExtResource("2_4bgqc")
+region = Rect2(50, 0, 25, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en23c"]
+atlas = ExtResource("2_4bgqc")
+region = Rect2(75, 0, 25, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rsjj"]
+atlas = ExtResource("2_4bgqc")
+region = Rect2(100, 0, 25, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jri67"]
+atlas = ExtResource("2_4bgqc")
+region = Rect2(125, 0, 25, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rpph"]
+atlas = ExtResource("2_4bgqc")
+region = Rect2(150, 0, 25, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t26xp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_men41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i64tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aycaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en23c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rsjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jri67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rpph")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2yge"]
+radius = 7.0
+height = 27.9972
+
+[node name="Jelly" type="CharacterBody2D"]
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_4bgqc")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual"]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_t26xp")
+autoplay = "default"
+frame_progress = 0.697281
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -3.1558
+shape = SubResource("CapsuleShape2D_h2yge")
+
+[node name="LetterCtn" type="Node2D" parent="."]
+position = Vector2(0, -5)
+
+[node name="Label" type="Label" parent="LetterCtn"]
+offset_left = -10.0
+offset_top = -7.0
+offset_right = 10.0
+offset_bottom = 7.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "P"
+horizontal_alignment = 1
+vertical_alignment = 1
+ellipsis_char = ""
+uppercase = true

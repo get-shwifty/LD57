@@ -15,8 +15,7 @@ script = ExtResource("1_0f027")
 [node name="MenuContainer" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="Music_1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_f1nas")

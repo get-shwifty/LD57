@@ -18,7 +18,11 @@ func _init(language : Language):
 func load_file(filePath : String):
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	while !file.eof_reached():
-		words[file.get_line()] = true
+		var word = file.get_line()
+		if word.length() <= 1:
+			#avoid single letter words
+			continue
+		words[word] = true
 	print("Loaded " + str(words.size()) + " words")
 	
 func is_word_valid(word : Array[Letter]) -> bool:
