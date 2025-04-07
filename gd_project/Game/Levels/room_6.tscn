@@ -14,10 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="12_ekrv3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(25, 1169)
+size = Vector2(23, 1488.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(644, 2)
+size = Vector2(888, 31.5)
 
 [sub_resource type="Curve2D" id="Curve2D_58av0"]
 _data = {
@@ -57,12 +57,14 @@ point_count = 8
 
 [sub_resource type="Curve2D" id="Curve2D_ws10t"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 149, 853, 0, 0, 0, 0, 147, 820, 0, 0, 0, 0, 152, 783, 0, 0, 0, 0, 157, 743, 0, 0, 0, 0, 157, 704, 0, 0, 0, 0, 152, 668, 0, 0, 0, 0, 151, 633, 0, 0, 0, 0, 145, 610, 0, 0, 0, 0, 155, 564, 0, 0, 0, 0, 162, 500, 0, 0, 0, 0, 153, 437)
+"points": PackedVector2Array(0, 0, 0, 0, 149, 853, 0, 0, 0, 0, 147, 820, 0, 0, 0, 0, 152, 783, 0, 0, 0, 0, 157, 743, 0, 0, 0, 0, 157, 704, 0, 0, 0, 0, 152, 668, 0, 0, 0, 0, 151, 633, 0, 0, 0, 0, 145, 610, 0, 0, 0, 0, 155, 564, 0, 0, 0, 0, 162, 500, 0, 0, 0, 0, 153, 437, 0, 0, 0, 0, 156, 803, 0, 0, 0, 0, 156, 803)
 }
-point_count = 11
+point_count = 13
 
-[node name="Room8" type="Node2D"]
+[node name="Room6" type="Node2D"]
 script = ExtResource("1_q5p03")
+width = 425
+height = 1125
 metadata/_edit_lock_ = true
 
 [node name="Walls" type="Node2D" parent="."]
@@ -74,7 +76,7 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
-position = Vector2(-4.5, 442.5)
+position = Vector2(-5, 390.5)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
@@ -83,7 +85,7 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
-position = Vector2(-300, 452)
+position = Vector2(-221.5, 476.75)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="TopWall" type="StaticBody2D" parent="Walls"]
@@ -92,7 +94,7 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
-position = Vector2(261, -116)
+position = Vector2(187, -123)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="TopWall2" type="StaticBody2D" parent="Walls"]
@@ -101,7 +103,7 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall2"]
-position = Vector2(254, 641)
+position = Vector2(207, 647.25)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="World" type="Node2D" parent="."]
@@ -115,13 +117,13 @@ position = Vector2(357, 680)
 scale = Vector2(2, 2)
 
 [node name="RockC3" parent="World/rocks" instance=ExtResource("2_gy3yr")]
-z_index = 4
+z_index = 6
 position = Vector2(-108, 491)
 rotation = 1.5708
 scale = Vector2(3, 3)
 
 [node name="RockB" parent="World/rocks" instance=ExtResource("3_l06gp")]
-z_index = 3
+z_index = 4
 position = Vector2(140, 867)
 scale = Vector2(6, 6)
 
@@ -142,7 +144,20 @@ scale = Vector2(3, 3)
 [node name="algues" type="Node" parent="World"]
 
 [node name="Algue1" parent="World/algues" instance=ExtResource("5_o427d")]
+z_index = 1
 position = Vector2(182, 129)
+
+[node name="Algue39" parent="World/algues" instance=ExtResource("5_o427d")]
+z_index = 1
+position = Vector2(189, 134)
+
+[node name="Algue40" parent="World/algues" instance=ExtResource("5_o427d")]
+z_index = 1
+position = Vector2(199, 138)
+
+[node name="Algue41" parent="World/algues" instance=ExtResource("5_o427d")]
+z_index = 1
+position = Vector2(193, 135)
 
 [node name="Algue8" parent="World/algues" instance=ExtResource("5_o427d")]
 position = Vector2(108, 377)
@@ -256,22 +271,22 @@ z_index = 3
 position = Vector2(323, 551)
 
 [node name="Algue32" parent="World/algues" instance=ExtResource("5_o427d")]
-z_index = 3
+z_index = 5
 position = Vector2(111, 721)
 rotation = 1.5708
 
 [node name="Algue33" parent="World/algues" instance=ExtResource("5_o427d")]
-z_index = 3
+z_index = 5
 position = Vector2(101, 714)
 rotation = 1.5708
 
 [node name="Algue34" parent="World/algues" instance=ExtResource("5_o427d")]
-z_index = 3
+z_index = 5
 position = Vector2(113, 736)
 rotation = 1.5708
 
 [node name="Algue35" parent="World/algues" instance=ExtResource("5_o427d")]
-z_index = 3
+z_index = 5
 position = Vector2(121, 745)
 rotation = 1.5708
 
@@ -396,7 +411,7 @@ region_enabled = true
 region_rect = Rect2(0, 840, 640, 240)
 
 [node name="BackLayer5" type="Sprite2D" parent="World"]
-z_index = 1
+z_index = 4
 position = Vector2(224, 934)
 rotation = 1.5708
 texture = ExtResource("7_rquay")
@@ -404,7 +419,7 @@ region_enabled = true
 region_rect = Rect2(1, 1375.5, 637, 242)
 
 [node name="BackLayer11" type="Sprite2D" parent="World"]
-z_index = 1
+z_index = 4
 position = Vector2(-133, 929)
 rotation = 1.5708
 scale = Vector2(1, -2)
@@ -463,12 +478,12 @@ position = Vector2(234, 728)
 path_to_follow = NodePath("../Path2D2jellyfish3")
 
 [node name="Jelly4" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
-z_index = 1
+z_index = 4
 position = Vector2(150, 803)
 path_to_follow = NodePath("../Path2D2jellyfish4")
 
 [node name="Jelly5" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_vw7fb")]
-z_index = 1
+z_index = 4
 position = Vector2(119, 638)
 path_to_follow = NodePath("../Path2D2jellyfish5")
 
