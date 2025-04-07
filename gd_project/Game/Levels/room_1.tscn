@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_4awi4"]
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
 [ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="6_6caqy"]
+[ext_resource type="PackedScene" uid="uid://tsng1mrq77pc" path="res://Game/Levels/elements/Rayons.tscn" id="7_1sm0m"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
 [ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="8_6caqy"]
 [ext_resource type="PackedScene" uid="uid://bbrb36psdtbqj" path="res://Game/Characters2/jelly.tscn" id="10_xlshn"]
@@ -105,6 +106,7 @@ region_enabled = true
 region_rect = Rect2(1, 1375.5, 637, 242)
 
 [node name="BackLayer3" type="Sprite2D" parent="World"]
+visible = false
 modulate = Color(1, 1, 1, 0.517647)
 position = Vector2(320, 240)
 texture = ExtResource("2_at57x")
@@ -135,6 +137,9 @@ position = Vector2(292, 274)
 
 [node name="Algue2" parent="World" instance=ExtResource("6_6caqy")]
 position = Vector2(244, 293)
+
+[node name="Rayons" parent="World" instance=ExtResource("7_1sm0m")]
+position = Vector2(-4, -6)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

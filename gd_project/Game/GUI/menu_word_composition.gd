@@ -22,7 +22,6 @@ class_name MenuWordComposition
 #]
 
 
-	
 @onready var UI_LETTER = preload("res://Game/GUI/ui_letter.tscn")
 @onready var UI_ARTEFACT = preload("res://Game/GUI/ui_artefact.tscn")
 
@@ -39,7 +38,7 @@ class_name MenuWordComposition
 @onready var lettersScoring: AudioStreamPlayer = $LettersScoring
 @onready var victory: AudioStreamPlayer = $SoundJackpooooot
 
-var current_letters : Array[Letter] = []
+var current_letters: Array[Letter] = []
 
 var sound_bank := [
 	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-1.ogg"),
@@ -87,7 +86,7 @@ func setup_artefacts_grid(artefacts: Array[Artefact]):
 		artefact_ui.initialize(art)
 		artefacts_container.add_child(artefact_ui)
 
-func setup_letter_pool(letters : Array[Letter]):
+func setup_letter_pool(letters: Array[Letter]):
 	for child in grid_container.get_children():
 		child.queue_free()
 	for child in word_container.get_children():
@@ -99,14 +98,14 @@ func setup_letter_pool(letters : Array[Letter]):
 		letter_ui.on_letter_selected.connect(on_letter_selected.bind(letter_ui))
 		grid_container.add_child(letter_ui)
 
-func on_letter_selected(letter : Control):
+func on_letter_selected(letter: Control):
 	sound_click_on_letter.play()
 	if grid_container.get_children().has(letter):
 		letter.reparent(word_container)
 	elif word_container.get_children().has(letter):
 		letter.reparent(grid_container)
 	var word = get_word()
-	if(len(word) and dico.is_word_valid(word)):
+	if (len(word) and dico.is_word_valid(word)):
 		$CenterContainer/VBoxContainer/Submit.disabled = false
 	else:
 		$CenterContainer/VBoxContainer/Submit.disabled = true
@@ -144,16 +143,25 @@ func update_score():
 	$CenterContainer/VBoxContainer/Score/Points.text = str(score)
 	
 	
-func process_score(score: ScoreCalculator.ScoreBreakdown, artefcats: Array[Artefact]):
+func process_score(score: ScoreCalculator.ScoreBreakdown, artefacts: Array[Artefact]):
 	for action in score.operations:
 		if action.letter_add_delta:
+			var tween_letter: Tween = get_tree().create_tween()
 			var letter_ui: UILetter = word_container.get_children()[action.evaluated_letter_idx]
 			letter_ui.points.text = str(action.new_letter_score)
 			_play_bubble_sound()
-			letter_ui.position.y -= 5
+			letter_ui.position.y -= 5.0
+			tween_letter.tween_property(letter_ui, "position", letter_ui.position + Vector2(0, 5), 0.25)
 			$CenterContainer/VBoxContainer/Score/Points.text = str(action.new_word_add)
 		await get_tree().create_timer(0.7).timeout
 		print("doing operation")
+	
+		if action.origin_artefact_idx:
+			var tween_artefact: Tween = get_tree().create_tween()
+			var artefact_ui: UIArtefact = artefacts_container.get_children()[action.origin_artefact_idx]
+			artefact_ui.position.y -= 5.0
+			tween_artefact.tween_property(artefact_ui, "position", artefact_ui.position + Vector2(0, 5), 0.25)
+			
 	$CenterContainer/VBoxContainer/Score/Total.text = str(score.final_score)
 	victory.play()
 	on_ui_finished.emit()
@@ -166,34 +174,3 @@ func _play_bubble_sound():
 	sound_index += 1
 	if sound_index >= sound_bank.size():
 		sound_index = 0
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
