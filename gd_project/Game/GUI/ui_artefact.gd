@@ -18,7 +18,10 @@ func initialize(artefact : Artefact):
 		artefact.TargetType.WordMult:
 			texture_index = 3
 	$Button.texture_normal.set_region(Rect2(texture_index * 24, 0, 24, 27))
-	$Panel/Label.set_text("DESCRIPTION")
+	%Nom.text = artefact.name
+	%Description.text = artefact.description
+	#$Button.scale.y = 0.3
+	#$Button.scale.x = 0.6
 
 func _on_button_mouse_entered():
 	panel.show()

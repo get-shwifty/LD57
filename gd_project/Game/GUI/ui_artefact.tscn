@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://co87wxbcqvrqg"]
+[gd_scene load_steps=5 format=3 uid="uid://co87wxbcqvrqg"]
 
 [ext_resource type="Script" uid="uid://de5m14hejyl45" path="res://Game/GUI/ui_artefact.gd" id="1_2q8sl"]
 [ext_resource type="Texture2D" uid="uid://4xwep1fcd4fx" path="res://assets/images/letter_tile.png" id="2_eco2u"]
+[ext_resource type="FontFile" uid="uid://bdt811tmnc1sq" path="res://assets/fonts/Square.ttf" id="3_eco2u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2q8sl"]
 resource_local_to_scene = true
@@ -9,38 +10,56 @@ atlas = ExtResource("2_eco2u")
 region = Rect2(24, 0, 24, 27)
 
 [node name="UIArtefact" type="Control"]
-custom_minimum_size = Vector2(24, 24)
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 24.0
+offset_right = 16.0
 offset_bottom = 24.0
+scale = Vector2(0.64, 1.0058)
 script = ExtResource("1_2q8sl")
 
 [node name="Button" type="TextureButton" parent="."]
 layout_mode = 0
-offset_right = 24.0
-offset_bottom = 27.0
+offset_right = 16.0
+offset_bottom = 9.0
 texture_normal = SubResource("AtlasTexture_2q8sl")
-stretch_mode = 3
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 33.0
-offset_top = 44.0
-offset_right = 119.0
-offset_bottom = 84.0
+offset_left = 30.0
+offset_right = 116.0
+offset_bottom = 67.0
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 86.0
+offset_bottom = 40.0
+
+[node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer"]
 layout_mode = 2
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 40.0
-offset_bottom = 11.5
-grow_vertical = 2
+
+[node name="Nom" type="Label" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_eco2u")
 theme_override_font_sizes/font_size = 8
-text = "AAAA"
+text = "Size matters a long name"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Panel/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Adds the number of letters to the multiplier that can be a really long shit"
+horizontal_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 2
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="hide_artefact_popup"]

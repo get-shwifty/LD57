@@ -2,9 +2,9 @@ extends Control
 
 signal on_menu_closed;
 
-func initialize(finished_level : GameLevel) -> void:
-	$Score.text = str(finished_level.get_score())
-	
-func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		on_menu_closed.emit()
+func _ready():
+	$MenuArtefactSelection.artefact_selected.connect(on_menu_closed.emit)
+
+func initialize(total_points, artefacts) -> void:
+	$Score.text = "Total points: " + str(total_points)
+	$MenuArtefactSelection.initialize_bonus(artefacts)

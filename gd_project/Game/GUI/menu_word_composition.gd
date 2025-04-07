@@ -1,27 +1,6 @@
 extends Control
 class_name MenuWordComposition
 
-## Dict de la forme : Lettre: [points, texture]
-#const LETTER_POOL: Array[Array] = [
-		#["L", 1, 0],
-		#["O", 5, 1],
-		#["V", 1, 2],
-		#["E", 1, 3],
-		#["U", 1, 0],
-		#["P", 5, 1],
-		#["A", 1, 2],
-		#["B", 1, 3],
-		#["C", 1, 0],
-		#["D", 5, 1],
-		#["F", 1, 2],
-		#["G", 1, 3],
-		#["H", 1, 0],
-		#["O", 5, 1],
-		#["V", 1, 2],
-		#["E", 1, 3]
-#]
-
-
 @onready var UI_LETTER = preload("res://Game/GUI/ui_letter.tscn")
 @onready var UI_ARTEFACT = preload("res://Game/GUI/ui_artefact.tscn")
 
@@ -47,6 +26,7 @@ var sound_bank := [
 	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-5.ogg")
 ]
 var sound_index := 0
+var just_confirmed = false
 
 @onready var multi: int = 10
 @onready var score: int = 0
@@ -115,6 +95,10 @@ func setup_letter_pool(letters: Array[Letter]):
 
 
 func on_letter_selected(letter: Control):
+	if just_confirmed:
+		%Multiplicateur.text = "1"
+		%Total.text = "..."
+		just_confirmed = false
 	sound_click_on_letter.play()
 	if grid_container.get_children().has(letter):
 		letter.reparent(word_container)
@@ -149,15 +133,14 @@ func update_score():
 	var score = 0
 	for letter in word:
 		score += letter.character.base_value
-	$CenterContainer/VBoxContainer/Score/Points.text = str(score)
-	#$CenterContainer/VBoxContainer/Score/Total.text = str(score)
-	#bump_ui($CenterContainer/VBoxContainer/Score/Points)
-	#bump_ui($CenterContainer/VBoxContainer/Score/Total)
+	$CenterContainer/VBoxContainer/PanelContainer/Score/Points.text = str(score)
+	#$CenterContainer/VBoxContainer/PanelContainer/Score/Total.text = str(score)
+	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Points)
+	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Total)
 	
 	
 func process_score(score: ScoreCalculator.ScoreBreakdown):
 	tween_time = 0.4
-	disable_mouse_inputs()
 	
 	for action in score.operations:
 		
@@ -168,7 +151,7 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 		if target is UILetter:
 			target.points.text = str(action.new_letter_score)
 			await bump_ui(target)
-			var points = $CenterContainer/VBoxContainer/Score/Points
+			var points = $CenterContainer/VBoxContainer/PanelContainer/Score/Points
 			points.text = str(action.new_word_add)
 			await bump_ui(points)
 		else:
@@ -178,23 +161,25 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 				target.text = str(action.new_word_mult)
 			await bump_ui(target)
 		await get_tree().create_timer(tween_time).timeout
-	display_total(score)
+	await display_total(score)
 	on_ui_finished.emit()
-	
+	just_confirmed = true
 	enable_mouse_inputs()
 	
 
 func display_total(score: ScoreCalculator.ScoreBreakdown):
-		var total = $CenterContainer/VBoxContainer/Score/Total
-		var increment = 4
-		var temp = 0
-		while temp < score.final_score:
+	var total = $CenterContainer/VBoxContainer/PanelContainer/Score/Total
+	var increment = 4
+	var temp = 0
+	while temp < score.final_score:
+		total.text = str(temp)
+		await bump_ui(total)
+		if temp + increment > score.final_score:
+			temp = score.final_score
 			total.text = str(temp)
 			await bump_ui(total)
-			if temp + 4 > score.final_score:
-				temp = score.final_score
-			temp += 4
-		victory.play()
+		temp += increment
+	victory.play()
 
 
 		
@@ -217,9 +202,9 @@ func resolve_target(action: ScoreCalculator.ScoreOperation):
 	if action.letter_add_delta > 0 or action.letter_mult_delta:
 		return word_container.get_children()[action.evaluated_letter_idx]
 	elif action.word_add_delta > 0:
-		return $CenterContainer/VBoxContainer/Score/Points
+		return $CenterContainer/VBoxContainer/PanelContainer/Score/Points
 	elif action.word_mult_delta > 0:
-		return $CenterContainer/VBoxContainer/Score/Multiplicateur
+		return $CenterContainer/VBoxContainer/PanelContainer/Score/Multiplicateur
 	
 func _play_bubble_sound():
 	lettersScoring.volume_db = +3
