@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcg877klkaxk2"]
+[gd_scene load_steps=3 format=3 uid="uid://dcg877klkaxk2"]
 
 [ext_resource type="Script" uid="uid://cndgwbvdrrkb0" path="res://Game/GUI/menu_word_composition.gd" id="1_0plho"]
+[ext_resource type="AudioStream" uid="uid://dgi6artrfut34" path="res://assets/sounds/bruitages/wordComposition/BRUIT SELECTION LETTRES.mp3" id="2_idrpg"]
 
 [node name="MenuWordComposition" type="Control"]
 layout_mode = 3
@@ -73,3 +74,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 columns = 8
+
+[node name="SoundClickOnLetter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_idrpg")
