@@ -64,6 +64,7 @@ texture_normal = SubResource("AtlasTexture_7ns11")
 texture_pressed = SubResource("AtlasTexture_li7tv")
 texture_hover = SubResource("AtlasTexture_gqv15")
 texture_disabled = SubResource("AtlasTexture_2vdqv")
+stretch_mode = 3
 
 [node name="Score" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
