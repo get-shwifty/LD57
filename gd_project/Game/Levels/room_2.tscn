@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="6_h4dfq"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_44bgk"]
 [ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="8_ev1y8"]
-[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_1.tscn" id="9_5r4a5"]
-[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_2.tscn" id="10_vd6cr"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="9_5r4a5"]
+[ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="10_vd6cr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
@@ -93,7 +93,7 @@ metadata/_edit_lock_ = true
 
 [node name="Wallpaper" type="Sprite2D" parent="World"]
 position = Vector2(316.5, 130.5)
-rotation = 0.792379
+rotation = -0.790634
 scale = Vector2(1.61094, 1.5537)
 texture = ExtResource("2_ev1y8")
 region_enabled = true
