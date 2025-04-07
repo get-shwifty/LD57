@@ -41,7 +41,7 @@ offset_left = 6.0
 offset_top = 5.0
 offset_right = 6.0
 offset_bottom = 5.0
-theme_override_constants/separation = 2
+theme_override_constants/separation = 5
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 1
