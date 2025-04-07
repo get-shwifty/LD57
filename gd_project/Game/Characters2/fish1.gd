@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal on_captured(letter)
+signal on_captured()
 
 @export var MOVE_DURATION: float = 2.5
 @export_exp_easing var MOVE_EASING = 0.6
@@ -48,5 +48,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	look_at(target)
 
+func set_letter(c: String):
+	$LetterCtn/Label.text = c
+
 func capture_letter(_collision: KinematicCollision2D):
-	on_captured.emit("P")
+	on_captured.emit()
+	queue_free()

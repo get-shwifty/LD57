@@ -12,22 +12,24 @@ var word_composing_menu : Control;
 
 var score_objective : int
 
-var current_letters : String = ""
+var current_letters : Array[Letter] = []
 var current_score : int = 0
 
 func _ready():
-	room.set_letters([]) # TODO
 	room.on_captured.connect(fish_captured)
 	player.oxygen.on_oxygen_depleted.connect(oxygen_depleted)
+	
+	var letters = Alphabet.get_random_characters().map(func (c): return Letter.new(c))
+	room.set_letters(letters)
 
 	setup_level()
 
 func setup_level():
 	score_objective = 5
 
-func fish_captured(letter):
-	current_letters += letter
-	prints("captured " + letter, current_letters)
+func fish_captured(letter: Letter):
+	current_letters.append(letter)
+	prints("captured", letter.character.character)
 
 #func check_remaining_fishes():
 	#for fish in fishes:
@@ -49,7 +51,7 @@ func confirm_word(word : String):
 	current_score += get_word_score(word)
 	for letter in word:
 		var idx = current_letters.find(letter)
-		current_letters = current_letters.erase(idx)
+		current_letters.erase(idx)
 	
 	if current_score >= score_objective:
 		finish_level()
@@ -75,7 +77,7 @@ func start_word_compose():
 	ui_container.add_child(word_composing_menu)
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
 	word_composing_menu.on_menu_closed.connect(close_word_compose)
-	#word_composing_menu.initialize(self)
+	#word_composing_menu.initialize(current_letters)
 
 func close_word_compose():
 	word_composing_menu.queue_free()
