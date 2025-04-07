@@ -6,7 +6,6 @@ class_name GameLevel
 
 @onready var ui_container = $UIContainer;
 @onready var room: LevelRoom = $Room
-@onready var player: Player = $Player
 
 var word_composing_menu : MenuWordComposition
 
@@ -17,7 +16,6 @@ var current_score : int = 0
 
 func _ready():
 	room.on_captured.connect(fish_captured)
-	player.oxygen.on_oxygen_depleted.connect(oxygen_depleted)
 	
 	var letters = Alphabet.get_random_characters().map(func (c): return Letter.new(c))
 	room.set_letters(letters)

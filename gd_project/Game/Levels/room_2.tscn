@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_ihxlm"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_ev1y8"]
-[ext_resource type="Texture2D" uid="uid://ct56eue7unl5k" path="res://assets/images/maquette_new_palette.png" id="3_5r4a5"]
+[ext_resource type="PackedScene" uid="uid://ceej58xocqth7" path="res://Game/Levels/elements/rock_d.tscn" id="3_vd6cr"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_vd6cr"]
-[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_umuk3"]
+[ext_resource type="PackedScene" uid="uid://h3x3myf63njn" path="res://Game/Levels/elements/rock_c.tscn" id="5_vd6cr"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="6_h4dfq"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_44bgk"]
 [ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="8_ev1y8"]
-[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_1.tscn" id="9_5r4a5"]
-[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_2.tscn" id="10_vd6cr"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="9_5r4a5"]
+[ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="10_vd6cr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
@@ -19,9 +19,9 @@ size = Vector2(644, 2)
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 60.8095, 106.379, 0, 0, 0, 0, 63.1434, 114.013, 0, 0, 0, 0, 68.278, 116.876, 0, 0, 0, 0, 94.4179, 112.105, 0, 0, 0, 0, 128.026, 123.556, 0, 0, 0, 0, 158.367, 117.353, 0, 0, 0, 0, 166.769, 103.039, 0, 0, 0, 0, 188.708, 101.131, 0, 0, 0, 0, 198.044, 88.2484, 0, 0, 0, 0, 222.317, 85.8628, 0, 0, 0, 0, 247.99, 80.1373, 0, 0, 0, 0, 241.455, 72.5033, 0, 0, 0, 0, 234.453, 72.0262, 0, 0, 0, 0, 215.315, 76.7974, 0, 0, 0, 0, 188.708, 74.8889, 0, 0, 0, 0, 173.304, 90.1569, 0, 0, 0, 0, 141.096, 103.993, 0, 0, 0, 0, 119.157, 103.516, 0, 0, 0, 0, 97.2186, 95.8824, 0, 0, 0, 0, 81.8148, 95.8824, 0, 0, 0, 0, 67.3445, 97.3137, 0, 0, 0, 0, 60.8095, 106.379)
+"points": PackedVector2Array(0, 0, 0, 0, 60.8095, 106.379, 0, 0, 0, 0, 63.1434, 114.013, 0, 0, 0, 0, 68.278, 116.876, 0, 0, 0, 0, 94.4179, 112.105, 0, 0, 0, 0, 128.026, 123.556, 0, 0, 0, 0, 158.367, 117.353, 0, 0, 0, 0, 166.769, 103.039, 0, 0, 0, 0, 188.708, 101.131, 0, 0, 0, 0, 198.044, 88.2484, 0, 0, 0, 0, 222.317, 85.8628, 0, 0, 0, 0, 247.99, 80.1373, 0, 0, 0, 0, 241.455, 72.5033, 0, 0, 0, 0, 234.453, 72.0262, 0, 0, 0, 0, 215.315, 76.7974, 0, 0, 0, 0, 188.708, 74.8889, 0, 0, 0, 0, 173.304, 90.1569, 0, 0, 0, 0, 141.096, 103.993, 0, 0, 0, 0, 132.694, 102.562, 0, 0, 0, 0, 123.825, 91.1111, 0, 0, 0, 0, 119.624, 82.0458, 0, 0, 0, 0, 131.761, 61.5294, 0, 0, 0, 0, 125.226, 46.7386, 0, 0, 0, 0, 93.0176, 44.8301, 0, 0, 0, 0, 66.8777, 41.9673, 0, 0, 0, 0, 52.8742, 72.9804, 0, 0, 0, 0, 60.8095, 106.379)
 }
-point_count = 22
+point_count = 26
 
 [sub_resource type="Curve2D" id="Curve2D_at57x"]
 _data = {
@@ -93,7 +93,7 @@ metadata/_edit_lock_ = true
 
 [node name="Wallpaper" type="Sprite2D" parent="World"]
 position = Vector2(316.5, 130.5)
-rotation = 0.792379
+rotation = -0.790634
 scale = Vector2(1.61094, 1.5537)
 texture = ExtResource("2_ev1y8")
 region_enabled = true
@@ -119,14 +119,9 @@ texture = ExtResource("2_ev1y8")
 region_enabled = true
 region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
 
-[node name="RockC" type="Sprite2D" parent="World"]
-position = Vector2(433, -25)
-rotation = 3.14159
-scale = Vector2(2, 2)
-texture = ExtResource("3_5r4a5")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(348, 912, 172, 164)
+[node name="RockB" parent="World" instance=ExtResource("3_vd6cr")]
+position = Vector2(527, 235)
+scale = Vector2(3, 3)
 
 [node name="RockA" parent="World" instance=ExtResource("4_vd6cr")]
 position = Vector2(7, 146)
@@ -147,18 +142,15 @@ rotation = 4.71239
 position = Vector2(26, 377)
 rotation = 3.14159
 
-[node name="RockB" parent="World" instance=ExtResource("5_umuk3")]
-position = Vector2(526, 235)
-scale = Vector2(3, 3)
-
-[node name="RockC2" type="Sprite2D" parent="World"]
-position = Vector2(159, 396)
+[node name="RockC2" parent="World" instance=ExtResource("5_vd6cr")]
+position = Vector2(154, 402)
 rotation = 3.14159
 scale = Vector2(2, 2)
-texture = ExtResource("3_5r4a5")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(348, 912, 172, 164)
+
+[node name="RockC3" parent="World" instance=ExtResource("5_vd6cr")]
+position = Vector2(429, -23)
+rotation = 3.14159
+scale = Vector2(2, 2)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -166,7 +158,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 
 [node name="Fish" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
-position = Vector2(294, 236)
+position = Vector2(118, 77)
 path_to_follow = NodePath("../Path2D")
 
 [node name="Crab" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]

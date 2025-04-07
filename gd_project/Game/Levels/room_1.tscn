@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
 [ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="8_6caqy"]
 [ext_resource type="PackedScene" uid="uid://bbrb36psdtbqj" path="res://Game/Characters2/jelly.tscn" id="10_xlshn"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="11_1sm0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
@@ -211,3 +212,6 @@ curve = SubResource("Curve2D_3anfj")
 [node name="Jelly" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_xlshn")]
 position = Vector2(363, 228)
 path_to_follow = NodePath("../Path2DJelly")
+
+[node name="Player" parent="." instance=ExtResource("11_1sm0m")]
+position = Vector2(291, 171)
