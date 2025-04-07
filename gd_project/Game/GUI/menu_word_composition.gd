@@ -149,10 +149,10 @@ func update_score():
 	var score = 0
 	for letter in word:
 		score += letter.character.base_value
-	$CenterContainer/VBoxContainer/Score/Points.text = str(score)
-	#$CenterContainer/VBoxContainer/Score/Total.text = str(score)
-	#bump_ui($CenterContainer/VBoxContainer/Score/Points)
-	#bump_ui($CenterContainer/VBoxContainer/Score/Total)
+	$CenterContainer/VBoxContainer/PanelContainer/Score/Points.text = str(score)
+	#$CenterContainer/VBoxContainer/PanelContainer/Score/Total.text = str(score)
+	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Points)
+	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Total)
 	
 	
 func process_score(score: ScoreCalculator.ScoreBreakdown):
@@ -168,7 +168,7 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 		if target is UILetter:
 			target.points.text = str(action.new_letter_score)
 			await bump_ui(target)
-			var points = $CenterContainer/VBoxContainer/Score/Points
+			var points = $CenterContainer/VBoxContainer/PanelContainer/Score/Points
 			points.text = str(action.new_word_add)
 			await bump_ui(points)
 		else:
@@ -185,7 +185,7 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 	
 
 func display_total(score: ScoreCalculator.ScoreBreakdown):
-		var total = $CenterContainer/VBoxContainer/Score/Total
+		var total = $CenterContainer/VBoxContainer/PanelContainer/Score/Total
 		var increment = 4
 		var temp = 0
 		while temp < score.final_score:
@@ -217,9 +217,9 @@ func resolve_target(action: ScoreCalculator.ScoreOperation):
 	if action.letter_add_delta > 0 or action.letter_mult_delta:
 		return word_container.get_children()[action.evaluated_letter_idx]
 	elif action.word_add_delta > 0:
-		return $CenterContainer/VBoxContainer/Score/Points
+		return $CenterContainer/VBoxContainer/PanelContainer/Score/Points
 	elif action.word_mult_delta > 0:
-		return $CenterContainer/VBoxContainer/Score/Multiplicateur
+		return $CenterContainer/VBoxContainer/PanelContainer/Score/Multiplicateur
 	
 func _play_bubble_sound():
 	lettersScoring.volume_db = +3
