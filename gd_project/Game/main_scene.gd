@@ -4,12 +4,14 @@ extends Node2D
 @onready var MENU_LEVEL_SELECTION = preload("res://GUI/Map.tscn")
 
 @onready var LEVEL_TEST_DEFAULT = preload("res://Game/Levels/level_test.tscn")
+@onready var game_over_scene = preload("res://GUI/game_over.tscn")
 
 @onready var menu_container = $CanvasLayer/MenuContainer
 
 var current_level : Level
-var current_menu;
-var map_menu: Map;
+var current_menu
+var map_menu: Map
+var game_end
 
 var total_points: float = 0
 var artefacts: Array[Artefact]
@@ -80,3 +82,15 @@ func _on_map_exited(room: Room) -> void:
 			start_new_level()
 		Room.Type.BOSS:
 			start_new_level()
+
+func game_over() -> void:
+	game_end = game_over_scene.instantiate()
+	game_end.initialize(total_points)
+	menu_container.add_child(game_end)
+	
+	game_end.replay.connect(restart_game)
+	
+
+func restart_game() -> void:
+	menu_container.remove_child(game_end)
+	setup_game()
