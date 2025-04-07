@@ -15,13 +15,16 @@ func initialize(letter_ : Letter):
 		Letter.FishType.Medusa:
 			texture_index = 1
 		Letter.FishType.Crab:
-			texture_index = 2
-		Letter.FishType.Eel:
 			texture_index = 3
+		Letter.FishType.Eel:
+			texture_index = 2
 		Letter.FishType.Clown:
 			texture_index = 0
-			
+	
+	print("TYPE")
+	print(letter.fish_type)
 	$Button.texture_normal.set_region(Rect2(texture_index * 24, 0, 24, 27))
+	$PanelContainer/Fish.texture.set_region(Rect2(texture_index * 20, 11, 11, 9))
 
 func get_letter() -> Letter:
 	return letter
