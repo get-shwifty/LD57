@@ -299,6 +299,18 @@ rotation = -1.5708
 [node name="Algue2" parent="World/algues" instance=ExtResource("5_vmy6b")]
 position = Vector2(169, 127)
 
+[node name="Algue36" parent="World/algues" instance=ExtResource("5_vmy6b")]
+position = Vector2(149, 205)
+rotation = 3.14159
+
+[node name="Algue37" parent="World/algues" instance=ExtResource("5_vmy6b")]
+position = Vector2(153, 218)
+rotation = 3.14159
+
+[node name="Algue38" parent="World/algues" instance=ExtResource("5_vmy6b")]
+position = Vector2(155, 205)
+rotation = 3.14159
+
 [node name="Algue3" parent="World/algues" instance=ExtResource("5_vmy6b")]
 position = Vector2(156, 139)
 
