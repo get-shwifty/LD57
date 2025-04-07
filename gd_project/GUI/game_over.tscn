@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c05jayyqqufy2"]
+[gd_scene load_steps=8 format=3 uid="uid://c05jayyqqufy2"]
 
 [ext_resource type="Script" uid="uid://bbcj15wuddiq6" path="res://GUI/game_over.gd" id="1_eqyrn"]
 [ext_resource type="Texture2D" uid="uid://cew4h5lvtupss" path="res://assets/images/crab.png" id="2_bax71"]
+[ext_resource type="Theme" uid="uid://clnj82hjocrrk" path="res://assets/fonts/level_test.tres" id="3_es73e"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="3_svlec"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svlec"]
@@ -70,6 +71,7 @@ offset_bottom = 51.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
+theme = ExtResource("3_es73e")
 text = "Replay ?"
 
 [node name="Score" type="Label" parent="."]
@@ -84,6 +86,7 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_es73e")
 theme_override_font_sizes/font_size = 8
 text = "TEST"
 horizontal_alignment = 1
@@ -101,6 +104,7 @@ offset_right = 20.0
 offset_bottom = -21.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_es73e")
 text = "Game over"
 horizontal_alignment = 1
 vertical_alignment = 1
