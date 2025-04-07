@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bl7v4nvdkdd4b"]
 
 [ext_resource type="Script" uid="uid://b8clp5rvmi8i5" path="res://Game/Characters2/fish1.gd" id="1_grfgt"]
-[ext_resource type="Texture2D" uid="uid://c04rhv5dihsjv" path="res://assets/images/fish.png" id="2_np1wg"]
+[ext_resource type="Texture2D" uid="uid://chygkhayqi1ch" path="res://assets/images/clown_fish.png" id="2_np1wg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lrgxt"]
 atlas = ExtResource("2_np1wg")
