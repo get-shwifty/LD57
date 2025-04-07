@@ -105,15 +105,15 @@ class ScoreBreakdown:
 	var initial_word_add : int
 	var initial_word_mult : int
 	var operations : Array[ScoreOperation]
-	var final_score : int
+	var final_score : float
 	
 	#those are working context and should not used outside the score calculator
 	var word : Array[Letter]
 	var var_context : VariableContext
 	var cond_context : ConditionContext
 	var current_letter_score : int
-	var current_word_add : int
-	var current_word_mult : int
+	var current_word_add : float
+	var current_word_mult : float
 	
 	func fill_initial_values(word : Array[Letter]):
 		initial_word_add = 0
@@ -190,15 +190,15 @@ class ScoreBreakdown:
 		current_word_mult = 0
 		
 class ScoreOperation:
-	var letter_add_delta: int
-	var letter_mult_delta: int
+	var letter_add_delta: float
+	var letter_mult_delta: float
 	
-	var word_add_delta : int
-	var word_mult_delta : int
+	var word_add_delta : float
+	var word_mult_delta : float
 	
 	var new_letter_score : int
-	var new_word_add : int
-	var new_word_mult : int
+	var new_word_add : float
+	var new_word_mult : float
 	
 	# empty if the word is targeted
 	var evaluated_letter_idx : int
