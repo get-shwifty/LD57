@@ -27,6 +27,7 @@ class_name MenuWordComposition
 
 @onready var word_container = $CenterContainer/VBoxContainer/WordContainer
 @onready var grid_container = $CenterContainer/VBoxContainer/GridContainer
+@onready var sound_click_on_letter: AudioStreamPlayer = $SoundClickOnLetter
 
 @onready var multi: int = 10
 @onready var score: int = 0
@@ -64,6 +65,7 @@ func setup_letter_pool(letters : Array[Letter]):
 		grid_container.add_child(letter_ui)
 
 func on_letter_selected(letter : Control):
+	sound_click_on_letter.play()
 	if grid_container.get_children().has(letter):
 		grid_container.remove_child(letter)
 		word_container.add_child(letter)
