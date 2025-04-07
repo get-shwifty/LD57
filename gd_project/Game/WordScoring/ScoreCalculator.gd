@@ -173,7 +173,7 @@ class ScoreBreakdown:
 		if operation.word_add_delta != 0:
 			current_word_add += operation.word_add_delta
 		if operation.word_mult_delta != 0:
-			current_word_mult += operation.word_add_delta
+			current_word_mult += operation.word_mult_delta
 			
 		operation.new_letter_score = current_letter_score
 		operation.new_word_add = current_word_add
