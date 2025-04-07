@@ -149,11 +149,17 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 		
 		await bump_ui(source)
 		if target is UILetter:
-			target.points.text = str(action.new_letter_score)
+			if action.new_letter_score != int(target.points.text):
+				target.points.text = str(action.new_letter_score)
+			elif action.letter_fish_type_delta:
+				target.update_type(action.letter_fish_type_delta)
+			if action.letter_bonus_type_delta:
+				target.update_bonus(action.letter_bonus_type_delta)
 			await bump_ui(target)
-			var points = $CenterContainer/VBoxContainer/PanelContainer/Score/Points
-			points.text = str(action.new_word_add)
-			await bump_ui(points)
+			if action.new_letter_score != int(target.points.text):
+				var points = $CenterContainer/VBoxContainer/PanelContainer/Score/Points
+				points.text = str(action.new_word_add)
+				await bump_ui(points)
 		else:
 			if target == %Points:
 				target.text = str(action.new_word_add)
@@ -179,6 +185,7 @@ func display_total(score: ScoreCalculator.ScoreBreakdown):
 			total.text = str(temp)
 			await bump_ui(total)
 		temp += increment
+		increment += 1
 	victory.play()
 
 
@@ -199,7 +206,7 @@ func resolve_source(action: ScoreCalculator.ScoreOperation):
 		return artefacts_container.get_children()[action.origin_artefact_idx]
 
 func resolve_target(action: ScoreCalculator.ScoreOperation):
-	if action.letter_add_delta > 0 or action.letter_mult_delta:
+	if action.letter_add_delta > 0 or action.letter_mult_delta or action.letter_fish_type_delta or action.letter_bonus_type_delta:
 		return word_container.get_children()[action.evaluated_letter_idx]
 	elif action.word_add_delta > 0:
 		return $CenterContainer/VBoxContainer/PanelContainer/Score/Points

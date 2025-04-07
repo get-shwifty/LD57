@@ -104,7 +104,7 @@ uppercase = true
 [node name="x" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_7ns11")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 10
 text = "x"
 
 [node name="Multiplicateur" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
