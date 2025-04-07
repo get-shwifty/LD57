@@ -27,6 +27,7 @@ mouse_filter = 2
 [node name="Title" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(65, 30)
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "Artefact Title"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -40,9 +41,10 @@ layout_mode = 2
 [node name="Description" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(60, 50)
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "Artefact Description"
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 3
 clip_text = true
 
 [connection signal="pressed" from="ButtonBonus" to="." method="_on_button_bonus_pressed"]
