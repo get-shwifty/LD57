@@ -73,3 +73,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 columns = 8
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Submit" to="." method="confirm_word"]

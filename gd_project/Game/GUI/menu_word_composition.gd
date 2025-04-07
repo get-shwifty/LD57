@@ -33,6 +33,7 @@ class_name MenuWordComposition
 
 signal on_word_confirmed
 signal on_menu_closed
+signal on_ui_finished
 
 static var dico: DictionaryHelper = DictionaryHelper.new(DictionaryHelper.Language.English)
 
@@ -92,13 +93,13 @@ func get_word():
 func confirm_word():
 	var word = get_word()
 		
-	for child in word_container.get_children():
-		child.queue_free()
+	#for child in word_container.get_children():
+		#child.queue_free()
 	
 	on_word_confirmed.emit(word)
 	
-	if grid_container.get_child_count() <= 0:
-		on_menu_closed.emit()
+	#if grid_container.get_child_count() <= 0:
+		#on_menu_closed.emit()
 
 func update_score():
 	var word = get_word()
@@ -109,16 +110,18 @@ func update_score():
 	
 	
 func process_score(score: ScoreCalculator.ScoreBreakdown):
-	print(score)
 	for action in score.operations:
 		if action.letter_add_delta:
-			var letter_ui = grid_container.get_children()[action.evaluated_letter_idx]
-			letter_ui.point = action.new_letter_score
-			letter_ui.y += 10
-		await get_tree().create_timer(0.5).timeout
-
-
+			var letter_ui: UILetter = word_container.get_children()[action.evaluated_letter_idx]
+			letter_ui.points.text = str(action.new_letter_score)
+			letter_ui.position.y -= 5
+			$CenterContainer/VBoxContainer/Score/Points.text = str(action.new_word_add)
+		await get_tree().create_timer(0.7).timeout
+		print("doing operation")
+	$CenterContainer/VBoxContainer/Score/Total.text = str(score.final_score)
+	on_ui_finished.emit()
 	
+
 	
 	
 	
