@@ -25,7 +25,7 @@ var artefacts: Array[Artefact]
 
 
 func setup_game():
-	print("classic game setup")
+	print("game setup")
 	map_menu = MENU_LEVEL_SELECTION.instantiate()
 	menu_container.add_child(map_menu)
 	map_menu.generate_new_map()

@@ -28,7 +28,6 @@ func _ready():
 	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
 	letters_pool.append(Letter.new(Alphabet.get_character("O")))
 
-	setup_level()
 
 func setup_level():
 	score.objective = 25

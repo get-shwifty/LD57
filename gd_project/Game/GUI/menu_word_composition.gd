@@ -1,27 +1,6 @@
 extends Control
 class_name MenuWordComposition
 
-## Dict de la forme : Lettre: [points, texture]
-#const LETTER_POOL: Array[Array] = [
-		#["L", 1, 0],
-		#["O", 5, 1],
-		#["V", 1, 2],
-		#["E", 1, 3],
-		#["U", 1, 0],
-		#["P", 5, 1],
-		#["A", 1, 2],
-		#["B", 1, 3],
-		#["C", 1, 0],
-		#["D", 5, 1],
-		#["F", 1, 2],
-		#["G", 1, 3],
-		#["H", 1, 0],
-		#["O", 5, 1],
-		#["V", 1, 2],
-		#["E", 1, 3]
-#]
-
-
 @onready var UI_LETTER = preload("res://Game/GUI/ui_letter.tscn")
 @onready var UI_ARTEFACT = preload("res://Game/GUI/ui_artefact.tscn")
 
