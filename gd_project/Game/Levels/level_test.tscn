@@ -4,7 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://b5xghs7111w06" path="res://Game/Levels/room_1.tscn" id="2_1krt2"]
 [ext_resource type="PackedScene" uid="uid://dcg877klkaxk2" path="res://Game/GUI/menu_word_composition.tscn" id="3_1krt2"]
 [ext_resource type="Script" uid="uid://ods1spqp0xle" path="res://Game/GUI/score_ui.gd" id="4_3j40w"]
-[ext_resource type="Theme" uid="uid://clnj82hjocrrk" path="res://assets/fonts/level_test.tres" id="4_mg66w"]
+[ext_resource type="FontFile" uid="uid://bdt811tmnc1sq" path="res://assets/fonts/Square.ttf" id="4_mg66w"]
+
+[sub_resource type="Theme" id="Theme_dvd30"]
+default_font = ExtResource("4_mg66w")
+default_font_size = 10
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_rdhbp")
@@ -39,6 +43,22 @@ offset_right = -2.0
 offset_bottom = 20.0
 grow_horizontal = 0
 theme_override_constants/separation = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UIContainer/ScoreUI/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="UIContainer/ScoreUI/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Oxygen:"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="UIContainer/ScoreUI/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "0"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UIContainer/ScoreUI/VBoxContainer"]
 layout_mode = 2

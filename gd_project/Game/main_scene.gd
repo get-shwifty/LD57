@@ -43,15 +43,16 @@ func setup_game():
 	map_menu.generate_new_map()
 	map_menu.unlock_floor(0)
 	map_menu.map_exited.connect(_on_map_exited)
-	
+
+	artefacts = []
+	total_points = 0
 	for starting_artefact in ArtefactRepository.starting:
 		artefacts.append(starting_artefact)
 
 
 func on_level_finished(points):
 	if points == 0:
-		# TODO game over
-		get_tree().quit()
+		game_over()
 	else:
 		total_points += points
 		
@@ -64,8 +65,7 @@ func on_level_finished(points):
 func on_score_menu_closed(new_artefact):
 	if new_artefact != null:
 		artefacts.append(new_artefact)
-	current_menu.queue_free()
-	current_level.queue_free()
+	clean()
 	map_menu.show_map()
 	#map_menu.camera_2d.enabled = true
 	#map_menu.camera_2d.make_current()
@@ -75,7 +75,6 @@ func start_new_level():
 	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
 	current_level.setup_level(artefacts.slice(0))
-	
 
 func _on_map_exited(room: Room) -> void:
 	map_menu.hide_map()
@@ -100,8 +99,19 @@ func game_over() -> void:
 	
 
 func restart_game() -> void:
-	menu_container.remove_child(game_end)
+	clean()
 	setup_game()
+
+func clean():
+	if game_end:
+		game_end.queue_free()
+		game_end = null
+	if current_menu:
+		current_menu.queue_free()
+		current_menu = null
+	if current_level:
+		current_level.queue_free()
+		current_level = null
 
 class RoomMetadata:
 	var room_index: int

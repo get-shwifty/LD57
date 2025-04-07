@@ -19,6 +19,7 @@ func _ready():
 	assert(player != null)
 	room.on_captured.connect(fish_captured)
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
+	player.oxygen.on_oxygen_depleted.connect(on_oxygen_depleted)
 
 	letters_pool.append(Letter.new(Alphabet.get_character("H")))
 	letters_pool.append(Letter.new(Alphabet.get_character("E")))
@@ -42,9 +43,14 @@ func fish_captured(letter: Letter):
 	letters_pool.append(letter)
 	word_composing_menu.set_letters(letters_pool)
 	
-func oxygen_depleted():
+func on_oxygen_depleted():
 	print("oxygen depleted")
+	neutralize_ui()
 	level_finished.emit(0)
+
+func neutralize_ui():
+	score.hide()
+	word_composing_menu.hide()
 
 func confirm_word(word: Array[Letter]):
 	var variable_context: VariableContext = VariableContext.new()
@@ -53,6 +59,7 @@ func confirm_word(word: Array[Letter]):
 		letters_pool.erase(letter)
 
 	waiting_for_ui = true
+	player.oxygen.paused = true
 	word_composing_menu.disable_mouse_inputs()
 	word_composing_menu.process_score(breakdown)
 
@@ -63,15 +70,16 @@ func confirm_word(word: Array[Letter]):
 	
 	if score.current > score.objective:
 		await get_tree().create_timer(2.0).timeout
-		score.hide()
-		word_composing_menu.hide()
+		neutralize_ui()
 		level_finished.emit(score.current)
 	else:
+		player.oxygen.paused = false
 		word_composing_menu.set_letters(letters_pool)
 		compose_word()
 		word_composing_menu.enable_mouse_inputs()
 
 func _process(delta):
+	score.oxygen = player.oxygen.current_oxygen
 	if waiting_for_ui:
 		return
 

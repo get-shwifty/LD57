@@ -205,6 +205,7 @@ pitch_scale = 0.3
 script = ExtResource("3_m4rnn")
 
 [node name="Label" type="Label" parent="Oxygen"]
+visible = false
 offset_left = 2.0
 offset_top = -23.0
 offset_right = 42.0
