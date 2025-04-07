@@ -8,7 +8,7 @@ class_name GameLevel
 @onready var room: LevelRoom = $Room
 @onready var player: Player = $Player
 
-var word_composing_menu : Control;
+var word_composing_menu : MenuWordComposition
 
 var score_objective : int
 
@@ -46,15 +46,18 @@ func finish_level():
 	print("level finished")
 	on_level_finished.emit()
 	
-func confirm_word(word : String):
-	print("confirmed word " + word)
-	current_score += get_word_score(word)
+func confirm_word(word: Array[Letter]):
+	var variable_contexte: VariableContext = VariableContext.new()
+	var breakdown = ScoreCalculator.compute_score(word, [], variable_contexte)
+
 	for letter in word:
-		var idx = current_letters.find(letter)
-		current_letters.erase(idx)
+		current_letters.erase(letter)
 	
-	if current_score >= score_objective:
-		finish_level()
+	word_composing_menu.process_score(breakdown)
+
+
+	#if current_score >= score_objective:
+		#finish_level()
 
 func get_letter_pool():
 	return current_letters
