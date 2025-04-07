@@ -1,15 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://pooxaxvkt0nu"]
+[gd_scene load_steps=18 format=3 uid="uid://d3cnvmtnk81u5"]
 
-[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_ihxlm"]
-[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_ev1y8"]
-[ext_resource type="Texture2D" uid="uid://ct56eue7unl5k" path="res://assets/images/maquette_new_palette.png" id="3_5r4a5"]
-[ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_vd6cr"]
-[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_umuk3"]
-[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="6_h4dfq"]
-[ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_44bgk"]
-[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="8_ev1y8"]
-[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_1.tscn" id="9_5r4a5"]
-[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_2.tscn" id="10_vd6cr"]
+[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_yukt0"]
+[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_6hjk7"]
+[ext_resource type="Texture2D" uid="uid://ct56eue7unl5k" path="res://assets/images/maquette_new_palette.png" id="3_4vcy1"]
+[ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_xnhim"]
+[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_c715j"]
+[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="6_24djx"]
+[ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_a12ct"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="8_g55gr"]
+[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_1.tscn" id="9_chdw6"]
+[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_2.tscn" id="10_vqhx0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
@@ -47,8 +47,8 @@ _data = {
 }
 point_count = 33
 
-[node name="Room2" type="Node2D"]
-script = ExtResource("1_ihxlm")
+[node name="Room3" type="Node2D"]
+script = ExtResource("1_yukt0")
 metadata/_edit_lock_ = true
 
 [node name="Walls" type="Node2D" parent="."]
@@ -95,19 +95,19 @@ metadata/_edit_lock_ = true
 position = Vector2(316.5, 130.5)
 rotation = 0.792379
 scale = Vector2(1.61094, 1.5537)
-texture = ExtResource("2_ev1y8")
+texture = ExtResource("2_6hjk7")
 region_enabled = true
 region_rect = Rect2(0, 0, 640, 540)
 
 [node name="BackLayer" type="Sprite2D" parent="World"]
 position = Vector2(320, 240)
-texture = ExtResource("2_ev1y8")
+texture = ExtResource("2_6hjk7")
 region_enabled = true
 region_rect = Rect2(0, 840, 640, 240)
 
 [node name="BackLayer2" type="Sprite2D" parent="World"]
 position = Vector2(319, 239)
-texture = ExtResource("2_ev1y8")
+texture = ExtResource("2_6hjk7")
 region_enabled = true
 region_rect = Rect2(1, 1375.5, 637, 242)
 
@@ -115,7 +115,7 @@ region_rect = Rect2(1, 1375.5, 637, 242)
 modulate = Color(1, 1, 1, 0.517647)
 position = Vector2(250, 96)
 rotation = -0.523599
-texture = ExtResource("2_ev1y8")
+texture = ExtResource("2_6hjk7")
 region_enabled = true
 region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
 
@@ -123,31 +123,31 @@ region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
 position = Vector2(433, -25)
 rotation = 3.14159
 scale = Vector2(2, 2)
-texture = ExtResource("3_5r4a5")
+texture = ExtResource("3_4vcy1")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(348, 912, 172, 164)
 
-[node name="RockA" parent="World" instance=ExtResource("4_vd6cr")]
+[node name="RockA" parent="World" instance=ExtResource("4_xnhim")]
 position = Vector2(7, 146)
 rotation = 4.71239
 
-[node name="RockA2" parent="World" instance=ExtResource("4_vd6cr")]
+[node name="RockA2" parent="World" instance=ExtResource("4_xnhim")]
 position = Vector2(-33, 203)
 
-[node name="RockA3" parent="World" instance=ExtResource("4_vd6cr")]
+[node name="RockA3" parent="World" instance=ExtResource("4_xnhim")]
 position = Vector2(-18, 250)
 rotation = 4.71239
 
-[node name="RockA4" parent="World" instance=ExtResource("4_vd6cr")]
+[node name="RockA4" parent="World" instance=ExtResource("4_xnhim")]
 position = Vector2(-13, 317)
 rotation = 4.71239
 
-[node name="RockA5" parent="World" instance=ExtResource("4_vd6cr")]
+[node name="RockA5" parent="World" instance=ExtResource("4_xnhim")]
 position = Vector2(26, 377)
 rotation = 3.14159
 
-[node name="RockB" parent="World" instance=ExtResource("5_umuk3")]
+[node name="RockB" parent="World" instance=ExtResource("5_c715j")]
 position = Vector2(526, 235)
 scale = Vector2(3, 3)
 
@@ -155,7 +155,7 @@ scale = Vector2(3, 3)
 position = Vector2(159, 396)
 rotation = 3.14159
 scale = Vector2(2, 2)
-texture = ExtResource("3_5r4a5")
+texture = ExtResource("3_4vcy1")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(348, 912, 172, 164)
@@ -165,56 +165,56 @@ visible = false
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="Fish" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
+[node name="Fish" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_24djx")]
 position = Vector2(294, 236)
 path_to_follow = NodePath("../Path2D")
 
-[node name="Crab" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(34, 142)
 path_to_follow = NodePath("../Path2DCrab")
 
-[node name="Crab3" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab3" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(504, 29)
 path_to_follow = NodePath("../Path2DCrab2")
 
-[node name="Crab4" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab4" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(524, 112)
 path_to_follow = NodePath("../Path2DCrab2")
 
-[node name="Crab5" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab5" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(333, 345)
 path_to_follow = NodePath("../Path2D2")
 
-[node name="Crab6" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab6" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(439, 238)
 path_to_follow = NodePath("../Path2D2")
 
-[node name="Crab7" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab7" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(592, 149)
 path_to_follow = NodePath("../Path2D2")
 
-[node name="Crab8" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab8" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(88, 335)
 path_to_follow = NodePath("../Path2D2Crab3")
 
-[node name="Crab9" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab9" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(-6, 230)
 path_to_follow = NodePath("../Path2D2Crab3")
 
-[node name="Crab10" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab10" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(40, 349)
 path_to_follow = NodePath("../Path2D2Crab3")
 
-[node name="Crab2" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]
+[node name="Crab2" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
 z_index = 1
 position = Vector2(22, 111)
 path_to_follow = NodePath("../Path2DCrab")
@@ -230,7 +230,7 @@ position = Vector2(35, 282)
 rotation = 2.24275
 curve = SubResource("Curve2D_at57x")
 
-[node name="Player" parent="." instance=ExtResource("8_ev1y8")]
+[node name="Player" parent="." instance=ExtResource("8_g55gr")]
 position = Vector2(46, 50)
 
 [node name="Path2DCrab2" type="Path2D" parent="."]
@@ -243,93 +243,93 @@ curve = SubResource("Curve2D_5r4a5")
 [node name="Path2D2" type="Path2D" parent="."]
 curve = SubResource("Curve2D_vd6cr")
 
-[node name="Algue1" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue1" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(504, 183)
 
-[node name="Algue13" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue13" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(453, 233)
 
-[node name="Algue14" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue14" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(426, 236)
 
-[node name="Algue17" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue17" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(293, 113)
 rotation = 3.14159
 
-[node name="Algue18" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue18" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(333, 117)
 rotation = 3.14159
 
-[node name="Algue19" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue19" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(346, 118)
 rotation = 3.14159
 
-[node name="Algue20" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue20" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(407, 113)
 rotation = 3.14159
 
-[node name="Algue21" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue21" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(445, 116)
 rotation = 3.14159
 
-[node name="Algue22" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue22" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(483, 119)
 rotation = 3.14159
 
-[node name="Algue23" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue23" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(501, 124)
 rotation = 3.14159
 
-[node name="Algue24" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue24" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(523, 127)
 rotation = 3.14159
 
-[node name="Algue25" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue25" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(488, 2)
 rotation = 3.14159
 
-[node name="Algue26" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue26" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(506, -4)
 rotation = 3.14159
 
-[node name="Algue15" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue15" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(401, 251)
 
-[node name="Algue16" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue16" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(381, 258)
 
-[node name="Algue2" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue2" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(516, 183)
 
-[node name="Algue3" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue3" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(529, 185)
 
-[node name="Algue4" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue4" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(540, 189)
 
-[node name="Algue5" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue5" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(555, 189)
 
-[node name="Algue6" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue6" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(611, 119)
 
-[node name="Algue7" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue7" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(621, 118)
 
-[node name="Algue8" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue8" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(632, 117)
 
-[node name="Algue9" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue9" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(644, 122)
 
-[node name="Algue10" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue10" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(656, 123)
 
-[node name="Algue11" parent="." instance=ExtResource("9_5r4a5")]
+[node name="Algue11" parent="." instance=ExtResource("9_chdw6")]
 position = Vector2(663, 129)
 
-[node name="Algue" parent="." instance=ExtResource("10_vd6cr")]
+[node name="Algue" parent="." instance=ExtResource("10_vqhx0")]
 position = Vector2(679, 145)
 
-[node name="Algue12" parent="." instance=ExtResource("10_vd6cr")]
+[node name="Algue12" parent="." instance=ExtResource("10_vqhx0")]
 position = Vector2(677, 159)
