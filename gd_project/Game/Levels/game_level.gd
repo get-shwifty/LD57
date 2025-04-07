@@ -88,18 +88,28 @@ func close_word_compose():
 	word_composing_menu = null
 	
 func get_artefacts() -> Array[Artefact]:
+	var artefacts: Array[Artefact] = []
+	
+	var vowel_booster = Artefact.new()
+	vowel_booster.name = "Vowel Booster"
+	vowel_booster.trigger = Artefact.TriggerType.Letter
+	vowel_booster.target = Artefact.TargetType.LetterAdd
+	vowel_booster.value = ComputedValue.new(0, VariableContext.VariableType.ConsonantCount)
+	vowel_booster.condition = func(variable_context : VariableContext, condition_context : ConditionContext) -> bool:
+		return condition_context.current_letter.character.is_vowel
+	#vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
+	artefacts.append(vowel_booster)
+	
 	var artefact1 = Artefact.new()
 	artefact1.name = "First letter is a voyel"
 	artefact1.target = Artefact.TargetType.LetterMult
 	artefact1.trigger = Artefact.TriggerType.Letter
 	artefact1.value = ComputedValue.new(2)
 	artefact1.condition = func(variable_context : VariableContext, condition_context : ConditionContext) -> bool:
-		return condition_context.previous_letter != null and \
-			condition_context.current_letter.character.is_vowel
-	
-	#vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
-	
-	return [artefact1]
+		return condition_context.previous_letter != null and condition_context.current_letter.character.is_vowel
+	artefacts.append(artefact1)
+
+	return artefacts
 
 func setup_artifacts() -> Array[Artefact]:
 	var artefacts: Array[Artefact] = []
