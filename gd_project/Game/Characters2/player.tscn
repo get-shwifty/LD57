@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bv5efl4bcaq73"]
+[gd_scene load_steps=15 format=3 uid="uid://bv5efl4bcaq73"]
 
 [ext_resource type="Script" uid="uid://cihl6w3tmo3v0" path="res://Game/Characters2/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://ctamu37lbsy13" path="res://assets/images/chien.png" id="2_8xcms"]
 [ext_resource type="Script" uid="uid://6ph3jq3w637p" path="res://Game/Characters2/harpoon.gd" id="2_obqfy"]
 [ext_resource type="Script" uid="uid://vdrfqo6lcnm5" path="res://Game/Characters2/oxygen.gd" id="3_m4rnn"]
+[ext_resource type="Texture2D" uid="uid://dlmjd01r4qkx7" path="res://assets/images/harpon_tir.png" id="4_uhrti"]
 [ext_resource type="AudioStream" uid="uid://duxfklkvvaq3e" path="res://assets/sounds/bruitages/fish/POISSON-TOUCHE-Prop1.mp3" id="5_vo8gn"]
 [ext_resource type="AudioStream" uid="uid://drienmilo0gug" path="res://assets/sounds/bruitages/player/SON-TIR-HARPON.mp3" id="6_j0eht"]
+[ext_resource type="Texture2D" uid="uid://ieb3tosalmbo" path="res://assets/images/harpon_dogo_2.png" id="7_qh20h"]
 [ext_resource type="AudioStream" uid="uid://c25n0h1ncfdf8" path="res://assets/sounds/bruitages/player/BRUIT DEPLACEMENT-BULLES.mp3" id="8_uhrti"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8c3w"]
@@ -83,6 +85,11 @@ color = Color(0, 0, 0, 1)
 [node name="ProjectileStart" type="Marker2D" parent="Harpoon"]
 position = Vector2(25, 0)
 
+[node name="Sprite2D2" type="Sprite2D" parent="Harpoon"]
+z_index = 2
+position = Vector2(12, 0)
+texture = ExtResource("7_qh20h")
+
 [node name="Projectile" type="CharacterBody2D" parent="Harpoon"]
 position = Vector2(8, 0)
 collision_layer = 2
@@ -92,11 +99,10 @@ collision_mask = 5
 shape = SubResource("CircleShape2D_1bvp3")
 
 [node name="ColorRect2" type="ColorRect" parent="Harpoon/Projectile"]
-offset_left = -5.0
+offset_left = -16.0
 offset_top = -1.0
 offset_right = 1.0
-offset_bottom = 1.0
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Harpoon/Projectile"]
 process_callback = 0
@@ -107,6 +113,10 @@ limit_bottom = 360
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Harpoon/Projectile"]
+position = Vector2(-8, 0)
+texture = ExtResource("4_uhrti")
 
 [node name="HarpoonFire" type="AudioStreamPlayer" parent="Harpoon"]
 stream = ExtResource("6_j0eht")
