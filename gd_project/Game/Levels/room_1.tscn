@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=17 format=3 uid="uid://bccwqo043fery"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
