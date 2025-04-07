@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=15 format=3 uid="uid://foipsmnjhbbe"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_at57x"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_4awi4"]
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
+[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_1.tscn" id="6_6caqy"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
 [ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="8_6caqy"]
 
@@ -120,6 +121,12 @@ position = Vector2(615, 354)
 
 [node name="RockB" parent="World" instance=ExtResource("4_oxc8n")]
 position = Vector2(249, 320)
+
+[node name="Algue1" parent="World" instance=ExtResource("6_6caqy")]
+position = Vector2(292, 274)
+
+[node name="Algue2" parent="World" instance=ExtResource("6_6caqy")]
+position = Vector2(244, 293)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

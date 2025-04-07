@@ -28,9 +28,23 @@ class_name MenuWordComposition
 @onready var word_container = $CenterContainer/VBoxContainer/WordContainer
 @onready var grid_container = $CenterContainer/VBoxContainer/GridContainer
 @onready var sound_click_on_letter: AudioStreamPlayer = $SoundClickOnLetter
+@onready var lettersScoring: AudioStreamPlayer = $LettersScoring
+@onready var victory: AudioStreamPlayer = $SoundJackpooooot
+
+var sound_bank := [
+	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-1.ogg"),
+	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-2.ogg"),
+	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-3.ogg"),
+	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-4.ogg"),
+	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-5.ogg")
+]
+var sound_index := 0
 
 @onready var multi: int = 10
 @onready var score: int = 0
+
+
+
 
 signal on_word_confirmed
 signal on_menu_closed
@@ -116,14 +130,23 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 		if action.letter_add_delta:
 			var letter_ui: UILetter = word_container.get_children()[action.evaluated_letter_idx]
 			letter_ui.points.text = str(action.new_letter_score)
+			_play_bubble_sound()
 			letter_ui.position.y -= 5
 			$CenterContainer/VBoxContainer/Score/Points.text = str(action.new_word_add)
 		await get_tree().create_timer(0.7).timeout
 		print("doing operation")
 	$CenterContainer/VBoxContainer/Score/Total.text = str(score.final_score)
+	victory.play()
 	on_ui_finished.emit()
 	
 
+func _play_bubble_sound():
+	lettersScoring.volume_db = +3
+	lettersScoring.stream = sound_bank[sound_index]
+	lettersScoring.play()
+	sound_index += 1
+	if sound_index >= sound_bank.size():
+		sound_index = 0
 	
 	
 	
