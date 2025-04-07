@@ -41,7 +41,7 @@ offset_left = 6.0
 offset_top = 5.0
 offset_right = 6.0
 offset_bottom = 5.0
-theme_override_constants/separation = 1
+theme_override_constants/separation = 5
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -122,7 +122,7 @@ theme_override_fonts/font = ExtResource("3_7ns11")
 theme_override_font_sizes/font_size = 16
 text = "="
 
-[node name="Total" type="Label" parent="CenterContainer/VBoxContainer/Score"]
+[node name="Total" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
@@ -179,6 +179,15 @@ layout_mode = 2
 [node name="ColorRect9" type="ColorRect" parent="CenterContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(24, 27)
 layout_mode = 2
+
+[node name="CenterContainer_VBoxContainer_Score#Total" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7ns11")
+theme_override_font_sizes/font_size = 16
+text = "..."
+horizontal_alignment = 1
 
 [node name="Submit" type="TextureButton" parent="."]
 unique_name_in_owner = true

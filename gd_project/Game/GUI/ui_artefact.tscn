@@ -20,10 +20,11 @@ script = ExtResource("1_2q8sl")
 
 [node name="Button" type="TextureButton" parent="."]
 layout_mode = 0
-offset_right = 24.0
-offset_bottom = 27.0
+offset_right = 16.0
+offset_bottom = 9.0
 texture_normal = SubResource("AtlasTexture_2q8sl")
-stretch_mode = 3
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
