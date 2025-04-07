@@ -47,6 +47,7 @@ var sound_bank := [
 	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-5.ogg")
 ]
 var sound_index := 0
+var just_confirmed = false
 
 @onready var multi: int = 10
 @onready var score: int = 0
@@ -115,6 +116,10 @@ func setup_letter_pool(letters: Array[Letter]):
 
 
 func on_letter_selected(letter: Control):
+	if just_confirmed:
+		%Multiplicateur.text = "1"
+		%Total.text = "..."
+		just_confirmed = false
 	sound_click_on_letter.play()
 	if grid_container.get_children().has(letter):
 		letter.reparent(word_container)
@@ -180,7 +185,7 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 		await get_tree().create_timer(tween_time).timeout
 	display_total(score)
 	on_ui_finished.emit()
-	
+	just_confirmed = true
 	enable_mouse_inputs()
 	
 
@@ -191,9 +196,11 @@ func display_total(score: ScoreCalculator.ScoreBreakdown):
 		while temp < score.final_score:
 			total.text = str(temp)
 			await bump_ui(total)
-			if temp + 4 > score.final_score:
+			if temp + increment > score.final_score:
 				temp = score.final_score
-			temp += 4
+				total.text = str(temp)
+				await bump_ui(total)
+			temp += increment
 		victory.play()
 
 
