@@ -25,13 +25,15 @@ var artefacts: Array[Artefact]
 
 
 func setup_game():
-	print("classic game setup")
+	print("game setup")
 	map_menu = MENU_LEVEL_SELECTION.instantiate()
 	menu_container.add_child(map_menu)
 	map_menu.generate_new_map()
 	map_menu.unlock_floor(0)
 	map_menu.map_exited.connect(_on_map_exited)
-	print(map_menu.camera_2d.is_current())
+	
+	for starting_artefact in ArtefactRepository.starting:
+		artefacts.append(starting_artefact)
  
 func _on_start_button_pressed() -> void:
 	$StartButton.queue_free()
@@ -62,9 +64,10 @@ func on_score_menu_closed(new_artefact):
 	
 func start_new_level():
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
-	current_level.artefacts = artefacts.slice(0)
 	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
+	current_level.setup_level(artefacts.slice(0))
+	
 
 func _on_map_exited(room: Room) -> void:
 	map_menu.hide_map()

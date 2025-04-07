@@ -11,15 +11,13 @@ signal level_finished(points)
 @onready var word_composing_menu: MenuWordComposition = $UIContainer/MenuWordComposition
 @onready var score: Score = $UIContainer/ScoreUI
 
-var letters_pool: Array[Letter] = []
-var artefacts = get_artefacts()
-var current_score: int = 0
+var letters_pool : Array[Letter] = []
 var waiting_for_ui = false
+var artefacts : Array[Artefact]
 
 func _ready():
 	assert(player != null)
 	room.on_captured.connect(fish_captured)
-	
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
 
 	letters_pool.append(Letter.new(Alphabet.get_character("H")))
@@ -28,11 +26,11 @@ func _ready():
 	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
 	letters_pool.append(Letter.new(Alphabet.get_character("O")))
 
-	setup_level()
 
-func setup_level():
+func setup_level(artefacts : Array[Artefact]):
 	score.objective = 25
 	word_composing_menu.set_letters(letters_pool)
+	self.artefacts = artefacts
 	word_composing_menu.artefacts = artefacts
 	word_composing_menu.setup_artefacts_grid()
 
@@ -80,9 +78,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("game_compose_word"):
 		toggle_word_compose()
 
-func get_score():
-	return current_score
-
 func toggle_word_compose():
 	if word_composing_menu.is_composing_word:
 		play_arcade()
@@ -97,42 +92,3 @@ func play_arcade():
 	word_composing_menu.is_composing_word = false
 	word_composing_menu.set_letters(letters_pool)
 	player.enabled = true
-
-func get_artefacts() -> Array[Artefact]:
-	var artefacts: Array[Artefact] = []
-	
-	var vowel_booster = Artefact.new()
-	vowel_booster.name = "Vowel Booster"
-	vowel_booster.trigger = Artefact.TriggerType.Letter
-	vowel_booster.target = Artefact.TargetType.LetterAdd
-	vowel_booster.value = ComputedValue.new(0, VariableContext.VariableType.ConsonantCount)
-	vowel_booster.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
-		return cc.current_letter.character.is_vowel
-	#vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
-	artefacts.append(vowel_booster)
-	
-	var oddness_boost = Artefact.new()
-	oddness_boost.name = "Love the oddness"
-	oddness_boost.trigger = Artefact.TriggerType.Word
-	oddness_boost.target = Artefact.TargetType.WordMult
-	oddness_boost.value = ComputedValue.new(2)
-	oddness_boost.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
-		return vc.letter_count % 2 != 0
-	#oddness_boost.conditions.append(Condition.new(
-			#Comparison.new(
-				#ComputedValue.new(0, VariableContext.VariableType.LetterCount),
-			#Comparison.Operator.Odd,
-			#null)
-		#, null))
-	artefacts.append(oddness_boost)
-	
-	var vowel_first = Artefact.new()
-	vowel_first.name = "First letter is a vowel"
-	vowel_first.trigger = Artefact.TriggerType.Letter
-	vowel_first.target = Artefact.TargetType.LetterMult
-	vowel_first.value = ComputedValue.new(2)
-	vowel_first.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
-		return cc.previous_letter == null and cc.current_letter.character.is_vowel
-	artefacts.append(vowel_first)
-
-	return artefacts

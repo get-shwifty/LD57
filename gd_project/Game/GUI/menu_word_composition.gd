@@ -1,27 +1,6 @@
 extends Control
 class_name MenuWordComposition
 
-## Dict de la forme : Lettre: [points, texture]
-#const LETTER_POOL: Array[Array] = [
-		#["L", 1, 0],
-		#["O", 5, 1],
-		#["V", 1, 2],
-		#["E", 1, 3],
-		#["U", 1, 0],
-		#["P", 5, 1],
-		#["A", 1, 2],
-		#["B", 1, 3],
-		#["C", 1, 0],
-		#["D", 5, 1],
-		#["F", 1, 2],
-		#["G", 1, 3],
-		#["H", 1, 0],
-		#["O", 5, 1],
-		#["V", 1, 2],
-		#["E", 1, 3]
-#]
-
-
 @onready var UI_LETTER = preload("res://Game/GUI/ui_letter.tscn")
 @onready var UI_ARTEFACT = preload("res://Game/GUI/ui_artefact.tscn")
 
@@ -47,6 +26,7 @@ var sound_bank := [
 	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-5.ogg")
 ]
 var sound_index := 0
+var just_confirmed = false
 
 @onready var multi: int = 10
 @onready var score: int = 0
@@ -115,6 +95,10 @@ func setup_letter_pool(letters: Array[Letter]):
 
 
 func on_letter_selected(letter: Control):
+	if just_confirmed:
+		%Multiplicateur.text = "1"
+		%Total.text = "..."
+		just_confirmed = false
 	sound_click_on_letter.play()
 	if grid_container.get_children().has(letter):
 		letter.reparent(word_container)
@@ -179,6 +163,8 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 		await get_tree().create_timer(tween_time).timeout
 	await display_total(score)
 	on_ui_finished.emit()
+	just_confirmed = true
+	enable_mouse_inputs()
 	
 
 func display_total(score: ScoreCalculator.ScoreBreakdown):
@@ -188,9 +174,11 @@ func display_total(score: ScoreCalculator.ScoreBreakdown):
 		while temp < score.final_score:
 			total.text = str(temp)
 			await bump_ui(total)
-			if temp + 4 > score.final_score:
+			if temp + increment > score.final_score:
 				temp = score.final_score
-			temp += 4
+				total.text = str(temp)
+				await bump_ui(total)
+			temp += increment
 		victory.play()
 
 

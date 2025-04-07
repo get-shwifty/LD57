@@ -192,6 +192,24 @@ static func generate_bonuses() -> Array[Artefact]:
 		return cc.previous_letter != null && cc.previous_letter.fish_type == Letter.FishType.Medusa 
 	artefacts.append(artefact)
 	
+	artefact = Artefact.new()
+	artefact.name = "The more the merrier"
+	artefact.description = "+4 mult if there is more clownfish in the word than in the letter pool"
+	artefact.trigger = Artefact.TriggerType.Word
+	artefact.target = Artefact.TargetType.WordMult
+	artefact.value = 4
+	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		var clowns_in_word = 0
+		for l in cc.word:
+			if l.fish_type == Letter.FishType.Clown:
+				clowns_in_word += 1
+		var clowns_in_pool = 0
+		for l in cc.letter_pool:
+			if l.fish_type == Letter.FishType.Clown:
+				clowns_in_pool += 1
+		return clowns_in_word > clowns_in_pool
+	artefacts.append(artefact)
+	
 	return artefacts
 
 static func generate_maluses() -> Array[Artefact]:
@@ -275,6 +293,18 @@ static func generate_maluses() -> Array[Artefact]:
 		return vc.letter_count % 2 != 0;
 	artefacts.append(artefact)
 	
+	artefact = Artefact.new()
+	artefact.name = "Buffer overflow"
+	artefact.description = "-10 points per letter remaining in the pool"
+	artefact.is_malus = true
+	artefact.trigger = Artefact.TriggerType.Word
+	artefact.target = Artefact.TargetType.WordAdd
+	artefact.value = func(vc: VariableContext, cc: ConditionContext):
+		return cc.letter_pool.size() * -10;
+	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return cc.letter_pool.size() > 0;
+	artefacts.append(artefact)
+	
 	return artefacts
 
 static func generate_starting() -> Array[Artefact]:
@@ -297,7 +327,7 @@ static func generate_starting() -> Array[Artefact]:
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
 	artefact.value = func(vc: VariableContext, cc: ConditionContext):
-		return pow(cc.letter_count, 2) 
+		return pow(cc.letter_pool.size(), 2) 
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return true;
 	artefacts.append(artefact)
