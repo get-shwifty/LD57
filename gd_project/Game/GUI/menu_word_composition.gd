@@ -47,7 +47,6 @@ var sound_index := 0
 
 
 
-
 signal on_word_confirmed
 signal on_menu_closed
 signal on_ui_finished
@@ -134,13 +133,16 @@ func update_score():
 	$CenterContainer/VBoxContainer/Score/Points.text = str(score)
 	
 	
-func process_score(score: ScoreCalculator.ScoreBreakdown, artefcats: Array[Artefact]):
+func process_score(score: ScoreCalculator.ScoreBreakdown, artefacts: Array[Artefact]):
+	
 	for action in score.operations:
 		if action.letter_add_delta:
+			var tween: Tween = get_tree().create_tween()
 			var letter_ui: UILetter = word_container.get_children()[action.evaluated_letter_idx]
 			letter_ui.points.text = str(action.new_letter_score)
 			_play_bubble_sound()
 			letter_ui.position.y -= 5
+			tween.tween_property(letter_ui, "position", letter_ui.position + Vector2(0, 5), 0.25)
 			$CenterContainer/VBoxContainer/Score/Points.text = str(action.new_word_add)
 		await get_tree().create_timer(0.7).timeout
 		print("doing operation")

@@ -3,8 +3,8 @@ class_name UILetter
 
 signal on_letter_selected
 
-var letter: Letter;
-@onready var points: Label = %Points;
+var letter: Letter
+@onready var points: Label = %Points
 
 func initialize(letter_ : Letter):
 	letter = letter_
@@ -23,7 +23,6 @@ func initialize(letter_ : Letter):
 			
 	$Button.texture_normal.set_region(Rect2(texture_index * 24, 0, 24, 27))
 
-
 func get_letter() -> Letter:
 	return letter
 	
@@ -37,3 +36,4 @@ func _on_button_mouse_entered() -> void:
 
 func _on_button_mouse_exited() -> void:
 	position.y += 5 # Replace with function body.
+	
