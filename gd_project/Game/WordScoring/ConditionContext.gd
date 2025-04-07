@@ -5,6 +5,7 @@ var last_letter : Letter
 var previous_letter : Letter
 var current_letter : Letter
 var next_letter : Letter
+var word : Array[Letter]
 
 var is_word_palindrom : bool
 

@@ -48,7 +48,8 @@ func finish_level():
 	
 func confirm_word(word: Array[Letter]):
 	var variable_contexte: VariableContext = VariableContext.new()
-	var breakdown = ScoreCalculator.compute_score(word, [], variable_contexte)
+	var artefacts = get_artefacts()
+	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_contexte)
 
 	for letter in word:
 		current_letters.erase(letter)
@@ -86,3 +87,16 @@ func close_word_compose():
 	word_composing_menu.queue_free()
 	word_composing_menu = null
 	
+func get_artefacts() -> Array[Artefact]:
+	var artefact1 = Artefact.new()
+	artefact1.name = "First letter is a voyel"
+	artefact1.target = Artefact.TargetType.LetterMult
+	artefact1.trigger = Artefact.TriggerType.Letter
+	artefact1.value = ComputedValue.new(2)
+	artefact1.condition = func(variable_context : VariableContext, condition_context : ConditionContext) -> bool:
+		return condition_context.previous_letter != null and \
+			condition_context.current_letter.character.is_vowel
+	
+	#vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
+	
+	return [artefact1]

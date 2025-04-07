@@ -10,6 +10,7 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 	cond_context.is_word_palindrom = is_palidrom(word)
 	cond_context.first_letter = word[0]
 	cond_context.last_letter = word[-1]
+	cond_context.word = word
 	
 	print("variable context is " + var_context.to_string())
 	
