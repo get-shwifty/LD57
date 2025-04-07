@@ -1,15 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3elieuk1ty6m"]
+[gd_scene load_steps=3 format=3 uid="uid://d3elieuk1ty6m"]
 
 [ext_resource type="Script" uid="uid://ddit1srs4rpdb" path="res://Game/Levels/game_level.gd" id="1_rdhbp"]
-[ext_resource type="PackedScene" uid="uid://foipsmnjhbbe" path="res://Game/Levels/room_5.tscn" id="2_1krt2"]
-[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="3_3j40w"]
+[ext_resource type="PackedScene" uid="uid://bccwqo043fery" path="res://Game/Levels/room_1.tscn" id="2_1krt2"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_rdhbp")
 
 [node name="Room" parent="." instance=ExtResource("2_1krt2")]
-
-[node name="Player" parent="." instance=ExtResource("3_3j40w")]
-position = Vector2(291, 162)
 
 [node name="UIContainer" type="CanvasLayer" parent="."]
