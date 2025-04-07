@@ -110,8 +110,10 @@ func update_score():
 func process_score(score: ScoreCalculator.ScoreBreakdown):
 	for action in score.operations:
 		if action.letter_add_delta:
-			action.evaluated_letter_idx
-			pass
+			var letter_ui = grid_container.get_children()[action.evaluated_letter_idx]
+			letter_ui.point = action.new_letter_score
+			letter_ui.y += 10
+		await get_tree().create_timer(0.5).timeout
 
 
 	
