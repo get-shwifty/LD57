@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqdsa6gmtr3f"]
+
+[ext_resource type="Script" uid="uid://donq0iyrsvnov" path="res://Game/Characters2/murene.gd" id="1_6fw5c"]
+[ext_resource type="Texture2D" uid="uid://c6bkr4gof6u71" path="res://assets/images/murene.png" id="2_dph4l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uykbn"]
+atlas = ExtResource("2_dph4l")
+region = Rect2(0, 0, 100, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15yxe"]
+atlas = ExtResource("2_dph4l")
+region = Rect2(100, 0, 100, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iehv"]
+atlas = ExtResource("2_dph4l")
+region = Rect2(200, 0, 100, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7563"]
+atlas = ExtResource("2_dph4l")
+region = Rect2(300, 0, 100, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t26xp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uykbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15yxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iehv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7563")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2yge"]
+radius = 7.0
+height = 72.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6fw5c"]
+radius = 61.0
+height = 244.0
+
+[node name="Murene" type="CharacterBody2D"]
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_6fw5c")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual"]
+position = Vector2(-3, -1)
+sprite_frames = SubResource("SpriteFrames_t26xp")
+autoplay = "default"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_h2yge")
+
+[node name="LetterCtn" type="Node2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="Label" type="Label" parent="LetterCtn"]
+offset_left = -10.0
+offset_top = -7.0
+offset_right = 10.0
+offset_bottom = 7.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "P"
+horizontal_alignment = 1
+vertical_alignment = 1
+ellipsis_char = ""
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="LetterCtn/Label"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DetectPlayer" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayer"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_6fw5c")
+
+[connection signal="body_entered" from="DetectPlayer" to="." method="_on_detect_player_body_entered"]
+[connection signal="body_exited" from="DetectPlayer" to="." method="_on_detect_player_body_exited"]

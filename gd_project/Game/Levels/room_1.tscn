@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=17 format=3 uid="uid://bccwqo043fery"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
 [ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="6_6caqy"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
+[ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="8_6caqy"]
+[ext_resource type="PackedScene" uid="uid://bbrb36psdtbqj" path="res://Game/Characters2/jelly.tscn" id="10_xlshn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
@@ -26,6 +28,18 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -132, 120, 0, 0, 0, 0, -120, 96, 0, 0, 0, 0, -96, 84, 0, 0, 0, 0, -80, 72, 0, 0, 0, 0, -60, 72, 0, 0, 0, 0, -44, 52, 0, 0, 0, 0, -40, 48, 0, 0, 0, 0, -28, 52)
 }
 point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_6caqy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 198, 133, 0, 0, 0, 0, 269, 113, 0, 0, 0, 0, 324, 107, 0, 0, 0, 0, 383, 104, 0, 0, 0, 0, 421, 106, 0, 0, 0, 0, 463, 108, 0, 0, 0, 0, 490, 91, 0, 0, 0, 0, 508, 64)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_3anfj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 362, 226, 0, 0, 0, 0, 356, 167, 0, 0, 0, 0, 372, 136, 0, 0, 0, 0, 391, 158, 0, 0, 0, 0, 402, 183, 0, 0, 0, 0, 421, 208, 0, 0, 0, 0, 437, 225, 0, 0, 0, 0, 451, 206, 0, 0, 0, 0, 460, 180, 0, 0, 0, 0, 473, 154, 0, 0, 0, 0, 496, 168, 0, 0, 0, 0, 505, 197, 0, 0, 0, 0, 511, 226)
+}
+point_count = 13
 
 [node name="Room1" type="Node2D"]
 script = ExtResource("1_0f8fv")
@@ -178,3 +192,17 @@ curve = SubResource("Curve2D_1bvp3")
 [node name="Path2DCrab" type="Path2D" parent="."]
 position = Vector2(320, 240)
 curve = SubResource("Curve2D_at57x")
+
+[node name="Murene" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_6caqy")]
+position = Vector2(222, 125)
+path_to_follow = NodePath("../Path2DMurene")
+
+[node name="Path2DMurene" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6caqy")
+
+[node name="Path2DJelly" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3anfj")
+
+[node name="Jelly" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_xlshn")]
+position = Vector2(363, 228)
+path_to_follow = NodePath("../Path2DJelly")

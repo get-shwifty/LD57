@@ -1,12 +1,12 @@
 extends CharacterBody2D
-class_name Crab
+class_name Jelly
 
 signal on_captured()
 
-@export var MOVE_DURATION: float = 2.5
-@export_exp_easing var MOVE_EASING = 0.09
-@export var MOVE_SPEED: float = 30
-@export var MAX_MOVE_SPEED: float = 40
+@export var MOVE_DURATION: float = 5.0
+@export_exp_easing var MOVE_EASING = 0.37
+@export var MOVE_SPEED: float = 35
+@export var MAX_MOVE_SPEED: float = 60
 @export var path_to_follow: Path2D
 @export var forward: bool = true
 
@@ -18,7 +18,7 @@ func _ready():
 	assert(path_to_follow != null)
 	path_follow = PathFollow2D.new()
 	path_follow.loop = false
-	#path_follow.rotates = false
+	path_follow.rotates = false
 	path_follow.v_offset = -6
 	path_to_follow.add_child(path_follow)
 	path_follow.progress = path_to_follow.curve.get_closest_offset(path_to_follow.to_local(global_position))
@@ -37,12 +37,12 @@ func _physics_process(delta: float) -> void:
 		time_since_move_start = 0
 		last_ease_value = 0
 
-		if forward:
-			if path_follow.progress_ratio >= 1.0:
-				forward = not forward
-		else:
-			if path_follow.progress_ratio <= 0.0:
-				forward = not forward
+	if forward:
+		if path_follow.progress_ratio >= 1.0:
+			forward = not forward
+	else:
+		if path_follow.progress_ratio <= 0.0:
+			forward = not forward
 
 	var normalized_time_since_move_start = time_since_move_start / MOVE_DURATION
 	var ease_value = ease(normalized_time_since_move_start, MOVE_EASING)

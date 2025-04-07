@@ -1,0 +1,255 @@
+[gd_scene load_steps=15 format=3 uid="uid://foipsmnjhbbe"]
+
+[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_t5i3a"]
+[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_cia0p"]
+[ext_resource type="Texture2D" uid="uid://ct56eue7unl5k" path="res://assets/images/maquette_new_palette.png" id="3_804ge"]
+[ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_wnnr5"]
+[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_al0h4"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="6_vkvpj"]
+[ext_resource type="PackedScene" path="res://Game/Characters2/murene.tscn" id="7_sqdbd"]
+[ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="8_t43bs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(20.5, 569)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(1345, 2)
+
+[sub_resource type="Curve2D" id="Curve2D_ge0ju"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 98, -20, 0, 0, 0, 0, 151, -22, 0, 0, 0, 0, 205, -4, 0, 0, 0, 0, 252, 10, 0, 0, 0, 0, 287, 27, 0, 0, 0, 0, 319, 42, 0, 0, 0, 0, 347, 48, 0, 0, 0, 0, 361, 60, 0, 0, 0, 0, 379, 67, 0, 0, 0, 0, 395, 63, 0, 0, 0, 0, 412, 68, 0, 0, 0, 0, 425, 77, 0, 0, 0, 0, 451, 98, 0, 0, 0, 0, 493, 107, 0, 0, 0, 0, 528, 97, 0, 0, 0, 0, 546, 75, 0, 0, 0, 0, 592, 66, 0, 0, 0, 0, 637, 71, 0, 0, 0, 0, 688, 102, 0, 0, 0, 0, 693, 124, 0, 0, 0, 0, 691, 150, 0, 0, 0, 0, 681, 191, 0, 0, 0, 0, 680, 211, 0, 0, 0, 0, 713, 256, 0, 0, 0, 0, 732, 265, 0, 0, 0, 0, 775, 265, 0, 0, 0, 0, 815, 251, 0, 0, 0, 0, 839, 234, 0, 0, 0, 0, 851, 217, 0, 0, 0, 0, 865, 198, 0, 0, 0, 0, 906, 175, 0, 0, 0, 0, 941, 178, 0, 0, 0, 0, 958, 187, 0, 0, 0, 0, 982, 209, 0, 0, 0, 0, 988, 225, 0, 0, 0, 0, 999, 243, 0, 0, 0, 0, 1013, 277)
+}
+point_count = 37
+
+[sub_resource type="Curve2D" id="Curve2D_mdsio"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 777, 84, 0, 0, 0, 0, 868, 89, 0, 0, 0, 0, 928, 115, 0, 0, 0, 0, 980, 150, 0, 0, 0, 0, 986, 161, 0, 0, 0, 0, 1004, 186, 0, 0, 0, 0, 1023, 221, 0, 0, 0, 0, 1042, 256, 0, 0, 0, 0, 1053, 284, 0, 0, 0, 0, 1091, 293, 0, 0, 0, 0, 1119, 290, 0, 0, 0, 0, 1141, 285, 0, 0, 0, 0, 1162, 273, 0, 0, 0, 0, 1191, 250, 0, 0, 0, 0, 1225, 209, 0, 0, 0, 0, 1254, 167, 0, 0, 0, 0, 1261, 141, 0, 0, 0, 0, 1266, 114, 0, 0, 0, 0, 1264, 68, 0, 0, 0, 0, 1253, 43, 0, 0, 0, 0, 1232, 33, 0, 0, 0, 0, 1206, 31, 0, 0, 0, 0, 1179, 23, 0, 0, 0, 0, 1167, 7, 0, 0, 0, 0, 1182, -8, 0, 0, 0, 0, 1201, -14, 0, 0, 0, 0, 1220, -14, 0, 0, 0, 0, 1250, -14, 0, 0, 0, 0, 1265, -14, 0, 0, 0, 0, 1283, -28)
+}
+point_count = 30
+
+[sub_resource type="Curve2D" id="Curve2D_mqed5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 25, 271, 0, 0, 0, 0, 55, 257, 0, 0, 0, 0, 82, 245, 0, 0, 0, 0, 109, 241, 0, 0, 0, 0, 116, 222, 0, 0, 0, 0, 122, 205, 0, 0, 0, 0, 153, 190, 0, 0, 0, 0, 175, 197, 0, 0, 0, 0, 188, 202, 0, 0, 0, 0, 208, 202, 0, 0, 0, 0, 216, 182, 0, 0, 0, 0, 227, 164, 0, 0, 0, 0, 236, 153, 0, 0, 0, 0, 240, 159, 0, 0, 0, 0, 248, 155, 0, 0, 0, 0, 248, 138, 0, 0, 0, 0, 259, 135, 0, 0, 0, 0, 286, 129, 0, 0, 0, 0, 287, 131, 0, 0, 0, 0, 305, 139, 0, 0, 0, 0, 313, 150, 0, 0, 0, 0, 312, 162, 0, 0, 0, 0, 308, 177, 0, 0, 0, 0, 306, 189, 0, 0, 0, 0, 301, 204, 0, 0, 0, 0, 297, 222, 0, 0, 0, 0, 293, 242, 0, 0, 0, 0, 285, 251, 0, 0, 0, 0, 287, 271, 0, 0, 0, 0, 300, 282, 0, 0, 0, 0, 317, 284, 0, 0, 0, 0, 329, 285, 0, 0, 0, 0, 346, 285, 0, 0, 0, 0, 356, 279, 0, 0, 0, 0, 368, 269, 0, 0, 0, 0, 374, 266, 0, 0, 0, 0, 384, 263, 0, 0, 0, 0, 394, 261, 0, 0, 0, 0, 406, 249, 0, 0, 0, 0, 408, 240, 0, 0, 0, 0, 413, 234, 0, 0, 0, 0, 416, 232, 0, 0, 0, 0, 424, 228, 0, 0, 0, 0, 432, 225, 0, 0, 0, 0, 439, 223, 0, 0, 0, 0, 464, 227, 0, 0, 0, 0, 472, 229, 0, 0, 0, 0, 486, 228, 0, 0, 0, 0, 495, 221, 0, 0, 0, 0, 499, 214, 0, 0, 0, 0, 502, 206, 0, 0, 0, 0, 508, 193, 0, 0, 0, 0, 518, 192, 0, 0, 0, 0, 525, 178, 0, 0, 0, 0, 538, 171, 0, 0, 0, 0, 557, 171, 0, 0, 0, 0, 568, 176, 0, 0, 0, 0, 572, 191)
+}
+point_count = 58
+
+[sub_resource type="Curve2D" id="Curve2D_at57x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -132, 120, 0, 0, 0, 0, -120, 96, 0, 0, 0, 0, -96, 84, 0, 0, 0, 0, -80, 72, 0, 0, 0, 0, -60, 72, 0, 0, 0, 0, -44, 52, 0, 0, 0, 0, -40, 48, 0, 0, 0, 0, -28, 52)
+}
+point_count = 8
+
+[node name="Room4" type="Node2D"]
+script = ExtResource("1_t5i3a")
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(3, 159)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(640, 0)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(655.5, 158)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(10, -146)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(643, 36)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="TopWall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(327, 354)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall2"]
+position = Vector2(320, 1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="World" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Wallpaper" type="Sprite2D" parent="World"]
+position = Vector2(653, -62)
+scale = Vector2(2.03281, 2.04074)
+texture = ExtResource("2_cia0p")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 540)
+
+[node name="BackLayer" type="Sprite2D" parent="World"]
+position = Vector2(315, 315)
+texture = ExtResource("2_cia0p")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer7" type="Sprite2D" parent="World"]
+position = Vector2(953, 259)
+texture = ExtResource("2_cia0p")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer2" type="Sprite2D" parent="World"]
+position = Vector2(279, 331)
+texture = ExtResource("2_cia0p")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer8" type="Sprite2D" parent="World"]
+position = Vector2(916, 332)
+texture = ExtResource("2_cia0p")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer9" type="Sprite2D" parent="World"]
+position = Vector2(979, 275)
+texture = ExtResource("2_cia0p")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer3" type="Sprite2D" parent="World"]
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(1060, 121)
+texture = ExtResource("2_cia0p")
+region_enabled = true
+region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
+
+[node name="BackLayer4" type="Sprite2D" parent="World"]
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(1060, 121)
+texture = ExtResource("2_cia0p")
+region_enabled = true
+region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
+
+[node name="BackLayer5" type="Sprite2D" parent="World"]
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(467, 109)
+texture = ExtResource("2_cia0p")
+region_enabled = true
+region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
+
+[node name="BackLayer6" type="Sprite2D" parent="World"]
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(76, -125)
+texture = ExtResource("2_cia0p")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
+
+[node name="RockC" type="Sprite2D" parent="World"]
+position = Vector2(1095, 41)
+scale = Vector2(3, 3)
+texture = ExtResource("3_804ge")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(348, 912, 172, 164)
+
+[node name="RockA2" parent="World" instance=ExtResource("4_wnnr5")]
+position = Vector2(170, -99)
+
+[node name="RockA4" parent="World" instance=ExtResource("4_wnnr5")]
+position = Vector2(367, -102)
+
+[node name="RockA5" parent="World" instance=ExtResource("4_wnnr5")]
+position = Vector2(689, -100)
+
+[node name="RockA6" parent="World" instance=ExtResource("4_wnnr5")]
+position = Vector2(782, -119)
+
+[node name="RockB" parent="World" instance=ExtResource("5_al0h4")]
+position = Vector2(847, 312)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="BackLayer3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(2342, 110)
+texture = ExtResource("2_cia0p")
+region_enabled = true
+region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
+
+[node name="Player" parent="." instance=ExtResource("6_vkvpj")]
+position = Vector2(52, -58)
+
+[node name="RockB" parent="." instance=ExtResource("5_al0h4")]
+position = Vector2(170, 237)
+scale = Vector2(3, 3)
+
+[node name="RockB2" parent="." instance=ExtResource("5_al0h4")]
+position = Vector2(455, 259)
+scale = Vector2(2.5, 2.5)
+
+[node name="Fish" type="Node2D" parent="."]
+
+[node name="Murene" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_sqdbd")]
+position = Vector2(100, -23)
+path_to_follow = NodePath("../Path2Dmurene")
+
+[node name="Murene2" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_sqdbd")]
+position = Vector2(843, 83)
+path_to_follow = NodePath("../Path2Dmurene2")
+
+[node name="Path2Dmurene" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_ge0ju")
+
+[node name="Crab" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(27, 265)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab2" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(154, 191)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab3" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(274, 129)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab4" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(450, 221)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab5" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(552, 168)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab6" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(552, 168)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab7" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(797, 321)
+path_to_follow = NodePath("../Path2DCrab2")
+
+[node name="Crab8" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(845, 299)
+path_to_follow = NodePath("../Path2DCrab2")
+
+[node name="Path2Dmurene2" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_mdsio")
+
+[node name="Path2Dcrab" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_mqed5")
+
+[node name="Path2DCrab2" type="Path2D" parent="Fish"]
+position = Vector2(916, 229)
+curve = SubResource("Curve2D_at57x")
+
+[node name="Player2" parent="." instance=ExtResource("6_vkvpj")]
