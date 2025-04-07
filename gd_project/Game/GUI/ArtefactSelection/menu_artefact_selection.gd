@@ -2,12 +2,9 @@ extends Control
 
 @onready var UI_ARTEFACT_BUTTON = preload("res://Game/GUI/ArtefactSelection/ui_artefact.tscn")
 
-signal on_artefact_selected
+signal artefact_selected
 
 @onready var artefact_container = $CenterContainer/HBoxContainer
-
-func _ready():
-	initialize(get_artefacts())
 
 func initialize(artefacts: Array[Artefact]):
 	for artefact in artefacts:
@@ -16,8 +13,15 @@ func initialize(artefacts: Array[Artefact]):
 		artefact_button.on_selected.connect(select_artefact.bind(artefact))
 		artefact_container.add_child(artefact_button)
 
+func initialize_bonus(current_artefacts: Array[Artefact]):
+	var all_artefacts = ArtefactRepository.bonuses.slice(0)
+	for artefact in current_artefacts:
+		all_artefacts.erase(artefact)
+	all_artefacts.shuffle()
+	initialize(all_artefacts.slice(0, 3))
+
 func select_artefact(artefact: Artefact):
-	on_artefact_selected.emit(artefact)
+	artefact_selected.emit(artefact)
 
 
 #only usefull for tests

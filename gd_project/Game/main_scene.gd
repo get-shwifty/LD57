@@ -47,11 +47,13 @@ func on_level_finished(points):
 		
 		print("main game detected level finished")
 		current_menu = MENU_LEVEL_FINISHED.instantiate()
-		current_menu.initialize(total_points)
 		current_menu.on_menu_closed.connect(on_score_menu_closed)
 		menu_container.add_child(current_menu)
+		current_menu.initialize(total_points, artefacts)
 
-func on_score_menu_closed():
+func on_score_menu_closed(new_artefact):
+	if new_artefact != null:
+		artefacts.append(new_artefact)
 	current_menu.queue_free()
 	current_level.queue_free()
 	map_menu.show_map()
@@ -60,9 +62,9 @@ func on_score_menu_closed():
 	
 func start_new_level():
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
+	current_level.artefacts = artefacts.slice(0)
 	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
-	
 
 func _on_map_exited(room: Room) -> void:
 	map_menu.hide_map()

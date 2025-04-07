@@ -11,9 +11,9 @@ signal level_finished(points)
 @onready var word_composing_menu: MenuWordComposition = $UIContainer/MenuWordComposition
 @onready var score: Score = $UIContainer/ScoreUI
 
-var letters_pool : Array[Letter] = []
+var letters_pool: Array[Letter] = []
 var artefacts = get_artefacts()
-var current_score : int = 0
+var current_score: int = 0
 var waiting_for_ui = false
 
 func _ready():
@@ -36,7 +36,7 @@ func setup_level():
 	word_composing_menu.artefacts = artefacts
 	word_composing_menu.setup_artefacts_grid()
 
-	var letters = Alphabet.get_random_characters().map(func (c): return Letter.new(c))
+	var letters = Alphabet.get_random_characters().map(func(c): return Letter.new(c))
 	room.set_letters(letters)
 
 
@@ -68,7 +68,6 @@ func confirm_word(word: Array[Letter]):
 		score.hide()
 		word_composing_menu.hide()
 		level_finished.emit(score.current)
-		print("YEP")
 	else:
 		word_composing_menu.set_letters(letters_pool)
 		compose_word()
