@@ -21,6 +21,7 @@ var value : ComputedValue;
 var conditions : Array[Condition]
 var condition: Callable # KISS
 
+
 func are_conditions_valid(variable_context : VariableContext, condition_context : ConditionContext) -> bool:
 	if condition != null:
 		return condition.call(variable_context, condition_context)

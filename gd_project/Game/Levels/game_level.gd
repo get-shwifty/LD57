@@ -54,7 +54,7 @@ func confirm_word(word: Array[Letter]):
 	for letter in word:
 		current_letters.erase(letter)
 	
-	word_composing_menu.process_score(breakdown)
+	word_composing_menu.process_score(breakdown, artefacts)
 
 
 	#if current_score >= score_objective:
@@ -81,7 +81,7 @@ func start_word_compose():
 	ui_container.add_child(word_composing_menu)
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
 	word_composing_menu.on_menu_closed.connect(close_word_compose)
-	word_composing_menu.initialize(current_letters)
+	word_composing_menu.initialize(current_letters, get_artefacts())
 
 func close_word_compose():
 	word_composing_menu.queue_free()
