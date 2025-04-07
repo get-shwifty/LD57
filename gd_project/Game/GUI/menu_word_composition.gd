@@ -1,4 +1,5 @@
 extends Control
+class_name MenuWordComposition
 
 ## Dict de la forme : Lettre: [points, texture]
 #const LETTER_POOL: Array[Array] = [
@@ -108,6 +109,7 @@ func update_score():
 	
 	
 func process_score(score: ScoreCalculator.ScoreBreakdown):
+	print(score)
 	for action in score.operations:
 		if action.letter_add_delta:
 			var letter_ui = grid_container.get_children()[action.evaluated_letter_idx]
