@@ -28,7 +28,6 @@ static var english_characters : Array[Character] = [
 	Character.new("Y", 2, 4, true),
 	Character.new("Z", 1, 10),
 ];
- 
 
 static func get_all_characters():
 	return english_characters;
