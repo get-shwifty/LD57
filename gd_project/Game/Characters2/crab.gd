@@ -18,7 +18,7 @@ func _ready():
 	assert(path_to_follow != null)
 	path_follow = PathFollow2D.new()
 	path_follow.loop = false
-	path_follow.rotates = false
+	#path_follow.rotates = false
 	path_follow.v_offset = -6
 	path_to_follow.add_child(path_follow)
 	path_follow.progress = path_to_follow.curve.get_closest_offset(path_to_follow.to_local(global_position))
