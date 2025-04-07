@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=18 format=3 uid="uid://foipsmnjhbbe"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_t5i3a"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_cia0p"]
@@ -40,6 +40,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -132, 120, 0, 0, 0, 0, -120, 96, 0, 0, 0, 0, -96, 84, 0, 0, 0, 0, -80, 72, 0, 0, 0, 0, -60, 72, 0, 0, 0, 0, -44, 52, 0, 0, 0, 0, -40, 48, 0, 0, 0, 0, -28, 52)
 }
 point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_804ge"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, 1, 0, 0, 0, 0, 20, -1, 0, 0, 0, 0, 37, -6, 0, 0, 0, 0, 53, -15, 0, 0, 0, 0, 62, -20, 0, 0, 0, 0, 70, -29, 0, 0, 0, 0, 78, -45, 0, 0, 0, 0, 95, -57, 0, 0, 0, 0, 109, -59)
+}
+point_count = 9
 
 [node name="Room4" type="Node2D"]
 script = ExtResource("1_t5i3a")
@@ -393,5 +399,13 @@ curve = SubResource("Curve2D_mqed5")
 [node name="Path2DCrab2" type="Path2D" parent="Fish"]
 position = Vector2(916, 229)
 curve = SubResource("Curve2D_at57x")
+
+[node name="Crab9" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(328, 278)
+path_to_follow = NodePath("../Path2Dcrab9")
+
+[node name="Path2Dcrab9" type="Path2D" parent="Fish"]
+position = Vector2(328, 278)
+curve = SubResource("Curve2D_804ge")
 
 [node name="Player" parent="." instance=ExtResource("6_vkvpj")]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c26jrcabscac0"
-path="res://.godot/imported/harpon_tir.png-4b1ab7cf746cf7256f9ccba6efa84e59.ctex"
+uid="uid://dlmjd01r4qkx7"
+path="res://.godot/imported/harpon_tir_ancien.png-33da050e5509a6cefc694375616a55b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/harpon_tir.png"
-dest_files=["res://.godot/imported/harpon_tir.png-4b1ab7cf746cf7256f9ccba6efa84e59.ctex"]
+source_file="res://assets/images/harpon_tir_ancien.png"
+dest_files=["res://.godot/imported/harpon_tir_ancien.png-33da050e5509a6cefc694375616a55b5.ctex"]
 
 [params]
 

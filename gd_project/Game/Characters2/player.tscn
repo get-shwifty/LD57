@@ -1,14 +1,80 @@
-[gd_scene load_steps=15 format=3 uid="uid://bv5efl4bcaq73"]
+[gd_scene load_steps=29 format=3 uid="uid://bv5efl4bcaq73"]
 
 [ext_resource type="Script" uid="uid://cihl6w3tmo3v0" path="res://Game/Characters2/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://ctamu37lbsy13" path="res://assets/images/chien.png" id="2_8xcms"]
 [ext_resource type="Script" uid="uid://6ph3jq3w637p" path="res://Game/Characters2/harpoon.gd" id="2_obqfy"]
+[ext_resource type="Texture2D" uid="uid://dqienl6l0l5tl" path="res://assets/images/breath-bubbles/bulle_1.png" id="2_ymr8s"]
 [ext_resource type="Script" uid="uid://vdrfqo6lcnm5" path="res://Game/Characters2/oxygen.gd" id="3_m4rnn"]
-[ext_resource type="Texture2D" uid="uid://dlmjd01r4qkx7" path="res://assets/images/harpon_tir.png" id="4_uhrti"]
+[ext_resource type="Texture2D" uid="uid://btijy6ijfdv3k" path="res://assets/images/breath-bubbles/bulle_2.png" id="3_yg8ch"]
+[ext_resource type="Texture2D" uid="uid://c84hhvijxuoms" path="res://assets/images/breath-bubbles/bulle_3.png" id="4_4ri6y"]
+[ext_resource type="Texture2D" uid="uid://c26jrcabscac0" path="res://assets/images/harpon_tir.png" id="4_uhrti"]
 [ext_resource type="AudioStream" uid="uid://duxfklkvvaq3e" path="res://assets/sounds/bruitages/fish/POISSON-TOUCHE-Prop1.mp3" id="5_vo8gn"]
+[ext_resource type="Texture2D" uid="uid://c270hasrnaql5" path="res://assets/images/breath-bubbles/bulle_4.png" id="5_ybndx"]
 [ext_resource type="AudioStream" uid="uid://drienmilo0gug" path="res://assets/sounds/bruitages/player/SON-TIR-HARPON.mp3" id="6_j0eht"]
+[ext_resource type="Texture2D" uid="uid://b8xs7wo3qwr76" path="res://assets/images/breath-bubbles/bulle_5.png" id="6_ot82d"]
+[ext_resource type="Texture2D" uid="uid://cj33gmbi1kkmb" path="res://assets/images/breath-bubbles/bulle_6.png" id="7_dj8wx"]
 [ext_resource type="Texture2D" uid="uid://ieb3tosalmbo" path="res://assets/images/harpon_dogo_2.png" id="7_qh20h"]
+[ext_resource type="Texture2D" uid="uid://bobov3evacsyd" path="res://assets/images/breath-bubbles/bulle_7.png" id="8_sxo18"]
 [ext_resource type="AudioStream" uid="uid://c25n0h1ncfdf8" path="res://assets/sounds/bruitages/player/BRUIT DEPLACEMENT-BULLES.mp3" id="8_uhrti"]
+[ext_resource type="Texture2D" uid="uid://b0oxwys4jiw0v" path="res://assets/images/breath-bubbles/bulle_8.png" id="9_d7qgf"]
+[ext_resource type="Texture2D" uid="uid://b0hktv0rfr7ss" path="res://assets/images/breath-bubbles/bulle_9.png" id="10_vjm82"]
+[ext_resource type="Texture2D" uid="uid://do631wovjl5f7" path="res://assets/images/breath-bubbles/bulle_10.png" id="11_j0vox"]
+[ext_resource type="Texture2D" uid="uid://bamtkx7nbik2j" path="res://assets/images/breath-bubbles/bulle_11.png" id="12_3ep4j"]
+[ext_resource type="Texture2D" uid="uid://w2x6x3hhrii1" path="res://assets/images/breath-bubbles/bulle_12.png" id="13_kvie4"]
+[ext_resource type="Texture2D" uid="uid://cdrkr032fgfg5" path="res://assets/images/breath-bubbles/bulle_13.png" id="14_pdo3f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_74ovk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ymr8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yg8ch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4ri6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ybndx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ot82d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dj8wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_sxo18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d7qgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vjm82")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j0vox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3ep4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_kvie4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_pdo3f")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"breath-animation",
+"speed": 12.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8c3w"]
 atlas = ExtResource("2_8xcms")
@@ -47,11 +113,18 @@ script = ExtResource("1_4flbx")
 
 [node name="Visual" type="Node2D" parent="."]
 
+[node name="breathAnimated" type="AnimatedSprite2D" parent="Visual"]
+position = Vector2(23, -8)
+sprite_frames = SubResource("SpriteFrames_74ovk")
+animation = &"breath-animation"
+speed_scale = 0.5
+offset = Vector2(7, -8)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual"]
 position = Vector2(-8, 0)
 sprite_frames = SubResource("SpriteFrames_vo8gn")
 autoplay = "default"
-frame_progress = 0.162477
+frame_progress = 0.186453
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

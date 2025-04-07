@@ -50,6 +50,7 @@ var sound_index := 0
 
 @onready var multi: int = 10
 @onready var score: int = 0
+@onready var tween_time: float = 0.5
 
 var is_composing_word: bool = false:
 	set(value):
@@ -58,7 +59,7 @@ var is_composing_word: bool = false:
 var can_submit = false:
 	set(value):
 		can_submit = value
-		$CenterContainer/VBoxContainer/Submit.disabled = not value
+		%Submit.disabled = not value
 
 signal on_word_confirmed(word)
 signal on_ui_finished
@@ -66,6 +67,9 @@ signal on_ui_finished
 static var dico: DictionaryHelper = DictionaryHelper.new(DictionaryHelper.Language.English)
 
 func _ready():
+	var children = grid_container.get_children()
+	for child in children:
+		child.free()
 	update_view()
 	
 func _process(delta: float):
@@ -78,6 +82,8 @@ func set_letters(word: Array[Letter]):
 func update_view():
 	grid_container.reparent(vbox_container if is_composing_word else center_container2)
 	center_container.visible = is_composing_word
+	%Submit.visible = is_composing_word
+	#%Multiplicateur.text = str(1)
 	if is_composing_word:
 		enable_mouse_inputs()
 	else:
@@ -143,35 +149,75 @@ func update_score():
 	var score = 0
 	for letter in word:
 		score += letter.character.base_value
-	$CenterContainer/VBoxContainer/Score/Points.text = str(score)
+	$CenterContainer/VBoxContainer/PanelContainer/Score/Points.text = str(score)
+	#$CenterContainer/VBoxContainer/PanelContainer/Score/Total.text = str(score)
+	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Points)
+	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Total)
 	
 	
 func process_score(score: ScoreCalculator.ScoreBreakdown):
+	tween_time = 0.4
+	
 	for action in score.operations:
-		var tween_letter: Tween = get_tree().create_tween()
-		var tween_artefact: Tween = get_tree().create_tween()
-		if action.letter_add_delta:
-			print(action.origin_artefact_idx)
-			var letter_ui: UILetter = word_container.get_children()[action.evaluated_letter_idx]
-			if action.origin_artefact_idx >= 0:
-				var artefact_ui: UIArtefact = artefacts_container.get_children()[action.origin_artefact_idx]
-				artefact_ui.position.y -= 5.0
-				tween_artefact.tween_property(artefact_ui, "position", artefact_ui.position + Vector2(0, 5), 0.25)
-				#await tween_artefact.finished
-			letter_ui.points.text = str(action.new_letter_score)
-			_play_bubble_sound()
-			letter_ui.position.y -= 5.0
-			tween_letter.tween_property(letter_ui, "position", letter_ui.position + Vector2(0, 5), 0.25)
-			$CenterContainer/VBoxContainer/Score/Points.text = str(action.new_word_add)
-		await get_tree().create_timer(0.7).timeout
-		#await tween_letter.finished
-		print("doing operation")
-			
-	$CenterContainer/VBoxContainer/Score/Total.text = str(score.final_score)
-	victory.play()
+		
+		var source = resolve_source(action)
+		var target = resolve_target(action)
+		
+		await bump_ui(source)
+		if target is UILetter:
+			target.points.text = str(action.new_letter_score)
+			await bump_ui(target)
+			var points = $CenterContainer/VBoxContainer/PanelContainer/Score/Points
+			points.text = str(action.new_word_add)
+			await bump_ui(points)
+		else:
+			if target == %Points:
+				target.text = str(action.new_word_add)
+			elif target == %Multiplicateur:
+				target.text = str(action.new_word_mult)
+			await bump_ui(target)
+		await get_tree().create_timer(tween_time).timeout
+	display_total(score)
 	on_ui_finished.emit()
 	
 
+func display_total(score: ScoreCalculator.ScoreBreakdown):
+		var total = $CenterContainer/VBoxContainer/PanelContainer/Score/Total
+		var increment = 4
+		var temp = 0
+		while temp < score.final_score:
+			total.text = str(temp)
+			await bump_ui(total)
+			if temp + 4 > score.final_score:
+				temp = score.final_score
+			temp += 4
+		victory.play()
+
+
+		
+func bump_ui(target: Control):
+	target.position.y -= 5
+	var tween_source: Tween = get_tree().create_tween()
+	tween_source.tween_property(target, "position", target.position + Vector2(0, 5), tween_time)
+	_play_bubble_sound()
+	await tween_source.finished
+	if tween_time > 0.2:
+		tween_time -= 0.025
+
+func resolve_source(action: ScoreCalculator.ScoreOperation):
+	if action.origin_artefact_idx == -1:
+		return word_container.get_children()[action.evaluated_letter_idx]
+	else:
+		return artefacts_container.get_children()[action.origin_artefact_idx]
+
+func resolve_target(action: ScoreCalculator.ScoreOperation):
+	if action.letter_add_delta > 0 or action.letter_mult_delta:
+		return word_container.get_children()[action.evaluated_letter_idx]
+	elif action.word_add_delta > 0:
+		return $CenterContainer/VBoxContainer/PanelContainer/Score/Points
+	elif action.word_mult_delta > 0:
+		return $CenterContainer/VBoxContainer/PanelContainer/Score/Multiplicateur
+	
 func _play_bubble_sound():
 	lettersScoring.volume_db = +3
 	lettersScoring.stream = sound_bank[sound_index]
