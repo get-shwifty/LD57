@@ -276,3 +276,11 @@ static func generate_maluses() -> Array[Artefact]:
 	artefacts.append(artefact)
 	
 	return artefacts
+
+static func get_artefact(name : String):
+	for a in bonuses:
+		if a.name == name:
+			return a;
+	for a in maluses:
+		if a.name == name:
+			return a;
