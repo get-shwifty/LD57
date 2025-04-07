@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=12 format=3 uid="uid://foipsmnjhbbe"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_at57x"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_4awi4"]
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
+[ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
@@ -18,6 +19,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 60.8095, 106.379, 0, 0, 0, 0, 53.341, 136.915, 0, 0, 0, 0, 90.6837, 150.275, 0, 0, 0, 0, 128.026, 123.556, 0, 0, 0, 0, 189.642, 125.464, 0, 0, 0, 0, 217.649, 157.909, 0, 0, 0, 0, 260.593, 156, 0, 0, 0, 0, 279, 132, 0, 0, 0, 0, 290, 79, 0, 0, 0, 0, 284.866, 49.1242, 0, 0, 0, 0, 254.992, 39.5817, 0, 0, 0, 0, 234.453, 72.0262, 0, 0, 0, 0, 195.243, 58.6667, 0, 0, 0, 0, 180.306, 37.6732, 0, 0, 0, 0, 159.768, 18.5882, 0, 0, 0, 0, 107.488, 14.7712, 0, 0, 0, 0, 107.488, 14.7712, 0, 0, 0, 0, 72, 19, 0, 0, 0, 0, 44, 29, 0, 0, 0, 0, 30.9353, 54.8497, 0, 0, 0, 0, 55.2081, 75.8432, 0, 0, 0, 0, 60.8095, 106.379)
 }
 point_count = 22
+
+[sub_resource type="Curve2D" id="Curve2D_at57x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -132, 120, 0, 0, 0, 0, -120, 96, 0, 0, 0, 0, -96, 84, 0, 0, 0, 0, -80, 72, 0, 0, 0, 0, -60, 72, 0, 0, 0, 0, -44, 52, 0, 0, 0, 0, -40, 48, 0, 0, 0, 0, -28, 52)
+}
+point_count = 8
 
 [node name="Room1" type="Node2D"]
 script = ExtResource("1_0f8fv")
@@ -121,7 +128,21 @@ position = Vector2(282, 31)
 rotation = -3.04058
 path_to_follow = NodePath("../Path2D")
 
+[node name="Crab" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_oare8")]
+position = Vector2(204, 336)
+path_to_follow = NodePath("../Path2DCrab")
+
+[node name="Crab2" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_oare8")]
+position = Vector2(264, 308)
+rotation = -0.000609994
+path_to_follow = NodePath("../Path2DCrab")
+forward = false
+
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(-26.2734, -10.9589)
 scale = Vector2(2.14232, 2.09589)
 curve = SubResource("Curve2D_1bvp3")
+
+[node name="Path2DCrab" type="Path2D" parent="."]
+position = Vector2(320, 240)
+curve = SubResource("Curve2D_at57x")

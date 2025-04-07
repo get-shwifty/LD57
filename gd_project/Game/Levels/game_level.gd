@@ -8,8 +8,6 @@ class_name GameLevel
 @onready var room: LevelRoom = $Room
 @onready var player: Player = $Player
 
-var fishes : Array[Fish] = []
-
 var word_composing_menu : Control;
 
 var score_objective : int
@@ -31,12 +29,12 @@ func fish_captured(letter):
 	current_letters += letter
 	prints("captured " + letter, current_letters)
 
-func check_remaining_fishes():
-	for fish in fishes:
-		if !fish.is_captured:
-			return
-	print("all fishes captured")
-	finish_level()
+#func check_remaining_fishes():
+	#for fish in fishes:
+		#if !fish.is_captured:
+			#return
+	#print("all fishes captured")
+	#finish_level()
 	
 func oxygen_depleted():
 	print("oxygen depleted")
