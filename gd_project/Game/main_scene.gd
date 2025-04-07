@@ -5,6 +5,7 @@ extends Node2D
 
 @onready var LEVEL_TEST_DEFAULT = preload("res://Game/Levels/level_test.tscn")
 @onready var game_over_scene = preload("res://GUI/game_over.tscn")
+@onready var start_scene = preload("res://Game/Levels/splash.tscn")
 
 @onready var menu_container = $CanvasLayer/MenuContainer
 
@@ -12,22 +13,21 @@ var current_level : Level
 var current_menu
 var map_menu: Map
 var game_end
+var game_start
 
 var total_points: float = 0
 var artefacts: Array[Artefact]
 
-#func _ready():
-	#setup_game()
-	#for child in get_children():
-		#if child is Level:
-			#print("detected level override")
-			#current_level = child;
-			#current_level.on_level_finished.connect(on_level_finished)
-			#return
+func _ready():
+	game_start = start_scene.instantiate()
+	add_child(game_start)
 
+	game_start.start_game.connect(setup_game)
+	print("YOOO")
 
 func setup_game():
 	print("game setup")
+	remove_child(game_start)
 	map_menu = MENU_LEVEL_SELECTION.instantiate()
 	menu_container.add_child(map_menu)
 	map_menu.generate_new_map()
@@ -36,10 +36,7 @@ func setup_game():
 	
 	for starting_artefact in ArtefactRepository.starting:
 		artefacts.append(starting_artefact)
- 
-func _on_start_button_pressed() -> void:
-	$StartButton.queue_free()
-	setup_game()
+
 
 
 func on_level_finished(points):
