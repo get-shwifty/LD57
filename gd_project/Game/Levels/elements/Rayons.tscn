@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://tsng1mrq77pc"]
+
+[ext_resource type="Script" uid="uid://dmycbpfsgudq3" path="res://Game/Levels/elements/rayons.gd" id="1_0vek5"]
+[ext_resource type="Texture2D" uid="uid://clyveyu06rxdi" path="res://assets/images/rays.png" id="2_ogfci"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogfci"]
+atlas = ExtResource("2_ogfci")
+region = Rect2(0, 0, 640, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf7p2"]
+atlas = ExtResource("2_ogfci")
+region = Rect2(0, 540, 640, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmdtp"]
+atlas = ExtResource("2_ogfci")
+region = Rect2(0, 1080, 640, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onsa0"]
+atlas = ExtResource("2_ogfci")
+region = Rect2(0, 1620, 640, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_muj0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogfci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf7p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmdtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onsa0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Rayons" type="Node2D"]
+script = ExtResource("1_0vek5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 270)
+sprite_frames = SubResource("SpriteFrames_muj0o")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 270)
+sprite_frames = SubResource("SpriteFrames_muj0o")
+frame = 1
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 270)
+sprite_frames = SubResource("SpriteFrames_muj0o")
+frame = 2
+frame_progress = 0.226183
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+position = Vector2(65, 255)
+rotation = 0.169966
+sprite_frames = SubResource("SpriteFrames_muj0o")
+frame = 2
+frame_progress = 0.226183
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 270)
+sprite_frames = SubResource("SpriteFrames_muj0o")
+frame = 3
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="."]
+position = Vector2(116, 183)
+rotation = 0.483952
+sprite_frames = SubResource("SpriteFrames_muj0o")
+frame = 3

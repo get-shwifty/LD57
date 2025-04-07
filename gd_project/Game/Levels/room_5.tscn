@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_dkohp"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_wbx2q"]
-[ext_resource type="Texture2D" uid="uid://ct56eue7unl5k" path="res://assets/images/maquette_new_palette.png" id="3_00mlb"]
+[ext_resource type="PackedScene" uid="uid://ceej58xocqth7" path="res://Game/Levels/elements/rock_d.tscn" id="3_dkohp"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_1kleb"]
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_o408c"]
 [ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="6_vp2eb"]
@@ -62,7 +62,7 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
-position = Vector2(655.5, 158)
+position = Vector2(625, 158)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="TopWall" type="StaticBody2D" parent="Walls"]
@@ -140,6 +140,7 @@ region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
 
 [node name="BackLayer5" type="Sprite2D" parent="World"]
 modulate = Color(1, 1, 1, 0.517647)
+z_index = 1
 position = Vector2(467, 109)
 texture = ExtResource("2_wbx2q")
 region_enabled = true
@@ -153,29 +154,29 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
 
-[node name="RockC" type="Sprite2D" parent="World"]
-position = Vector2(1095, 41)
+[node name="RockB2" parent="World" instance=ExtResource("3_dkohp")]
+z_index = 1
+position = Vector2(172, 235)
 scale = Vector2(3, 3)
-texture = ExtResource("3_00mlb")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(348, 912, 172, 164)
 
 [node name="RockA2" parent="World" instance=ExtResource("4_1kleb")]
 position = Vector2(170, -99)
 
-[node name="RockA4" parent="World" instance=ExtResource("4_1kleb")]
-position = Vector2(367, -102)
-
 [node name="RockA5" parent="World" instance=ExtResource("4_1kleb")]
-position = Vector2(689, -100)
+position = Vector2(641, -119)
 
-[node name="RockA6" parent="World" instance=ExtResource("4_1kleb")]
-position = Vector2(782, -119)
-
-[node name="RockB" parent="World" instance=ExtResource("5_o408c")]
+[node name="RockB3" parent="World" instance=ExtResource("3_dkohp")]
 z_index = 1
-position = Vector2(847, 312)
+position = Vector2(452, 255)
+scale = Vector2(2.5, 2.5)
+
+[node name="RockB5" parent="World" instance=ExtResource("5_o408c")]
+position = Vector2(968, 4)
+rotation = 3.14159
+scale = Vector2(5, 5)
+
+[node name="RockB4" parent="World" instance=ExtResource("3_dkohp")]
+position = Vector2(843, 314)
 
 [node name="Algue1" parent="World" instance=ExtResource("6_vp2eb")]
 position = Vector2(36, 262)
@@ -237,6 +238,92 @@ position = Vector2(324, 159)
 [node name="Algue9" parent="World" instance=ExtResource("7_5n7k7")]
 position = Vector2(584, 179)
 
+[node name="Groupe Pierre Algue A" type="Node" parent="World"]
+
+[node name="RockA6" parent="World/Groupe Pierre Algue A" instance=ExtResource("4_1kleb")]
+z_index = 1
+position = Vector2(780, 22)
+
+[node name="Algue24" parent="World/Groupe Pierre Algue A" instance=ExtResource("6_vp2eb")]
+position = Vector2(808, 7)
+
+[node name="Algue26" parent="World/Groupe Pierre Algue A" instance=ExtResource("6_vp2eb")]
+position = Vector2(819, 13)
+
+[node name="Algue27" parent="World/Groupe Pierre Algue A" instance=ExtResource("6_vp2eb")]
+position = Vector2(799, -4)
+
+[node name="Algue25" parent="World/Groupe Pierre Algue A" instance=ExtResource("6_vp2eb")]
+position = Vector2(789, -14)
+
+[node name="Algue28" parent="World/Groupe Pierre Algue A" instance=ExtResource("6_vp2eb")]
+z_index = 1
+position = Vector2(757, -15)
+
+[node name="Algue21" parent="World/Groupe Pierre Algue A" instance=ExtResource("7_5n7k7")]
+position = Vector2(761, -15)
+rotation = -1.5708
+
+[node name="Algue29" parent="World/Groupe Pierre Algue A" instance=ExtResource("6_vp2eb")]
+z_index = 1
+position = Vector2(776, -16)
+
+[node name="Groupe Pierre Algue A2" type="Node" parent="World"]
+
+[node name="RockA6" parent="World/Groupe Pierre Algue A2" instance=ExtResource("4_1kleb")]
+z_index = 1
+position = Vector2(616, 131)
+
+[node name="Algue24" parent="World/Groupe Pierre Algue A2" instance=ExtResource("6_vp2eb")]
+position = Vector2(644, 116)
+
+[node name="Algue26" parent="World/Groupe Pierre Algue A2" instance=ExtResource("6_vp2eb")]
+position = Vector2(655, 122)
+
+[node name="Algue27" parent="World/Groupe Pierre Algue A2" instance=ExtResource("6_vp2eb")]
+position = Vector2(635, 105)
+
+[node name="Algue25" parent="World/Groupe Pierre Algue A2" instance=ExtResource("6_vp2eb")]
+z_index = 1
+position = Vector2(625, 95)
+
+[node name="Algue28" parent="World/Groupe Pierre Algue A2" instance=ExtResource("6_vp2eb")]
+z_index = 1
+position = Vector2(593, 94)
+
+[node name="Algue21" parent="World/Groupe Pierre Algue A2" instance=ExtResource("7_5n7k7")]
+z_index = 1
+position = Vector2(597, 94)
+rotation = -1.5708
+
+[node name="Algue29" parent="World/Groupe Pierre Algue A2" instance=ExtResource("6_vp2eb")]
+z_index = 1
+position = Vector2(612, 93)
+
+[node name="Groupe Pierre Algue A3" type="Node" parent="World"]
+
+[node name="RockA6" parent="World/Groupe Pierre Algue A3" instance=ExtResource("4_1kleb")]
+position = Vector2(486, 45)
+
+[node name="Algue24" parent="World/Groupe Pierre Algue A3" instance=ExtResource("6_vp2eb")]
+position = Vector2(523, 27)
+
+[node name="Algue26" parent="World/Groupe Pierre Algue A3" instance=ExtResource("6_vp2eb")]
+position = Vector2(505, 10)
+
+[node name="Algue25" parent="World/Groupe Pierre Algue A3" instance=ExtResource("6_vp2eb")]
+position = Vector2(495, 9)
+
+[node name="Algue28" parent="World/Groupe Pierre Algue A3" instance=ExtResource("6_vp2eb")]
+position = Vector2(463, 8)
+
+[node name="Algue21" parent="World/Groupe Pierre Algue A3" instance=ExtResource("7_5n7k7")]
+position = Vector2(467, 8)
+rotation = -1.5708
+
+[node name="Algue29" parent="World/Groupe Pierre Algue A3" instance=ExtResource("6_vp2eb")]
+position = Vector2(482, 7)
+
 [node name="Algue7" parent="World" instance=ExtResource("6_vp2eb")]
 position = Vector2(302, 129)
 
@@ -251,14 +338,6 @@ position = Vector2(2342, 110)
 texture = ExtResource("2_wbx2q")
 region_enabled = true
 region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
-
-[node name="RockB" parent="." instance=ExtResource("5_o408c")]
-position = Vector2(170, 237)
-scale = Vector2(3, 3)
-
-[node name="RockB2" parent="." instance=ExtResource("5_o408c")]
-position = Vector2(455, 259)
-scale = Vector2(2.5, 2.5)
 
 [node name="Fish" type="Node2D" parent="."]
 
