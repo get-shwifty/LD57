@@ -6,7 +6,13 @@ signal selected(room: Room)
 const SCALE := Vector2(1, 1)
 const ICONS := {
 	Room.Type.NOT_ASSIGNED: [null, Vector2.ONE],
-	Room.Type.CLASSIC: [0, SCALE],
+	Room.Type.LEVEL_1: [0, SCALE],
+	Room.Type.LEVEL_2: [0, SCALE],
+	Room.Type.LEVEL_3: [0, SCALE],
+	Room.Type.LEVEL_4: [0, SCALE],
+	Room.Type.LEVEL_5: [0, SCALE],
+	Room.Type.LEVEL_6: [0, SCALE],
+	Room.Type.LEVEL_7: [0, SCALE],
 	Room.Type.MINI_BOSS: [4, SCALE],
 	Room.Type.BOSS: [2, SCALE],
 	Room.Type.SHOP: [1, SCALE],

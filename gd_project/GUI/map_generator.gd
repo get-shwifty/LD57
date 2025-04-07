@@ -4,17 +4,17 @@ extends Node
 const X_DIST := 30
 const Y_DIST := 30
 const PLACEMENT_RANDOMNESS := 5
-const FLOORS := 10
+const FLOORS := 8
 const MAP_WITDTH := 5
 const PATHS := 4
 const MIN_START_POINTS := 2
-const CLASSIC_ROOM_WEIGHT := 10.0
+const LEVEL_ROOM_WEIGHT := 10.0
 const SHOP_ROOM_WEIGHT := 4.0
 const MINI_BOSS_ROOM_WEIGHT := 5.0
 const LIMIT_MIN_FOR_MINI_BOSS_SPAWN := 5
 
 var random_room_type_weight = {
-	Room.Type.CLASSIC: 0.0,
+	Room.Type.LEVEL: 0.0,
 	Room.Type.SHOP: 0.0,
 	Room.Type.MINI_BOSS: 0.0,
 }
@@ -139,17 +139,17 @@ func _setup_boss_room() -> void:
 
 ## Permet d'attribuer un poids aléatoire à chaque type de salle
 func _setup_random_room_weights() -> void:
-	random_room_type_weight[Room.Type.CLASSIC] = CLASSIC_ROOM_WEIGHT
-	random_room_type_weight[Room.Type.SHOP] = CLASSIC_ROOM_WEIGHT + MINI_BOSS_ROOM_WEIGHT
-	random_room_type_weight[Room.Type.MINI_BOSS] = CLASSIC_ROOM_WEIGHT + MINI_BOSS_ROOM_WEIGHT + SHOP_ROOM_WEIGHT
+	random_room_type_weight[Room.Type.LEVEL] = LEVEL_ROOM_WEIGHT
+	random_room_type_weight[Room.Type.SHOP] = LEVEL_ROOM_WEIGHT + MINI_BOSS_ROOM_WEIGHT
+	random_room_type_weight[Room.Type.MINI_BOSS] = LEVEL_ROOM_WEIGHT + MINI_BOSS_ROOM_WEIGHT + SHOP_ROOM_WEIGHT
 	
 	random_room_type_total_weight = random_room_type_weight[Room.Type.MINI_BOSS]
 	
 func _setup_room_types() -> void:
-	# La première salle est toujours une salle classique
+	# La première salle est toujours le niveau 1
 	for room: Room in map_data[0]:
 		if room.next_rooms.size() > 0:
-			room.type = Room.Type.CLASSIC
+			room.type = Room.Type.LEVEL_1
 	
 	# Le dernier étage avant un boss est toujours un magasin
 	for room: Room in map_data[FLOORS - 2]:
@@ -157,11 +157,16 @@ func _setup_room_types() -> void:
 			room.type = Room.Type.SHOP
 	
 	# Pour le reste des salles
+	var current_floor_index = -1
 	for current_floor in map_data:
+		current_floor_index += 1
 		for room: Room in current_floor:
 			for next_room: Room in room.next_rooms:
 				if next_room.type == Room.Type.NOT_ASSIGNED:
 					_set_room_randomly(next_room)
+				if next_room.type == Room.Type.LEVEL:
+					_set_room_precise_level(next_room, current_floor_index)
+					
 	
 	# Après un mini-boss, on veut une salle d'upgrade
 	for current_floor in map_data:
@@ -193,6 +198,27 @@ func _set_room_randomly(room_to_set: Room) -> void:
 		consecutive_shop = is_shop and has_shop_parent
 	
 	room_to_set.type = type_candidate
+
+func _set_room_precise_level(room_to_set: Room, floor_index : int) -> void:
+	match floor_index:
+		0:
+			room_to_set.type = Room.Type.LEVEL_1
+		1:
+			room_to_set.type = Room.Type.LEVEL_2
+		2:
+			room_to_set.type = Room.Type.LEVEL_2
+		3:
+			room_to_set.type = Room.Type.LEVEL_3
+		4:
+			room_to_set.type = Room.Type.LEVEL_4
+		5:
+			room_to_set.type = Room.Type.LEVEL_5
+		6:
+			room_to_set.type = Room.Type.LEVEL_6
+		7:
+			room_to_set.type = Room.Type.LEVEL_7
+		_:
+			room_to_set.type = Room.Type.LEVEL_1
 
 ## Vérifie si la salle a un parent du type annoncé
 func _has_parent_of_type(room: Room, type: Room.Type) -> bool:
@@ -229,4 +255,4 @@ func _get_random_room_type_by_weight() -> Room.Type:
 		if random_room_type_weight[type] > roll:
 			return type
 	
-	return Room.Type.CLASSIC
+	return Room.Type.LEVEL

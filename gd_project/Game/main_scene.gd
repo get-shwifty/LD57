@@ -70,8 +70,13 @@ func on_score_menu_closed(new_artefact):
 	#map_menu.camera_2d.enabled = true
 	#map_menu.camera_2d.make_current()
 	
-func start_new_level():
+func start_new_level(level_number : int):
+	print("starting level " + str(level_number))
+	var r = ROOMS_METADATA.keys()[level_number] #let's hope dictionary stay ordered (surprising but ...)
+	var room = r.instantiate()
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
+	current_level.room = room
+	current_level.add_child(room)
 	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
 	current_level.setup_level(artefacts.slice(0))
@@ -82,14 +87,26 @@ func _on_map_exited(room: Room) -> void:
 	map_menu.camera_2d.enabled = false
 	map_menu.unlock_next_rooms()
 	match room.type:
-		Room.Type.CLASSIC:
-			start_new_level()
+		Room.Type.LEVEL_1:
+			start_new_level(1)
+		Room.Type.LEVEL_2:
+			start_new_level(2)
+		Room.Type.LEVEL_3:
+			start_new_level(3)
+		Room.Type.LEVEL_4:
+			start_new_level(4)
+		Room.Type.LEVEL_5:
+			start_new_level(5)
+		Room.Type.LEVEL_6:
+			start_new_level(6)
+		Room.Type.LEVEL_7:
+			start_new_level(7)
 		Room.Type.SHOP:
-			start_new_level()
+			start_new_level(1)
 		Room.Type.MINI_BOSS:
-			start_new_level()
+			start_new_level(1)
 		Room.Type.BOSS:
-			start_new_level()
+			start_new_level(1)
 
 func game_over() -> void:
 	game_end = game_over_scene.instantiate()

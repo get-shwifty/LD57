@@ -5,8 +5,8 @@ signal level_finished(points)
 
 @onready var MENU_WORD_COMPOSITION = preload("res://Game/GUI/menu_word_composition.tscn")
 
+var room: LevelRoom
 @onready var ui_container = $UIContainer;
-@onready var room: LevelRoom = $Room
 @onready var player: Player = room.get_node("Player")
 @onready var word_composing_menu: MenuWordComposition = $UIContainer/MenuWordComposition
 @onready var score: Score = $UIContainer/ScoreUI
