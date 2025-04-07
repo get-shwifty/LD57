@@ -11,6 +11,9 @@ var current_level : Level
 var current_menu;
 var map_menu: Map;
 
+var total_points: float = 0
+var artefacts: Array[Artefact]
+
 #func _ready():
 	#setup_game()
 	#for child in get_children():
@@ -35,12 +38,18 @@ func _on_start_button_pressed() -> void:
 	setup_game()
 
 
-func on_level_finished():
-	print("main game detected level finished")
-	current_menu = MENU_LEVEL_FINISHED.instantiate();
-	current_menu.initialize(current_level)
-	current_menu.on_menu_closed.connect(on_score_menu_closed)
-	menu_container.add_child(current_menu)
+func on_level_finished(points):
+	if points == 0:
+		# TODO game over
+		get_tree().quit()
+	else:
+		total_points += points
+		
+		print("main game detected level finished")
+		current_menu = MENU_LEVEL_FINISHED.instantiate()
+		current_menu.initialize(total_points)
+		current_menu.on_menu_closed.connect(on_score_menu_closed)
+		menu_container.add_child(current_menu)
 
 func on_score_menu_closed():
 	current_menu.queue_free()
@@ -51,7 +60,7 @@ func on_score_menu_closed():
 	
 func start_new_level():
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
-	current_level.on_level_finished.connect(on_level_finished)
+	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
 	
 

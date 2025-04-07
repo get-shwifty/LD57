@@ -81,14 +81,17 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Score" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Score" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Points" type="Label" parent="CenterContainer/VBoxContainer/Score"]
+[node name="Points" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
@@ -98,13 +101,13 @@ text = "0"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="x" type="Label" parent="CenterContainer/VBoxContainer/Score"]
+[node name="x" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_7ns11")
 theme_override_font_sizes/font_size = 16
 text = "x"
 
-[node name="Multiplicateur" type="Label" parent="CenterContainer/VBoxContainer/Score"]
+[node name="Multiplicateur" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
@@ -113,7 +116,7 @@ theme_override_font_sizes/font_size = 16
 text = "1"
 horizontal_alignment = 1
 
-[node name="=" type="Label" parent="CenterContainer/VBoxContainer/Score"]
+[node name="=" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_7ns11")
 theme_override_font_sizes/font_size = 16

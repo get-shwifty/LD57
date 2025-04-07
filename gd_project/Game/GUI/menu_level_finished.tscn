@@ -1,19 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://63i1dmgwekkx"]
+[gd_scene load_steps=3 format=3 uid="uid://63i1dmgwekkx"]
 
 [ext_resource type="Script" uid="uid://c7q7m1ms88qnk" path="res://Game/GUI/menu_level_finished.gd" id="1_m5cpv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfwwn"]
+bg_color = Color(0, 0, 0, 0.458824)
+
 [node name="MenuLevelFinished" type="Control"]
+custom_minimum_size = Vector2(320, 180)
 layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+script = ExtResource("1_m5cpv")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_m5cpv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hfwwn")
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
-offset_left = 53.0
-offset_top = 37.0
-offset_right = 93.0
-offset_bottom = 60.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 46.0
+offset_bottom = 29.0
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 82.0
+offset_right = 74.0
+offset_bottom = 105.0
+text = "enter to continue"
