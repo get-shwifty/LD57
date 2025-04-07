@@ -46,7 +46,10 @@ static func generate_bonuses() -> Array[Artefact]:
 	artefact.target = Artefact.TargetType.WordMult
 	artefact.value = ComputedValue.new(6)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
-		return vc.fish_type_count >= 3
+		var fishes_in_word : Dictionary[Letter.FishType, bool]
+		for letter in cc.word:
+			fishes_in_word[letter.fish_type] = true;
+		return fishes_in_word.size() > 3
 	artefacts.append(artefact)
 	
 	artefact = Artefact.new()
