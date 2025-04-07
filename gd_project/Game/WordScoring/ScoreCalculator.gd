@@ -54,6 +54,7 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 		if current_letter.bonus_type == Letter.BonusType.WordMult1 || current_letter.bonus_type == Letter.BonusType.WordMult2:
 				breakdown.register_operation(true, null, index_letter, true)
 	
+	breakdown.current_letter_score = 0
 	cond_context.reset_letter_dependant_context()
 	var applicable_artifacts = get_applicable_artefacts(false, artefacts, var_context, cond_context)
 	
