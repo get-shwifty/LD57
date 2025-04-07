@@ -26,10 +26,6 @@ func initialize(letter_ : Letter):
 			texture_index = 0
 			fish_texture = 0
 	
-	print("TYPE")
-	print(letter.fish_type)
-	print(texture_index)
-	print(fish_texture)
 	$Button.texture_normal.set_region(Rect2(texture_index * 24, 0, 24, 27))
 	$Button/PanelContainer/Fish.texture.set_region(Rect2(fish_texture * 10, 11, 10, 9))
 

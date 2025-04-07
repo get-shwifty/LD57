@@ -33,7 +33,6 @@ func _ready():
 	add_child(game_start)
 
 	game_start.start_game.connect(setup_game)
-	print("YOOO")
 
 func setup_game():
 	print("game setup")
