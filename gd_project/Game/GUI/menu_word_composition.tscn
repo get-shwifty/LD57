@@ -32,12 +32,16 @@ grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_0plho")
 
-[node name="Artefacts" type="HBoxContainer" parent="."]
+[node name="Artefacts" type="VBoxContainer" parent="."]
 top_level = true
 clip_children = 1
 y_sort_enabled = true
 layout_mode = 1
-theme_override_constants/separation = 2
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 6.0
+offset_bottom = 5.0
+theme_override_constants/separation = 1
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 1
