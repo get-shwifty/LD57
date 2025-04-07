@@ -59,7 +59,7 @@ var is_composing_word: bool = false:
 var can_submit = false:
 	set(value):
 		can_submit = value
-		$CenterContainer/VBoxContainer/Submit.disabled = not value
+		%Submit.disabled = not value
 
 signal on_word_confirmed(word)
 signal on_ui_finished

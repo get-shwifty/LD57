@@ -202,4 +202,4 @@ anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 180.0
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Submit" to="." method="confirm_word"]
+[connection signal="pressed" from="Submit" to="." method="confirm_word"]
