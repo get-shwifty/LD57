@@ -39,4 +39,11 @@ static func get_character(character : String) -> Character:
 	
 	#log error
 	return null
-	
+
+static func get_random_characters(n: int = 16):
+	var all_letters = []
+	for c: Character in english_characters:
+		for i in range(c.frequency):
+			all_letters.append(c)
+	all_letters.shuffle()
+	return all_letters.slice(0, n)
