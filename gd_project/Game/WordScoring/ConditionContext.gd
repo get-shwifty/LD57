@@ -6,6 +6,7 @@ var previous_letter : Letter
 var current_letter : Letter
 var next_letter : Letter
 var word : Array[Letter]
+var letter_pool : Array[Letter]
 
 var is_word_palindrom : bool
 
@@ -14,6 +15,8 @@ func reset():
 	is_word_palindrom = false;
 	first_letter = null
 	last_letter = null
+	word = []
+	letter_pool = []
 
 func reset_letter_dependant_context():
 	previous_letter = null

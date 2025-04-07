@@ -11,7 +11,7 @@ class_name GameLevel
 
 var score_objective : int
 
-var current_word : Array[Letter] = []
+var letters_pool : Array[Letter] = []
 var current_score : int = 0
 
 func _ready():
@@ -19,27 +19,25 @@ func _ready():
 	room.on_captured.connect(fish_captured)
 	
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
-	
-	
 
-	current_word.append(Letter.new(Alphabet.get_character("H")))
-	current_word.append(Letter.new(Alphabet.get_character("E")))
-	current_word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
-	current_word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
-	current_word.append(Letter.new(Alphabet.get_character("O")))
+	letters_pool.append(Letter.new(Alphabet.get_character("H")))
+	letters_pool.append(Letter.new(Alphabet.get_character("E")))
+	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
+	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
+	letters_pool.append(Letter.new(Alphabet.get_character("O")))
 
 	setup_level()
 
 func setup_level():
 	score_objective = 5
-	word_composing_menu.set_letters(current_word)
+	word_composing_menu.set_letters(letters_pool)
 
 	var letters = Alphabet.get_random_characters().map(func (c): return Letter.new(c))
 	room.set_letters(letters)
 
 func fish_captured(letter: Letter):
-	current_word.append(letter)
-	word_composing_menu.set_letters(current_word)
+	letters_pool.append(letter)
+	word_composing_menu.set_letters(letters_pool)
 	
 func oxygen_depleted():
 	print("oxygen depleted")
@@ -50,18 +48,18 @@ func finish_level():
 	on_level_finished.emit()
 	
 func confirm_word(word: Array[Letter]):
-	var variable_contexte: VariableContext = VariableContext.new()
+	var variable_context: VariableContext = VariableContext.new()
 	var artefacts = get_artefacts()
-	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_contexte)
+	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)
 
 	for letter in word:
-		current_word.erase(letter)
+		letters_pool.erase(letter)
 	word_composing_menu.process_score(breakdown, artefacts)
 	await word_composing_menu.on_ui_finished
-	word_composing_menu.set_letters(current_word)
+	word_composing_menu.set_letters(letters_pool)
 
 func get_letter_pool():
-	return current_word
+	return letters_pool
 	
 func _process(delta):
 	if Input.is_action_just_pressed("game_compose_word"):
@@ -82,7 +80,7 @@ func compose_word():
 
 func play_arcade():
 	word_composing_menu.is_composing_word = false
-	word_composing_menu.set_letters(current_word)
+	word_composing_menu.set_letters(letters_pool)
 	# TODO enable arcade
 
 func get_artefacts() -> Array[Artefact]:

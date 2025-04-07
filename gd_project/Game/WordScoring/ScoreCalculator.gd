@@ -1,6 +1,6 @@
 class_name ScoreCalculator
 
-static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var_context : VariableContext) -> ScoreBreakdown:
+static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var_context : VariableContext, letter_pool : Array[Letter]) -> ScoreBreakdown:
 	var breakdown = ScoreBreakdown.new()
 	
 	var_context.reset_word_dependant_context()
@@ -11,6 +11,7 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 	cond_context.first_letter = word[0]
 	cond_context.last_letter = word[-1]
 	cond_context.word = word
+	cond_context.letter_pool = letter_pool
 	
 	print("variable context is " + var_context.to_string())
 	
