@@ -318,7 +318,7 @@ static func generate_starting() -> Array[Artefact]:
 	artefact.target = Artefact.TargetType.WordMult
 	artefact.value = ComputedValue.new(0, VariableContext.VariableType.RemainingOxygen)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
-		return true;
+		return vc.remaining_oxygen > 0
 	artefacts.append(artefact)
 	
 	artefact = Artefact.new()
