@@ -152,7 +152,7 @@ class ScoreBreakdown:
 					Artefact.TargetType.WordAdd:
 						operation.word_add_delta = artefact.artefact.value.get_value(var_context)
 		else:
-			match artefact.artefact.TargetType:
+			match artefact.artefact.target:
 				Artefact.TargetType.LetterAdd || Artefact.TargetType.LetterMult:
 					printerr("invalid target type")
 				Artefact.TargetType.WordMult:
