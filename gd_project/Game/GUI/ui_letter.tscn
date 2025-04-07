@@ -1,16 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvj6y7xphbmgn"]
+[gd_scene load_steps=4 format=3 uid="uid://bvj6y7xphbmgn"]
 
 [ext_resource type="Script" uid="uid://dd5f66eyg5gry" path="res://Game/GUI/ui_letter.gd" id="1_xaksk"]
-[ext_resource type="Texture2D" uid="uid://cr5qslpn6gjkb" path="res://assets/images/lettre.png" id="2_uo1cg"]
+[ext_resource type="Texture2D" uid="uid://4xwep1fcd4fx" path="res://assets/images/letter_tile.png" id="2_uo1cg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rat18"]
+resource_local_to_scene = true
+atlas = ExtResource("2_uo1cg")
+region = Rect2(24, 0, 24, 27)
 
 [node name="UILetter" type="Control"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_xaksk")
 
 [node name="Button" type="TextureButton" parent="."]
@@ -18,7 +19,8 @@ layout_mode = 0
 offset_left = 1.0
 offset_right = 25.0
 offset_bottom = 23.0
-texture_normal = ExtResource("2_uo1cg")
+texture_normal = SubResource("AtlasTexture_rat18")
+stretch_mode = 3
 
 [node name="Letter" type="Label" parent="Button"]
 unique_name_in_owner = true
@@ -32,6 +34,16 @@ offset_right = 2.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "J"
+
+[node name="Points" type="Label" parent="Button"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 14.0
+offset_right = 10.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+text = "2"
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
