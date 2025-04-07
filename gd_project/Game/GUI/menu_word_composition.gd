@@ -31,6 +31,7 @@ class_name MenuWordComposition
 @onready var vbox_container = $CenterContainer/VBoxContainer
 @onready var word_container = %WordContainer
 @onready var grid_container = %GridContainer
+@onready var submit_container = %Submit
 @onready var hbox_container = %HBoxContainer
 @onready var score_container = %Score
 @onready var sound_click_on_letter: AudioStreamPlayer = $SoundClickOnLetter
@@ -56,7 +57,7 @@ var is_composing_word: bool = false:
 		is_composing_word = value
 		update_view()
 
-signal on_word_confirmed(word)
+signal on_word_confirmed
 signal on_ui_finished
 
 static var dico: DictionaryHelper = DictionaryHelper.new(DictionaryHelper.Language.English)

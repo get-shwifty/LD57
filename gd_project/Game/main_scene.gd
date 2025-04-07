@@ -11,27 +11,30 @@ var current_level : Level
 var current_menu;
 var map_menu: Map;
 
-func _ready():
-	setup_game()
-	for child in get_children():
-		if child is Level:
-			print("detected level override")
-			current_level = child;
-			current_level.on_level_finished.connect(on_level_finished)
-			return
+#func _ready():
+	#setup_game()
+	#for child in get_children():
+		#if child is Level:
+			#print("detected level override")
+			#current_level = child;
+			#current_level.on_level_finished.connect(on_level_finished)
+			#return
 
 
 func setup_game():
 	print("classic game setup")
 	map_menu = MENU_LEVEL_SELECTION.instantiate()
 	menu_container.add_child(map_menu)
-	# code à lancer après avoir cliqué sur le bouton "PLAY"
 	map_menu.generate_new_map()
 	map_menu.unlock_floor(0)
 	map_menu.map_exited.connect(_on_map_exited)
-	map_menu.hide_map()
-	#print(map_menu.camera_2d.is_current()) 
+	print(map_menu.camera_2d.is_current())
  
+func _on_start_button_pressed() -> void:
+	$StartButton.queue_free()
+	setup_game()
+
+
 func on_level_finished():
 	print("main game detected level finished")
 	current_menu = MENU_LEVEL_FINISHED.instantiate();
@@ -54,6 +57,7 @@ func start_new_level():
 
 func _on_map_exited(room: Room) -> void:
 	map_menu.hide_map()
+	map_menu.camera_2d.enabled = false
 	map_menu.unlock_next_rooms()
 	match room.type:
 		Room.Type.CLASSIC:

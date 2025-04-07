@@ -10,6 +10,19 @@ script = ExtResource("1_v258p")
 [node name="MapGenerator" type="Node" parent="."]
 script = ExtResource("1_ktjkf")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Visuals" type="Node2D" parent="Camera2D"]
+unique_name_in_owner = true
+position = Vector2(-161, -89)
+
+[node name="Lines" type="Node2D" parent="Camera2D/Visuals"]
+unique_name_in_owner = true
+
+[node name="Rooms" type="Node2D" parent="Camera2D/Visuals"]
+unique_name_in_owner = true
+
 [node name="MapBackground" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -18,19 +31,11 @@ anchors_preset = -1
 anchor_left = -0.003
 anchor_top = -1.783
 anchor_right = 0.661
-offset_left = 0.96
+offset_left = -0.04
 offset_top = 320.94
-offset_right = 108.48
+offset_right = 107.48
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ua3gp")
 metadata/_edit_use_anchors_ = true
-
-[node name="Visuals" type="Node2D" parent="."]
-
-[node name="Lines" type="Node2D" parent="Visuals"]
-unique_name_in_owner = true
-
-[node name="Rooms" type="Node2D" parent="Visuals"]
-unique_name_in_owner = true
