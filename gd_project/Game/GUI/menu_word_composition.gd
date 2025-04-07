@@ -168,18 +168,18 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 	
 
 func display_total(score: ScoreCalculator.ScoreBreakdown):
-		var total = $CenterContainer/VBoxContainer/PanelContainer/Score/Total
-		var increment = 4
-		var temp = 0
-		while temp < score.final_score:
+	var total = $CenterContainer/VBoxContainer/PanelContainer/Score/Total
+	var increment = 4
+	var temp = 0
+	while temp < score.final_score:
+		total.text = str(temp)
+		await bump_ui(total)
+		if temp + increment > score.final_score:
+			temp = score.final_score
 			total.text = str(temp)
 			await bump_ui(total)
-			if temp + increment > score.final_score:
-				temp = score.final_score
-				total.text = str(temp)
-				await bump_ui(total)
-			temp += increment
-		victory.play()
+		temp += increment
+	victory.play()
 
 
 		

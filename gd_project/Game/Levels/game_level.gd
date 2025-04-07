@@ -12,7 +12,6 @@ signal level_finished(points)
 @onready var score: Score = $UIContainer/ScoreUI
 
 var letters_pool : Array[Letter] = []
-var current_score : int = 0
 var waiting_for_ui = false
 var artefacts : Array[Artefact]
 
@@ -31,10 +30,11 @@ func _ready():
 func setup_level(artefacts : Array[Artefact]):
 	score.objective = 25
 	word_composing_menu.set_letters(letters_pool)
+	self.artefacts = artefacts
 	word_composing_menu.artefacts = artefacts
 	word_composing_menu.setup_artefacts_grid()
 
-	var letters = Alphabet.get_random_characters().map(func (c): return Letter.new(c))
+	var letters = Alphabet.get_random_characters().map(func(c): return Letter.new(c))
 	room.set_letters(letters)
 
 
@@ -66,7 +66,6 @@ func confirm_word(word: Array[Letter]):
 		score.hide()
 		word_composing_menu.hide()
 		level_finished.emit(score.current)
-		print("YEP")
 	else:
 		word_composing_menu.set_letters(letters_pool)
 		compose_word()
@@ -78,9 +77,6 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("game_compose_word"):
 		toggle_word_compose()
-
-func get_score():
-	return current_score
 
 func toggle_word_compose():
 	if word_composing_menu.is_composing_word:
