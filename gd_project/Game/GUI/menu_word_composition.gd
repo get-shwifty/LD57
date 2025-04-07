@@ -38,7 +38,7 @@ class_name MenuWordComposition
 @onready var lettersScoring: AudioStreamPlayer = $LettersScoring
 @onready var victory: AudioStreamPlayer = $SoundJackpooooot
 
-var current_letters: Array[Letter] = []
+var artefacts: Array[Artefact]
 
 var sound_bank := [
 	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-1.ogg"),
@@ -58,7 +58,6 @@ var is_composing_word: bool = false:
 		update_view()
 
 signal on_word_confirmed
-signal on_menu_closed
 signal on_ui_finished
 
 static var dico: DictionaryHelper = DictionaryHelper.new(DictionaryHelper.Language.English)
@@ -69,18 +68,15 @@ func _ready():
 func _process(delta: float):
 	if Input.is_action_just_pressed("submit"):
 		confirm_word()
-	if Input.is_action_just_pressed("ui_cancel"):
-		close_menu()
 
 func set_letters(word: Array[Letter]):
-	#setup_artefacts_grid(artefacts)
 	setup_letter_pool(word)
 
 func update_view():
 	grid_container.reparent(vbox_container if is_composing_word else center_container2)
 	center_container.visible = is_composing_word
 
-func setup_artefacts_grid(artefacts: Array[Artefact]):
+func setup_artefacts_grid():
 	for art in artefacts:
 		var artefact_ui = UI_ARTEFACT.instantiate()
 		artefact_ui.initialize(art)
@@ -111,9 +107,6 @@ func on_letter_selected(letter: Control):
 		$CenterContainer/VBoxContainer/Submit.disabled = true
 	update_score()
 
-func close_menu():
-	on_menu_closed.emit()
-
 func get_word():
 	if word_container.get_child_count() <= 0:
 		return []
@@ -143,7 +136,7 @@ func update_score():
 	$CenterContainer/VBoxContainer/Score/Points.text = str(score)
 	
 	
-func process_score(score: ScoreCalculator.ScoreBreakdown, artefacts: Array[Artefact]):
+func process_score(score: ScoreCalculator.ScoreBreakdown):
 	for action in score.operations:
 		if action.letter_add_delta:
 			var tween_letter: Tween = get_tree().create_tween()

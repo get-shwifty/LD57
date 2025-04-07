@@ -12,7 +12,9 @@ class_name GameLevel
 var score_objective : int
 
 var letters_pool : Array[Letter] = []
+var artefacts = get_artefacts()
 var current_score : int = 0
+var waiting_for_ui = false
 
 func _ready():
 	assert(player != null)
@@ -31,9 +33,12 @@ func _ready():
 func setup_level():
 	score_objective = 5
 	word_composing_menu.set_letters(letters_pool)
+	word_composing_menu.artefacts = artefacts
+	word_composing_menu.setup_artefacts_grid()
 
 	var letters = Alphabet.get_random_characters().map(func (c): return Letter.new(c))
 	room.set_letters(letters)
+	
 
 func fish_captured(letter: Letter):
 	letters_pool.append(letter)
@@ -49,19 +54,20 @@ func finish_level():
 	
 func confirm_word(word: Array[Letter]):
 	var variable_context: VariableContext = VariableContext.new()
-	var artefacts = get_artefacts()
 	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)
-
 	for letter in word:
 		letters_pool.erase(letter)
-	word_composing_menu.process_score(breakdown, artefacts)
+	word_composing_menu.process_score(breakdown)
+	waiting_for_ui = true
 	await word_composing_menu.on_ui_finished
+	waiting_for_ui = false
 	word_composing_menu.set_letters(letters_pool)
+	compose_word()
 
-func get_letter_pool():
-	return letters_pool
-	
 func _process(delta):
+	if waiting_for_ui:
+		return
+
 	if Input.is_action_just_pressed("game_compose_word"):
 		toggle_word_compose()
 
@@ -76,12 +82,12 @@ func toggle_word_compose():
 
 func compose_word():
 	word_composing_menu.is_composing_word = true
-	# TODO disable arcade
+	player.enabled = false
 
 func play_arcade():
 	word_composing_menu.is_composing_word = false
 	word_composing_menu.set_letters(letters_pool)
-	# TODO enable arcade
+	player.enabled = true
 
 func get_artefacts() -> Array[Artefact]:
 	var artefacts: Array[Artefact] = []
