@@ -137,15 +137,22 @@ func process_score(score: ScoreCalculator.ScoreBreakdown, artefacts: Array[Artef
 	
 	for action in score.operations:
 		if action.letter_add_delta:
-			var tween: Tween = get_tree().create_tween()
+			var tween_letter: Tween = get_tree().create_tween()
 			var letter_ui: UILetter = word_container.get_children()[action.evaluated_letter_idx]
 			letter_ui.points.text = str(action.new_letter_score)
 			_play_bubble_sound()
-			letter_ui.position.y -= 5
-			tween.tween_property(letter_ui, "position", letter_ui.position + Vector2(0, 5), 0.25)
+			letter_ui.position.y -= 5.0
+			tween_letter.tween_property(letter_ui, "position", letter_ui.position + Vector2(0, 5), 0.25)
 			$CenterContainer/VBoxContainer/Score/Points.text = str(action.new_word_add)
 		await get_tree().create_timer(0.7).timeout
 		print("doing operation")
+	
+		if action.origin_artefact_idx:
+			var tween_artefact: Tween = get_tree().create_tween()
+			var artefact_ui: UIArtefact = artefacts_container.get_children()[action.origin_artefact_idx]
+			artefact_ui.position.y -= 5.0
+			tween_artefact.tween_property(artefact_ui, "position", artefact_ui.position + Vector2(0, 5), 0.25)
+			
 	$CenterContainer/VBoxContainer/Score/Total.text = str(score.final_score)
 	victory.play()
 	on_ui_finished.emit()

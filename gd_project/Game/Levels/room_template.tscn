@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bccwqo043fery"]
+[gd_scene load_steps=6 format=3 uid="uid://dknt2iaa5uxru"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_6svdy"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_n33fh"]
