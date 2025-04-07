@@ -31,6 +31,11 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
+[node name="Submit" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Submit"
+
 [node name="Score" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
