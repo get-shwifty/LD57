@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bv5efl4bcaq73"]
+[gd_scene load_steps=12 format=3 uid="uid://bv5efl4bcaq73"]
 
 [ext_resource type="Script" uid="uid://cihl6w3tmo3v0" path="res://Game/Characters2/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://ctamu37lbsy13" path="res://assets/images/chien.png" id="2_8xcms"]
 [ext_resource type="Script" uid="uid://6ph3jq3w637p" path="res://Game/Characters2/harpoon.gd" id="2_obqfy"]
 [ext_resource type="Script" uid="uid://vdrfqo6lcnm5" path="res://Game/Characters2/oxygen.gd" id="3_m4rnn"]
+[ext_resource type="AudioStream" uid="uid://bwmyj55myd2be" path="res://assets/sounds/bruitages/player/SON-RESPIRATION-2.mp3" id="5_m8c3w"]
+[ext_resource type="AudioStream" uid="uid://drienmilo0gug" path="res://assets/sounds/bruitages/player/SON-TIR-HARPON.mp3" id="6_j0eht"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8c3w"]
 atlas = ExtResource("2_8xcms")
@@ -114,3 +116,14 @@ offset_top = -23.0
 offset_right = 42.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
+
+[node name="Breath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_m8c3w")
+volume_db = -19.5
+autoplay = true
+parameters/looping = false
+
+[node name="HarpoonFire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_j0eht")
+volume_db = -18.108
+pitch_scale = 0.59
