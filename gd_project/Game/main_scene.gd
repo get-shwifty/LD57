@@ -31,7 +31,9 @@ func setup_game():
 	map_menu.generate_new_map()
 	map_menu.unlock_floor(0)
 	map_menu.map_exited.connect(_on_map_exited)
-	print(map_menu.camera_2d.is_current())
+	
+	for starting_artefact in ArtefactRepository.starting:
+		artefacts.append(starting_artefact)
  
 func _on_start_button_pressed() -> void:
 	$StartButton.queue_free()
