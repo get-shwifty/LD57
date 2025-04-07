@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctk4xat2b0ug"]
+
+[ext_resource type="Texture2D" uid="uid://ct56eue7unl5k" path="res://assets/images/maquette_new_palette.png" id="1_cevjv"]
+
+[node name="RockA" type="StaticBody2D"]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-20, 61, -21, 45, -18, 26, -20, 14, -15, 11, -14, -3, -12, -10, -15, -14, -10, -35, -12, -49, -8, -46, -4, -63, 5, -56, 7, -42, 11, -38, 6, -18, 15, -9, 10, -5, 12, 4, 9, 17, 19, 29, 17, 41, 20, 62)
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+texture = ExtResource("1_cevjv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(134.998, 1816.84, 41.1375, 122.564)
