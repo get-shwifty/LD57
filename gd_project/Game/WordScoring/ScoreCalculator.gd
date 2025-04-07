@@ -22,6 +22,7 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 	
 	for index_letter in word.size():
 		var current_letter : Letter = word[index_letter]
+		var current_indexed_letter : IndexedLetter = IndexedLetter.new(current_letter, index_letter)
 		
 		cond_context.reset_letter_dependant_context()
 		cond_context.current_letter = word[index_letter]
@@ -33,37 +34,46 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 		breakdown.current_letter_score = current_letter.character.base_value
 		
 		for a in applicable_artifacts:
+			if a.artefact.target == Artefact.TargetType.LetterFishType:
+				breakdown.register_operation(true, a, current_indexed_letter)
+		
+		for a in applicable_artifacts:
+			if a.artefact.target == Artefact.TargetType.LetterBonusType:
+				breakdown.register_operation(true, a, current_indexed_letter)
+		
+		for a in applicable_artifacts:
 			if a.artefact.target == Artefact.TargetType.LetterAdd:
-				breakdown.register_operation(true, a, index_letter)
+				breakdown.register_operation(true, a, current_indexed_letter)
 		
 		for a in applicable_artifacts:
 			if a.artefact.target == Artefact.TargetType.LetterMult:
-				breakdown.register_operation(true, a, index_letter)
+				breakdown.register_operation(true, a, current_indexed_letter)
 				
 		if current_letter.bonus_type == Letter.BonusType.LetterMult1 || current_letter.bonus_type == Letter.BonusType.LetterMult2:
-				breakdown.register_operation(true, null, index_letter)
+				breakdown.register_operation(true, null, current_indexed_letter)
 		
 		for a in applicable_artifacts:
 			if a.artefact.target == Artefact.TargetType.WordAdd:
-				breakdown.register_operation(true, a, index_letter)
+				breakdown.register_operation(true, a, current_indexed_letter)
 		
 		for a in applicable_artifacts:
 			if a.artefact.target == Artefact.TargetType.WordMult:
-				breakdown.register_operation(true, a, index_letter)
+				breakdown.register_operation(true, a, current_indexed_letter)
 		
 		if current_letter.bonus_type == Letter.BonusType.WordMult1 || current_letter.bonus_type == Letter.BonusType.WordMult2:
-				breakdown.register_operation(true, null, index_letter, true)
+				breakdown.register_operation(true, null, current_indexed_letter, true)
 	
+	breakdown.current_letter_score = 0
 	cond_context.reset_letter_dependant_context()
 	var applicable_artifacts = get_applicable_artefacts(false, artefacts, var_context, cond_context)
 	
 	for a in applicable_artifacts:
 		if a.artefact.target == Artefact.TargetType.WordAdd:
-			breakdown.register_operation(false, a)
+			breakdown.register_operation(false, a, null)
 		
 	for a in applicable_artifacts:
 		if a.artefact.target == Artefact.TargetType.WordMult:
-			breakdown.register_operation(false, a)
+			breakdown.register_operation(false, a, null)
 	
 	breakdown.finish_breakdown()
 	
@@ -102,6 +112,14 @@ class ApplicableArtefact:
 		self.artefact = artefact
 		self.artefact_idx = idx
 
+class IndexedLetter:
+	var letter : Letter
+	var letter_idx : int
+	
+	func _init(letter : Letter, idx : int):
+		self.letter = letter
+		self.letter_idx = idx
+		
 class ScoreBreakdown:
 	var initial_word_add : int
 	var initial_word_mult : int
@@ -125,8 +143,9 @@ class ScoreBreakdown:
 		current_word_add = initial_word_add
 		current_word_mult = initial_word_mult
 	
-	func register_operation(is_operating_on_letter : bool, artefact : ApplicableArtefact, letter_index : int = -1, evaluate_letter_word_mult : bool = false ):
+	func register_operation(is_operating_on_letter : bool, artefact : ApplicableArtefact, indexed_letter : IndexedLetter, evaluate_letter_word_mult : bool = false ):
 		var artefact_idx = artefact.artefact_idx if artefact != null else -1
+		var letter_index = indexed_letter.letter_idx if indexed_letter != null else -1
 		var operation = ScoreOperation.new(letter_index, artefact_idx)
 		
 		if is_operating_on_letter:
@@ -144,27 +163,35 @@ class ScoreBreakdown:
 			else:
 				match artefact.artefact.target:
 					Artefact.TargetType.LetterAdd:
-						operation.letter_add_delta = artefact.artefact.value.get_value(var_context)
+						operation.letter_add_delta = artefact.artefact.get_value(var_context, cond_context)
 					Artefact.TargetType.LetterMult:
-						operation.letter_mult_delta = artefact.artefact.value.get_value(var_context)
+						operation.letter_mult_delta = artefact.artefact.get_value(var_context, cond_context)
+					Artefact.TargetType.LetterFishType:
+						operation.letter_fish_type_delta = artefact.artefact.get_value(var_context, cond_context)
+					Artefact.TargetType.LetterBonusType:
+						operation.letter_bonus_type_delta = artefact.artefact.get_value(var_context, cond_context)
 					Artefact.TargetType.WordMult:
-						operation.word_mult_delta = artefact.artefact.value.get_value(var_context)
+						operation.word_mult_delta = artefact.artefact.get_value(var_context, cond_context)
 					Artefact.TargetType.WordAdd:
-						operation.word_add_delta = artefact.artefact.value.get_value(var_context)
+						operation.word_add_delta = artefact.artefact.get_value(var_context, cond_context)
 		else:
 			match artefact.artefact.target:
-				Artefact.TargetType.LetterAdd || Artefact.TargetType.LetterMult:
+				Artefact.TargetType.LetterAdd || Artefact.TargetType.LetterMult || Artefact.TargetType.LetterFishType || Artefact.TargetType.LetterBonusType:
 					printerr("invalid target type")
 				Artefact.TargetType.WordMult:
-					operation.word_mult_delta = artefact.artefact.value.get_value(var_context)
+					operation.word_mult_delta = artefact.artefact.get_value(var_context, cond_context)
 				Artefact.TargetType.WordAdd:
-					operation.word_add_delta = artefact.artefact.value.get_value(var_context)
+					operation.word_add_delta = artefact.artefact.get_value(var_context, cond_context)
 		
 		var current_letter_old_score = current_letter_score
 		if operation.letter_add_delta != 0:
 			current_letter_score += operation.letter_add_delta
 		if operation.letter_mult_delta != 0:
 			current_letter_score *= operation.letter_mult_delta
+		if operation.letter_bonus_type_delta != null:
+			indexed_letter.letter.bonus_type = operation.letter_bonus_type_delta
+		if operation.letter_fish_type_delta != null:
+			indexed_letter.letter.fish_type = operation.letter_fish_type_delta
 			
 		var letter_score_delta = current_letter_score - current_letter_old_score
 		if letter_score_delta != 0:
@@ -193,6 +220,8 @@ class ScoreBreakdown:
 class ScoreOperation:
 	var letter_add_delta: float
 	var letter_mult_delta: float
+	var letter_fish_type_delta = null#FishType or null
+	var letter_bonus_type_delta = null#BonusType or null 
 	
 	var word_add_delta : float
 	var word_mult_delta : float

@@ -1,0 +1,555 @@
+[gd_scene load_steps=22 format=3 uid="uid://d5sni5jes8yb"]
+
+[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_cqcen"]
+[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_nr8t6"]
+[ext_resource type="PackedScene" path="res://Game/Levels/elements/Rayons.tscn" id="3_bb06m"]
+[ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_408u2"]
+[ext_resource type="PackedScene" uid="uid://tro3e72ajsru" path="res://Game/Levels/elements/arche.tscn" id="4_mjnah"]
+[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="5_2b4d4"]
+[ext_resource type="PackedScene" uid="uid://ctk4xat2b0ug" path="res://Game/Levels/elements/colonne.tscn" id="5_cqcen"]
+[ext_resource type="PackedScene" uid="uid://ceej58xocqth7" path="res://Game/Levels/elements/rock_d.tscn" id="6_k6yfy"]
+[ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="6_oil2x"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="6_qcrus"]
+[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="7_6fxwf"]
+[ext_resource type="PackedScene" uid="uid://h3x3myf63njn" path="res://Game/Levels/elements/rock_c.tscn" id="7_408u2"]
+[ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="8_a5hxv"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="11_mcrvk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(67, 1047)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(2081, 70)
+
+[sub_resource type="Curve2D" id="Curve2D_p3prn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -347, 61, 0, 0, 0, 0, -326, 58, 0, 0, 0, 0, -301, 59, 0, 0, 0, 0, -280, 68, 0, 0, 0, 0, -266, 74, 0, 0, 0, 0, -258, 76, 0, 0, 0, 0, -253, 87, 0, 0, 0, 0, -239, 105, 0, 0, 0, 0, -239, 120, 0, 0, 0, 0, -226, 138, 0, 0, 0, 0, -216, 136, 0, 0, 0, 0, -196, 135, 0, 0, 0, 0, -159, 135, 0, 0, 0, 0, -117, 135, 0, 0, 0, 0, -83, 131, 0, 0, 0, 0, -42, 119, 0, 0, 0, 0, -12, 107, 0, 0, 0, 0, 19, 84, 0, 0, 0, 0, 40, 55, 0, 0, 0, 0, 49, 38, 0, 0, 0, 0, 50, 17, 0, 0, 0, 0, 35, -27, 0, 0, 0, 0, -2, -54, 0, 0, 0, 0, -27, -63, 0, 0, 0, 0, -55, -61, 0, 0, 0, 0, -84, -46, 0, 0, 0, 0, -99, -29, 0, 0, 0, 0, -116, -1, 0, 0, 0, 0, -126, 19, 0, 0, 0, 0, -127, 22, 0, 0, 0, 0, -137, 39, 0, 0, 0, 0, -211, 120, 0, 0, 0, 0, -235, 143, 0, 0, 0, 0, -249, 157, 0, 0, 0, 0, -258, 165, 0, 0, 0, 0, -286, 190, 0, 0, 0, 0, -316, 204, 0, 0, 0, 0, -347, 212, 0, 0, 0, 0, -377, 208, 0, 0, 0, 0, -406, 202, 0, 0, 0, 0, -419, 190, 0, 0, 0, 0, -424, 181, 0, 0, 0, 0, -427, 158, 0, 0, 0, 0, -426, 124, 0, 0, 0, 0, -413, 100, 0, 0, 0, 0, -391, 78, 0, 0, 0, 0, -368.024, 68.7532, 0, 0, 0, 0, -360, 64, 0, 0, 0, 0, -348, 61)
+}
+point_count = 49
+
+[sub_resource type="Curve2D" id="Curve2D_k6yfy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -167, 118, 0, 0, 0, 0, -147, 136, 0, 0, 0, 0, -136, 158, 0, 0, 0, 0, -129, 173, 0, 0, 0, 0, -118, 215, 0, 0, 0, 0, -117, 256, 0, 0, 0, 0, -117, 279, 0, 0, 0, 0, -120, 305, 0, 0, 0, 0, -129, 324, 0, 0, 0, 0, -141, 337, 0, 0, 0, 0, -149, 341, 0, 0, 0, 0, -180, 359, 0, 0, 0, 0, -201, 362, 0, 0, 0, 0, -235, 360, 0, 0, 0, 0, -252, 354, 0, 0, 0, 0, -265, 345, 0, 0, 0, 0, -273, 334, 0, 0, 0, 0, -286, 323, 0, 0, 0, 0, -304, 301, 0, 0, 0, 0, -316, 283, 0, 0, 0, 0, -328, 274, 0, 0, 0, 0, -348, 253, 0, 0, 0, 0, -389, 212, 0, 0, 0, 0, -404, 200, 0, 0, 0, 0, -425, 190, 0, 0, 0, 0, -432, 190, 0, 0, 0, 0, -455, 192, 0, 0, 0, 0, -466, 195, 0, 0, 0, 0, -474, 200, 0, 0, 0, 0, -479, 203, 0, 0, 0, 0, -486, 209, 0, 0, 0, 0, -493, 214, 0, 0, 0, 0, -496, 218, 0, 0, 0, 0, -500, 224, 0, 0, 0, 0, -502, 226, 0, 0, 0, 0, -527, 239, 0, 0, 0, 0, -548, 249, 0, 0, 0, 0, -557, 255, 0, 0, 0, 0, -575, 276, 0, 0, 0, 0, -581, 285, 0, 0, 0, 0, -582, 297, 0, 0, 0, 0, -573, 347, 0, 0, 0, 0, -514, 405, 0, 0, 0, 0, -479, 424, 0, 0, 0, 0, -397, 446, 0, 0, 0, 0, -372, 435, 0, 0, 0, 0, -365, 427, 0, 0, 0, 0, -352, 408, 0, 0, 0, 0, -319, 385, 0, 0, 0, 0, -283, 381, 0, 0, 0, 0, -203, 390, 0, 0, 0, 0, -121, 429, 0, 0, 0, 0, -121, 429, 0, 0, 0, 0, -97, 440, 0, 0, 0, 0, -89, 443, 0, 0, 0, 0, -69, 447, 0, 0, 0, 0, -32, 450, 0, 0, 0, 0, -4, 450, 0, 0, 0, 0, 2, 450, 0, 0, 0, 0, 21, 448, 0, 0, 0, 0, 38, 446, 0, 0, 0, 0, 72, 443, 0, 0, 0, 0, 90, 439, 0, 0, 0, 0, 124, 433, 0, 0, 0, 0, 162, 435, 0, 0, 0, 0, 197, 442, 0, 0, 0, 0, 223, 447, 0, 0, 0, 0, 262, 450, 0, 0, 0, 0, 288, 448, 0, 0, 0, 0, 301, 443, 0, 0, 0, 0, 334, 427, 0, 0, 0, 0, 336, 425, 0, 0, 0, 0, 336, 425, 0, 0, 0, 0, 390, 421, 0, 0, 0, 0, 443, 425, 0, 0, 0, 0, 494, 437, 0, 0, 0, 0, 525, 442, 0, 0, 0, 0, 545, 442, 0, 0, 0, 0, 577, 431, 0, 0, 0, 0, 587, 405, 0, 0, 0, 0, 581, 371, 0, 0, 0, 0, 549, 338, 0, 0, 0, 0, 499, 331, 0, 0, 0, 0, 466, 340, 0, 0, 0, 0, 435, 343, 0, 0, 0, 0, 405, 343, 0, 0, 0, 0, 371, 341, 0, 0, 0, 0, 336, 327, 0, 0, 0, 0, 305, 306, 0, 0, 0, 0, 280, 284, 0, 0, 0, 0, 271, 273, 0, 0, 0, 0, 238, 249, 0, 0, 0, 0, 182, 241, 0, 0, 0, 0, 155, 241, 0, 0, 0, 0, 139, 242, 0, 0, 0, 0, 115, 250, 0, 0, 0, 0, 102, 262, 0, 0, 0, 0, 92, 279, 0, 0, 0, 0, 88, 298, 0, 0, 0, 0, 88, 320, 0, 0, 0, 0, 110, 348, 0, 0, 0, 0, 155, 369, 0, 0, 0, 0, 209, 377, 0, 0, 0, 0, 237, 377, 0, 0, 0, 0, 264, 369, 0, 0, 0, 0, 289, 357, 0, 0, 0, 0, 309, 323, 0, 0, 0, 0, 314, 286, 0, 0, 0, 0, 314, 283, 0, 0, 0, 0, 285, 209, 0, 0, 0, 0, 276, 188, 0, 0, 0, 0, 261, 163, 0, 0, 0, 0, 224, 120, 0, 0, 0, 0, 200, 95, 0, 0, 0, 0, 143, 63, 0, 0, 0, 0, 69, 30, 0, 0, 0, 0, 60, 29, 0, 0, 0, 0, 45, 25, 0, 0, 0, 0, 26, 19, 0, 0, 0, 0, 2, 7, 0, 0, 0, 0, -32, -16, 0, 0, 0, 0, -122, -64, 0, 0, 0, 0, -161, -69, 0, 0, 0, 0, -187, -59, 0, 0, 0, 0, -196, -45, 0, 0, 0, 0, -204, -17, 0, 0, 0, 0, -204, 17, 0, 0, 0, 0, -200, 48, 0, 0, 0, 0, -191, 78, 0, 0, 0, 0, -177, 110, 0, 0, 0, 0, -168, 122)
+}
+point_count = 131
+
+[sub_resource type="Curve2D" id="Curve2D_408u2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 346, 788, 0, 0, 0, 0, 354, 765, 0, 0, 0, 0, 365, 762, 0, 0, 0, 0, 382, 754, 0, 0, 0, 0, 396, 748, 0, 0, 0, 0, 403, 745, 0, 0, 0, 0, 414, 744, 0, 0, 0, 0, 418, 742, 0, 0, 0, 0, 429, 730, 0, 0, 0, 0, 436, 714, 0, 0, 0, 0, 442, 706, 0, 0, 0, 0, 458, 706, 0, 0, 0, 0, 479, 711, 0, 0, 0, 0, 486, 711, 0, 0, 0, 0, 493, 715, 0, 0, 0, 0, 499, 701, 0, 0, 0, 0, 501, 690, 0, 0, 0, 0, 520, 682, 0, 0, 0, 0, 518, 675, 0, 0, 0, 0, 532, 662, 0, 0, 0, 0, 547, 663, 0, 0, 0, 0, 563, 673, 0, 0, 0, 0, 567, 686, 0, 0, 0, 0, 561, 701, 0, 0, 0, 0, 555, 715, 0, 0, 0, 0, 555, 720)
+}
+point_count = 26
+
+[sub_resource type="Curve2D" id="Curve2D_2b4d4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 810, 722, 0, 0, 0, 0, 820, 711, 0, 0, 0, 0, 844, 700, 0, 0, 0, 0, 863, 698, 0, 0, 0, 0, 877, 692, 0, 0, 0, 0, 891, 680, 0, 0, 0, 0, 902, 675, 0, 0, 0, 0, 923, 673, 0, 0, 0, 0, 938, 670, 0, 0, 0, 0, 953, 659, 0, 0, 0, 0, 965, 646, 0, 0, 0, 0, 971, 626, 0, 0, 0, 0, 974, 617, 0, 0, 0, 0, 992, 606, 0, 0, 0, 0, 1012, 602, 0, 0, 0, 0, 1028, 601, 0, 0, 0, 0, 1042, 609, 0, 0, 0, 0, 1057, 617, 0, 0, 0, 0, 1076, 612, 0, 0, 0, 0, 1084, 609, 0, 0, 0, 0, 1092, 600, 0, 0, 0, 0, 1099, 593, 0, 0, 0, 0, 1103, 579, 0, 0, 0, 0, 1100, 574, 0, 0, 0, 0, 1112, 571, 0, 0, 0, 0, 1115, 562, 0, 0, 0, 0, 1125, 550, 0, 0, 0, 0, 1135, 549, 0, 0, 0, 0, 1140, 532, 0, 0, 0, 0, 1162, 525, 0, 0, 0, 0, 1182, 527, 0, 0, 0, 0, 1198, 531, 0, 0, 0, 0, 1219, 529, 0, 0, 0, 0, 1224, 548, 0, 0, 0, 0, 1223, 568, 0, 0, 0, 0, 1218, 587, 0, 0, 0, 0, 1213, 602, 0, 0, 0, 0, 1204, 627, 0, 0, 0, 0, 1201, 640, 0, 0, 0, 0, 1196, 663, 0, 0, 0, 0, 1195, 672)
+}
+point_count = 41
+
+[sub_resource type="Curve2D" id="Curve2D_qcrus"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 604, 708, 0, 0, 0, 0, 643, 711, 0, 0, 0, 0, 661, 718, 0, 0, 0, 0, 678, 723, 0, 0, 0, 0, 701, 723, 0, 0, 0, 0, 732, 719, 0, 0, 0, 0, 782, 691, 0, 0, 0, 0, 797, 672, 0, 0, 0, 0, 811, 649, 0, 0, 0, 0, 821, 622, 0, 0, 0, 0, 827, 601, 0, 0, 0, 0, 833, 578, 0, 0, 0, 0, 838, 562, 0, 0, 0, 0, 844, 545, 0, 0, 0, 0, 862, 541, 0, 0, 0, 0, 883, 545, 0, 0, 0, 0, 902, 553, 0, 0, 0, 0, 914, 564, 0, 0, 0, 0, 927, 569, 0, 0, 0, 0, 952, 570, 0, 0, 0, 0, 971, 563, 0, 0, 0, 0, 989, 550, 0, 0, 0, 0, 999, 539, 0, 0, 0, 0, 1023, 520, 0, 0, 0, 0, 1053, 515, 0, 0, 0, 0, 1087, 524, 0, 0, 0, 0, 1114, 541, 0, 0, 0, 0, 1123, 547, 0, 0, 0, 0, 1171, 579, 0, 0, 0, 0, 1203, 600, 0, 0, 0, 0, 1235, 612, 0, 0, 0, 0, 1254, 613, 0, 0, 0, 0, 1260, 605, 0, 0, 0, 0, 1266, 578, 0, 0, 0, 0, 1258, 523, 0, 0, 0, 0, 1243, 508, 0, 0, 0, 0, 1210, 480, 0, 0, 0, 0, 1198, 472, 0, 0, 0, 0, 1183, 464, 0, 0, 0, 0, 1161, 454, 0, 0, 0, 0, 1143, 448, 0, 0, 0, 0, 1122, 438, 0, 0, 0, 0, 1086, 431, 0, 0, 0, 0, 1053, 430, 0, 0, 0, 0, 1013, 432, 0, 0, 0, 0, 1001, 436, 0, 0, 0, 0, 989, 448, 0, 0, 0, 0, 987, 449, 0, 0, 0, 0, 966, 490, 0, 0, 0, 0, 966, 499, 0, 0, 0, 0, 963, 514, 0, 0, 0, 0, 960, 534, 0, 0, 0, 0, 958, 541, 0, 0, 0, 0, 954, 556, 0, 0, 0, 0, 950, 572, 0, 0, 0, 0, 942, 597, 0, 0, 0, 0, 932, 612, 0, 0, 0, 0, 909, 633, 0, 0, 0, 0, 905, 638, 0, 0, 0, 0, 884, 655, 0, 0, 0, 0, 857, 671, 0, 0, 0, 0, 838, 678, 0, 0, 0, 0, 825, 682, 0, 0, 0, 0, 792, 688, 0, 0, 0, 0, 767, 692, 0, 0, 0, 0, 727, 694, 0, 0, 0, 0, 725, 694, 0, 0, 0, 0, 674, 675, 0, 0, 0, 0, 646, 658, 0, 0, 0, 0, 628, 644, 0, 0, 0, 0, 592, 625, 0, 0, 0, 0, 560, 600, 0, 0, 0, 0, 515, 585, 0, 0, 0, 0, 497, 586, 0, 0, 0, 0, 435, 601, 0, 0, 0, 0, 427, 614, 0, 0, 0, 0, 427, 628, 0, 0, 0, 0, 433, 641, 0, 0, 0, 0, 450, 649, 0, 0, 0, 0, 477, 649, 0, 0, 0, 0, 498, 647, 0, 0, 0, 0, 518, 642, 0, 0, 0, 0, 545, 633, 0, 0, 0, 0, 567, 630, 0, 0, 0, 0, 585, 633, 0, 0, 0, 0, 592, 641, 0, 0, 0, 0, 596, 661, 0, 0, 0, 0, 598, 682, 0, 0, 0, 0, 598, 697, 0, 0, 0, 0, 603, 710)
+}
+point_count = 90
+
+[node name="Room1" type="Node2D"]
+script = ExtResource("1_cqcen")
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(21, -77)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(-35.5, 521.5)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(1872, 259)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(1, 180)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(678, -119)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(261, 109)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="TopWall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(663, 812)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall2"]
+position = Vector2(320, 1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="World" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Wallpaper" type="Sprite2D" parent="World"]
+position = Vector2(949.5, 423.5)
+scale = Vector2(3.28594, 1.68704)
+texture = ExtResource("2_nr8t6")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 540)
+
+[node name="BackLayer" type="Sprite2D" parent="World"]
+position = Vector2(1384, 659)
+scale = Vector2(2, 2)
+texture = ExtResource("2_nr8t6")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer2" type="Sprite2D" parent="World"]
+position = Vector2(1383, 658)
+scale = Vector2(2, 2)
+texture = ExtResource("2_nr8t6")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer3" type="Sprite2D" parent="World"]
+position = Vector2(217, 659)
+scale = Vector2(-2, 2)
+texture = ExtResource("2_nr8t6")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer4" type="Sprite2D" parent="World"]
+position = Vector2(441, 702)
+scale = Vector2(-2, 2)
+texture = ExtResource("2_nr8t6")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="Rayons" parent="World" instance=ExtResource("3_bb06m")]
+z_index = 3
+position = Vector2(-221, -47)
+
+[node name="Rayons2" parent="World" instance=ExtResource("3_bb06m")]
+z_index = 6
+position = Vector2(374, -47)
+
+[node name="Rayons3" parent="World" instance=ExtResource("3_bb06m")]
+z_index = 3
+position = Vector2(1509, -55)
+scale = Vector2(-1, 1)
+
+[node name="Rayons4" parent="World" instance=ExtResource("3_bb06m")]
+position = Vector2(1505, -70)
+
+[node name="Rocks" type="Node2D" parent="World"]
+position = Vector2(741, 81)
+
+[node name="group rocks" type="Node2D" parent="World/Rocks"]
+
+[node name="RockA" parent="World/Rocks/group rocks" instance=ExtResource("4_mjnah")]
+z_index = 3
+position = Vector2(-392, 105)
+
+[node name="RockA2" parent="World/Rocks/group rocks" instance=ExtResource("5_cqcen")]
+position = Vector2(-548, 16)
+
+[node name="RockB2" parent="World/Rocks/group rocks" instance=ExtResource("6_k6yfy")]
+position = Vector2(-215, 194)
+
+[node name="RockB3" parent="World/Rocks/group rocks" instance=ExtResource("6_k6yfy")]
+position = Vector2(-215, 278)
+scale = Vector2(1, -1)
+
+[node name="RockB4" parent="World/Rocks/group rocks" instance=ExtResource("6_k6yfy")]
+position = Vector2(-474, 235)
+
+[node name="RockB5" parent="World/Rocks/group rocks" instance=ExtResource("6_k6yfy")]
+position = Vector2(-474, 319)
+scale = Vector2(1, -1)
+
+[node name="RockA3" parent="World/Rocks/group rocks" instance=ExtResource("5_cqcen")]
+position = Vector2(-558, 46)
+
+[node name="RockC" parent="World/Rocks/group rocks" instance=ExtResource("7_408u2")]
+position = Vector2(-518, 154)
+
+[node name="RockB" parent="World/Rocks/group rocks" instance=ExtResource("5_2b4d4")]
+position = Vector2(-496, 58)
+
+[node name="RockB6" parent="World/Rocks/group rocks" instance=ExtResource("6_k6yfy")]
+position = Vector2(1037, 656)
+scale = Vector2(4, 4)
+
+[node name="Groupe Pierre Algue A" type="Node" parent="World/Rocks/group rocks"]
+
+[node name="RockA6" parent="World/Rocks/group rocks/Groupe Pierre Algue A" instance=ExtResource("4_408u2")]
+z_index = 2
+position = Vector2(426, 181)
+
+[node name="Algue24" parent="World/Rocks/group rocks/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(454, 166)
+
+[node name="Algue26" parent="World/Rocks/group rocks/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(465, 172)
+
+[node name="Algue27" parent="World/Rocks/group rocks/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(445, 155)
+
+[node name="Algue25" parent="World/Rocks/group rocks/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 4
+position = Vector2(435, 145)
+
+[node name="Algue28" parent="World/Rocks/group rocks/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 2
+position = Vector2(403, 144)
+
+[node name="Algue21" parent="World/Rocks/group rocks/Groupe Pierre Algue A" instance=ExtResource("6_oil2x")]
+position = Vector2(407, 144)
+rotation = -1.5708
+
+[node name="Algue29" parent="World/Rocks/group rocks/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+position = Vector2(422, 143)
+
+[node name="group rocks2" type="Node2D" parent="World/Rocks"]
+
+[node name="RockA" parent="World/Rocks/group rocks2" instance=ExtResource("4_mjnah")]
+z_index = 3
+position = Vector2(649, 84)
+
+[node name="RockA2" parent="World/Rocks/group rocks2" instance=ExtResource("5_cqcen")]
+position = Vector2(493, -5)
+
+[node name="RockB2" parent="World/Rocks/group rocks2" instance=ExtResource("6_k6yfy")]
+position = Vector2(826, 173)
+
+[node name="RockB3" parent="World/Rocks/group rocks2" instance=ExtResource("6_k6yfy")]
+position = Vector2(826, 257)
+scale = Vector2(1, -1)
+
+[node name="RockB4" parent="World/Rocks/group rocks2" instance=ExtResource("6_k6yfy")]
+position = Vector2(676, 282)
+rotation = 1.5708
+
+[node name="RockB5" parent="World/Rocks/group rocks2" instance=ExtResource("6_k6yfy")]
+position = Vector2(591, 282)
+rotation = 1.5708
+scale = Vector2(1, -1)
+
+[node name="RockA3" parent="World/Rocks/group rocks2" instance=ExtResource("5_cqcen")]
+position = Vector2(483, 25)
+
+[node name="RockC" parent="World/Rocks/group rocks2" instance=ExtResource("7_408u2")]
+position = Vector2(523, 133)
+
+[node name="RockB" parent="World/Rocks/group rocks2" instance=ExtResource("5_2b4d4")]
+position = Vector2(545, 37)
+
+[node name="RockB6" parent="World/Rocks/group rocks2" instance=ExtResource("6_k6yfy")]
+z_index = 1
+position = Vector2(470, 735)
+scale = Vector2(2, 2)
+
+[node name="Groupe Pierre Algue A" type="Node" parent="World/Rocks/group rocks2"]
+
+[node name="RockA6" parent="World/Rocks/group rocks2/Groupe Pierre Algue A" instance=ExtResource("4_408u2")]
+z_index = 2
+position = Vector2(1467, 160)
+
+[node name="Algue24" parent="World/Rocks/group rocks2/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(1495, 145)
+
+[node name="Algue26" parent="World/Rocks/group rocks2/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(1506, 151)
+
+[node name="Algue27" parent="World/Rocks/group rocks2/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(1486, 134)
+
+[node name="Algue25" parent="World/Rocks/group rocks2/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 4
+position = Vector2(1476, 124)
+
+[node name="Algue28" parent="World/Rocks/group rocks2/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+z_index = 2
+position = Vector2(1444, 123)
+
+[node name="Algue21" parent="World/Rocks/group rocks2/Groupe Pierre Algue A" instance=ExtResource("6_oil2x")]
+position = Vector2(1448, 123)
+rotation = -1.5708
+
+[node name="Algue29" parent="World/Rocks/group rocks2/Groupe Pierre Algue A" instance=ExtResource("6_qcrus")]
+position = Vector2(1463, 122)
+
+[node name="Groupe Pierre Algue A2" type="Node" parent="World/Rocks"]
+
+[node name="RockA6" parent="World/Rocks/Groupe Pierre Algue A2" instance=ExtResource("4_408u2")]
+z_index = 2
+position = Vector2(928, 398)
+
+[node name="Algue24" parent="World/Rocks/Groupe Pierre Algue A2" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(956, 383)
+
+[node name="Algue26" parent="World/Rocks/Groupe Pierre Algue A2" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(967, 389)
+
+[node name="Algue27" parent="World/Rocks/Groupe Pierre Algue A2" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(947, 372)
+
+[node name="Algue25" parent="World/Rocks/Groupe Pierre Algue A2" instance=ExtResource("6_qcrus")]
+z_index = 4
+position = Vector2(937, 362)
+
+[node name="Algue28" parent="World/Rocks/Groupe Pierre Algue A2" instance=ExtResource("6_qcrus")]
+z_index = 2
+position = Vector2(905, 361)
+
+[node name="Algue21" parent="World/Rocks/Groupe Pierre Algue A2" instance=ExtResource("6_oil2x")]
+position = Vector2(909, 361)
+rotation = -1.5708
+
+[node name="Algue29" parent="World/Rocks/Groupe Pierre Algue A2" instance=ExtResource("6_qcrus")]
+position = Vector2(924, 360)
+
+[node name="Algues" type="Node2D" parent="World"]
+position = Vector2(741, 81)
+
+[node name="Algue1" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-262, 193)
+
+[node name="Algue2" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-245, 186)
+
+[node name="Algue3" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-209, 170)
+
+[node name="Algue4" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-172, 150)
+
+[node name="Algue5" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-179, 321)
+rotation = 3.14159
+
+[node name="Algue6" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-212, 297)
+rotation = 3.14159
+
+[node name="Algue7" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-253, 279)
+rotation = 3.14159
+
+[node name="Algue8" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-249, 283)
+rotation = 3.14159
+
+[node name="Algue9" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-261, 277)
+rotation = 3.14159
+
+[node name="Algue10" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-437, 364)
+rotation = 3.14159
+
+[node name="Algue11" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-507, 328)
+rotation = 3.14159
+
+[node name="Algue12" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-519, 234)
+
+[node name="Algue13" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-511, 229)
+
+[node name="Algue14" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-501, 226)
+
+[node name="Algue15" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-469, 212)
+
+[node name="Algue16" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(-476, 209)
+
+[node name="Algue17" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(938, 656)
+
+[node name="Algue" parent="World/Algues" instance=ExtResource("6_oil2x")]
+position = Vector2(911, 658)
+rotation = -1.5708
+
+[node name="Algue18" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(863, 693)
+
+[node name="Algue20" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(881, 677)
+
+[node name="Algue19" parent="World/Algues" instance=ExtResource("6_oil2x")]
+position = Vector2(836, 695)
+rotation = -1.5708
+
+[node name="Algue21" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1025, 590)
+
+[node name="Algue24" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1039, 595)
+
+[node name="Algue25" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1048, 597)
+
+[node name="Algue26" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1016, 595)
+
+[node name="Algue27" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1193, 523)
+
+[node name="Algue28" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1207, 525)
+
+[node name="Algue29" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1215, 528)
+
+[node name="Algue30" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1186, 520)
+
+[node name="Algue31" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1179, 516)
+
+[node name="Algue32" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1163, 513)
+
+[node name="Algue33" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(556, 668)
+
+[node name="Algue34" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(536, 666)
+
+[node name="Algue35" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(480, 712)
+
+[node name="Algue36" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(458, 708)
+
+[node name="Algue37" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(415, 729)
+
+[node name="Algue38" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(377, 747)
+
+[node name="Algue39" parent="World/Algues" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(388, 742)
+
+[node name="Algue40" parent="World/Algues" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(392, 737)
+
+[node name="Algue41" parent="World/Algues" instance=ExtResource("6_qcrus")]
+z_index = 1
+position = Vector2(396, 737)
+
+[node name="Algue22" parent="World/Algues" instance=ExtResource("6_qcrus")]
+position = Vector2(1072, 602)
+
+[node name="Algue23" parent="World/Algues" instance=ExtResource("6_oil2x")]
+position = Vector2(973, 600)
+rotation = -1.5708
+
+[node name="Fish" type="Node2D" parent="."]
+position = Vector2(741, 81)
+
+[node name="Fish" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+z_index = 2
+position = Vector2(-426, 151)
+path_to_follow = NodePath("../Path2Dfish")
+
+[node name="Path2Dfish" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_p3prn")
+
+[node name="Fish2" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+position = Vector2(-172, 114)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish3" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+position = Vector2(121, 246)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish4" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+position = Vector2(267, 260)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish5" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+position = Vector2(539, 439)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish6" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+position = Vector2(-88, 446)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish7" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+position = Vector2(-381, 426)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Path2D" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_k6yfy")
+
+[node name="Crab" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_a5hxv")]
+position = Vector2(370, 756)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab2" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_a5hxv")]
+position = Vector2(456, 704)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Path2Dcrab" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_408u2")
+
+[node name="Crab3" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_a5hxv")]
+position = Vector2(840, 697)
+path_to_follow = NodePath("../Path2Dcrab2")
+
+[node name="Crab4" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_a5hxv")]
+position = Vector2(1000, 596)
+path_to_follow = NodePath("../Path2Dcrab2")
+
+[node name="Crab5" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_a5hxv")]
+position = Vector2(1147, 516)
+path_to_follow = NodePath("../Path2Dcrab2")
+
+[node name="Path2Dcrab2" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_2b4d4")
+
+[node name="Fish8" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+position = Vector2(641, 715)
+path_to_follow = NodePath("../Path2D2fish2")
+
+[node name="Fish9" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+position = Vector2(840, 554)
+path_to_follow = NodePath("../Path2D2fish2")
+
+[node name="Fish10" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_6fxwf")]
+position = Vector2(1067, 518)
+path_to_follow = NodePath("../Path2D2fish2")
+
+[node name="Path2D2fish2" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_qcrus")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Player" parent="." instance=ExtResource("11_mcrvk")]
+position = Vector2(331, 146)

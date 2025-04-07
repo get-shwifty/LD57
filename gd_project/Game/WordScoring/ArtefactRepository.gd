@@ -170,6 +170,27 @@ static func generate_bonuses() -> Array[Artefact]:
 		return delta > 0
 	artefacts.append(artefact)
 	
+	artefact = Artefact.new()
+	artefact.name = "Jellymorphism"
+	artefact.description = "If letter is a medusa, transforms into previous fish"
+	artefact.trigger = Artefact.TriggerType.Letter
+	artefact.target = Artefact.TargetType.LetterFishType
+	artefact.value = func(vc: VariableContext, cc: ConditionContext):
+		return cc.previous_letter.fish_type
+	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return cc.current_letter.fish_type == Letter.FishType.Medusa && cc.previous_letter != null
+	artefacts.append(artefact)
+	
+	artefact = Artefact.new()
+	artefact.name = "Enjellyfication"
+	artefact.description = "Transform into medusa if previous fish is a medusa"
+	artefact.trigger = Artefact.TriggerType.Letter
+	artefact.target = Artefact.TargetType.LetterFishType
+	artefact.value = Letter.FishType.Medusa
+	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return cc.previous_letter != null && cc.previous_letter.fish_type == Letter.FishType.Medusa 
+	artefacts.append(artefact)
+	
 	return artefacts
 
 static func generate_maluses() -> Array[Artefact]:
@@ -255,3 +276,11 @@ static func generate_maluses() -> Array[Artefact]:
 	artefacts.append(artefact)
 	
 	return artefacts
+
+static func get_artefact(name : String):
+	for a in bonuses:
+		if a.name == name:
+			return a;
+	for a in maluses:
+		if a.name == name:
+			return a;
