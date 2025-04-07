@@ -47,5 +47,9 @@ horizontal_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
+[connection signal="mouse_entered" from="ButtonBonus" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonBonus" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="ButtonBonus" to="." method="_on_button_bonus_pressed"]
+[connection signal="mouse_entered" from="ButtonMalus" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonMalus" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="ButtonMalus" to="." method="_on_button_malus_pressed"]

@@ -20,3 +20,9 @@ func _on_button_bonus_pressed():
 
 func _on_button_malus_pressed():
 	on_selected.emit()
+
+func _on_mouse_entered():
+	position.y -= 5
+
+func _on_mouse_exited():
+	position.y += 5
