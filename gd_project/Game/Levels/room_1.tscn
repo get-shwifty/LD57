@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bccwqo043fery"]
+[gd_scene load_steps=19 format=3 uid="uid://b5xghs7111w06"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_4awi4"]
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
 [ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="6_6caqy"]
-[ext_resource type="PackedScene" uid="uid://tsng1mrq77pc" path="res://Game/Levels/elements/Rayons.tscn" id="7_1sm0m"]
+[ext_resource type="PackedScene" path="res://Game/Levels/elements/Rayons.tscn" id="7_1sm0m"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
 [ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="8_6caqy"]
 [ext_resource type="PackedScene" uid="uid://bbrb36psdtbqj" path="res://Game/Characters2/jelly.tscn" id="10_xlshn"]
@@ -43,7 +43,7 @@ _data = {
 }
 point_count = 13
 
-[node name="Room1" type="Node2D"]
+[node name="Room2" type="Node2D"]
 script = ExtResource("1_0f8fv")
 metadata/_edit_lock_ = true
 

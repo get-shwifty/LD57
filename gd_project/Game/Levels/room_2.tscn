@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://pooxaxvkt0nu"]
+[gd_scene load_steps=19 format=3 uid="uid://pooxaxvkt0nu"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_ihxlm"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_ev1y8"]
 [ext_resource type="PackedScene" uid="uid://ceej58xocqth7" path="res://Game/Levels/elements/rock_d.tscn" id="3_vd6cr"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_vd6cr"]
+[ext_resource type="PackedScene" uid="uid://ctk4xat2b0ug" path="res://Game/Levels/elements/colonne.tscn" id="5_umuk3"]
 [ext_resource type="PackedScene" uid="uid://h3x3myf63njn" path="res://Game/Levels/elements/rock_c.tscn" id="5_vd6cr"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="6_h4dfq"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_44bgk"]
@@ -126,6 +127,15 @@ scale = Vector2(3, 3)
 [node name="RockA" parent="World" instance=ExtResource("4_vd6cr")]
 position = Vector2(7, 146)
 rotation = 4.71239
+
+[node name="RockA6" parent="World" instance=ExtResource("5_umuk3")]
+position = Vector2(306, 327)
+
+[node name="RockA7" parent="World" instance=ExtResource("5_umuk3")]
+position = Vector2(269, 331)
+
+[node name="RockA8" parent="World" instance=ExtResource("5_umuk3")]
+position = Vector2(243, 390)
 
 [node name="RockA2" parent="World" instance=ExtResource("4_vd6cr")]
 position = Vector2(-33, 203)

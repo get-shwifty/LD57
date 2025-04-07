@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4mbt26d1xalf"]
+
+[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_y7t0o"]
+[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_djd2w"]
+[ext_resource type="PackedScene" uid="uid://tro3e72ajsru" path="res://Game/Levels/elements/arche.tscn" id="3_y7t0o"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="4_lc6fa"]
+[ext_resource type="PackedScene" uid="uid://ctk4xat2b0ug" path="res://Game/Levels/elements/colonne.tscn" id="4_m8lv5"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="5_efsuu"]
+[ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="6_wp0qc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(2, 364)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(644, 2)
+
+[node name="Room1" type="Node2D"]
+script = ExtResource("1_y7t0o")
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(-1, 180)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(640, 0)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(1, 180)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(320, -1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="TopWall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 360)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall2"]
+position = Vector2(320, 1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="World" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Wallpaper" type="Sprite2D" parent="World"]
+position = Vector2(320, -894)
+scale = Vector2(1, 4.89259)
+texture = ExtResource("2_djd2w")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 540)
+
+[node name="BackLayer" type="Sprite2D" parent="World"]
+position = Vector2(320, 143)
+scale = Vector2(1, 1.80833)
+texture = ExtResource("2_djd2w")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="Rocks" type="Node2D" parent="World"]
+
+[node name="RockA" parent="World/Rocks" instance=ExtResource("3_y7t0o")]
+z_index = 1
+position = Vector2(19, 367)
+
+[node name="RockA2" parent="World/Rocks" instance=ExtResource("3_y7t0o")]
+z_index = 1
+position = Vector2(124, 367)
+
+[node name="RockA3" parent="World/Rocks" instance=ExtResource("3_y7t0o")]
+z_index = 1
+position = Vector2(219, 366)
+
+[node name="RockA4" parent="World/Rocks" instance=ExtResource("3_y7t0o")]
+z_index = 1
+position = Vector2(325, 365)
+
+[node name="RockA5" parent="World/Rocks" instance=ExtResource("3_y7t0o")]
+z_index = 1
+position = Vector2(430, 364)
+
+[node name="RockA6" parent="World/Rocks" instance=ExtResource("3_y7t0o")]
+z_index = 1
+position = Vector2(585, 365)
+
+[node name="RockA7" parent="World/Rocks" instance=ExtResource("3_y7t0o")]
+z_index = 1
+position = Vector2(507, 368)
+
+[node name="RockA8" parent="World/Rocks" instance=ExtResource("4_m8lv5")]
+z_index = 1
+position = Vector2(69, 300)
+
+[node name="RockA9" parent="World/Rocks" instance=ExtResource("4_m8lv5")]
+z_index = 1
+position = Vector2(620, 289)
+
+[node name="RockA10" parent="World/Rocks" instance=ExtResource("4_m8lv5")]
+z_index = 1
+position = Vector2(448, 293)
+
+[node name="RockA11" parent="World/Rocks" instance=ExtResource("4_m8lv5")]
+z_index = 1
+position = Vector2(285, 294)
+
+[node name="Algues" type="Node2D" parent="World"]
+
+[node name="Algue1" parent="World/Algues" instance=ExtResource("5_efsuu")]
+position = Vector2(176, 268)
+scale = Vector2(6, 6)
+
+[node name="Algue2" parent="World/Algues" instance=ExtResource("5_efsuu")]
+position = Vector2(536, 266)
+scale = Vector2(6, 6)
+
+[node name="Algue" parent="World/Algues" instance=ExtResource("6_wp0qc")]
+position = Vector2(326, 276)
+rotation = -1.5708
+scale = Vector2(6, 6)
+
+[node name="Fish" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Player" parent="." instance=ExtResource("4_lc6fa")]
+position = Vector2(291, 171)
