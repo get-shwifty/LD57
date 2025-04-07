@@ -48,7 +48,8 @@ func finish_level():
 	
 func confirm_word(word: Array[Letter]):
 	var variable_contexte: VariableContext = VariableContext.new()
-	var breakdown = ScoreCalculator.compute_score(word, [], variable_contexte)
+	var artifacts = setup_artifacts()
+	var breakdown = ScoreCalculator.compute_score(word, artifacts, variable_contexte)
 
 	for letter in word:
 		current_letters.erase(letter)
@@ -85,4 +86,26 @@ func start_word_compose():
 func close_word_compose():
 	word_composing_menu.queue_free()
 	word_composing_menu = null
-	
+
+func setup_artifacts() -> Array[Artefact]:
+	var artefacts: Array[Artefact] = []
+	var vowel_booster = Artefact.new()
+	vowel_booster.name = "Vowel Booster"
+	vowel_booster.trigger = Artefact.TriggerType.Letter
+	vowel_booster.target = Artefact.TargetType.LetterAdd
+	vowel_booster.value = ComputedValue.new(0, VariableContext.VariableType.ConsonantCount)
+	vowel_booster.conditions.append(Condition.new(null, CustomCondition.new(CustomCondition.TargetType.CurrentLetter, CustomCondition.LetterCondition.Vowel)))
+	artefacts.append(vowel_booster)
+	var oddness_boost = Artefact.new()
+	oddness_boost.name = "Love the oddness"
+	vowel_booster.trigger = Artefact.TriggerType.Word
+	oddness_boost.target = Artefact.TargetType.WordMult
+	oddness_boost.value = ComputedValue.new(2)
+	oddness_boost.conditions.append(Condition.new(
+			Comparison.new(
+				ComputedValue.new(0, VariableContext.VariableType.LetterCount),
+			Comparison.Operator.Odd,
+			null)
+		, null))
+	artefacts.append(oddness_boost)
+	return artefacts
