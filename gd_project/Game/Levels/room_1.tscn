@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=13 format=3 uid="uid://foipsmnjhbbe"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
 [ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_4awi4"]
 [ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="8_6caqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
@@ -171,3 +172,6 @@ curve = SubResource("Curve2D_1bvp3")
 [node name="Path2DCrab" type="Path2D" parent="."]
 position = Vector2(320, 240)
 curve = SubResource("Curve2D_at57x")
+
+[node name="Player" parent="." instance=ExtResource("8_6caqy")]
+position = Vector2(233, 268)
