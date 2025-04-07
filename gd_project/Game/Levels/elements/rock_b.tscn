@@ -6,10 +6,10 @@
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-66, 42, -63, 32, -56, 16, -52, 13, -44, 12, -42, 9, -31, 3, -22, 2, -15, -11, -8, -14, -1, -14, 12, -11, 15, -20, 22, -27, 27, -27, 27, -34, 31, -36, 38, -35, 46, -32, 48, -25, 43, -10, 42, 1, 39, 5, 39, 13, 44, 17, 50, 17, 51, 20, 51, 27, 55, 30, 56, 33, 59, 34, 64, 38, 65, 42)
+polygon = PackedVector2Array(-55, 43, -47, 27, -43, 11, -34, -10, -31, -26, -30, -43, -24, -42, -10, -29, -5, -27, -4, -11, -1, 9, 8, 23, 13, 29, 14, 41, 24, 42, 31, 39, 36, 29, 40, 26, 43, 17, 50, 15, 49, 27, 54, 31, 57, 44)
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
 texture = ExtResource("1_kv1rw")
 flip_h = true
 region_enabled = true
-region_rect = Rect2(492, 636, 140, 84)
+region_rect = Rect2(-0.050415, 1456.2, 113.38, 87.4258)

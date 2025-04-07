@@ -9,7 +9,8 @@ collision_mask = 0
 polygon = PackedVector2Array(-49, -4, -48, -12, -31, -24, -4, -24, 0, -22, 5, -23, 19, -23, 37, -4, 42, -2, 47, 5, 47, 9, 37, 10, 21, 15, 11, 22, 3, 22, -2, 26, -15, 27, -23, 22, -28, 18, -31, 17, -36, 15, -40, 10, -42, 6, -46, 2)
 
 [node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(-2, 3)
 texture = ExtResource("1_qwhwe")
 flip_h = true
 region_enabled = true
-region_rect = Rect2(416, 744, 112, 60)
+region_rect = Rect2(1.45461, 1622.49, 95.8678, 53.7191)
