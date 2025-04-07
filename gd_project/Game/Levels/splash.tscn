@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bbpwi6g8le3uu"]
+[gd_scene load_steps=29 format=3 uid="uid://bbpwi6g8le3uu"]
 
 [ext_resource type="Script" uid="uid://bd2aro2yyxb5d" path="res://Game/Levels/splash.gd" id="1_1o6ei"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_d4njp"]
@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://dgo1emc55px3g" path="res://assets/images/Splash/v2/S5.png" id="17_8nbks"]
 [ext_resource type="Texture2D" uid="uid://commjq8g0smki" path="res://assets/images/Splash/v2/S6.png" id="18_dl62i"]
 [ext_resource type="Texture2D" uid="uid://by1cuk4lnnw3g" path="res://assets/images/Splash/v2/S7.png" id="19_20ptk"]
+[ext_resource type="Texture2D" uid="uid://7f0exedvr2h6" path="res://assets/images/Touches-clavier-souris/clic_gauche.png" id="20_8nbks"]
+[ext_resource type="Texture2D" uid="uid://bker1ljdqjq6i" path="res://assets/images/Touches-clavier-souris/enter.png" id="21_dl62i"]
+[ext_resource type="Texture2D" uid="uid://dit3nbd8s42lg" path="res://assets/images/Touches-clavier-souris/wasd.png" id="22_20ptk"]
+[ext_resource type="Texture2D" uid="uid://cqgplqab7h750" path="res://assets/images/Touches-clavier-souris/space_bar.png" id="23_hnkpt"]
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
@@ -243,5 +247,23 @@ mouse_default_cursor_shape = 2
 text = "
 "
 flat = true
+
+[node name="controles" type="Node2D" parent="."]
+
+[node name="ClicGauche" type="Sprite2D" parent="controles"]
+position = Vector2(535, 341)
+texture = ExtResource("20_8nbks")
+
+[node name="Enter" type="Sprite2D" parent="controles"]
+position = Vector2(512, 349)
+texture = ExtResource("21_dl62i")
+
+[node name="Wasd" type="Sprite2D" parent="controles"]
+position = Vector2(434, 347)
+texture = ExtResource("22_20ptk")
+
+[node name="SpaceBar" type="Sprite2D" parent="controles"]
+position = Vector2(479, 352)
+texture = ExtResource("23_hnkpt")
 
 [connection signal="pressed" from="Start_Button" to="." method="_on_button_pressed"]
