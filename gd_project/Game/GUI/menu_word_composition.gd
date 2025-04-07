@@ -55,6 +55,10 @@ var is_composing_word: bool = false:
 	set(value):
 		is_composing_word = value
 		update_view()
+var can_submit = false:
+	set(value):
+		can_submit = value
+		$CenterContainer/VBoxContainer/Submit.disabled = not value
 
 signal on_word_confirmed(word)
 signal on_ui_finished
@@ -74,6 +78,16 @@ func set_letters(word: Array[Letter]):
 func update_view():
 	grid_container.reparent(vbox_container if is_composing_word else center_container2)
 	center_container.visible = is_composing_word
+	if is_composing_word:
+		enable_mouse_inputs()
+	else:
+		disable_mouse_inputs()
+
+func disable_mouse_inputs():
+	$MouseBlock.show()
+	
+func enable_mouse_inputs():
+	$MouseBlock.hide()
 
 func setup_artefacts_grid():
 	for art in artefacts:
@@ -93,6 +107,7 @@ func setup_letter_pool(letters: Array[Letter]):
 		letter_ui.on_letter_selected.connect(on_letter_selected.bind(letter_ui))
 		grid_container.add_child(letter_ui)
 
+
 func on_letter_selected(letter: Control):
 	sound_click_on_letter.play()
 	if grid_container.get_children().has(letter):
@@ -101,9 +116,10 @@ func on_letter_selected(letter: Control):
 		letter.reparent(grid_container)
 	var word = get_word()
 	if (len(word) and dico.is_word_valid(word)):
-		$CenterContainer/VBoxContainer/Submit.disabled = false
+		can_submit = true
 	else:
-		$CenterContainer/VBoxContainer/Submit.disabled = true
+		can_submit = false
+		
 	update_score()
 
 func get_word():
@@ -117,15 +133,10 @@ func get_word():
 	return word
 		
 func confirm_word():
-	var word = get_word()
-		
-	#for child in word_container.get_children():
-		#child.queue_free()
-	
-	on_word_confirmed.emit(word)
-	
-	#if grid_container.get_child_count() <= 0:
-		#on_menu_closed.emit()
+	if can_submit:
+		can_submit = false
+		var word = get_word()
+		on_word_confirmed.emit(word)
 
 func update_score():
 	var word = get_word()
@@ -136,6 +147,8 @@ func update_score():
 	
 	
 func process_score(score: ScoreCalculator.ScoreBreakdown):
+	disable_mouse_inputs()
+	
 	for action in score.operations:
 		var tween_letter: Tween = get_tree().create_tween()
 		var tween_artefact: Tween = get_tree().create_tween()
@@ -159,6 +172,8 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 	$CenterContainer/VBoxContainer/Score/Total.text = str(score.final_score)
 	victory.play()
 	on_ui_finished.emit()
+	
+	enable_mouse_inputs()
 	
 
 func _play_bubble_sound():
