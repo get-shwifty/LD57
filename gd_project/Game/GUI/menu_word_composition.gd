@@ -177,7 +177,7 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 				target.text = str(action.new_word_mult)
 			await bump_ui(target)
 		await get_tree().create_timer(tween_time).timeout
-	display_total(score)
+	await display_total(score)
 	on_ui_finished.emit()
 	
 

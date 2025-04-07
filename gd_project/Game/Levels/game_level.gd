@@ -64,6 +64,7 @@ func confirm_word(word: Array[Letter]):
 	score.current += breakdown.final_score
 	
 	if score.current > score.objective:
+		await get_tree().create_timer(2.0).timeout
 		score.hide()
 		word_composing_menu.hide()
 		level_finished.emit(score.current)
