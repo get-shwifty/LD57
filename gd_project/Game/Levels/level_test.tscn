@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3elieuk1ty6m"]
+[gd_scene load_steps=6 format=3 uid="uid://d3elieuk1ty6m"]
 
 [ext_resource type="Script" uid="uid://ddit1srs4rpdb" path="res://Game/Levels/game_level.gd" id="1_rdhbp"]
 [ext_resource type="PackedScene" uid="uid://b5xghs7111w06" path="res://Game/Levels/room_1.tscn" id="2_1krt2"]
@@ -29,7 +29,7 @@ offset_top = 5.0
 offset_right = 22.0
 offset_bottom = 5.0
 grow_horizontal = 0
-theme = SubResource("Theme_dvd30")
+theme = ExtResource("4_mg66w")
 script = ExtResource("4_3j40w")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIContainer/ScoreUI"]

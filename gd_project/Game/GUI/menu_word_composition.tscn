@@ -41,7 +41,7 @@ offset_left = 6.0
 offset_top = 5.0
 offset_right = 6.0
 offset_bottom = 5.0
-theme_override_constants/separation = 2
+theme_override_constants/separation = 5
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -51,9 +51,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -160.0
-offset_top = -43.0
+offset_top = -20.0
 offset_right = 373.0
-offset_bottom = 17.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.6, 0.6)

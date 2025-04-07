@@ -11,17 +11,27 @@ func initialize(letter_ : Letter):
 	%Letter.text = letter.character.character
 	%Points.text = str(letter.character.base_value)
 	var texture_index = 0
+	var fish_texture = 0
 	match letter.fish_type:
-		Letter.FishType.Medusa:
+		Letter.FishType.Medusa: #1
 			texture_index = 1
-		Letter.FishType.Crab:
+			fish_texture = 1
+		Letter.FishType.Crab: #0
 			texture_index = 2
-		Letter.FishType.Eel:
+			fish_texture = 3
+		Letter.FishType.Eel: #3
 			texture_index = 3
-		Letter.FishType.Clown:
+			fish_texture = 2
+		Letter.FishType.Clown: #2
 			texture_index = 0
-			
+			fish_texture = 0
+	
+	print("TYPE")
+	print(letter.fish_type)
+	print(texture_index)
+	print(fish_texture)
 	$Button.texture_normal.set_region(Rect2(texture_index * 24, 0, 24, 27))
+	$Button/PanelContainer/Fish.texture.set_region(Rect2(fish_texture * 10, 11, 10, 9))
 
 func get_letter() -> Letter:
 	return letter
