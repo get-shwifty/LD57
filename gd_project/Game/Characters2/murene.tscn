@@ -43,8 +43,9 @@ animations = [{
 radius = 7.0
 height = 72.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6fw5c"]
-radius = 94.0213
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6fw5c"]
+radius = 61.0
+height = 244.0
 
 [node name="Murene" type="CharacterBody2D"]
 collision_mask = 4
@@ -57,7 +58,6 @@ script = ExtResource("1_6fw5c")
 position = Vector2(-3, -1)
 sprite_frames = SubResource("SpriteFrames_t26xp")
 autoplay = "default"
-frame_progress = 0.0157991
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -91,7 +91,8 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayer"]
-shape = SubResource("CircleShape2D_6fw5c")
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_6fw5c")
 
 [connection signal="body_entered" from="DetectPlayer" to="." method="_on_detect_player_body_entered"]
 [connection signal="body_exited" from="DetectPlayer" to="." method="_on_detect_player_body_exited"]
