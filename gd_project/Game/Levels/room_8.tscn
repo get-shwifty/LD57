@@ -1,0 +1,508 @@
+[gd_scene load_steps=22 format=3 uid="uid://bpnud5pms58yr"]
+
+[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_bjlne"]
+[ext_resource type="PackedScene" uid="uid://h3x3myf63njn" path="res://Game/Levels/elements/rock_c.tscn" id="2_a1aop"]
+[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="3_hbbre"]
+[ext_resource type="PackedScene" uid="uid://ceej58xocqth7" path="res://Game/Levels/elements/rock_d.tscn" id="4_dosq4"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="5_vmy6b"]
+[ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="6_vntu5"]
+[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="7_t48j1"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="8_23ynh"]
+[ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="8_vmy6b"]
+[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="9_vntu5"]
+[ext_resource type="PackedScene" uid="uid://bbrb36psdtbqj" path="res://Game/Characters2/jelly.tscn" id="10_t48j1"]
+[ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="11_23ynh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(25, 1169)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(644, 2)
+
+[sub_resource type="Curve2D" id="Curve2D_58av0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 71, 201, 0, 0, 0, 0, 101, 204, 0, 0, 0, 0, 130, 211, 0, 0, 0, 0, 136, 217, 0, 0, 0, 0, 144, 224, 0, 0, 0, 0, 163, 248, 0, 0, 0, 0, 166, 264, 0, 0, 0, 0, 169, 275, 0, 0, 0, 0, 179, 298, 0, 0, 0, 0, 185, 314, 0, 0, 0, 0, 200, 334, 0, 0, 0, 0, 231, 376, 0, 0, 0, 0, 244, 395, 0, 0, 0, 0, 251, 414, 0, 0, 0, 0, 255, 432, 0, 0, 0, 0, 260, 452, 0, 0, 0, 0, 275, 474, 0, 0, 0, 0, 284, 481, 0, 0, 0, 0, 291, 509, 0, 0, 0, 0, 279, 519, 0, 0, 0, 0, 236, 535, 0, 0, 0, 0, 230, 536, 0, 0, 0, 0, 219, 541, 0, 0, 0, 0, 207, 549, 0, 0, 0, 0, 192, 562, 0, 0, 0, 0, 183, 574, 0, 0, 0, 0, 163, 597, 0, 0, 0, 0, 143, 619, 0, 0, 0, 0, 107, 656, 0, 0, 0, 0, 117, 636, 0, 0, 0, 0, 118, 687, 0, 0, 0, 0, 149, 698, 0, 0, 0, 0, 170, 703, 0, 0, 0, 0, 181, 723, 0, 0, 0, 0, 167, 753, 0, 0, 0, 0, 156, 790, 0, 0, 0, 0, 157, 807, 0, 0, 0, 0, 160, 822, 0, 0, 0, 0, 164, 831, 0, 0, 0, 0, 173, 844, 0, 0, 0, 0, 185, 853, 0, 0, 0, 0, 197, 862, 0, 0, 0, 0, 205, 874, 0, 0, 0, 0, 212, 889, 0, 0, 0, 0, 205, 904, 0, 0, 0, 0, 209, 931, 0, 0, 0, 0, 216, 950, 0, 0, 0, 0, 228, 967, 0, 0, 0, 0, 242, 971, 0, 0, 0, 0, 263, 972, 0, 0, 0, 0, 276, 970, 0, 0, 0, 0, 278, 954, 0, 0, 0, 0, 297, 919, 0, 0, 0, 0, 299, 885, 0, 0, 0, 0, 299, 865, 0, 0, 0, 0, 298, 861, 0, 0, 0, 0, 292, 842, 0, 0, 0, 0, 280, 826, 0, 0, 0, 0, 259, 794, 0, 0, 0, 0, 256, 790, 0, 0, 0, 0, 243, 764, 0, 0, 0, 0, 240, 750, 0, 0, 0, 0, 237, 707, 0, 0, 0, 0, 242, 688, 0, 0, 0, 0, 254, 671)
+}
+point_count = 65
+
+[sub_resource type="Curve2D" id="Curve2D_vmy6b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 204, 24, 0, 0, 0, 0, 210, 23, 0, 0, 0, 0, 226, 31, 0, 0, 0, 0, 244, 39, 0, 0, 0, 0, 252, 48, 0, 0, 0, 0, 257, 57, 0, 0, 0, 0, 263, 81, 0, 0, 0, 0, 264, 102, 0, 0, 0, 0, 253, 125, 0, 0, 0, 0, 233, 127, 0, 0, 0, 0, 185, 116, 0, 0, 0, 0, 173, 95, 0, 0, 0, 0, 190, 74, 0, 0, 0, 0, 190, 65, 0, 0, 0, 0, 181, 63, 0, 0, 0, 0, 170, 63, 0, 0, 0, 0, 155, 55, 0, 0, 0, 0, 150, 36, 0, 0, 0, 0, 161, 24, 0, 0, 0, 0, 175, 20, 0, 0, 0, 0, 186, 18, 0, 0, 0, 0, 192, 20, 0, 0, 0, 0, 196, 19, 0, 0, 0, 0, 204, 24)
+}
+point_count = 24
+
+[sub_resource type="Curve2D" id="Curve2D_vntu5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 79, 570, 0, 0, 0, 0, 77, 555, 0, 0, 0, 0, 76, 541, 0, 0, 0, 0, 76, 524, 0, 0, 0, 0, 77, 511, 0, 0, 0, 0, 80, 501, 0, 0, 0, 0, 80, 490, 0, 0, 0, 0, 79, 473, 0, 0, 0, 0, 80, 441, 0, 0, 0, 0, 89, 429, 0, 0, 0, 0, 93, 419, 0, 0, 0, 0, 95, 403, 0, 0, 0, 0, 96, 388, 0, 0, 0, 0, 100, 370, 0, 0, 0, 0, 100, 364, 0, 0, 0, 0, 101, 355, 0, 0, 0, 0, 101, 354, 0, 0, 0, 0, 101, 347, 0, 0, 0, 0, 101, 338, 0, 0, 0, 0, 101, 332)
+}
+point_count = 20
+
+[sub_resource type="Curve2D" id="Curve2D_t48j1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 157, 368, 0, 0, 0, 0, 153, 336, 0, 0, 0, 0, 145, 321, 0, 0, 0, 0, 130, 305, 0, 0, 0, 0, 113, 286, 0, 0, 0, 0, 105, 270, 0, 0, 0, 0, 98, 254, 0, 0, 0, 0, 94, 243, 0, 0, 0, 0, 88, 224, 0, 0, 0, 0, 85, 209, 0, 0, 0, 0, 83, 160, 0, 0, 0, 0, 83, 146, 0, 0, 0, 0, 83, 130, 0, 0, 0, 0, 96, 93, 0, 0, 0, 0, 106, 70, 0, 0, 0, 0, 112, 58, 0, 0, 0, 0, 117, 51, 0, 0, 0, 0, 120, 49)
+}
+point_count = 18
+
+[sub_resource type="Curve2D" id="Curve2D_23ynh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 187, 581, 0, 0, 0, 0, 186, 543, 0, 0, 0, 0, 186, 521, 0, 0, 0, 0, 186, 505, 0, 0, 0, 0, 186, 485, 0, 0, 0, 0, 186, 460, 0, 0, 0, 0, 186, 427, 0, 0, 0, 0, 184, 412, 0, 0, 0, 0, 183, 381, 0, 0, 0, 0, 181, 354, 0, 0, 0, 0, 171, 339, 0, 0, 0, 0, 164, 316, 0, 0, 0, 0, 163, 304, 0, 0, 0, 0, 157, 292, 0, 0, 0, 0, 150, 281)
+}
+point_count = 15
+
+[sub_resource type="Curve2D" id="Curve2D_tb47f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 233, 823, 0, 0, 0, 0, 235, 800, 0, 0, 0, 0, 234, 772, 0, 0, 0, 0, 234, 744, 0, 0, 0, 0, 234, 727, 0, 0, 0, 0, 231, 701, 0, 0, 0, 0, 217, 674, 0, 0, 0, 0, 209, 665)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_ws10t"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 149, 853, 0, 0, 0, 0, 147, 820, 0, 0, 0, 0, 152, 783, 0, 0, 0, 0, 157, 743, 0, 0, 0, 0, 157, 704, 0, 0, 0, 0, 152, 668, 0, 0, 0, 0, 151, 633, 0, 0, 0, 0, 145, 610, 0, 0, 0, 0, 155, 564, 0, 0, 0, 0, 162, 500, 0, 0, 0, 0, 153, 437)
+}
+point_count = 11
+
+[node name="Room8" type="Node2D"]
+script = ExtResource("1_bjlne")
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 116)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(-4.5, 442.5)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(640, 116)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(-300, 452)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 116)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(261, -116)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="TopWall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 476)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall2"]
+position = Vector2(254, 641)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="World" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="rocks" type="Node" parent="World"]
+
+[node name="RockC2" parent="World/rocks" instance=ExtResource("2_a1aop")]
+z_index = 4
+position = Vector2(357, 680)
+scale = Vector2(2, 2)
+
+[node name="RockC3" parent="World/rocks" instance=ExtResource("2_a1aop")]
+z_index = 4
+position = Vector2(-108, 491)
+rotation = 1.5708
+scale = Vector2(3, 3)
+
+[node name="RockB" parent="World/rocks" instance=ExtResource("3_hbbre")]
+z_index = 3
+position = Vector2(140, 867)
+scale = Vector2(6, 6)
+
+[node name="RockC" parent="World/rocks" instance=ExtResource("2_a1aop")]
+position = Vector2(327, 16)
+
+[node name="RockB2" parent="World/rocks" instance=ExtResource("4_dosq4")]
+z_index = 1
+position = Vector2(245, 281)
+rotation = -1.5708
+scale = Vector2(3, 3)
+
+[node name="RockB3" parent="World/rocks" instance=ExtResource("4_dosq4")]
+z_index = 3
+position = Vector2(343, 1002)
+scale = Vector2(3, 3)
+
+[node name="algues" type="Node" parent="World"]
+
+[node name="Algue1" parent="World/algues" instance=ExtResource("5_vmy6b")]
+position = Vector2(182, 129)
+
+[node name="Algue8" parent="World/algues" instance=ExtResource("5_vmy6b")]
+position = Vector2(108, 377)
+rotation = 1.5708
+
+[node name="Algue9" parent="World/algues" instance=ExtResource("5_vmy6b")]
+position = Vector2(111, 360)
+rotation = 1.5708
+
+[node name="Algue10" parent="World/algues" instance=ExtResource("5_vmy6b")]
+position = Vector2(102, 412)
+rotation = 1.5708
+
+[node name="Algue11" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 4
+position = Vector2(106, 389)
+rotation = 1.5708
+
+[node name="Algue12" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 4
+position = Vector2(104, 401)
+rotation = 1.5708
+
+[node name="Algue13" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 4
+position = Vector2(90, 512)
+rotation = 1.5708
+
+[node name="Algue14" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 4
+position = Vector2(93, 466)
+rotation = 1.5708
+
+[node name="Algue15" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 4
+position = Vector2(91, 482)
+rotation = 1.5708
+
+[node name="Algue16" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 4
+position = Vector2(86, 492)
+rotation = 1.5708
+
+[node name="Algue17" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 2
+position = Vector2(73, 527)
+rotation = 1.5708
+
+[node name="Algue18" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 2
+position = Vector2(71, 538)
+rotation = 1.5708
+
+[node name="Algue19" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 2
+position = Vector2(72, 540)
+rotation = 1.5708
+
+[node name="Algue20" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 2
+position = Vector2(70, 550)
+rotation = 1.5708
+
+[node name="Algue21" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(86, 574)
+rotation = 1.5708
+
+[node name="Algue22" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(80, 585)
+rotation = 1.5708
+
+[node name="Algue23" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(77, 589)
+rotation = 1.5708
+
+[node name="Algue24" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(83, 603)
+rotation = 1.5708
+
+[node name="Algue25" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(88, 631)
+rotation = 1.5708
+
+[node name="Algue26" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(259, 541)
+
+[node name="Algue27" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(235, 554)
+
+[node name="Algue28" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(247, 552)
+
+[node name="Algue29" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(282, 543)
+
+[node name="Algue30" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(303, 546)
+
+[node name="Algue31" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(323, 551)
+
+[node name="Algue32" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(111, 721)
+rotation = 1.5708
+
+[node name="Algue33" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(101, 714)
+rotation = 1.5708
+
+[node name="Algue34" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(113, 736)
+rotation = 1.5708
+
+[node name="Algue35" parent="World/algues" instance=ExtResource("5_vmy6b")]
+z_index = 3
+position = Vector2(121, 745)
+rotation = 1.5708
+
+[node name="Algue" parent="World/algues" instance=ExtResource("6_vntu5")]
+z_index = 3
+position = Vector2(113, 334)
+
+[node name="Algue4" parent="World/algues" instance=ExtResource("6_vntu5")]
+z_index = 3
+position = Vector2(98, 431)
+
+[node name="Algue5" parent="World/algues" instance=ExtResource("6_vntu5")]
+z_index = 3
+position = Vector2(89, 555)
+
+[node name="Algue6" parent="World/algues" instance=ExtResource("6_vntu5")]
+z_index = 3
+position = Vector2(95, 611)
+
+[node name="Algue7" parent="World/algues" instance=ExtResource("6_vntu5")]
+z_index = 3
+position = Vector2(87, 693)
+rotation = -1.5708
+
+[node name="Algue2" parent="World/algues" instance=ExtResource("5_vmy6b")]
+position = Vector2(169, 127)
+
+[node name="Algue3" parent="World/algues" instance=ExtResource("5_vmy6b")]
+position = Vector2(156, 139)
+
+[node name="Wallpaper" type="Sprite2D" parent="World"]
+position = Vector2(232, 185.5)
+scale = Vector2(1.09063, 3.49074)
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 540)
+
+[node name="Wallpaper2" type="Sprite2D" parent="World"]
+position = Vector2(232, -414.5)
+scale = Vector2(1.09063, 5.71296)
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 540)
+
+[node name="BackLayer" type="Sprite2D" parent="World"]
+position = Vector2(112, 306)
+rotation = 1.5708
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer2" type="Sprite2D" parent="World"]
+z_index = 3
+position = Vector2(109, 305)
+rotation = 1.5708
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer6" type="Sprite2D" parent="World"]
+z_index = 3
+position = Vector2(296, 191)
+rotation = 1.5708
+scale = Vector2(-1, -1)
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer9" type="Sprite2D" parent="World"]
+z_index = 3
+position = Vector2(147, 933)
+scale = Vector2(-1, 1)
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer8" type="Sprite2D" parent="World"]
+z_index = 3
+position = Vector2(-151.212, 1294)
+rotation = 1.5708
+scale = Vector2(-1, -4.7125)
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer7" type="Sprite2D" parent="World"]
+z_index = 3
+position = Vector2(295, 661)
+rotation = 1.5708
+scale = Vector2(1, -1)
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer10" type="Sprite2D" parent="World"]
+z_index = 3
+position = Vector2(764.142, 475.159)
+rotation = 1.5708
+scale = Vector2(-1.9006, 3.02597)
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer4" type="Sprite2D" parent="World"]
+z_index = 1
+position = Vector2(176, 938)
+rotation = 1.5708
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer5" type="Sprite2D" parent="World"]
+z_index = 1
+position = Vector2(224, 934)
+rotation = 1.5708
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer11" type="Sprite2D" parent="World"]
+z_index = 1
+position = Vector2(-133, 929)
+rotation = 1.5708
+scale = Vector2(1, -2)
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer3" type="Sprite2D" parent="World"]
+modulate = Color(1, 1, 1, 0.517647)
+z_index = 1
+position = Vector2(50, 183)
+texture = ExtResource("7_t48j1")
+region_enabled = true
+region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
+
+[node name="fish" type="Node" parent="."]
+
+[node name="Crab" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_vmy6b")]
+position = Vector2(99, 345)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab2" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_vmy6b")]
+position = Vector2(90, 403)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab3" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_vmy6b")]
+position = Vector2(81, 484)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Crab4" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_vmy6b")]
+position = Vector2(80, 550)
+path_to_follow = NodePath("../Path2Dcrab")
+
+[node name="Fish" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("9_vntu5")]
+position = Vector2(178, 32)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Jelly" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_t48j1")]
+position = Vector2(278, 979)
+path_to_follow = NodePath("../Path2D2jellyfish1")
+
+[node name="Jelly2" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_t48j1")]
+position = Vector2(209, 901)
+path_to_follow = NodePath("../Path2D2jellyfish2")
+
+[node name="Jelly3" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_t48j1")]
+position = Vector2(234, 728)
+path_to_follow = NodePath("../Path2D2jellyfish3")
+
+[node name="Jelly4" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_t48j1")]
+z_index = 1
+position = Vector2(150, 803)
+path_to_follow = NodePath("../Path2D2jellyfish4")
+
+[node name="Jelly5" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_t48j1")]
+z_index = 1
+position = Vector2(119, 638)
+path_to_follow = NodePath("../Path2D2jellyfish5")
+
+[node name="Jelly6" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_t48j1")]
+z_index = 1
+position = Vector2(189, 455)
+path_to_follow = NodePath("../Path2D2jellyfish6")
+
+[node name="Jelly7" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_t48j1")]
+z_index = 1
+position = Vector2(159, 361)
+path_to_follow = NodePath("../Path2D2jellyfish7")
+
+[node name="Murene" parent="fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("11_23ynh")]
+position = Vector2(70, 200)
+path_to_follow = NodePath("../Path2Dmuraine")
+
+[node name="Path2Dmuraine" type="Path2D" parent="fish"]
+curve = SubResource("Curve2D_58av0")
+
+[node name="Path2D" type="Path2D" parent="fish"]
+curve = SubResource("Curve2D_vmy6b")
+
+[node name="Path2Dcrab" type="Path2D" parent="fish"]
+curve = SubResource("Curve2D_vntu5")
+
+[node name="Path2D2jellyfish7" type="Path2D" parent="fish"]
+curve = SubResource("Curve2D_t48j1")
+
+[node name="Path2D2jellyfish6" type="Path2D" parent="fish"]
+curve = SubResource("Curve2D_23ynh")
+
+[node name="Path2D2jellyfish1" type="Path2D" parent="fish"]
+position = Vector2(94, 408)
+curve = SubResource("Curve2D_23ynh")
+
+[node name="Path2D2jellyfish2" type="Path2D" parent="fish"]
+position = Vector2(24, 366)
+curve = SubResource("Curve2D_23ynh")
+
+[node name="Path2D2jellyfish3" type="Path2D" parent="fish"]
+curve = SubResource("Curve2D_tb47f")
+
+[node name="Path2D2jellyfish4" type="Path2D" parent="fish"]
+curve = SubResource("Curve2D_ws10t")
+
+[node name="Path2D2jellyfish5" type="Path2D" parent="fish"]
+position = Vector2(-32, -152)
+curve = SubResource("Curve2D_ws10t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Player" parent="." instance=ExtResource("8_23ynh")]
+position = Vector2(48, 64)

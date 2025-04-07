@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://ct56eue7unl5k" path="res://assets/images/maquette_new_palette.png" id="2_0f8fv"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_at57x"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_4awi4"]
-[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
-[ext_resource type="PackedScene" path="res://Game/Levels/elements/algue_1.tscn" id="6_6caqy"]
+[ext_resource type="PackedScene" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="6_6caqy"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
 [ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="8_6caqy"]
-[ext_resource type="PackedScene" path="res://Game/Characters2/jelly.tscn" id="10_xlshn"]
+[ext_resource type="PackedScene" uid="uid://bbrb36psdtbqj" path="res://Game/Characters2/jelly.tscn" id="10_xlshn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(2, 364)
