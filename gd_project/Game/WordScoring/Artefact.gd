@@ -4,8 +4,6 @@ enum TargetType
 {
 	LetterAdd,
 	LetterMult,
-	LetterFishType,
-	LetterBonusType,
 	WordAdd,
 	WordMult,
 }
@@ -21,16 +19,10 @@ var description : String
 var is_malus : bool
 var target : TargetType;
 var trigger : TriggerType;
-var value;
+var value : ComputedValue;
 var conditions : Array[Condition]
 var condition: Callable # KISS
 
-func get_value(variable_context : VariableContext, condition_context : ConditionContext):
-	if value is ComputedValue:
-		return value.get_value(variable_context)
-	elif value is Callable:
-		return value.call(variable_context, condition_context)
-	return value
 
 func are_conditions_valid(variable_context : VariableContext, condition_context : ConditionContext) -> bool:
 	if condition != null:

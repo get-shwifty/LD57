@@ -31,6 +31,7 @@ class_name MenuWordComposition
 @onready var vbox_container = $CenterContainer/VBoxContainer
 @onready var word_container = %WordContainer
 @onready var grid_container = %GridContainer
+@onready var submit_container = %Submit
 @onready var hbox_container = %HBoxContainer
 @onready var score_container = %Score
 @onready var sound_click_on_letter: AudioStreamPlayer = $SoundClickOnLetter
@@ -56,8 +57,12 @@ var is_composing_word: bool = false:
 	set(value):
 		is_composing_word = value
 		update_view()
+var can_submit = false:
+	set(value):
+		can_submit = value
+		$CenterContainer/VBoxContainer/Submit.disabled = not value
 
-signal on_word_confirmed(word)
+signal on_word_confirmed
 signal on_ui_finished
 
 static var dico: DictionaryHelper = DictionaryHelper.new(DictionaryHelper.Language.English)
@@ -80,6 +85,16 @@ func update_view():
 	center_container.visible = is_composing_word
 	%Submit.visible = is_composing_word
 	#%Multiplicateur.text = str(1)
+	if is_composing_word:
+		enable_mouse_inputs()
+	else:
+		disable_mouse_inputs()
+
+func disable_mouse_inputs():
+	$MouseBlock.show()
+	
+func enable_mouse_inputs():
+	$MouseBlock.hide()
 
 func setup_artefacts_grid():
 	for art in artefacts:
@@ -99,6 +114,7 @@ func setup_letter_pool(letters: Array[Letter]):
 		letter_ui.on_letter_selected.connect(on_letter_selected.bind(letter_ui))
 		grid_container.add_child(letter_ui)
 
+
 func on_letter_selected(letter: Control):
 	sound_click_on_letter.play()
 	if grid_container.get_children().has(letter):
@@ -107,9 +123,10 @@ func on_letter_selected(letter: Control):
 		letter.reparent(grid_container)
 	var word = get_word()
 	if (len(word) and dico.is_word_valid(word)):
-		%Submit.disabled = false
+		can_submit = true
 	else:
-		%Submit.disabled = true
+		can_submit = false
+		
 	update_score()
 
 func get_word():
@@ -123,15 +140,10 @@ func get_word():
 	return word
 		
 func confirm_word():
-	var word = get_word()
-		
-	#for child in word_container.get_children():
-		#child.queue_free()
-	
-	on_word_confirmed.emit(word)
-	
-	#if grid_container.get_child_count() <= 0:
-		#on_menu_closed.emit()
+	if can_submit:
+		can_submit = false
+		var word = get_word()
+		on_word_confirmed.emit(word)
 
 func update_score():
 	var word = get_word()
@@ -146,6 +158,8 @@ func update_score():
 	
 func process_score(score: ScoreCalculator.ScoreBreakdown):
 	tween_time = 0.4
+	disable_mouse_inputs()
+	
 	for action in score.operations:
 		
 		var source = resolve_source(action)
@@ -167,6 +181,9 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 		await get_tree().create_timer(tween_time).timeout
 	display_total(score)
 	on_ui_finished.emit()
+	
+	enable_mouse_inputs()
+	
 
 func display_total(score: ScoreCalculator.ScoreBreakdown):
 		var total = $CenterContainer/VBoxContainer/Score/Total

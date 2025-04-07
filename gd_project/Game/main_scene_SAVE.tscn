@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dak56fxyyyt85"]
+[gd_scene load_steps=5 format=3 uid="uid://bwc80274jm4xa"]
 
-[ext_resource type="Script" uid="uid://co5otvtlvk4du" path="res://Game/main_scene.gd" id="1_0f027"]
-[ext_resource type="AudioStream" uid="uid://d2kohnw6ue60x" path="res://assets/sounds/0_THEME_1.ogg" id="3_f1nas"]
-[ext_resource type="AudioStream" uid="uid://5wn1wt266w3y" path="res://assets/sounds/bruitages/ambiance/VAGUES.mp3" id="4_f1nas"]
+[ext_resource type="Script" uid="uid://co5otvtlvk4du" path="res://Game/main_scene.gd" id="1_k1kec"]
+[ext_resource type="PackedScene" uid="uid://d3elieuk1ty6m" path="res://Game/Levels/level_test.tscn" id="2_f1dvb"]
+[ext_resource type="AudioStream" uid="uid://d2kohnw6ue60x" path="res://assets/sounds/0_THEME_1.ogg" id="3_qdid5"]
+[ext_resource type="AudioStream" uid="uid://5wn1wt266w3y" path="res://assets/sounds/bruitages/ambiance/VAGUES.mp3" id="4_4kusg"]
 
 [node name="MainScene" type="Node2D"]
-script = ExtResource("1_0f027")
+script = ExtResource("1_k1kec")
+
+[node name="Level" parent="." instance=ExtResource("2_f1dvb")]
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -24,13 +28,13 @@ size_flags_vertical = 4
 text = "START FISHING"
 
 [node name="Music_1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_f1nas")
+stream = ExtResource("3_qdid5")
 volume_db = -10.0
 autoplay = true
 parameters/looping = true
 
 [node name="Atmosphere_1" type="AudioStreamPlayer" parent="Music_1"]
-stream = ExtResource("4_f1nas")
+stream = ExtResource("4_4kusg")
 volume_db = -19.57
 pitch_scale = 0.72
 autoplay = true

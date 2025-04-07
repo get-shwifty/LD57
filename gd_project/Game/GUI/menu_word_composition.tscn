@@ -197,4 +197,9 @@ stream = ExtResource("3_b1ano")
 [node name="LettersScoring" type="AudioStreamPlayer" parent="."]
 volume_db = -4.643
 
-[connection signal="pressed" from="Submit" to="." method="confirm_word"]
+[node name="MouseBlock" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Submit" to="." method="confirm_word"]
