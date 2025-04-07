@@ -17,3 +17,11 @@ func set_letters(letters):
 			var letter: Letter = letters.pop_front()
 			child.set_letter(letter.character.character)
 			child.on_captured.connect(on_captured.emit.bind(letter))
+			if child is ClownFish:
+				letter.fish_type = Letter.FishType.Clown
+			if child is Crab:
+				letter.fish_type = Letter.FishType.Crab
+			if child is Murene:
+				letter.fish_type = Letter.FishType.Eel
+			if child is Jelly:
+				letter.fish_type = Letter.FishType.Medusa
