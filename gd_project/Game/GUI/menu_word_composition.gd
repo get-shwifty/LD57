@@ -22,16 +22,22 @@ class_name MenuWordComposition
 #]
 
 
-	
 @onready var UI_LETTER = preload("res://Game/GUI/ui_letter.tscn")
 @onready var UI_ARTEFACT = preload("res://Game/GUI/ui_artefact.tscn")
 
+@onready var center_container = $CenterContainer
+@onready var center_container2 = $CenterContainer2
 @onready var artefacts_container = $Artefacts
-@onready var word_container = $CenterContainer/VBoxContainer/WordContainer
-@onready var grid_container = $CenterContainer/VBoxContainer/GridContainer
+@onready var vbox_container = $CenterContainer/VBoxContainer
+@onready var word_container = %WordContainer
+@onready var grid_container = %GridContainer
+@onready var hbox_container = %HBoxContainer
+@onready var score_container = %Score
 @onready var sound_click_on_letter: AudioStreamPlayer = $SoundClickOnLetter
 @onready var lettersScoring: AudioStreamPlayer = $LettersScoring
 @onready var victory: AudioStreamPlayer = $SoundJackpooooot
+
+var artefacts: Array[Artefact]
 
 var sound_bank := [
 	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-1.ogg"),
@@ -45,64 +51,60 @@ var sound_index := 0
 @onready var multi: int = 10
 @onready var score: int = 0
 
+var is_composing_word: bool = false:
+	set(value):
+		is_composing_word = value
+		update_view()
 
-
-signal on_word_confirmed
-signal on_menu_closed
+signal on_word_confirmed(word)
 signal on_ui_finished
 
 static var dico: DictionaryHelper = DictionaryHelper.new(DictionaryHelper.Language.English)
 
 func _ready():
-	pass
-	#initialize()
+	update_view()
 	
 func _process(delta: float):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("submit"):
 		confirm_word()
-	if Input.is_action_just_pressed("ui_cancel"):
-		close_menu()
 
-func initialize(word: Array[Letter], artefacts: Array[Artefact]):
-	#var word: Array[Letter] = [];
-	#word.append(Letter.new(Alphabet.get_character("H")))
-	#word.append(Letter.new(Alphabet.get_character("E")))
-	#word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
-	#word.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
-	#word.append(Letter.new(Alphabet.get_character("O")))
-	setup_artefacts_grid(artefacts)
+func set_letters(word: Array[Letter]):
 	setup_letter_pool(word)
 
-func setup_artefacts_grid(artefacts: Array[Artefact]):
+func update_view():
+	grid_container.reparent(vbox_container if is_composing_word else center_container2)
+	center_container.visible = is_composing_word
+
+func setup_artefacts_grid():
 	for art in artefacts:
 		var artefact_ui = UI_ARTEFACT.instantiate()
 		artefact_ui.initialize(art)
 		artefacts_container.add_child(artefact_ui)
 
-func setup_letter_pool(letters : Array[Letter]):
+func setup_letter_pool(letters: Array[Letter]):
+	for child in grid_container.get_children():
+		child.queue_free()
+	for child in word_container.get_children():
+		child.queue_free()
+
 	for l in letters:
 		var letter_ui = UI_LETTER.instantiate()
 		letter_ui.initialize(l)
 		letter_ui.on_letter_selected.connect(on_letter_selected.bind(letter_ui))
 		grid_container.add_child(letter_ui)
 
-func on_letter_selected(letter : Control):
+func on_letter_selected(letter: Control):
 	sound_click_on_letter.play()
 	if grid_container.get_children().has(letter):
-		grid_container.remove_child(letter)
-		word_container.add_child(letter)
+		letter.reparent(word_container)
 	elif word_container.get_children().has(letter):
-		word_container.remove_child(letter)
-		grid_container.add_child(letter)
+		letter.reparent(grid_container)
 	var word = get_word()
-	if(len(word) and dico.is_word_valid(word)):
+	if (len(word) and dico.is_word_valid(word)):
 		$CenterContainer/VBoxContainer/Submit.disabled = false
 	else:
 		$CenterContainer/VBoxContainer/Submit.disabled = true
 	update_score()
-
-func close_menu():
-	on_menu_closed.emit()
 
 func get_word():
 	if word_container.get_child_count() <= 0:
@@ -133,19 +135,25 @@ func update_score():
 	$CenterContainer/VBoxContainer/Score/Points.text = str(score)
 	
 	
-func process_score(score: ScoreCalculator.ScoreBreakdown, artefacts: Array[Artefact]):
-	
+func process_score(score: ScoreCalculator.ScoreBreakdown):
 	for action in score.operations:
 		if action.letter_add_delta:
-			var tween: Tween = get_tree().create_tween()
+			var tween_letter: Tween = get_tree().create_tween()
 			var letter_ui: UILetter = word_container.get_children()[action.evaluated_letter_idx]
 			letter_ui.points.text = str(action.new_letter_score)
 			_play_bubble_sound()
-			letter_ui.position.y -= 5
-			tween.tween_property(letter_ui, "position", letter_ui.position + Vector2(0, 5), 0.25)
+			letter_ui.position.y -= 5.0
+			tween_letter.tween_property(letter_ui, "position", letter_ui.position + Vector2(0, 5), 0.25)
 			$CenterContainer/VBoxContainer/Score/Points.text = str(action.new_word_add)
 		await get_tree().create_timer(0.7).timeout
 		print("doing operation")
+	
+		if action.origin_artefact_idx:
+			var tween_artefact: Tween = get_tree().create_tween()
+			var artefact_ui: UIArtefact = artefacts_container.get_children()[action.origin_artefact_idx]
+			artefact_ui.position.y -= 5.0
+			tween_artefact.tween_property(artefact_ui, "position", artefact_ui.position + Vector2(0, 5), 0.25)
+			
 	$CenterContainer/VBoxContainer/Score/Total.text = str(score.final_score)
 	victory.play()
 	on_ui_finished.emit()
@@ -158,34 +166,3 @@ func _play_bubble_sound():
 	sound_index += 1
 	if sound_index >= sound_bank.size():
 		sound_index = 0
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

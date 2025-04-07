@@ -6,35 +6,43 @@ class_name GameLevel
 
 @onready var ui_container = $UIContainer;
 @onready var room: LevelRoom = $Room
-
-var word_composing_menu : MenuWordComposition
+@onready var player: Player = room.get_node("Player")
+@onready var word_composing_menu: MenuWordComposition = $UIContainer/MenuWordComposition
 
 var score_objective : int
 
-var current_letters : Array[Letter] = []
+var letters_pool : Array[Letter] = []
+var artefacts = get_artefacts()
 var current_score : int = 0
+var waiting_for_ui = false
 
 func _ready():
+	assert(player != null)
 	room.on_captured.connect(fish_captured)
 	
-	var letters = Alphabet.get_random_characters().map(func (c): return Letter.new(c))
-	room.set_letters(letters)
+	word_composing_menu.on_word_confirmed.connect(confirm_word)
+
+	letters_pool.append(Letter.new(Alphabet.get_character("H")))
+	letters_pool.append(Letter.new(Alphabet.get_character("E")))
+	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
+	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
+	letters_pool.append(Letter.new(Alphabet.get_character("O")))
 
 	setup_level()
 
 func setup_level():
 	score_objective = 5
+	word_composing_menu.set_letters(letters_pool)
+	word_composing_menu.artefacts = artefacts
+	word_composing_menu.setup_artefacts_grid()
+
+	var letters = Alphabet.get_random_characters().map(func (c): return Letter.new(c))
+	room.set_letters(letters)
+	
 
 func fish_captured(letter: Letter):
-	current_letters.append(letter)
-	prints("captured", letter.character.character)
-
-#func check_remaining_fishes():
-	#for fish in fishes:
-		#if !fish.is_captured:
-			#return
-	#print("all fishes captured")
-	#finish_level()
+	letters_pool.append(letter)
+	word_composing_menu.set_letters(letters_pool)
 	
 func oxygen_depleted():
 	print("oxygen depleted")
@@ -45,46 +53,42 @@ func finish_level():
 	on_level_finished.emit()
 	
 func confirm_word(word: Array[Letter]):
-	var variable_contexte: VariableContext = VariableContext.new()
-	var artefacts = get_artefacts()
-	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_contexte)
-
+	var variable_context: VariableContext = VariableContext.new()
+	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)
 	for letter in word:
-		current_letters.erase(letter)
-	
-	word_composing_menu.process_score(breakdown, artefacts)
+		letters_pool.erase(letter)
+	word_composing_menu.process_score(breakdown)
+	waiting_for_ui = true
+	await word_composing_menu.on_ui_finished
+	waiting_for_ui = false
+	word_composing_menu.set_letters(letters_pool)
+	compose_word()
 
-
-	#if current_score >= score_objective:
-		#finish_level()
-
-func get_letter_pool():
-	return current_letters
-	
 func _process(delta):
-	if !is_composing_word() && Input.is_action_just_pressed("game_compose_word"):
-		start_word_compose()
+	if waiting_for_ui:
+		return
 
-func get_word_score(word : String) -> int:
-	return word.length()
+	if Input.is_action_just_pressed("game_compose_word"):
+		toggle_word_compose()
 
 func get_score():
-	return current_score;
+	return current_score
 
-func is_composing_word() -> bool:
-	return word_composing_menu != null
+func toggle_word_compose():
+	if word_composing_menu.is_composing_word:
+		play_arcade()
+	else:
+		compose_word()
 
-func start_word_compose():
-	word_composing_menu = MENU_WORD_COMPOSITION.instantiate()
-	ui_container.add_child(word_composing_menu)
-	word_composing_menu.on_word_confirmed.connect(confirm_word)
-	word_composing_menu.on_menu_closed.connect(close_word_compose)
-	word_composing_menu.initialize(current_letters, get_artefacts())
+func compose_word():
+	word_composing_menu.is_composing_word = true
+	player.enabled = false
 
-func close_word_compose():
-	word_composing_menu.queue_free()
-	word_composing_menu = null
-	
+func play_arcade():
+	word_composing_menu.is_composing_word = false
+	word_composing_menu.set_letters(letters_pool)
+	player.enabled = true
+
 func get_artefacts() -> Array[Artefact]:
 	var artefacts: Array[Artefact] = []
 	

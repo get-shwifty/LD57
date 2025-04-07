@@ -9,6 +9,8 @@ class_name Player
 @onready var moveSound: AudioStreamPlayer = $Move
 @onready var breath: AudioStreamPlayer = $Breath
 
+var enabled = true
+
 var sound_bank := [
 	preload("res://assets/sounds/bruitages/player/SON-RESPIRATION-1.mp3"),
 	preload("res://assets/sounds/bruitages/player/SON-RESPIRATION-2.mp3"),
@@ -39,6 +41,9 @@ func _process(delta: float) -> void:
 			time_since_last_sound = 0.0
 
 func _physics_process(_delta: float) -> void:
+	if not enabled:
+		return
+
 	var hinput = Input.get_axis("move_left", "move_right")
 	var vinput = Input.get_axis("move_up", "move_down")
 	var input = Vector2(hinput, vinput).normalized()
