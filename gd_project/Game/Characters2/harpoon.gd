@@ -11,6 +11,7 @@ class_name Harpoon
 
 @onready var projectile_start: Node2D = $ProjectileStart
 @onready var projectile: CharacterBody2D = $Projectile
+@onready var projectileTouch: AudioStreamPlayer =$ProjectileTouch
 
 enum { ARMED, FIRED, RETURNING }
 var state = ARMED
@@ -40,6 +41,7 @@ func _physics_process(delta: float) -> void:
 				var collider = collision.get_collider()
 				if collider.has_method("capture_letter"):
 					collider.capture_letter(collision)
+					projectileTouch.play()
 				projectile_velocity = Vector2.ZERO
 			projectile_fired_time = -PROJ_DEST_DURATION
 		elif projectile_fired_time < 0:

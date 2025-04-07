@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c25n0h1ncfdf8"
+path="res://.godot/imported/BRUIT DEPLACEMENT-BULLES.mp3-d002414c84f8469ee7d035ec2412eccf.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/bruitages/player/BRUIT DEPLACEMENT-BULLES.mp3"
+dest_files=["res://.godot/imported/BRUIT DEPLACEMENT-BULLES.mp3-d002414c84f8469ee7d035ec2412eccf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
