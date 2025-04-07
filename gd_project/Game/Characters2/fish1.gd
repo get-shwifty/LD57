@@ -28,7 +28,10 @@ func get_target():
 			path_to_follow.to_local(point_following.global_position)))
 
 func _process(_delta: float) -> void:
-	$LetterCtn.global_rotation = 0
+	if $LetterCtn.global_rotation > PI*0.52:
+		$LetterCtn.global_rotation -= PI
+	if $LetterCtn.global_rotation < -PI*0.52:
+		$LetterCtn.global_rotation += PI
 	$Visual.scale.y = -1 if velocity.x < 0 else 1
 
 func _physics_process(delta: float) -> void:
