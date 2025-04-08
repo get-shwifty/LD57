@@ -10,7 +10,7 @@ extends Node2D
 @onready var menu_container = $CanvasLayer/MenuContainer
 
 @onready var ROOMS_METADATA = {
-	preload("res://Game/Levels/room_1-1.tscn"): RoomMetadata.new(1,10,1,0,5),
+	preload("res://Game/Levels/room_1.tscn"): RoomMetadata.new(1,10,1,0,5),
 	preload("res://Game/Levels/room_2.tscn"): RoomMetadata.new(2,1,0,0,10),
 	preload("res://Game/Levels/room_3.tscn"): RoomMetadata.new(3,2,0,1,10),
 	preload("res://Game/Levels/room_4.tscn"): RoomMetadata.new(4,0,0,2,9),
