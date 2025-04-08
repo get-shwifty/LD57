@@ -26,7 +26,6 @@ func _ready():
 	call_deferred("reparent", path_follow, false)
 
 func _process(_delta: float) -> void:
-	$LetterCtn.global_rotation = 0
 	$Visual.scale.x = 1 if forward else -1
 
 func _physics_process(delta: float) -> void:

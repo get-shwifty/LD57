@@ -162,7 +162,7 @@ static func generate_bonuses() -> Array[Artefact]:
 		if cc.current_letter.character.character != "E":
 			return false
 		
-		var delta
+		var delta = 0
 		for letter in cc.word:
 			if letter.character.character == "E":
 				delta += 1

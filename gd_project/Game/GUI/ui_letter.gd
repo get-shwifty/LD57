@@ -15,16 +15,23 @@ func initialize(letter_ : Letter):
 
 func update_type(type: Letter.FishType):
 	var texture_index = 0
+	var fish_texture = 0
 	match type:
 		Letter.FishType.Medusa:
 			texture_index = 1
-		Letter.FishType.Crab:
+			fish_texture = 1
+		Letter.FishType.Crab: #0
 			texture_index = 2
-		Letter.FishType.Eel:
+			fish_texture = 3
+		Letter.FishType.Eel: #3
 			texture_index = 3
-		Letter.FishType.Clown:
+			fish_texture = 2
+		Letter.FishType.Clown: #2
 			texture_index = 0
+			fish_texture = 0
+	
 	$Button.texture_normal.set_region(Rect2(texture_index * 24, 0, 24, 27))
+	$Button/PanelContainer/Fish.texture.set_region(Rect2(fish_texture * 10, 11, 10, 9))
 
 func update_bonus(bonus: Letter.BonusType):
 	var texture_index = 0
@@ -40,10 +47,10 @@ func update_bonus(bonus: Letter.BonusType):
 		Letter.BonusType.WordMult2:
 			texture_index = 3
 	if texture_index != -1:
-		$Cadre.texture.set_region(Rect2(texture_index * 27, 0, 27, 31))
-		$Cadre.visible = true
+		$Button/Cadre.texture.set_region(Rect2(texture_index * 27, 0, 27, 31))
+		$Button/Cadre.visible = true
 	else:
-		$Cadre.visible = false
+		$Button/Cadre.visible = false
 	
 	
 func get_letter() -> Letter:

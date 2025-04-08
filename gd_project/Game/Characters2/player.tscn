@@ -198,7 +198,7 @@ pitch_scale = 0.59
 
 [node name="ProjectileTouch" type="AudioStreamPlayer" parent="Harpoon"]
 stream = ExtResource("5_vo8gn")
-volume_db = -11.607
+volume_db = -15.716
 pitch_scale = 0.3
 
 [node name="Oxygen" type="Node2D" parent="."]

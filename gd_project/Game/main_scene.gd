@@ -10,12 +10,12 @@ extends Node2D
 @onready var menu_container = $CanvasLayer/MenuContainer
 
 @onready var ROOMS_METADATA = {
-	preload("res://Game/Levels/room_1-1.tscn"): RoomMetadata.new(1, 0, 0, 0, 0),
-	preload("res://Game/Levels/room_2.tscn"): RoomMetadata.new(2, 0, 0, 0, 0),
-	preload("res://Game/Levels/room_3.tscn"): RoomMetadata.new(3, 0, 0, 0, 0),
-	preload("res://Game/Levels/room_4.tscn"): RoomMetadata.new(4, 0, 0, 0, 0),
-	preload("res://Game/Levels/room_5.tscn"): RoomMetadata.new(5, 0, 0, 0, 0),
-	preload("res://Game/Levels/room_6.tscn"): RoomMetadata.new(6, 0, 0, 0, 0),
+	preload("res://Game/Levels/room_1-1.tscn"): RoomMetadata.new(1,10,1,0,5),
+	preload("res://Game/Levels/room_2.tscn"): RoomMetadata.new(2,1,0,0,10),
+	preload("res://Game/Levels/room_3.tscn"): RoomMetadata.new(3,2,0,1,10),
+	preload("res://Game/Levels/room_4.tscn"): RoomMetadata.new(4,0,0,2,9),
+	preload("res://Game/Levels/room_5.tscn"): RoomMetadata.new(5,2,4,0,5),
+	preload("res://Game/Levels/room_6.tscn"): RoomMetadata.new(6,1,7,1,4),
 	preload("res://Game/Levels/room_7.tscn"): RoomMetadata.new(7, 0, 0, 0, 0),
 }
 
@@ -33,7 +33,6 @@ func _ready():
 	add_child(game_start)
 
 	game_start.start_game.connect(setup_game)
-	print("YOOO")
 
 func setup_game():
 	print("game setup")
