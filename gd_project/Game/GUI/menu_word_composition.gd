@@ -227,12 +227,12 @@ func display_total(score: ScoreCalculator.ScoreBreakdown):
 	while temp < score.final_score:
 		total.text = str(temp)
 		await bump_ui(total)
-		if temp + increment + 1 > score.final_score:
+		if temp + increment + 2 > score.final_score:
 			temp = score.final_score
 			total.text = str(temp)
 			await bump_ui(total)
 		temp += increment
-		increment += 1
+		increment += 2
 	victory.play()
 
 

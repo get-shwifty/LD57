@@ -59,6 +59,7 @@ func setup_game():
 
 func on_level_finished(points):
 	if points == 0:
+		total_points += current_level.score.current
 		game_over("No more oxygen")
 		return
 	
@@ -138,7 +139,7 @@ func _on_map_exited(room: Room) -> void:
 			start_new_level(2)
 		Room.Type.BOSS:
 			is_boss = true
-			start_new_level(5)
+			start_new_level(2)
 
 func game_over(reason="") -> void:
 	clean()

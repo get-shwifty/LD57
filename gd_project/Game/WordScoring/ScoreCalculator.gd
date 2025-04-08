@@ -37,9 +37,13 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 			if a.artefact.target == Artefact.TargetType.LetterFishType:
 				breakdown.register_operation(true, a, current_indexed_letter)
 		
+		applicable_artifacts = get_applicable_artefacts(true, artefacts, var_context, cond_context)
+		
 		for a in applicable_artifacts:
 			if a.artefact.target == Artefact.TargetType.LetterBonusType:
 				breakdown.register_operation(true, a, current_indexed_letter)
+
+		applicable_artifacts = get_applicable_artefacts(true, artefacts, var_context, cond_context)
 		
 		for a in applicable_artifacts:
 			if a.artefact.target == Artefact.TargetType.LetterAdd:
