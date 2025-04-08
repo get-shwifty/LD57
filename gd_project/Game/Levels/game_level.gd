@@ -30,6 +30,13 @@ func setup_level(artefacts : Array[Artefact]):
 	word_composing_menu.setup_artefacts_grid()
 
 	var letters = Alphabet.get_random_characters().map(func(c): return Letter.new(c))
+	for letter: Letter in letters:
+		var r = randf()
+		if r < 0.05:
+			letter.bonus_type = Letter.BonusType.LetterMult2
+		elif r < 0.15:
+			letter.bonus_type = Letter.BonusType.LetterMult1
+
 	room.set_letters(letters)
 
 
@@ -48,6 +55,7 @@ func neutralize_ui():
 
 func confirm_word(word: Array[Letter]):
 	var variable_context: VariableContext = VariableContext.new()
+	variable_context.remaining_oxygen = player.oxygen.current_oxygen
 	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)
 	for letter in word:
 		letters_pool.erase(letter)

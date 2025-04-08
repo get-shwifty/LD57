@@ -3,9 +3,9 @@ class_name Oxygen
 
 signal on_oxygen_depleted
 
-# 5 * 120 = 10mn
-@export var START_OXYGEN: float = 5.1
-@export var OXYGEN_CONSUMPTION_RATE: float = 1.0 / 120.0
+# 3 * 90 = 4mn30
+@export var START_OXYGEN: float = 3.1
+@export var OXYGEN_CONSUMPTION_RATE: float = 1.0 / 90.0
 
 var current_oxygen: float
 var lost_all_oxygen: bool
