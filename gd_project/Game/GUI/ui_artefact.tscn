@@ -11,6 +11,7 @@ atlas = ExtResource("2_eco2u")
 region = Rect2(24, 0, 24, 27)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rji0t"]
+resource_local_to_scene = true
 atlas = ExtResource("3_iaw2f")
 region = Rect2(0.0362625, 0.0547242, 10.1238, 9.5392)
 
