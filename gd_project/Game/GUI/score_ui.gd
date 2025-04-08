@@ -13,7 +13,12 @@ var current:
 
 var oxygen:
 	set(value):
-		$VBoxContainer/HBoxContainer3/Label2.text = str(value).pad_decimals(1)
+		var label = $VBoxContainer/HBoxContainer3/Label2
+		label.text = str(value).pad_decimals(1)
+		if value < 1:
+			label.add_theme_color_override("font_color", Color.RED)
+
+
 
 func _ready():
 	current = 0
