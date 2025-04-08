@@ -13,7 +13,7 @@ enum VariableType
 var letter_count : int
 var vowel_count : int
 var consonant_count : int
-var remaining_oxygen : int
+var remaining_oxygen : float
 var grapple_count : int
 
 func get_variable(variable : VariableType) -> int:

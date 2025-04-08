@@ -194,6 +194,7 @@ class ScoreBreakdown:
 			indexed_letter.letter.fish_type = operation.letter_fish_type_delta
 		
 		current_letter_score = max(current_letter_score, 0)
+		current_letter_score = snapped(current_letter_score, 0.01)
 		
 		var letter_score_delta = current_letter_score - current_letter_old_score
 		if letter_score_delta != 0:
@@ -205,7 +206,9 @@ class ScoreBreakdown:
 			current_word_mult += operation.word_mult_delta
 			
 		current_word_add = max(current_word_add,0)
+		current_word_add = snapped(current_word_add, 0.01)
 		current_word_mult = max(current_word_mult,1)
+		current_word_mult = snapped(current_word_mult, 0.01)
 		
 		operation.new_letter_score = current_letter_score
 		operation.new_word_add = current_word_add
