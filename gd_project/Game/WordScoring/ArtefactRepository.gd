@@ -122,10 +122,10 @@ static func generate_bonuses() -> Array[Artefact]:
 
 	artefact = Artefact.new()
 	artefact.name = "Choir vocals"
-	artefact.description = "+100 if first and last letters are vowels"
+	artefact.description = "+50 if first and last letters are vowels"
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
-	artefact.value = ComputedValue.new(100)
+	artefact.value = ComputedValue.new(50)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return cc.first_letter.character.is_vowel && cc.last_letter.character.is_vowel
 	artefacts.append(artefact)
@@ -219,11 +219,11 @@ static func generate_maluses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Crabastrophic"
-	artefact.description = "-50 points if word contains a crab"
+	artefact.description = "-30 points if word contains a crab"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
-	artefact.value = ComputedValue.new(50)
+	artefact.value = ComputedValue.new(30)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		for letter in cc.word:
 			if letter.fish_type == Letter.FishType.Crab:
@@ -284,23 +284,23 @@ static func generate_maluses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Against all odds"
-	artefact.description = "-50 points if word has an odd letter count"
+	artefact.description = "-30 points if word has an odd letter count"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
-	artefact.value = ComputedValue.new(-50)
+	artefact.value = ComputedValue.new(-30)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return vc.letter_count % 2 != 0;
 	artefacts.append(artefact)
 	
 	artefact = Artefact.new()
 	artefact.name = "Buffer overflow"
-	artefact.description = "-30 points per letter remaining in the pool"
+	artefact.description = "-5 points per letter remaining in the pool"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
 	artefact.value = func(vc: VariableContext, cc: ConditionContext):
-		return cc.letter_pool.size() * -30;
+		return cc.letter_pool.size() * -5;
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return cc.letter_pool.size() > 0;
 	artefacts.append(artefact)

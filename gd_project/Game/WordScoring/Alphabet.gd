@@ -59,10 +59,14 @@ static var french_characters : Array[Character] = [
 ];
 
 static func get_all_characters():
-	return english_characters;
+	match DictionaryHelper.current_lang:
+		"en":
+			return english_characters
+		"fr":
+			return french_characters
 	
 static func get_character(character : String) -> Character:
-	for c in english_characters:
+	for c in get_all_characters():
 		if c.character == character:
 			return c
 	
@@ -71,7 +75,7 @@ static func get_character(character : String) -> Character:
 
 static func get_random_characters(n: int = 16):
 	var all_letters = []
-	for c: Character in english_characters:
+	for c: Character in get_all_characters():
 		for i in range(c.frequency):
 			all_letters.append(c)
 	all_letters.shuffle()
