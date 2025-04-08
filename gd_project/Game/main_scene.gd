@@ -24,6 +24,7 @@ var current_menu
 var map_menu: Map
 var game_end
 var game_start
+var is_boss = false
 
 var current_room_idx = 0
 var total_points: float = 0
@@ -58,9 +59,13 @@ func setup_game():
 func on_level_finished(points):
 	if points == 0:
 		game_over("No more oxygen")
-	else:
-		total_points += points
+		return
+	
+	total_points += points
 		
+	if is_boss:
+		game_over("CONGRATULATIONS!")
+	else:
 		print("main game detected level finished")
 		current_menu = MENU_LEVEL_FINISHED.instantiate()
 		current_menu.on_menu_closed.connect(on_score_menu_closed)
@@ -131,6 +136,7 @@ func _on_map_exited(room: Room) -> void:
 		Room.Type.MINI_BOSS:
 			start_new_level(2)
 		Room.Type.BOSS:
+			is_boss = true
 			start_new_level(5)
 
 func game_over(reason="") -> void:
