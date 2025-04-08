@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://foipsmnjhbbe"]
+[gd_scene load_steps=21 format=3 uid="uid://foipsmnjhbbe"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_t5i3a"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_cia0p"]
@@ -10,18 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="6_wnnr5"]
 [ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="7_sqdbd"]
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="8_t43bs"]
+[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="11_vkvpj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(39.25, 691.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(1489.5, 2)
-
-[sub_resource type="Curve2D" id="Curve2D_ge0ju"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 98, -20, 0, 0, 0, 0, 151, -22, 0, 0, 0, 0, 205, -4, 0, 0, 0, 0, 252, 10, 0, 0, 0, 0, 287, 27, 0, 0, 0, 0, 319, 42, 0, 0, 0, 0, 347, 48, 0, 0, 0, 0, 361, 60, 0, 0, 0, 0, 379, 67, 0, 0, 0, 0, 395, 63, 0, 0, 0, 0, 412, 68, 0, 0, 0, 0, 425, 77, 0, 0, 0, 0, 451, 98, 0, 0, 0, 0, 493, 107, 0, 0, 0, 0, 528, 97, 0, 0, 0, 0, 546, 75, 0, 0, 0, 0, 592, 66, 0, 0, 0, 0, 637, 71, 0, 0, 0, 0, 688, 102, 0, 0, 0, 0, 693, 124, 0, 0, 0, 0, 691, 150, 0, 0, 0, 0, 681, 191, 0, 0, 0, 0, 680, 211, 0, 0, 0, 0, 713, 256, 0, 0, 0, 0, 732, 265, 0, 0, 0, 0, 775, 265, 0, 0, 0, 0, 815, 251, 0, 0, 0, 0, 839, 234, 0, 0, 0, 0, 851, 217, 0, 0, 0, 0, 865, 198, 0, 0, 0, 0, 906, 175, 0, 0, 0, 0, 941, 178, 0, 0, 0, 0, 958, 187, 0, 0, 0, 0, 982, 209, 0, 0, 0, 0, 988, 225, 0, 0, 0, 0, 999, 243, 0, 0, 0, 0, 1013, 277)
-}
-point_count = 37
 
 [sub_resource type="Curve2D" id="Curve2D_mdsio"]
 _data = {
@@ -35,6 +30,12 @@ _data = {
 }
 point_count = 58
 
+[sub_resource type="Curve2D" id="Curve2D_ge0ju"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 98, -20, 0, 0, 0, 0, 151, -22, 0, 0, 0, 0, 205, -4, 0, 0, 0, 0, 252, 10, 0, 0, 0, 0, 287, 27, 0, 0, 0, 0, 319, 42, 0, 0, 0, 0, 347, 48, 0, 0, 0, 0, 361, 60, 0, 0, 0, 0, 379, 67, 0, 0, 0, 0, 395, 63, 0, 0, 0, 0, 412, 68, 0, 0, 0, 0, 425, 77, 0, 0, 0, 0, 451, 98, 0, 0, 0, 0, 493, 107, 0, 0, 0, 0, 528, 97, 0, 0, 0, 0, 546, 75, 0, 0, 0, 0, 592, 66, 0, 0, 0, 0, 637, 71, 0, 0, 0, 0, 688, 102, 0, 0, 0, 0, 693, 124, 0, 0, 0, 0, 691, 150, 0, 0, 0, 0, 681, 191, 0, 0, 0, 0, 680, 211, 0, 0, 0, 0, 713, 256, 0, 0, 0, 0, 732, 265, 0, 0, 0, 0, 775, 265, 0, 0, 0, 0, 815, 251, 0, 0, 0, 0, 839, 234, 0, 0, 0, 0, 851, 217, 0, 0, 0, 0, 865, 198, 0, 0, 0, 0, 906, 175, 0, 0, 0, 0, 941, 178, 0, 0, 0, 0, 958, 187, 0, 0, 0, 0, 982, 209, 0, 0, 0, 0, 988, 225, 0, 0, 0, 0, 999, 243, 0, 0, 0, 0, 1013, 277)
+}
+point_count = 37
+
 [sub_resource type="Curve2D" id="Curve2D_at57x"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -132, 120, 0, 0, 0, 0, -120, 96, 0, 0, 0, 0, -96, 84, 0, 0, 0, 0, -80, 72, 0, 0, 0, 0, -60, 72, 0, 0, 0, 0, -44, 52, 0, 0, 0, 0, -40, 48, 0, 0, 0, 0, -28, 52)
@@ -46,6 +47,18 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1, 1, 0, 0, 0, 0, 20, -1, 0, 0, 0, 0, 37, -6, 0, 0, 0, 0, 53, -15, 0, 0, 0, 0, 62, -20, 0, 0, 0, 0, 70, -29, 0, 0, 0, 0, 78, -45, 0, 0, 0, 0, 95, -57, 0, 0, 0, 0, 109, -59)
 }
 point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_wnnr5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 469.5, 15, 0, 0, 0, 0, 486.5, 23, 0, 0, 0, 0, 499.5, 21, 0, 0, 0, 0, 506.5, 24, 0, 0, 0, 0, 515.5, 34, 0, 0, 0, 0, 520.5, 38)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_sqdbd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 631.5, 352, 0, 0, 0, 0, 765.5, 352, 0, 0, 0, 0, 628.5, 351)
+}
+point_count = 3
 
 [node name="Room4" type="Node2D"]
 script = ExtResource("1_t5i3a")
@@ -354,9 +367,6 @@ path_to_follow = NodePath("../Path2Dmurene")
 position = Vector2(843, 83)
 path_to_follow = NodePath("../Path2Dmurene2")
 
-[node name="Path2Dmurene" type="Path2D" parent="Fish"]
-curve = SubResource("Curve2D_ge0ju")
-
 [node name="Crab" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
 position = Vector2(27, 265)
 path_to_follow = NodePath("../Path2Dcrab")
@@ -389,23 +399,64 @@ path_to_follow = NodePath("../Path2DCrab2")
 position = Vector2(845, 299)
 path_to_follow = NodePath("../Path2DCrab2")
 
+[node name="Crab9" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(328, 278)
+path_to_follow = NodePath("../Path2Dcrab9")
+
+[node name="Crab10" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(469.5, 12)
+path_to_follow = NodePath("../Path2Dcrabsss")
+
+[node name="Crab11" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(597.5, 103)
+path_to_follow = NodePath("../Path2Dcrabsss2")
+
+[node name="Crab12" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
+position = Vector2(786.5, -2)
+path_to_follow = NodePath("../Path2Dcrabsss3")
+
+[node name="Fish" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("11_vkvpj")]
+position = Vector2(634.5, 347)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish2" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("11_vkvpj")]
+position = Vector2(933.5, 335)
+path_to_follow = NodePath("../Path2D")
+
 [node name="Path2Dmurene2" type="Path2D" parent="Fish"]
 curve = SubResource("Curve2D_mdsio")
 
 [node name="Path2Dcrab" type="Path2D" parent="Fish"]
 curve = SubResource("Curve2D_mqed5")
 
+[node name="Path2Dmurene" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_ge0ju")
+
 [node name="Path2DCrab2" type="Path2D" parent="Fish"]
 position = Vector2(916, 229)
 curve = SubResource("Curve2D_at57x")
 
-[node name="Crab9" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_t43bs")]
-position = Vector2(328, 278)
-path_to_follow = NodePath("../Path2Dcrab9")
-
 [node name="Path2Dcrab9" type="Path2D" parent="Fish"]
 position = Vector2(328, 278)
 curve = SubResource("Curve2D_804ge")
+
+[node name="Path2Dcrabsss" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_wnnr5")
+
+[node name="Path2Dcrabsss2" type="Path2D" parent="Fish"]
+position = Vector2(133.5, 88)
+curve = SubResource("Curve2D_wnnr5")
+
+[node name="Path2Dcrabsss3" type="Path2D" parent="Fish"]
+position = Vector2(297.5, -21)
+curve = SubResource("Curve2D_wnnr5")
+
+[node name="Path2D" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_sqdbd")
+
+[node name="Path2D2" type="Path2D" parent="Fish"]
+position = Vector2(299, -12)
+curve = SubResource("Curve2D_sqdbd")
 
 [node name="Player" parent="." instance=ExtResource("6_vkvpj")]
 position = Vector2(50, 41)

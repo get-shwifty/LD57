@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc6te8c6m3xoy"]
+[gd_scene load_steps=8 format=3 uid="uid://dc6te8c6m3xoy"]
 
 [ext_resource type="Script" uid="uid://cl0i410mjobnp" path="res://Game/GUI/ArtefactSelection/ui_artefact.gd" id="1_o4ce7"]
 [ext_resource type="Texture2D" uid="uid://dsqs4xfscmc0m" path="res://GUI/bonus.png" id="2_kxrmh"]
 [ext_resource type="Texture2D" uid="uid://ci3l55myujcmf" path="res://GUI/malus.png" id="3_7wxdc"]
+[ext_resource type="FontFile" uid="uid://bdt811tmnc1sq" path="res://assets/fonts/Square.ttf" id="4_ln0pe"]
+[ext_resource type="Texture2D" uid="uid://bhe7myquv1gkv" path="res://assets/images/icon_bonus.png" id="5_cr1fa"]
+[ext_resource type="FontFile" uid="uid://228ok17mi0p" path="res://assets/fonts/HWYGCOND.TTF" id="5_jqxmh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyr0k"]
+resource_local_to_scene = true
+atlas = ExtResource("5_cr1fa")
+region = Rect2(0, 0, 10, 9)
+margin = Rect2(0, 0, 0, 10)
 
 [node name="Artefact" type="CenterContainer"]
 anchors_preset = 15
@@ -25,22 +34,32 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Title" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(65, 30)
+custom_minimum_size = Vector2(65, 20)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ln0pe")
 theme_override_font_sizes/font_size = 8
 text = "Artefact Title"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Description" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(60, 50)
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+texture = SubResource("AtlasTexture_hyr0k")
+stretch_mode = 3
+
+[node name="Description" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(60, 65)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_jqxmh")
 theme_override_font_sizes/font_size = 8
 text = "Artefact Description"
 horizontal_alignment = 1

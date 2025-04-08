@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://pooxaxvkt0nu"]
+[gd_scene load_steps=21 format=3 uid="uid://pooxaxvkt0nu"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_ihxlm"]
+[ext_resource type="Script" path="res://Game/Levels/elements/rayons.gd" id="2_44bgk"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_ev1y8"]
 [ext_resource type="PackedScene" uid="uid://ceej58xocqth7" path="res://Game/Levels/elements/rock_d.tscn" id="3_vd6cr"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_vd6cr"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_44bgk"]
 [ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="8_ev1y8"]
 [ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="9_5r4a5"]
+[ext_resource type="PackedScene" uid="uid://tsng1mrq77pc" path="res://Game/Levels/elements/Rayons.tscn" id="10_oyflh"]
 [ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="10_vd6cr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
@@ -20,9 +22,9 @@ size = Vector2(1293, 5)
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 60.8095, 106.379, 0, 0, 0, 0, 63.1434, 114.013, 0, 0, 0, 0, 68.278, 116.876, 0, 0, 0, 0, 94.4179, 112.105, 0, 0, 0, 0, 128.026, 123.556, 0, 0, 0, 0, 158.367, 117.353, 0, 0, 0, 0, 166.769, 103.039, 0, 0, 0, 0, 188.708, 101.131, 0, 0, 0, 0, 198.044, 88.2484, 0, 0, 0, 0, 222.317, 85.8628, 0, 0, 0, 0, 247.99, 80.1373, 0, 0, 0, 0, 241.455, 72.5033, 0, 0, 0, 0, 234.453, 72.0262, 0, 0, 0, 0, 215.315, 76.7974, 0, 0, 0, 0, 188.708, 74.8889, 0, 0, 0, 0, 173.304, 90.1569, 0, 0, 0, 0, 141.096, 103.993, 0, 0, 0, 0, 132.694, 102.562, 0, 0, 0, 0, 123.825, 91.1111, 0, 0, 0, 0, 119.624, 82.0458, 0, 0, 0, 0, 131.761, 61.5294, 0, 0, 0, 0, 125.226, 46.7386, 0, 0, 0, 0, 93.0176, 44.8301, 0, 0, 0, 0, 66.8777, 41.9673, 0, 0, 0, 0, 52.8742, 72.9804, 0, 0, 0, 0, 60.8095, 106.379)
+"points": PackedVector2Array(0, 0, 0, 0, 60.8095, 106.379, 0, 0, 0, 0, 63.1434, 114.013, 0, 0, 0, 0, 68.278, 116.876, 0, 0, 0, 0, 94.4179, 112.105, 0, 0, 0, 0, 128.026, 123.556, 0, 0, 0, 0, 158.367, 117.353, 0, 0, 0, 0, 166.769, 103.039, 0, 0, 0, 0, 188.708, 101.131, 0, 0, 0, 0, 198.044, 88.2484, 0, 0, 0, 0, 222.317, 85.8628, 0, 0, 0, 0, 233.053, 83.4771, 0, 0, 0, 0, 269.839, 68.259, 0, 0, 0, 0, 287.2, 60.5752, 0, 0, 0, 0, 329.677, 30.9935, 0, 0, 0, 0, 354.416, 52.9412, 0, 0, 0, 0, 342.747, 92.5425, 0, 0, 0, 0, 338.546, 85.8628, 0, 0, 0, 0, 337.145, 67.2549, 0, 0, 0, 0, 350.682, 36.2418, 0, 0, 0, 0, 348.815, 15.2484, 0, 0, 0, 0, 322.675, 20.4967, 0, 0, 0, 0, 297.002, 53.4183, 0, 0, 0, 0, 244.255, 79.6601, 0, 0, 0, 0, 228.852, 80.6144, 0, 0, 0, 0, 215.315, 76.7974, 0, 0, 0, 0, 188.708, 74.8889, 0, 0, 0, 0, 173.304, 90.1569, 0, 0, 0, 0, 141.096, 103.993, 0, 0, 0, 0, 132.694, 102.562, 0, 0, 0, 0, 123.825, 91.1111, 0, 0, 0, 0, 119.624, 82.0458, 0, 0, 0, 0, 131.761, 61.5294, 0, 0, 0, 0, 125.226, 46.7386, 0, 0, 0, 0, 93.0176, 44.8301, 0, 0, 0, 0, 66.8777, 41.9673, 0, 0, 0, 0, 52.8742, 72.9804, 0, 0, 0, 0, 60.8095, 106.379)
 }
-point_count = 26
+point_count = 37
 
 [sub_resource type="Curve2D" id="Curve2D_at57x"]
 _data = {
@@ -92,6 +94,7 @@ position = Vector2(320, 1)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="World" type="Node2D" parent="."]
+script = ExtResource("2_44bgk")
 metadata/_edit_lock_ = true
 
 [node name="Wallpaper" type="Sprite2D" parent="World"]
@@ -113,14 +116,6 @@ position = Vector2(319, 239)
 texture = ExtResource("2_ev1y8")
 region_enabled = true
 region_rect = Rect2(1, 1375.5, 637, 242)
-
-[node name="BackLayer3" type="Sprite2D" parent="World"]
-modulate = Color(1, 1, 1, 0.517647)
-position = Vector2(250, 96)
-rotation = -0.523599
-texture = ExtResource("2_ev1y8")
-region_enabled = true
-region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
 
 [node name="RockB" parent="World" instance=ExtResource("3_vd6cr")]
 position = Vector2(527, 235)
@@ -160,6 +155,7 @@ rotation = 3.14159
 scale = Vector2(2, 2)
 
 [node name="RockC3" parent="World" instance=ExtResource("5_vd6cr")]
+z_index = 1
 position = Vector2(429, -23)
 rotation = 3.14159
 scale = Vector2(2, 2)
@@ -255,6 +251,10 @@ position = Vector2(679, 145)
 [node name="Algue12" parent="World" instance=ExtResource("10_vd6cr")]
 position = Vector2(677, 159)
 
+[node name="Rayons" parent="World" instance=ExtResource("10_oyflh")]
+position = Vector2(-295, -28)
+rotation = -0.511381
+
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_right = 640.0
@@ -267,6 +267,26 @@ position = Vector2(46, 50)
 
 [node name="Fish" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
 position = Vector2(118, 77)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish2" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
+position = Vector2(248, 192)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish3" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
+position = Vector2(288, 240)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish4" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
+position = Vector2(392, 147)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish5" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
+position = Vector2(707, 107)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish6" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("6_h4dfq")]
+position = Vector2(671, 32)
 path_to_follow = NodePath("../Path2D")
 
 [node name="Crab" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_44bgk")]

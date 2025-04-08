@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://pooxaxvkt0nu"]
+[gd_scene load_steps=20 format=3 uid="uid://pooxaxvkt0nu"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_yukt0"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_6hjk7"]
@@ -52,6 +52,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 741, 223, 0, 0, 0, 0, 756, 215, 0, 0, 0, 0, 775, 206, 0, 0, 0, 0, 805, 206, 0, 0, 0, 0, 810, 216, 0, 0, 0, 0, 827, 219, 0, 0, 0, 0, 845, 223)
 }
 point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_yukt0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 151, -169, 0, 0, 0, 0, 295, -157, 0, 0, 0, 0, 336, -132, 0, 0, 0, 0, 336, -124, 0, 0, 0, 0, 332, -116, 0, 0, 0, 0, 326, -106, 0, 0, 0, 0, 312, -95, 0, 0, 0, 0, 289, -68, 0, 0, 0, 0, 293, -38, 0, 0, 0, 0, 298, -17, 0, 0, 0, 0, 302, 1, 0, 0, 0, 0, 290, 12, 0, 0, 0, 0, 271, 24, 0, 0, 0, 0, 217, 41, 0, 0, 0, 0, 176, 39, 0, 0, 0, 0, 145, 30, 0, 0, 0, 0, 128, 2, 0, 0, 0, 0, 146, -26, 0, 0, 0, 0, 170, -40, 0, 0, 0, 0, 184, -57, 0, 0, 0, 0, 188, -77, 0, 0, 0, 0, 182, -97, 0, 0, 0, 0, 150, -109, 0, 0, 0, 0, 113, -108, 0, 0, 0, 0, 90, -106, 0, 0, 0, 0, 82, -112, 0, 0, 0, 0, 80, -121, 0, 0, 0, 0, 79, -140, 0, 0, 0, 0, 85, -152, 0, 0, 0, 0, 104, -163, 0, 0, 0, 0, 114, -165, 0, 0, 0, 0, 139, -169, 0, 0, 0, 0, 151, -169)
+}
+point_count = 33
 
 [node name="Room3" type="Node2D"]
 script = ExtResource("1_yukt0")
@@ -532,3 +538,14 @@ curve = SubResource("Curve2D_umuk3")
 
 [node name="Path2D2crabss" type="Path2D" parent="Fish"]
 curve = SubResource("Curve2D_h4dfq")
+
+[node name="Fish3" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
+position = Vector2(294, -156)
+path_to_follow = NodePath("../Path2D2")
+
+[node name="Fish4" parent="Fish" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_a12ct")]
+position = Vector2(148, -169)
+path_to_follow = NodePath("../Path2D2")
+
+[node name="Path2D2" type="Path2D" parent="Fish"]
+curve = SubResource("Curve2D_yukt0")

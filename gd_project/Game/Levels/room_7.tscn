@@ -14,7 +14,7 @@ size = Vector2(2, 364)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(644, 2)
 
-[node name="Room1" type="Node2D"]
+[node name="Room7" type="Node2D"]
 script = ExtResource("1_y7t0o")
 height = 350
 metadata/_edit_lock_ = true
