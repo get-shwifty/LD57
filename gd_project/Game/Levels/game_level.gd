@@ -55,6 +55,7 @@ func neutralize_ui():
 
 func confirm_word(word: Array[Letter]):
 	var variable_context: VariableContext = VariableContext.new()
+	variable_context.remaining_oxygen = player.oxygen.current_oxygen
 	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)
 	for letter in word:
 		letters_pool.erase(letter)
