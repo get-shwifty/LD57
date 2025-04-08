@@ -10,7 +10,7 @@ extends Node2D
 @onready var menu_container = $CanvasLayer/MenuContainer
 
 @onready var ROOMS_METADATA = {
-	preload("res://Game/Levels/room_1-1.tscn"): RoomMetadata.new(1,10,1,0,5),
+	preload("res://Game/Levels/room_1.tscn"): RoomMetadata.new(1,10,1,0,5),
 	preload("res://Game/Levels/room_2.tscn"): RoomMetadata.new(2,1,0,0,10),
 	preload("res://Game/Levels/room_3.tscn"): RoomMetadata.new(3,2,0,1,10),
 	preload("res://Game/Levels/room_4.tscn"): RoomMetadata.new(4,0,0,2,9),
@@ -61,6 +61,14 @@ func on_level_finished(points):
 		menu_container.add_child(current_menu)
 		current_menu.initialize(total_points, artefacts)
 
+func start_shop():
+	clean()
+	current_menu = MENU_LEVEL_FINISHED.instantiate()
+	current_menu.on_menu_closed.connect(on_score_menu_closed)
+	menu_container.add_child(current_menu)
+	current_menu.initialize(total_points, artefacts, false)
+
+
 func on_score_menu_closed(new_artefact):
 	if new_artefact != null:
 		artefacts.append(new_artefact)
@@ -68,7 +76,7 @@ func on_score_menu_closed(new_artefact):
 	map_menu.show_map()
 	#map_menu.camera_2d.enabled = true
 	#map_menu.camera_2d.make_current()
-	
+
 func start_new_level(level_number : int):
 	print("starting level " + str(level_number))
 	var r = ROOMS_METADATA.keys()[level_number] #let's hope dictionary stay ordered (surprising but ...)
@@ -100,7 +108,7 @@ func _on_map_exited(room: Room) -> void:
 		Room.Type.LEVEL_7:
 			start_new_level(7)
 		Room.Type.SHOP:
-			start_new_level(1)
+			start_shop()
 		Room.Type.MINI_BOSS:
 			start_new_level(1)
 		Room.Type.BOSS:

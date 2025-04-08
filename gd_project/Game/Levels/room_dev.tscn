@@ -1,0 +1,217 @@
+[gd_scene load_steps=19 format=3 uid="uid://srhpam8tkkve"]
+
+[ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_0f8fv"]
+[ext_resource type="PackedScene" uid="uid://bl7v4nvdkdd4b" path="res://Game/Characters2/fish1.tscn" id="1_gjbq7"]
+[ext_resource type="Texture2D" uid="uid://ct56eue7unl5k" path="res://assets/images/maquette_new_palette.png" id="2_0f8fv"]
+[ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_at57x"]
+[ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_4awi4"]
+[ext_resource type="PackedScene" uid="uid://da0bdcbh5kgts" path="res://Game/Levels/elements/rock_b.tscn" id="4_oxc8n"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="6_6caqy"]
+[ext_resource type="PackedScene" uid="uid://tsng1mrq77pc" path="res://Game/Levels/elements/Rayons.tscn" id="7_1sm0m"]
+[ext_resource type="PackedScene" uid="uid://c0ke52aewv64c" path="res://Game/Characters2/crab.tscn" id="7_oare8"]
+[ext_resource type="PackedScene" uid="uid://dqdsa6gmtr3f" path="res://Game/Characters2/murene.tscn" id="8_6caqy"]
+[ext_resource type="PackedScene" uid="uid://bbrb36psdtbqj" path="res://Game/Characters2/jelly.tscn" id="10_xlshn"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="11_1sm0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(2, 364)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(644, 2)
+
+[sub_resource type="Curve2D" id="Curve2D_1bvp3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 60.8095, 106.379, 0, 0, 0, 0, 53.341, 136.915, 0, 0, 0, 0, 90.6837, 150.275, 0, 0, 0, 0, 128.026, 123.556, 0, 0, 0, 0, 189.642, 125.464, 0, 0, 0, 0, 217.649, 157.909, 0, 0, 0, 0, 260.593, 156, 0, 0, 0, 0, 279, 132, 0, 0, 0, 0, 290, 79, 0, 0, 0, 0, 284.866, 49.1242, 0, 0, 0, 0, 254.992, 39.5817, 0, 0, 0, 0, 234.453, 72.0262, 0, 0, 0, 0, 195.243, 58.6667, 0, 0, 0, 0, 180.306, 37.6732, 0, 0, 0, 0, 159.768, 18.5882, 0, 0, 0, 0, 107.488, 14.7712, 0, 0, 0, 0, 107.488, 14.7712, 0, 0, 0, 0, 72, 19, 0, 0, 0, 0, 44, 29, 0, 0, 0, 0, 30.9353, 54.8497, 0, 0, 0, 0, 55.2081, 75.8432, 0, 0, 0, 0, 60.8095, 106.379)
+}
+point_count = 22
+
+[sub_resource type="Curve2D" id="Curve2D_at57x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -132, 120, 0, 0, 0, 0, -120, 96, 0, 0, 0, 0, -96, 84, 0, 0, 0, 0, -80, 72, 0, 0, 0, 0, -60, 72, 0, 0, 0, 0, -44, 52, 0, 0, 0, 0, -40, 48, 0, 0, 0, 0, -28, 52)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_6caqy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 198, 133, 0, 0, 0, 0, 269, 113, 0, 0, 0, 0, 324, 107, 0, 0, 0, 0, 383, 104, 0, 0, 0, 0, 421, 106, 0, 0, 0, 0, 463, 108, 0, 0, 0, 0, 490, 91, 0, 0, 0, 0, 508, 64)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_3anfj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 362, 226, 0, 0, 0, 0, 356, 167, 0, 0, 0, 0, 372, 136, 0, 0, 0, 0, 391, 158, 0, 0, 0, 0, 402, 183, 0, 0, 0, 0, 421, 208, 0, 0, 0, 0, 437, 225, 0, 0, 0, 0, 451, 206, 0, 0, 0, 0, 460, 180, 0, 0, 0, 0, 473, 154, 0, 0, 0, 0, 496, 168, 0, 0, 0, 0, 505, 197, 0, 0, 0, 0, 511, 226)
+}
+point_count = 13
+
+[node name="Room2" type="Node2D"]
+script = ExtResource("1_0f8fv")
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(-1, 180)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(640, 0)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(1, 180)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(320, -1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="TopWall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 360)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall2"]
+position = Vector2(320, 1)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="World" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Wallpaper" type="Sprite2D" parent="World"]
+position = Vector2(320, 157)
+texture = ExtResource("2_at57x")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 540)
+
+[node name="BackLayer" type="Sprite2D" parent="World"]
+position = Vector2(320, 240)
+texture = ExtResource("2_at57x")
+region_enabled = true
+region_rect = Rect2(0, 840, 640, 240)
+
+[node name="BackLayer2" type="Sprite2D" parent="World"]
+position = Vector2(319, 239)
+texture = ExtResource("2_at57x")
+region_enabled = true
+region_rect = Rect2(1, 1375.5, 637, 242)
+
+[node name="BackLayer3" type="Sprite2D" parent="World"]
+visible = false
+modulate = Color(1, 1, 1, 0.517647)
+position = Vector2(320, 240)
+texture = ExtResource("2_at57x")
+region_enabled = true
+region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
+
+[node name="RockC" type="Sprite2D" parent="World"]
+position = Vector2(464, 28)
+texture = ExtResource("2_0f8fv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(348, 912, 172, 164)
+
+[node name="RockA" parent="World" instance=ExtResource("3_4awi4")]
+position = Vector2(8, 188)
+
+[node name="RockA2" parent="World" instance=ExtResource("3_4awi4")]
+position = Vector2(179, 105)
+
+[node name="RockA3" parent="World" instance=ExtResource("3_4awi4")]
+position = Vector2(615, 354)
+
+[node name="RockB" parent="World" instance=ExtResource("4_oxc8n")]
+position = Vector2(249, 320)
+
+[node name="Algue1" parent="World" instance=ExtResource("6_6caqy")]
+position = Vector2(292, 274)
+
+[node name="Algue2" parent="World" instance=ExtResource("6_6caqy")]
+position = Vector2(244, 293)
+
+[node name="Rayons" parent="World" instance=ExtResource("7_1sm0m")]
+position = Vector2(-4, -6)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Fish" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_gjbq7")]
+position = Vector2(193, 277)
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish2" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_gjbq7")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish3" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_gjbq7")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish4" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_gjbq7")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish5" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_gjbq7")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish6" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_gjbq7")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Fish7" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("1_gjbq7")]
+position = Vector2(282, 31)
+rotation = -3.04058
+path_to_follow = NodePath("../Path2D")
+
+[node name="Crab" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_oare8")]
+position = Vector2(204, 336)
+path_to_follow = NodePath("../Path2DCrab")
+
+[node name="Crab2" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("7_oare8")]
+position = Vector2(264, 308)
+rotation = -0.000609994
+path_to_follow = NodePath("../Path2DCrab")
+forward = false
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-26.2734, -10.9589)
+scale = Vector2(2.14232, 2.09589)
+curve = SubResource("Curve2D_1bvp3")
+
+[node name="Path2DCrab" type="Path2D" parent="."]
+position = Vector2(320, 240)
+curve = SubResource("Curve2D_at57x")
+
+[node name="Murene" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("8_6caqy")]
+position = Vector2(222, 125)
+path_to_follow = NodePath("../Path2DMurene")
+
+[node name="Path2DMurene" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6caqy")
+
+[node name="Path2DJelly" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3anfj")
+
+[node name="Jelly" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_xlshn")]
+position = Vector2(363, 228)
+path_to_follow = NodePath("../Path2DJelly")
+
+[node name="Player" parent="." instance=ExtResource("11_1sm0m")]
+position = Vector2(291, 171)
