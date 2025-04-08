@@ -134,11 +134,12 @@ script = ExtResource("1_wiavm")
 
 [node name="Line2D" type="Line2D" parent="RoomVisuals"]
 modulate = Color(1, 1, 1, 0)
-scale = Vector2(0.352096, 0.285211)
+position = Vector2(-0.999997, 1.3113e-06)
+scale = Vector2(0.257721, 0.229137)
 points = PackedVector2Array(0, -56.0988, 45.4422, -28.0494, 45.4422, 28.0494, 0, 56.0988, -45.4422, 28.0494, -45.4422, -28.0494)
 closed = true
 width = 5.0
-default_color = Color(0.310762, 0.451059, 0.235512, 1)
+default_color = Color(0.141176, 0.721569, 0.627451, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RoomVisuals"]
 sprite_frames = SubResource("SpriteFrames_qian6")

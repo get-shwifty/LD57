@@ -21,12 +21,6 @@ func _ready():
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
 	player.oxygen.on_oxygen_depleted.connect(on_oxygen_depleted)
 
-	letters_pool.append(Letter.new(Alphabet.get_character("H")))
-	letters_pool.append(Letter.new(Alphabet.get_character("E")))
-	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
-	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
-	letters_pool.append(Letter.new(Alphabet.get_character("O")))
-
 
 func setup_level(artefacts : Array[Artefact]):
 	score.objective = 25
