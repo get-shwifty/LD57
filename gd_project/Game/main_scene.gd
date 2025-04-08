@@ -49,6 +49,9 @@ func setup_game():
 	total_points = 0
 	for starting_artefact in ArtefactRepository.starting:
 		artefacts.append(starting_artefact)
+	#
+	#artefacts.append(ArtefactRepository.get_artefact("Against all odds"))
+	#artefacts.append(ArtefactRepository.get_artefact("Jellymorphism"))
 	
 
 

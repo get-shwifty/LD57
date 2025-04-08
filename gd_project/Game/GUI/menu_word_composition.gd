@@ -25,6 +25,9 @@ var sound_bank := [
 	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-4.ogg"),
 	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-5.ogg")
 ]
+#var upgrade_sound := preload("res://assets/sounds/bruitages/wordComposition/upgrade_sound.mp3")
+#var malus_sound := preload("res://assets/sounds/bruitages/wordComposition/malus_sound.mp3")
+
 var sound_index := 0
 var just_confirmed = false
 
@@ -143,7 +146,7 @@ func update_score():
 	
 	
 func process_score(score: ScoreCalculator.ScoreBreakdown):
-	tween_time = 0.4
+	tween_time = 0.35
 	
 	for action in score.operations:
 		
@@ -153,15 +156,22 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 		await bump_ui(source)
 		if target is UILetter:
 			if action.new_letter_score != int(target.points.text):
-				var operator = "x" if action.letter_mult_delta != 0 else "+"
+				var operator = "x"
+				if action.letter_add_delta != 0:
+					if action.letter_add_delta > 0:
+						operator = "+"
+					else:
+						operator = "-"
 				var value = action.letter_mult_delta if action.letter_mult_delta != 0 else action.letter_add_delta
 				var color = Color('#da6175') if (operator == "x" && value < 1) || (operator == "+" && value < 0) else Color.WHITE#Color('24b8a0')
 				display_text(target.points, operator + str(value), color)
 				target.points.text = str(action.new_letter_score)
 			elif action.letter_fish_type_delta:
 				target.update_type(action.letter_fish_type_delta)
+				_play_upgrade_sound()
 			if action.letter_bonus_type_delta:
 				target.update_bonus(action.letter_bonus_type_delta)
+				_play_upgrade_sound()
 			await bump_ui(target)
 			if action.new_letter_score != int(target.points.text):
 				var points = $CenterContainer/VBoxContainer/PanelContainer/Score/Points
@@ -169,13 +179,13 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 				await bump_ui(points)
 		else:
 			if target == %Points:
-				var operator = "+" if action.word_add_delta > 0 else "-"
-				var color = Color('#da6175') if operator == "-" else Color.WHITE_SMOKE # Color('24b8a0')
+				var operator = "+" if action.word_add_delta > 0 else ""
+				var color = Color('#da6175') if operator == "" else Color.WHITE_SMOKE # Color('24b8a0')
 				display_text(target, operator + str(action.word_add_delta), color)
 				target.text = str(action.new_word_add)
 			elif target == %Multiplicateur:
-				var operator = "+" if action.new_word_mult > 0 else "-"
-				var color = Color('#da6175') if operator == "-" else Color.WHITE_SMOKE# Color('24b8a0')
+				var operator = "+" if action.new_word_mult > 0 else ""
+				var color = Color('#da6175') if operator == "" else Color.WHITE_SMOKE# Color('24b8a0')
 				display_text(target, operator + str(action.new_word_mult), color)
 				target.text = str(action.new_word_mult)
 			await bump_ui(target)
@@ -195,6 +205,9 @@ func display_text(target, string, color : Color):
 	feedback.scale = Vector2(1.1, 1.3)
 	feedback.position.y -= 5
 	target.add_child(feedback)
+	var malus = string[0] == "-"
+	if malus:
+		_play_bubble_sound(malus)
 	
 	var tween_pos: Tween = get_tree().create_tween()
 	tween_pos.tween_property(feedback, "position", feedback.position + Vector2(0, -5), 1)
@@ -247,10 +260,21 @@ func resolve_target(action: ScoreCalculator.ScoreOperation):
 	elif action.word_mult_delta != 0:
 		return $CenterContainer/VBoxContainer/PanelContainer/Score/Multiplicateur
 	
-func _play_bubble_sound():
-	lettersScoring.volume_db = +3
-	lettersScoring.stream = sound_bank[sound_index]
-	lettersScoring.play()
-	sound_index += 1
-	if sound_index >= sound_bank.size():
-		sound_index = 0
+func _play_bubble_sound(malus: bool = false):
+	if malus:
+		$MalusSound.play()
+	else:
+		lettersScoring.volume_db = +3
+		lettersScoring.stream = sound_bank[sound_index]
+		sound_index += 1
+		if sound_index >= sound_bank.size():
+			sound_index = 0
+		lettersScoring.play()
+
+	
+
+func _play_upgrade_sound():
+	$TransformSound.play()
+	
+		
+	
