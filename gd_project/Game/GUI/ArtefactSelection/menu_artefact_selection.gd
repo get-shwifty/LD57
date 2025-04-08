@@ -13,8 +13,13 @@ func initialize(artefacts: Array[Artefact]):
 		artefact_button.on_selected.connect(select_artefact.bind(artefact))
 		artefact_container.add_child(artefact_button)
 
-func initialize_bonus(current_artefacts: Array[Artefact]):
-	var all_artefacts = ArtefactRepository.bonuses.slice(0)
+func initialize_bonus(current_artefacts: Array[Artefact], bonus=true):
+	var all_artefacts
+	if bonus:
+		all_artefacts = ArtefactRepository.bonuses.slice(0)
+	else:
+		all_artefacts = ArtefactRepository.maluses.slice(0)
+
 	for artefact in current_artefacts:
 		all_artefacts.erase(artefact)
 	all_artefacts.shuffle()
