@@ -25,12 +25,13 @@ func _ready() -> void:
 
 ## Surcharge de la fonction input pour permettre le scroll vertical
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("scroll_up"):
-		camera_2d.position.y += SCROLL_SPEED
-	if event.is_action_pressed("scroll_down"):
-		camera_2d.position.y -= SCROLL_SPEED
-	
-	camera_2d.position.y = clamp(camera_2d.position.y, -camera_edge_y, 0) # Permet de ne pas scroller à l'infini
+	return
+	#if event.is_action_pressed("scroll_up"):
+		#camera_2d.position.y += SCROLL_SPEED
+	#if event.is_action_pressed("scroll_down"):
+		#camera_2d.position.y -= SCROLL_SPEED
+	#
+	#camera_2d.position.y = clamp(camera_2d.position.y, -camera_edge_y, 0) # Permet de ne pas scroller à l'infini
 
 func generate_new_map() -> void:
 	floors_climbed = 0
