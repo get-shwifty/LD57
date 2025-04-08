@@ -20,7 +20,6 @@ theme = ExtResource("2_f1nas")
 stream = ExtResource("3_f1nas")
 volume_db = -10.0
 autoplay = true
-parameters/looping = true
 
 [node name="Atmosphere_1" type="AudioStreamPlayer" parent="Music_1"]
 stream = ExtResource("4_f1nas")

@@ -139,7 +139,7 @@ func _on_map_exited(room: Room) -> void:
 			start_new_level(2)
 		Room.Type.BOSS:
 			is_boss = true
-			start_new_level(2)
+			start_new_level(4)
 
 func game_over(reason="") -> void:
 	clean()
