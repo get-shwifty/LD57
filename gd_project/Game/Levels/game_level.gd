@@ -10,7 +10,7 @@ var room: LevelRoom
 @onready var player: Player = room.get_node("Player")
 @onready var word_composing_menu: MenuWordComposition = $UIContainer/MenuWordComposition
 @onready var score: Score = $UIContainer/ScoreUI
-
+@onready var restart_button = $UIContainer/ScoreUI/MenuButton
 var letters_pool : Array[Letter] = []
 var waiting_for_ui = false
 var artefacts : Array[Artefact]

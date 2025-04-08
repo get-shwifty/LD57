@@ -54,7 +54,7 @@ func setup_game():
 
 func on_level_finished(points):
 	if points == 0:
-		game_over()
+		game_over("No more oxygen")
 	else:
 		total_points += points
 		
@@ -90,14 +90,19 @@ func start_new_level(level_coeff : int):
 		idx = n - 1 # randi_range(n - 3, n - 1) # dark rooms
 	prints(n, idx, current_room_idx)
 	var r = ROOMS_METADATA.keys()[idx]
-	
+
 	var room = r.instantiate()
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
 	current_level.room = room
 	current_level.add_child(room)
 	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
+	current_level.restart_button.get_popup().index_pressed.connect(ended_manually)
 	current_level.setup_level(score_to_do, artefacts.slice(0))
+
+func ended_manually(idx):
+	total_points += current_level.score.current
+	game_over("Ended manually")
 
 func _on_map_exited(room: Room) -> void:
 	map_menu.hide_map()
@@ -125,9 +130,10 @@ func _on_map_exited(room: Room) -> void:
 		Room.Type.BOSS:
 			start_new_level(5)
 
-func game_over() -> void:
+func game_over(reason="") -> void:
+	clean()
 	game_end = game_over_scene.instantiate()
-	game_end.initialize(total_points)
+	game_end.initialize(total_points, reason)
 	menu_container.add_child(game_end)
 	
 	game_end.replay.connect(restart_game)

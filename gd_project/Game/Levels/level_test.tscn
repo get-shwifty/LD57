@@ -86,6 +86,26 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "2450"
 
+[node name="MenuButton" type="MenuButton" parent="UIContainer/ScoreUI"]
+z_index = 1000
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.0
+offset_top = -5.0
+offset_right = -73.0
+offset_bottom = 26.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("4_mg66w")
+theme_override_font_sizes/font_size = 8
+text = "Restart the run"
+item_count = 1
+popup/item_0/text = " /!\\ End the run /!\\"
+popup/item_0/id = 0
+
 [node name="Inputs" type="Control" parent="UIContainer"]
 visible = false
 layout_mode = 3
