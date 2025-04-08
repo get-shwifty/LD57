@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bbpwi6g8le3uu"]
+[gd_scene load_steps=37 format=3 uid="uid://bbpwi6g8le3uu"]
 
 [ext_resource type="Script" uid="uid://bd2aro2yyxb5d" path="res://Game/Levels/splash.gd" id="1_1o6ei"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_d4njp"]
@@ -25,6 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://cqgplqab7h750" path="res://assets/images/Touches-clavier-souris/space_bar.png" id="23_hnkpt"]
 [ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="24_dl62i"]
 [ext_resource type="Texture2D" uid="uid://cr5qslpn6gjkb" path="res://assets/images/lettre.png" id="25_20ptk"]
+[ext_resource type="Theme" uid="uid://clnj82hjocrrk" path="res://assets/fonts/level_test.tres" id="26_hnkpt"]
+[ext_resource type="Script" uid="uid://332nqnmyfnal" path="res://Game/Levels/langs.gd" id="27_7qixo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qixo"]
+size = Vector2(67, 1109.5)
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
@@ -100,6 +105,10 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qixo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lpgg"]
+
 [node name="RoomSPlash" type="Node2D"]
 script = ExtResource("1_1o6ei")
 metadata/_edit_lock_ = true
@@ -127,6 +136,44 @@ region_rect = Rect2(1, 1375.5, 637, 242)
 
 [node name="Rayons" parent="World" instance=ExtResource("7_gn3a3")]
 position = Vector2(-32, 26)
+
+[node name="LeftWall" type="StaticBody2D" parent="World"]
+position = Vector2(-328, -120)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/LeftWall"]
+position = Vector2(614, 512.25)
+shape = SubResource("RectangleShape2D_7qixo")
+
+[node name="LeftWall2" type="StaticBody2D" parent="World"]
+position = Vector2(60, -112)
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/LeftWall2"]
+position = Vector2(614, 512.25)
+shape = SubResource("RectangleShape2D_7qixo")
+
+[node name="LeftWall3" type="StaticBody2D" parent="World"]
+position = Vector2(780, -468)
+rotation = 1.5708
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/LeftWall3"]
+position = Vector2(614, 512.25)
+shape = SubResource("RectangleShape2D_7qixo")
+
+[node name="LeftWall4" type="StaticBody2D" parent="World"]
+position = Vector2(788, -220)
+rotation = 1.5708
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/LeftWall4"]
+position = Vector2(614, 512.25)
+shape = SubResource("RectangleShape2D_7qixo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -337,5 +384,49 @@ text = "Y"
 position = Vector2(-56, 8)
 curve = SubResource("Curve2D_dl62i")
 
+[node name="Langs" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 240.0
+offset_top = 136.0
+offset_right = 240.0
+offset_bottom = 136.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("26_hnkpt")
+script = ExtResource("27_7qixo")
+
+[node name="Label" type="Label" parent="Langs"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 256.0
+offset_right = 508.0
+offset_bottom = 279.0
+text = "Dictionnary:"
+
+[node name="ButtonEN" type="Button" parent="Langs"]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 276.0
+offset_right = 472.0
+offset_bottom = 296.0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7qixo")
+toggle_mode = true
+button_pressed = true
+text = "EN"
+
+[node name="ButtonFR" type="Button" parent="Langs"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 276.0
+offset_right = 500.0
+offset_bottom = 296.0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6lpgg")
+toggle_mode = true
+text = "FR"
+
 [connection signal="pressed" from="Start_Button" to="." method="_on_button_pressed"]
 [connection signal="on_captured" from="MurenePlay" to="." method="_on_murene_play_on_captured"]
+[connection signal="pressed" from="Langs/ButtonEN" to="Langs" method="_on_button_en_pressed"]
+[connection signal="toggled" from="Langs/ButtonEN" to="Langs" method="_on_button_en_toggled"]
+[connection signal="pressed" from="Langs/ButtonFR" to="Langs" method="_on_button_fr_pressed"]
+[connection signal="toggled" from="Langs/ButtonFR" to="Langs" method="_on_button_fr_toggled"]
