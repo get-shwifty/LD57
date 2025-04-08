@@ -49,6 +49,7 @@ func setup_game():
 	total_points = 0
 	for starting_artefact in ArtefactRepository.starting:
 		artefacts.append(starting_artefact)
+	
 
 
 func on_level_finished(points):

@@ -189,8 +189,10 @@ func display_text(target, string, color : Color):
 	var feedback = Label.new()
 	feedback.text = string
 	feedback.set("theme_override_colors/font_color", color)
+	feedback.set("theme_override_constants/outline_size", 2)
+	feedback.set("theme_override_colors/font_outline", Color.BLACK)
 	feedback.add_theme_font_override("font", load("res://assets/fonts/Square.ttf"))
-	feedback.scale = Vector2(1.3, 1.5)
+	feedback.scale = Vector2(1.1, 1.3)
 	feedback.position.y -= 5
 	target.add_child(feedback)
 	

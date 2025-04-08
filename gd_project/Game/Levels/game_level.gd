@@ -72,7 +72,7 @@ func confirm_word(word: Array[Letter]):
 	score.current += breakdown.final_score
 	
 	if score.current > score.objective:
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(1.5).timeout
 		neutralize_ui()
 		level_finished.emit(score.current)
 	else:
