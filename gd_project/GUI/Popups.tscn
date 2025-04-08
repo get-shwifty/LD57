@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbvdvg4wp7qn3"]
+[gd_scene load_steps=9 format=3 uid="uid://dbvdvg4wp7qn3"]
 
 [ext_resource type="Script" uid="uid://bve4lcd4m5dsb" path="res://GUI/popups.gd" id="1_wp2it"]
 [ext_resource type="Texture2D" uid="uid://dl1qhe6hnve41" path="res://GUI/fish_types.png" id="2_kncmo"]
+[ext_resource type="Theme" uid="uid://clnj82hjocrrk" path="res://assets/fonts/level_test.tres" id="2_ty45u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kncmo"]
 bg_color = Color(0, 0, 0, 0.65098)
@@ -45,6 +46,7 @@ offset_left = 269.0
 offset_top = 5.0
 offset_right = 312.0
 offset_bottom = 87.0
+theme = ExtResource("2_ty45u")
 theme_override_styles/panel = SubResource("StyleBoxFlat_kncmo")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/ItemPopup"]

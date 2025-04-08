@@ -20,19 +20,14 @@ var camera_edge_y: float
 
 func _ready() -> void:
 	camera_edge_y = MapGenerator.Y_DIST * (MapGenerator.FLOORS - 1)
-	print(camera_edge_y)
 	#generate_new_map()  
 	#unlock_floor(0) # Permet d'activer le premier étage en entier
 
 ## Surcharge de la fonction input pour permettre le scroll vertical
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("scroll_up"):
-		print("SCROLL UP")
-		#print(camera_2d.position.y)
 		camera_2d.position.y += SCROLL_SPEED
-		#print(camera_2d.position.y)
 	if event.is_action_pressed("scroll_down"):
-		#print("SCROLL DOWN")
 		camera_2d.position.y -= SCROLL_SPEED
 	
 	camera_2d.position.y = clamp(camera_2d.position.y, -camera_edge_y, 0) # Permet de ne pas scroller à l'infini

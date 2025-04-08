@@ -60,14 +60,17 @@ func set_letters(word: Array[Letter]):
 	setup_letter_pool(word)
 
 func update_view():
-	grid_container.reparent(vbox_container if is_composing_word else center_container2)
 	center_container.visible = is_composing_word
 	%Submit.visible = is_composing_word
 	#%Multiplicateur.text = str(1)
 	if is_composing_word:
 		enable_mouse_inputs()
+		grid_container.reparent(vbox_container)
+		grid_container.columns = 8
 	else:
 		disable_mouse_inputs()
+		grid_container.reparent(center_container2)
+		grid_container.columns = 16
 
 func disable_mouse_inputs():
 	$MouseBlock.show()

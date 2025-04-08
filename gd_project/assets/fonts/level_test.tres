@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://clnj82hjocrrk"]
+
+[ext_resource type="FontFile" uid="uid://bdt811tmnc1sq" path="res://assets/fonts/Square.ttf" id="1_8cio5"]
+
+[resource]
+default_font = ExtResource("1_8cio5")
+default_font_size = 10

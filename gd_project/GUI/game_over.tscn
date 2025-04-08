@@ -1,8 +1,61 @@
-[gd_scene load_steps=7 format=3 uid="uid://c05jayyqqufy2"]
+[gd_scene load_steps=21 format=3 uid="uid://c05jayyqqufy2"]
 
 [ext_resource type="Script" uid="uid://bbcj15wuddiq6" path="res://GUI/game_over.gd" id="1_eqyrn"]
 [ext_resource type="Texture2D" uid="uid://cew4h5lvtupss" path="res://assets/images/crab.png" id="2_bax71"]
+[ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="3_3uqcp"]
+[ext_resource type="Theme" uid="uid://clnj82hjocrrk" path="res://assets/fonts/level_test.tres" id="3_es73e"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="3_svlec"]
+[ext_resource type="PackedScene" uid="uid://tro3e72ajsru" path="res://Game/Levels/elements/arche.tscn" id="4_q4iya"]
+[ext_resource type="PackedScene" uid="uid://b0bj0jqqfv0eb" path="res://Game/Levels/elements/algue_1.tscn" id="4_uljcg"]
+[ext_resource type="Script" uid="uid://b8clp5rvmi8i5" path="res://Game/Characters2/fish1.gd" id="5_b3lbx"]
+[ext_resource type="PackedScene" uid="uid://ceej58xocqth7" path="res://Game/Levels/elements/rock_d.tscn" id="5_vdtd2"]
+[ext_resource type="Texture2D" uid="uid://chygkhayqi1ch" path="res://assets/images/clown_fish.png" id="6_d8k8w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrgxt"]
+atlas = ExtResource("6_d8k8w")
+region = Rect2(0, 0, 30, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jprv1"]
+atlas = ExtResource("6_d8k8w")
+region = Rect2(30, 0, 30, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bx1q1"]
+atlas = ExtResource("6_d8k8w")
+region = Rect2(60, 0, 30, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0x3u"]
+atlas = ExtResource("6_d8k8w")
+region = Rect2(90, 0, 30, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t26xp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrgxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jprv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bx1q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0x3u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2yge"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="Curve2D" id="Curve2D_b3lbx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 36, 190, 0, 0, 0, 0, 57, 180, 0, 0, 0, 0, 69, 172, 0, 0, 0, 0, 76, 164, 0, 0, 0, 0, 86, 159, 0, 0, 0, 0, 93, 152)
+}
+point_count = 6
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svlec"]
 atlas = ExtResource("2_bax71")
@@ -32,7 +85,7 @@ script = ExtResource("1_eqyrn")
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Wallpaper" type="Sprite2D" parent="Background"]
-position = Vector2(163, 8)
+position = Vector2(165, -6)
 texture = ExtResource("3_svlec")
 region_enabled = true
 region_rect = Rect2(0, 0, 640, 540)
@@ -57,6 +110,85 @@ texture = ExtResource("3_svlec")
 region_enabled = true
 region_rect = Rect2(-6.38501, 1625.24, 645.575, 527.853)
 
+[node name="Algue1" parent="Background" instance=ExtResource("4_uljcg")]
+position = Vector2(298, 11)
+
+[node name="Algue2" parent="Background" instance=ExtResource("4_uljcg")]
+position = Vector2(280, 22)
+
+[node name="Algue3" parent="Background" instance=ExtResource("4_uljcg")]
+position = Vector2(301, 12)
+scale = Vector2(0.25258, 0.792041)
+
+[node name="Algue4" parent="Background" instance=ExtResource("4_uljcg")]
+position = Vector2(309, 11)
+
+[node name="Algue5" parent="Background" instance=ExtResource("4_uljcg")]
+position = Vector2(316, 11)
+
+[node name="Algue6" parent="Background" instance=ExtResource("4_uljcg")]
+position = Vector2(68, 137)
+
+[node name="Algue8" parent="Background" instance=ExtResource("4_uljcg")]
+position = Vector2(48, 134)
+
+[node name="RockA2" parent="Background" instance=ExtResource("4_q4iya")]
+z_index = 1
+position = Vector2(302, 166)
+rotation = 2.60603
+
+[node name="Algue7" parent="Background" instance=ExtResource("4_uljcg")]
+position = Vector2(60, 136)
+rotation = 0.402665
+
+[node name="Fish" type="CharacterBody2D" parent="Background" node_paths=PackedStringArray("path_to_follow")]
+position = Vector2(56, 148)
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("5_b3lbx")
+path_to_follow = NodePath("../Path2D")
+
+[node name="Visual" type="Node2D" parent="Background/Fish"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/Fish/Visual"]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_t26xp")
+autoplay = "default"
+frame_progress = 0.697281
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Fish"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_h2yge")
+
+[node name="Marker2D" type="Marker2D" parent="Background/Fish"]
+position = Vector2(40, 0)
+
+[node name="LetterCtn" type="Node2D" parent="Background/Fish"]
+
+[node name="Label" type="Label" parent="Background/Fish/LetterCtn"]
+offset_left = -10.0
+offset_top = -7.0
+offset_right = 10.0
+offset_bottom = 7.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+ellipsis_char = ""
+uppercase = true
+
+[node name="Path2D" type="Path2D" parent="Background"]
+curve = SubResource("Curve2D_b3lbx")
+
+[node name="RockB" parent="Background" instance=ExtResource("5_vdtd2")]
+position = Vector2(-74, 96)
+rotation = -0.00856115
+scale = Vector2(3, 3)
+
+[node name="RockA3" parent="Background" instance=ExtResource("3_3uqcp")]
+position = Vector2(323, 48)
+
 [node name="Button" type="Button" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -70,6 +202,7 @@ offset_bottom = 51.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
+theme = ExtResource("3_es73e")
 text = "Replay ?"
 
 [node name="Score" type="Label" parent="."]
@@ -84,6 +217,7 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_es73e")
 theme_override_font_sizes/font_size = 8
 text = "TEST"
 horizontal_alignment = 1
@@ -101,13 +235,14 @@ offset_right = 20.0
 offset_bottom = -21.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Game over"
+theme = ExtResource("3_es73e")
+text = "End of run"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(160, 160)
 sprite_frames = SubResource("SpriteFrames_3uqcp")
-frame_progress = 0.36128
+frame_progress = 0.0373658
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

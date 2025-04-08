@@ -13,10 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://s0ve5xhatx0d" path="res://Game/Levels/elements/algue_2.tscn" id="10_vd6cr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(2, 364)
+size = Vector2(2, 1070.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(644, 2)
+size = Vector2(1293, 5)
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
@@ -50,6 +50,8 @@ point_count = 33
 
 [node name="Room2" type="Node2D"]
 script = ExtResource("1_ihxlm")
+width = 700
+height = 350
 metadata/_edit_lock_ = true
 
 [node name="Walls" type="Node2D" parent="."]
@@ -60,7 +62,7 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
-position = Vector2(-1, 180)
+position = Vector2(-3, 312.5)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
@@ -69,7 +71,7 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
-position = Vector2(1, 180)
+position = Vector2(49, -38.75)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="TopWall" type="StaticBody2D" parent="Walls"]
@@ -77,7 +79,7 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
-position = Vector2(320, -1)
+position = Vector2(475, 12)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="TopWall2" type="StaticBody2D" parent="Walls"]
