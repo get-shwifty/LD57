@@ -155,7 +155,7 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 			if action.new_letter_score != int(target.points.text):
 				var operator = "x" if action.letter_mult_delta != 0 else "+"
 				var value = action.letter_mult_delta if action.letter_mult_delta != 0 else action.letter_add_delta
-				var color = Color('#da6175') if (operator == "x" && value < 1) || (operator == "+" && value < 0) else Color('24b8a0')
+				var color = Color('#da6175') if (operator == "x" && value < 1) || (operator == "+" && value < 0) else Color.WHITE#Color('24b8a0')
 				display_text(target.points, operator + str(value), color)
 				target.points.text = str(action.new_letter_score)
 			elif action.letter_fish_type_delta:
@@ -170,12 +170,12 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 		else:
 			if target == %Points:
 				var operator = "+" if action.word_add_delta > 0 else "-"
-				var color = Color('#da6175') if operator == "-" else Color('24b8a0')
+				var color = Color('#da6175') if operator == "-" else Color.WHITE_SMOKE # Color('24b8a0')
 				display_text(target, operator + str(action.word_add_delta), color)
 				target.text = str(action.new_word_add)
 			elif target == %Multiplicateur:
 				var operator = "+" if action.new_word_mult > 0 else "-"
-				var color = Color('#da6175') if operator == "-" else Color('24b8a0')
+				var color = Color('#da6175') if operator == "-" else Color.WHITE_SMOKE# Color('24b8a0')
 				display_text(target, operator + str(action.new_word_mult), color)
 				target.text = str(action.new_word_mult)
 			await bump_ui(target)
@@ -190,15 +190,19 @@ func display_text(target, string, color : Color):
 	feedback.text = string
 	feedback.set("theme_override_colors/font_color", color)
 	feedback.add_theme_font_override("font", load("res://assets/fonts/Square.ttf"))
-	feedback.scale = Vector2(0.5, 0.5)
+	feedback.scale = Vector2(1.3, 1.5)
+	feedback.position.y -= 5
 	target.add_child(feedback)
 	
 	var tween_pos: Tween = get_tree().create_tween()
 	tween_pos.tween_property(feedback, "position", feedback.position + Vector2(0, -5), 1)
 	var tween_alpha: Tween = get_tree().create_tween()
-	tween_alpha.tween_property(feedback, "self_modulate", Color(1,1,1,0), 1)
+	tween_alpha.tween_property(feedback, "self_modulate", Color(1,1,1,0.3), 1)
+	var tween_scale: Tween = get_tree().create_tween()
+	tween_scale.tween_property(feedback, "scale", Vector2(0.6, 0.5), 1)
 	await tween_pos.finished
 	await tween_alpha.finished
+	await tween_scale.finished
 	feedback.queue_free()
 	
 func display_total(score: ScoreCalculator.ScoreBreakdown):

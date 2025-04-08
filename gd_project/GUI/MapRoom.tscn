@@ -1,25 +1,25 @@
 [gd_scene load_steps=13 format=3 uid="uid://x8ulty73bcdl"]
 
 [ext_resource type="Script" uid="uid://c0kmlmewb3vxa" path="res://GUI/map_room.gd" id="1_wiavm"]
-[ext_resource type="Texture2D" uid="uid://e5xemx6k5mkj" path="res://GUI/icons.png" id="2_wiavm"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wiavm"]
-atlas = ExtResource("2_wiavm")
-region = Rect2(0, 0, 24, 24)
+[ext_resource type="Texture2D" uid="uid://dmg2s1m72lxjb" path="res://assets/images/map_icons.png" id="2_wiavm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0i3lx"]
 atlas = ExtResource("2_wiavm")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh5km"]
+atlas = ExtResource("2_wiavm")
 region = Rect2(24, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qian6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj0d6"]
 atlas = ExtResource("2_wiavm")
 region = Rect2(48, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nle43"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ye35i"]
 atlas = ExtResource("2_wiavm")
 region = Rect2(0, 24, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bvhms"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqogc"]
 atlas = ExtResource("2_wiavm")
 region = Rect2(24, 24, 24, 24)
 
@@ -27,19 +27,19 @@ region = Rect2(24, 24, 24, 24)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wiavm")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_0i3lx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qian6")
+"texture": SubResource("AtlasTexture_hh5km")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nle43")
+"texture": SubResource("AtlasTexture_wj0d6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bvhms")
+"texture": SubResource("AtlasTexture_ye35i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqogc")
 }],
 "loop": true,
 "name": &"default",
