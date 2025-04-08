@@ -16,7 +16,7 @@ extends Node2D
 	preload("res://Game/Levels/room_4.tscn"): RoomMetadata.new(4,0,0,2,9),
 	preload("res://Game/Levels/room_5.tscn"): RoomMetadata.new(5,2,4,0,5),
 	preload("res://Game/Levels/room_6.tscn"): RoomMetadata.new(6,1,7,1,4),
-	preload("res://Game/Levels/room_7.tscn"): RoomMetadata.new(7, 0, 0, 0, 0),
+	#preload("res://Game/Levels/room_7.tscn"): RoomMetadata.new(7, 0, 0, 0, 0),
 }
 
 var current_level: Level
@@ -25,6 +25,7 @@ var map_menu: Map
 var game_end
 var game_start
 
+var current_room_idx = 0
 var total_points: float = 0
 var artefacts: Array[Artefact]
 
@@ -43,6 +44,7 @@ func setup_game():
 	map_menu.unlock_floor(0)
 	map_menu.map_exited.connect(_on_map_exited)
 
+	current_room_idx = 0
 	artefacts = []
 	total_points = 0
 	for starting_artefact in ArtefactRepository.starting:
@@ -77,16 +79,24 @@ func on_score_menu_closed(new_artefact):
 	#map_menu.camera_2d.enabled = true
 	#map_menu.camera_2d.make_current()
 
-func start_new_level(level_number : int):
-	print("starting level " + str(level_number))
-	var r = ROOMS_METADATA.keys()[level_number] #let's hope dictionary stay ordered (surprising but ...)
+func start_new_level(level_coeff : int):
+	current_room_idx += 1
+	var score_to_do = int(pow(current_room_idx, 1.6) * 60) * level_coeff
+
+	var n = ROOMS_METADATA.size()
+	var idx = current_room_idx - 1
+	if idx >= n:
+		idx = randi_range(n - 3, n - 1) # dark rooms
+	prints(n, idx, current_room_idx)
+	var r = ROOMS_METADATA.keys()[idx]
+	
 	var room = r.instantiate()
 	current_level = LEVEL_TEST_DEFAULT.instantiate()
 	current_level.room = room
 	current_level.add_child(room)
 	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
-	current_level.setup_level(artefacts.slice(0))
+	current_level.setup_level(score_to_do, artefacts.slice(0))
 
 func _on_map_exited(room: Room) -> void:
 	map_menu.hide_map()
@@ -96,23 +106,23 @@ func _on_map_exited(room: Room) -> void:
 		Room.Type.LEVEL_1:
 			start_new_level(1)
 		Room.Type.LEVEL_2:
-			start_new_level(2)
+			start_new_level(1)
 		Room.Type.LEVEL_3:
-			start_new_level(3)
+			start_new_level(1)
 		Room.Type.LEVEL_4:
-			start_new_level(4)
+			start_new_level(1)
 		Room.Type.LEVEL_5:
-			start_new_level(5)
+			start_new_level(1)
 		Room.Type.LEVEL_6:
-			start_new_level(6)
+			start_new_level(1)
 		Room.Type.LEVEL_7:
-			start_new_level(7)
+			start_new_level(1)
 		Room.Type.SHOP:
 			start_shop()
 		Room.Type.MINI_BOSS:
-			start_new_level(1)
+			start_new_level(2)
 		Room.Type.BOSS:
-			start_new_level(1)
+			start_new_level(5)
 
 func game_over() -> void:
 	game_end = game_over_scene.instantiate()
