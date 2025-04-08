@@ -14,7 +14,7 @@ var current:
 var oxygen:
 	set(value):
 		var label = $VBoxContainer/HBoxContainer3/Label2
-		label.text = str(value).pad_decimals(1)
+		label.text = str(value).pad_decimals(2)
 		if value < 1:
 			label.add_theme_color_override("font_color", Color.RED)
 
