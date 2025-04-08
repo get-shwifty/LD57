@@ -45,6 +45,7 @@ func setup_game():
 	map_menu.unlock_floor(0)
 	map_menu.map_exited.connect(_on_map_exited)
 
+	is_boss = false
 	current_room_idx = 0
 	artefacts = []
 	total_points = 0
