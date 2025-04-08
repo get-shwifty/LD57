@@ -22,8 +22,8 @@ func _ready():
 	player.oxygen.on_oxygen_depleted.connect(on_oxygen_depleted)
 
 
-func setup_level(artefacts : Array[Artefact]):
-	score.objective = 25
+func setup_level(objective, artefacts : Array[Artefact]):
+	score.objective = objective
 	word_composing_menu.set_letters(letters_pool)
 	self.artefacts = artefacts
 	word_composing_menu.artefacts = artefacts

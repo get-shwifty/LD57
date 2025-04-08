@@ -1,7 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://pooxaxvkt0nu"]
+[gd_scene load_steps=20 format=3 uid="uid://pooxaxvkt0nu"]
 
 [ext_resource type="Script" uid="uid://ct66n2oso5hh2" path="res://Game/Levels/room.gd" id="1_ihxlm"]
-[ext_resource type="Script" path="res://Game/Levels/elements/rayons.gd" id="2_44bgk"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_ev1y8"]
 [ext_resource type="PackedScene" uid="uid://ceej58xocqth7" path="res://Game/Levels/elements/rock_d.tscn" id="3_vd6cr"]
 [ext_resource type="PackedScene" uid="uid://blnl10u7jjbom" path="res://Game/Levels/elements/rock_a.tscn" id="4_vd6cr"]
@@ -73,7 +72,7 @@ collision_layer = 5
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
-position = Vector2(49, -38.75)
+position = Vector2(103, -42)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="TopWall" type="StaticBody2D" parent="Walls"]
@@ -94,25 +93,24 @@ position = Vector2(320, 1)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="World" type="Node2D" parent="."]
-script = ExtResource("2_44bgk")
 metadata/_edit_lock_ = true
 
 [node name="Wallpaper" type="Sprite2D" parent="World"]
-position = Vector2(316.5, 130.5)
+position = Vector2(344.701, 158.407)
 rotation = -0.790634
-scale = Vector2(1.61094, 1.5537)
+scale = Vector2(1.61094, 1.70064)
 texture = ExtResource("2_ev1y8")
 region_enabled = true
 region_rect = Rect2(0, 0, 640, 540)
 
 [node name="BackLayer" type="Sprite2D" parent="World"]
-position = Vector2(320, 240)
+position = Vector2(224, 243)
 texture = ExtResource("2_ev1y8")
 region_enabled = true
 region_rect = Rect2(0, 840, 640, 240)
 
 [node name="BackLayer2" type="Sprite2D" parent="World"]
-position = Vector2(319, 239)
+position = Vector2(223, 242)
 texture = ExtResource("2_ev1y8")
 region_enabled = true
 region_rect = Rect2(1, 1375.5, 637, 242)
