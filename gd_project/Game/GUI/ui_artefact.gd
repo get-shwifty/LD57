@@ -17,10 +17,10 @@ func initialize(artefact : Artefact):
 			texture_x = 1
 			texture_y = 0
 		artefact.TargetType.WordAdd:
-			texture_x = 2
+			texture_x = 0
 			texture_y = 1
 		artefact.TargetType.WordMult:
-			texture_x = 3
+			texture_x = 1
 			texture_y = 1
 		artefact.TargetType.LetterFishType:
 			texture_x = 0

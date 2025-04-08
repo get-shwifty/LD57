@@ -12,7 +12,7 @@ func _ready():
 	cam.limit_bottom = height
 
 func set_letters(letters):
-	for child in get_children():
+	for child in $Fish.get_children():
 		if child.has_signal("on_captured"):
 			var letter: Letter = letters.pop_front()
 			child.set_letter(letter.character.character)

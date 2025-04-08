@@ -1,13 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvj6y7xphbmgn"]
+[gd_scene load_steps=9 format=3 uid="uid://bvj6y7xphbmgn"]
 
 [ext_resource type="Script" uid="uid://dd5f66eyg5gry" path="res://Game/GUI/ui_letter.gd" id="1_xaksk"]
 [ext_resource type="Texture2D" uid="uid://4xwep1fcd4fx" path="res://assets/images/letter_tile.png" id="2_uo1cg"]
+[ext_resource type="Texture2D" uid="uid://c5kk0nbhr6c6c" path="res://assets/images/cadres.png" id="3_8wao3"]
 [ext_resource type="Texture2D" uid="uid://dl1qhe6hnve41" path="res://GUI/fish_types.png" id="3_rat18"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rat18"]
 resource_local_to_scene = true
 atlas = ExtResource("2_uo1cg")
 region = Rect2(24, 0, 24, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7o2i"]
+resource_local_to_scene = true
+atlas = ExtResource("3_8wao3")
+region = Rect2(0, 0, 27, 31)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rat18"]
 bg_color = Color(1, 1, 1, 1)
@@ -22,7 +28,7 @@ atlas = ExtResource("3_rat18")
 region = Rect2(20, 11, 11, 9)
 
 [node name="UILetter" type="Control"]
-custom_minimum_size = Vector2(24, 24)
+custom_minimum_size = Vector2(28, 28)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_xaksk")
@@ -57,6 +63,15 @@ offset_right = 10.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 text = "2"
+
+[node name="Cadre" type="TextureRect" parent="Button"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 25.0
+offset_bottom = 29.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_t7o2i")
 
 [node name="PanelContainer" type="PanelContainer" parent="Button"]
 layout_mode = 0

@@ -5,8 +5,8 @@ signal level_finished(points)
 
 @onready var MENU_WORD_COMPOSITION = preload("res://Game/GUI/menu_word_composition.tscn")
 
+var room: LevelRoom
 @onready var ui_container = $UIContainer;
-@onready var room: LevelRoom = $Room
 @onready var player: Player = room.get_node("Player")
 @onready var word_composing_menu: MenuWordComposition = $UIContainer/MenuWordComposition
 @onready var score: Score = $UIContainer/ScoreUI
@@ -20,12 +20,6 @@ func _ready():
 	room.on_captured.connect(fish_captured)
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
 	player.oxygen.on_oxygen_depleted.connect(on_oxygen_depleted)
-
-	letters_pool.append(Letter.new(Alphabet.get_character("H")))
-	letters_pool.append(Letter.new(Alphabet.get_character("E")))
-	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Medusa, Letter.BonusType.LetterMult1))
-	letters_pool.append(Letter.new(Alphabet.get_character("L"), Letter.FishType.Eel, Letter.BonusType.WordMult1))
-	letters_pool.append(Letter.new(Alphabet.get_character("O")))
 
 
 func setup_level(artefacts : Array[Artefact]):
