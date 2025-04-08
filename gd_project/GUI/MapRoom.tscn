@@ -154,6 +154,7 @@ self_modulate = Color(1, 1, 1, 0)
 offset_left = -8.0
 offset_top = -8.0
 scale = Vector2(2.02045, 1.96421)
+mouse_default_cursor_shape = 2
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

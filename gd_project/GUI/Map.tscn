@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bttlkgy3yuih6" path="res://GUI/map.png" id="3_ua3gp"]
 
 [node name="Map" type="Node2D"]
+position = Vector2(30, 0)
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_v258p")
 
 [node name="MapGenerator" type="Node" parent="."]
@@ -32,9 +34,9 @@ anchor_left = -0.003
 anchor_top = -1.783
 anchor_right = 0.661
 offset_left = -0.04
-offset_top = 320.94
+offset_top = 140.94
 offset_right = 107.48
-offset_bottom = 360.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ua3gp")

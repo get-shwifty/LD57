@@ -86,7 +86,7 @@ func start_new_level(level_coeff : int):
 	var n = ROOMS_METADATA.size()
 	var idx = current_room_idx - 1
 	if idx >= n:
-		idx = randi_range(n - 3, n - 1) # dark rooms
+		idx = n - 1 # randi_range(n - 3, n - 1) # dark rooms
 	prints(n, idx, current_room_idx)
 	var r = ROOMS_METADATA.keys()[idx]
 	

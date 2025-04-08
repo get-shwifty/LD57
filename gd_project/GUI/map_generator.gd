@@ -4,12 +4,12 @@ extends Node
 const X_DIST := 30
 const Y_DIST := 30
 const PLACEMENT_RANDOMNESS := 5
-const FLOORS := 8
+const FLOORS := 7
 const MAP_WITDTH := 5
-const PATHS := 4
-const MIN_START_POINTS := 2
+const PATHS := 6
+const MIN_START_POINTS := 3
 const LEVEL_ROOM_WEIGHT := 10.0
-const SHOP_ROOM_WEIGHT := 4.0
+const SHOP_ROOM_WEIGHT := 3.0
 const MINI_BOSS_ROOM_WEIGHT := 5.0
 const LIMIT_MIN_FOR_MINI_BOSS_SPAWN := 5
 
