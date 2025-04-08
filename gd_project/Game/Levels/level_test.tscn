@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3elieuk1ty6m"]
+[gd_scene load_steps=7 format=3 uid="uid://d3elieuk1ty6m"]
 
 [ext_resource type="Script" uid="uid://ddit1srs4rpdb" path="res://Game/Levels/game_level.gd" id="1_rdhbp"]
 [ext_resource type="PackedScene" uid="uid://dcg877klkaxk2" path="res://Game/GUI/menu_word_composition.tscn" id="3_1krt2"]
 [ext_resource type="Script" uid="uid://ods1spqp0xle" path="res://Game/GUI/score_ui.gd" id="4_3j40w"]
 [ext_resource type="Theme" uid="uid://clnj82hjocrrk" path="res://assets/fonts/level_test.tres" id="4_mg66w"]
+[ext_resource type="Texture2D" uid="uid://cqgplqab7h750" path="res://assets/images/Touches-clavier-souris/space_bar.png" id="5_dvd30"]
+[ext_resource type="Texture2D" uid="uid://d0mgjkp6bwu4c" path="res://assets/images/Touches-clavier-souris/clic_droit.png" id="6_acl4f"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_rdhbp")
@@ -83,3 +85,62 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "2450"
+
+[node name="Inputs" type="Control" parent="UIContainer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = -120.0
+offset_bottom = -50.0
+scale = Vector2(1.5, 1.5)
+theme = ExtResource("4_mg66w")
+
+[node name="TextureRect" type="TextureRect" parent="UIContainer/Inputs"]
+offset_left = 293.0
+offset_top = 166.0
+offset_right = 357.0
+offset_bottom = 206.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_dvd30")
+
+[node name="TextureRect2" type="TextureRect" parent="UIContainer/Inputs"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 169.333
+offset_right = 330.0
+offset_bottom = 209.333
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_acl4f")
+
+[node name="Label2" type="Label" parent="UIContainer/Inputs"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 174.0
+offset_right = 318.0
+offset_bottom = 181.0
+theme_override_font_sizes/font_size = 4
+text = "space"
+horizontal_alignment = 1
+
+[node name="GuessAWord" type="Label" parent="UIContainer/Inputs"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 167.0
+offset_right = 319.0
+offset_bottom = 187.0
+theme_override_font_sizes/font_size = 4
+text = "guess a word"
+horizontal_alignment = 2
+
+[node name="GoBack" type="Label" parent="UIContainer/Inputs"]
+visible = false
+layout_mode = 0
+offset_left = 287.0
+offset_top = 167.0
+offset_right = 319.0
+offset_bottom = 187.0
+theme_override_font_sizes/font_size = 4
+text = "go back"
+horizontal_alignment = 2

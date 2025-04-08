@@ -41,6 +41,7 @@ func setup_level(objective, artefacts : Array[Artefact]):
 
 
 func fish_captured(letter: Letter):
+	$UIContainer/Inputs.show()
 	letters_pool.append(letter)
 	word_composing_menu.set_letters(letters_pool)
 	
@@ -97,8 +98,12 @@ func toggle_word_compose():
 func compose_word():
 	word_composing_menu.is_composing_word = true
 	player.enabled = false
+	$UIContainer/Inputs/GuessAWord.hide()
+	$UIContainer/Inputs/GoBack.show()
 
 func play_arcade():
 	word_composing_menu.is_composing_word = false
 	word_composing_menu.set_letters(letters_pool)
 	player.enabled = true
+	$UIContainer/Inputs/GuessAWord.show()
+	$UIContainer/Inputs/GoBack.hide()

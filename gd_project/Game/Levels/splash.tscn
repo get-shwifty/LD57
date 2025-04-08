@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bbpwi6g8le3uu"]
+[gd_scene load_steps=32 format=3 uid="uid://bbpwi6g8le3uu"]
 
 [ext_resource type="Script" uid="uid://bd2aro2yyxb5d" path="res://Game/Levels/splash.gd" id="1_1o6ei"]
 [ext_resource type="Texture2D" uid="uid://ddxemycgw5aqv" path="res://assets/images/backgrounds.png" id="2_d4njp"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://bker1ljdqjq6i" path="res://assets/images/Touches-clavier-souris/enter.png" id="21_dl62i"]
 [ext_resource type="Texture2D" uid="uid://dit3nbd8s42lg" path="res://assets/images/Touches-clavier-souris/wasd.png" id="22_20ptk"]
 [ext_resource type="Texture2D" uid="uid://cqgplqab7h750" path="res://assets/images/Touches-clavier-souris/space_bar.png" id="23_hnkpt"]
+[ext_resource type="PackedScene" uid="uid://bv5efl4bcaq73" path="res://Game/Characters2/player.tscn" id="24_dl62i"]
+[ext_resource type="Texture2D" uid="uid://cr5qslpn6gjkb" path="res://assets/images/lettre.png" id="25_20ptk"]
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
@@ -91,6 +93,12 @@ animations = [{
 "name": &"default",
 "speed": 2.0
 }]
+
+[sub_resource type="Curve2D" id="Curve2D_dl62i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 524, 324, 0, 0, 0, 0, 556, 324)
+}
+point_count = 2
 
 [node name="RoomSPlash" type="Node2D"]
 script = ExtResource("1_1o6ei")
@@ -230,40 +238,104 @@ position = Vector2(352, 363)
 path_to_follow = NodePath("../Path2DJelly")
 
 [node name="Playersplash" parent="." instance=ExtResource("12_a03xr")]
+visible = false
 position = Vector2(432, 242)
 
-[node name="TITLE" type="AnimatedSprite2D" parent="."]
-position = Vector2(480, 277)
-sprite_frames = SubResource("SpriteFrames_hnkpt")
-autoplay = "default"
-
 [node name="Start_Button" type="Button" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 418.0
-offset_top = 246.0
+offset_top = 201.0
 offset_right = 543.0
-offset_bottom = 299.0
+offset_bottom = 254.0
 mouse_default_cursor_shape = 2
 text = "
 "
 flat = true
 
+[node name="TITLE" type="AnimatedSprite2D" parent="."]
+position = Vector2(480, 232)
+sprite_frames = SubResource("SpriteFrames_hnkpt")
+autoplay = "default"
+
 [node name="controles" type="Node2D" parent="."]
 
 [node name="ClicGauche" type="Sprite2D" parent="controles"]
-position = Vector2(535, 341)
+position = Vector2(384, 332)
 texture = ExtResource("20_8nbks")
 
 [node name="Enter" type="Sprite2D" parent="controles"]
+visible = false
 position = Vector2(512, 349)
 texture = ExtResource("21_dl62i")
 
 [node name="Wasd" type="Sprite2D" parent="controles"]
-position = Vector2(434, 347)
+position = Vector2(348, 336)
 texture = ExtResource("22_20ptk")
 
 [node name="SpaceBar" type="Sprite2D" parent="controles"]
+visible = false
 position = Vector2(479, 352)
 texture = ExtResource("23_hnkpt")
 
+[node name="Player" parent="." instance=ExtResource("24_dl62i")]
+position = Vector2(368, 252)
+
+[node name="MurenePlay" parent="." node_paths=PackedStringArray("path_to_follow") instance=ExtResource("10_k1srn")]
+position = Vector2(480, 332)
+MAX_MOVE_SPEED = 0.0
+path_to_follow = NodePath("../Path2DPlay")
+
+[node name="Play" type="Node2D" parent="MurenePlay"]
+position = Vector2(-12, 4)
+scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="MurenePlay/Play"]
+texture = ExtResource("25_20ptk")
+
+[node name="Label" type="Label" parent="MurenePlay/Play/Sprite2D"]
+offset_left = -4.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 11.0
+text = "P"
+
+[node name="Sprite2D2" type="Sprite2D" parent="MurenePlay/Play"]
+position = Vector2(28, 0)
+texture = ExtResource("25_20ptk")
+
+[node name="Label" type="Label" parent="MurenePlay/Play/Sprite2D2"]
+offset_left = -4.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 11.0
+text = "L"
+
+[node name="Sprite2D3" type="Sprite2D" parent="MurenePlay/Play"]
+position = Vector2(56, 0)
+texture = ExtResource("25_20ptk")
+
+[node name="Label" type="Label" parent="MurenePlay/Play/Sprite2D3"]
+offset_left = -4.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 11.0
+text = "A"
+
+[node name="Sprite2D4" type="Sprite2D" parent="MurenePlay/Play"]
+position = Vector2(84, 0)
+texture = ExtResource("25_20ptk")
+
+[node name="Label" type="Label" parent="MurenePlay/Play/Sprite2D4"]
+offset_left = -4.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 11.0
+text = "Y"
+
+[node name="Path2DPlay" type="Path2D" parent="."]
+position = Vector2(-56, 8)
+curve = SubResource("Curve2D_dl62i")
+
 [connection signal="pressed" from="Start_Button" to="." method="_on_button_pressed"]
+[connection signal="on_captured" from="MurenePlay" to="." method="_on_murene_play_on_captured"]
