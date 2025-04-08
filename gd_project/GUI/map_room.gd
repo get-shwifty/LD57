@@ -47,8 +47,10 @@ func _on_map_room_selected() -> void:
 
 
 func _on_button_mouse_entered() -> void:
-	Popups.ItemPopup()
+	pass
+	#Popups.ItemPopup()
 	
 
 func _on_button_mouse_exited() -> void:
-	Popups.HideItemPopup()
+	pass
+	#Popups.HideItemPopup()
