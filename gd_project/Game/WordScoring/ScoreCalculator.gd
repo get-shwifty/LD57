@@ -192,7 +192,9 @@ class ScoreBreakdown:
 			indexed_letter.letter.bonus_type = operation.letter_bonus_type_delta
 		if operation.letter_fish_type_delta != null:
 			indexed_letter.letter.fish_type = operation.letter_fish_type_delta
-			
+		
+		current_letter_score = max(current_letter_score, 0)
+		
 		var letter_score_delta = current_letter_score - current_letter_old_score
 		if letter_score_delta != 0:
 			current_word_add += letter_score_delta
@@ -202,6 +204,9 @@ class ScoreBreakdown:
 		if operation.word_mult_delta != 0:
 			current_word_mult += operation.word_mult_delta
 			
+		current_word_add = max(current_word_add,0)
+		current_word_mult = max(current_word_mult,1)
+		
 		operation.new_letter_score = current_letter_score
 		operation.new_word_add = current_word_add
 		operation.new_word_mult = current_word_mult

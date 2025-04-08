@@ -209,11 +209,11 @@ func resolve_source(action: ScoreCalculator.ScoreOperation):
 		return artefacts_container.get_children()[action.origin_artefact_idx]
 
 func resolve_target(action: ScoreCalculator.ScoreOperation):
-	if action.letter_add_delta > 0 or action.letter_mult_delta or action.letter_fish_type_delta or action.letter_bonus_type_delta:
+	if action.letter_add_delta != 0 or action.letter_mult_delta or action.letter_fish_type_delta or action.letter_bonus_type_delta:
 		return word_container.get_children()[action.evaluated_letter_idx]
-	elif action.word_add_delta > 0:
+	elif action.word_add_delta != 0:
 		return $CenterContainer/VBoxContainer/PanelContainer/Score/Points
-	elif action.word_mult_delta > 0:
+	elif action.word_mult_delta != 0:
 		return $CenterContainer/VBoxContainer/PanelContainer/Score/Multiplicateur
 	
 func _play_bubble_sound():
