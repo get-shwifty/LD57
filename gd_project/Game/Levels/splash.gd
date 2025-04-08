@@ -10,3 +10,7 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	start_game.emit()
+
+
+func _on_murene_play_on_captured() -> void:
+	start_game.emit()

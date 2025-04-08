@@ -20,10 +20,10 @@ static func generate_bonuses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Left friend" # find a better word
-	artefact.description = "+10 if previous letter is a similar fish"
+	artefact.description = "+4 if previous letter is a similar fish"
 	artefact.trigger = Artefact.TriggerType.Letter
 	artefact.target = Artefact.TargetType.LetterAdd
-	artefact.value = ComputedValue.new(10)
+	artefact.value = ComputedValue.new(4)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return cc.previous_letter != null && cc.previous_letter.fish_type == cc.current_letter.fish_type
 	artefacts.append(artefact)
@@ -37,7 +37,7 @@ static func generate_bonuses() -> Array[Artefact]:
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		var is_previous_similar = (cc.previous_letter != null && cc.previous_letter.fish_type == cc.current_letter.fish_type)
 		var is_next_similar = (cc.next_letter != null && cc.next_letter.fish_type == cc.current_letter.fish_type)
-		return is_previous_similar && is_next_similar;
+		return is_previous_similar or is_next_similar;
 	artefacts.append(artefact)
 	
 	artefact = Artefact.new()
@@ -55,10 +55,10 @@ static func generate_bonuses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Crab together strong"
-	artefact.description = "+20 word mult if only crabs"
+	artefact.description = "+10 word mult if only crabs"
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordMult
-	artefact.value = ComputedValue.new(20)
+	artefact.value = ComputedValue.new(10)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		for letter in cc.word:
 			if letter.fish_type != Letter.FishType.Crab:
@@ -68,10 +68,10 @@ static func generate_bonuses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "One man clown"
-	artefact.description = "+200 word points if only one clown"
+	artefact.description = "+50 word points there is exactly one clown"
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
-	artefact.value = ComputedValue.new(200)
+	artefact.value = ComputedValue.new(50)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		var crab_count = 0
 		for letter in cc.word:
@@ -92,10 +92,10 @@ static func generate_bonuses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Release the Skraken"
-	artefact.description = "x10 if letter is the only medusa in a 7 letter word"
+	artefact.description = "x10 if letter is the only jellyfish in a 7 letter word"
 	artefact.trigger = Artefact.TriggerType.Letter
 	artefact.target = Artefact.TargetType.WordMult
-	artefact.value = ComputedValue.new(2)
+	artefact.value = ComputedValue.new(10)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		if cc.current_letter.fish_type != Letter.FishType.Medusa:
 			return false
@@ -154,10 +154,10 @@ static func generate_bonuses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Yeeeeeeeeha"
-	artefact.description = "+5 per E if there are more E than A in the word"
+	artefact.description = "+3 per E if there are more E than A in the word"
 	artefact.trigger = Artefact.TriggerType.Letter
 	artefact.target = Artefact.TargetType.LetterAdd
-	artefact.value = ComputedValue.new(5)
+	artefact.value = ComputedValue.new(3)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		if cc.current_letter.character.character != "E":
 			return false
@@ -173,7 +173,7 @@ static func generate_bonuses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Jellymorphism"
-	artefact.description = "If letter is a medusa, transforms into previous fish"
+	artefact.description = "If letter is a jellyfish, transforms into previous fish"
 	artefact.trigger = Artefact.TriggerType.Letter
 	artefact.target = Artefact.TargetType.LetterFishType
 	artefact.value = func(vc: VariableContext, cc: ConditionContext):
@@ -184,7 +184,7 @@ static func generate_bonuses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Enjellyfication"
-	artefact.description = "Transform into medusa if previous fish is a medusa"
+	artefact.description = "Transform into jellyfish if previous fish is a jellyfish"
 	artefact.trigger = Artefact.TriggerType.Letter
 	artefact.target = Artefact.TargetType.LetterFishType
 	artefact.value = Letter.FishType.Medusa
@@ -194,7 +194,7 @@ static func generate_bonuses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "The more the merrier"
-	artefact.description = "+4 mult if there is more clownfish in the word than in the letter pool"
+	artefact.description = "+4 mult if there is more clownfish in the word than in the remaining letter pool"
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordMult
 	artefact.value = 4
@@ -219,11 +219,11 @@ static func generate_maluses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Crabastrophic"
-	artefact.description = "-100 points if word contains a crab"
+	artefact.description = "-50 points if word contains a crab"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
-	artefact.value = ComputedValue.new(100)
+	artefact.value = ComputedValue.new(50)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		for letter in cc.word:
 			if letter.fish_type == Letter.FishType.Crab:
@@ -233,48 +233,48 @@ static func generate_maluses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "No fun allowed"
-	artefact.description = "-4 word mult per clown fish"
+	artefact.description = "-1 word mult per clown fish"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Letter
 	artefact.target = Artefact.TargetType.WordMult
-	artefact.value = ComputedValue.new(-4)
+	artefact.value = ComputedValue.new(-1)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return cc.current_letter.fish_type == Letter.FishType.Clown
 	artefacts.append(artefact)
 
 	artefact = Artefact.new()
-	artefact.name = "Preadtory behaviour"
-	artefact.description = "x0.5 if fish nearby are different"
+	artefact.name = "Predatory behaviour"
+	artefact.description = "x0.5 if the letter after is a different fish"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Letter
 	artefact.target = Artefact.TargetType.LetterMult
 	artefact.value = ComputedValue.new(0.50)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
-		var is_previous_different = (cc.previous_letter != null && cc.previous_letter.fish_type != cc.current_letter.fish_type)
+		#var is_previous_different = (cc.previous_letter != null && cc.previous_letter.fish_type != cc.current_letter.fish_type)
 		var is_next_different = (cc.next_letter != null && cc.next_letter.fish_type != cc.current_letter.fish_type)
-		return is_previous_different || is_next_different;
+		return is_next_different;
 	artefacts.append(artefact)
 	
 	artefact = Artefact.new()
 	artefact.name = "Electric danger"
-	artefact.description = "-10 if medusa nearby"
+	artefact.description = "Letter scores -3 if right after a jellyfish letter"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Letter
 	artefact.target = Artefact.TargetType.LetterMult
-	artefact.value = ComputedValue.new(-10)
+	artefact.value = ComputedValue.new(-3)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		var is_previous_medusa = (cc.previous_letter != null && cc.previous_letter.fish_type == Letter.FishType.Medusa)
-		var is_next_medusa = (cc.next_letter != null && cc.next_letter.fish_type != Letter.FishType.Medusa)
-		return is_previous_medusa || is_next_medusa;
+		#var is_next_medusa = (cc.next_letter != null && cc.next_letter.fish_type == Letter.FishType.Medusa)
+		return is_previous_medusa
 	artefacts.append(artefact)
 	
 	artefact = Artefact.new()
 	artefact.name = "Cheat ban"
-	artefact.description = "-4 mult if word contains bonus letter"
+	artefact.description = "-2 mult if word contains bonus letter"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordMult
-	artefact.value = ComputedValue.new(-4)
+	artefact.value = ComputedValue.new(-2)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		for letter in cc.word:
 			if letter.bonus_type != Letter.BonusType.None:
@@ -284,23 +284,23 @@ static func generate_maluses() -> Array[Artefact]:
 	
 	artefact = Artefact.new()
 	artefact.name = "Against all odds"
-	artefact.description = "-100 if word has an odd letter count"
+	artefact.description = "-50 points if word has an odd letter count"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
-	artefact.value = ComputedValue.new(-100)
+	artefact.value = ComputedValue.new(-50)
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return vc.letter_count % 2 != 0;
 	artefacts.append(artefact)
 	
 	artefact = Artefact.new()
 	artefact.name = "Buffer overflow"
-	artefact.description = "-10 points per letter remaining in the pool"
+	artefact.description = "-30 points per letter remaining in the pool"
 	artefact.is_malus = true
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
 	artefact.value = func(vc: VariableContext, cc: ConditionContext):
-		return cc.letter_pool.size() * -10;
+		return cc.letter_pool.size() * -30;
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return cc.letter_pool.size() > 0;
 	artefacts.append(artefact)
@@ -328,7 +328,7 @@ static func generate_starting() -> Array[Artefact]:
 	artefact.trigger = Artefact.TriggerType.Word
 	artefact.target = Artefact.TargetType.WordAdd
 	artefact.value = func(vc: VariableContext, cc: ConditionContext):
-		return pow(cc.letter_pool.size(), 2) 
+		return pow(cc.word.size(), 2) 
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return true;
 	artefacts.append(artefact)

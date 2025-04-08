@@ -81,7 +81,7 @@ func on_score_menu_closed(new_artefact):
 
 func start_new_level(level_coeff : int):
 	current_room_idx += 1
-	var score_to_do = int(pow(current_room_idx, 1.6) * 60) * level_coeff
+	var score_to_do = int(pow(current_room_idx, 1.4) * 50) * level_coeff
 
 	var n = ROOMS_METADATA.size()
 	var idx = current_room_idx - 1

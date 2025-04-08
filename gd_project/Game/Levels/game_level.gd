@@ -41,6 +41,7 @@ func setup_level(objective, artefacts : Array[Artefact]):
 
 
 func fish_captured(letter: Letter):
+	$UIContainer/Inputs.show()
 	letters_pool.append(letter)
 	word_composing_menu.set_letters(letters_pool)
 	
@@ -56,9 +57,9 @@ func neutralize_ui():
 func confirm_word(word: Array[Letter]):
 	var variable_context: VariableContext = VariableContext.new()
 	variable_context.remaining_oxygen = player.oxygen.current_oxygen
-	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)
 	for letter in word:
 		letters_pool.erase(letter)
+	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)
 
 	waiting_for_ui = true
 	player.oxygen.paused = true
@@ -97,8 +98,12 @@ func toggle_word_compose():
 func compose_word():
 	word_composing_menu.is_composing_word = true
 	player.enabled = false
+	$UIContainer/Inputs/GuessAWord.hide()
+	$UIContainer/Inputs/GoBack.show()
 
 func play_arcade():
 	word_composing_menu.is_composing_word = false
 	word_composing_menu.set_letters(letters_pool)
 	player.enabled = true
+	$UIContainer/Inputs/GuessAWord.show()
+	$UIContainer/Inputs/GoBack.hide()
