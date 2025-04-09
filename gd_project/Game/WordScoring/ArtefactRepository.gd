@@ -210,6 +210,17 @@ static func generate_bonuses() -> Array[Artefact]:
 		return cc.previous_letter != null && cc.previous_letter.fish_type == cc.current_letter.fish_type
 	artefacts.append(artefact)
 	
+	artefact = Artefact.new()
+	artefact.name = "360 no scope"
+	artefact.description = "+2 mult per fish captured, -1 mult per harpoon fired"
+	artefact.trigger = Artefact.TriggerType.Word
+	artefact.target = Artefact.TargetType.WordMult
+	artefact.value = func(vc: VariableContext, cc: ConditionContext):
+		return (vc.fish_captured_count * 2) - vc.harpoon_fired_count
+	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return true;
+	artefacts.append(artefact)
+	
 	return artefacts
 
 static func generate_maluses() -> Array[Artefact]:
@@ -332,17 +343,7 @@ static func generate_starting() -> Array[Artefact]:
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return true;
 	artefacts.append(artefact)
-	
-	artefact = Artefact.new()
-	artefact.name = "360 no scope"
-	artefact.description = "+2 mult per fish captured, -1 mult per harpoon fired"
-	artefact.trigger = Artefact.TriggerType.Word
-	artefact.target = Artefact.TargetType.WordMult
-	artefact.value = func(vc: VariableContext, cc: ConditionContext):
-		return (vc.fish_captured_count * 2) - vc.harpoon_fired_count
-	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
-		return true;
-	artefacts.append(artefact)
+
 
 	return artefacts
 	
