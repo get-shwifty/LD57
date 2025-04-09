@@ -55,6 +55,6 @@ func _physics_process(delta: float) -> void:
 func set_letter(c: String):
 	$LetterCtn/Label.text = c
 
-func capture_letter(_collision: KinematicCollision2D):
-	on_captured.emit()
+func capture_letter(_collision: KinematicCollision2D, bonus_type: Letter.BonusType):
+	on_captured.emit(bonus_type)
 	queue_free()

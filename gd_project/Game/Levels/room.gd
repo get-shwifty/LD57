@@ -23,6 +23,5 @@ func set_letters(letters):
 				letter.fish_type = Letter.FishType.Crab
 			if child is Murene:
 				letter.fish_type = Letter.FishType.Eel
-				letter.bonus_type = Letter.BonusType.WordMult1
 			if child is Jelly:
 				letter.fish_type = Letter.FishType.Medusa

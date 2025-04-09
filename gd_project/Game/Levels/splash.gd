@@ -12,5 +12,5 @@ func _on_button_pressed() -> void:
 	start_game.emit()
 
 
-func _on_murene_play_on_captured() -> void:
+func _on_murene_play_on_captured(bonus_type : Letter.BonusType) -> void:
 	start_game.emit()

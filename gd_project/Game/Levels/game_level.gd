@@ -14,12 +14,15 @@ var room: LevelRoom
 var letters_pool : Array[Letter] = []
 var waiting_for_ui = false
 var artefacts : Array[Artefact]
+var fish_captured_count : int
+var harpoon_fired_count : int
 
 func _ready():
 	assert(player != null)
 	room.on_captured.connect(fish_captured)
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
 	player.oxygen.on_oxygen_depleted.connect(on_oxygen_depleted)
+	player.on_harpoon_fired.connect(on_harpoon_fired)
 
 
 func setup_level(objective, artefacts : Array[Artefact]):
@@ -30,26 +33,25 @@ func setup_level(objective, artefacts : Array[Artefact]):
 	word_composing_menu.setup_artefacts_grid()
 
 	var letters = Alphabet.get_random_characters().map(func(c): return Letter.new(c))
-	for letter: Letter in letters:
-		var r = randf()
-		if r < 0.05:
-			letter.bonus_type = Letter.BonusType.LetterMult2
-		elif r < 0.15:
-			letter.bonus_type = Letter.BonusType.LetterMult1
 
 	room.set_letters(letters)
 
 
-func fish_captured(letter: Letter):
+func fish_captured(bonus_type: Letter.BonusType, letter: Letter):
 	$UIContainer/Inputs.show()
+	letter.bonus_type = bonus_type
 	letters_pool.append(letter)
 	word_composing_menu.set_letters(letters_pool)
+	fish_captured_count += 1
 	
 func on_oxygen_depleted():
 	print("oxygen depleted")
 	neutralize_ui()
 	level_finished.emit(0)
 
+func on_harpoon_fired():
+	harpoon_fired_count += 1
+	
 func neutralize_ui():
 	score.hide()
 	word_composing_menu.hide()
@@ -57,6 +59,8 @@ func neutralize_ui():
 func confirm_word(word: Array[Letter]):
 	var variable_context: VariableContext = VariableContext.new()
 	variable_context.remaining_oxygen = player.oxygen.current_oxygen
+	variable_context.harpoon_fired_count = harpoon_fired_count
+	variable_context.fish_captured_count = fish_captured_count
 	for letter in word:
 		letters_pool.erase(letter)
 	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)

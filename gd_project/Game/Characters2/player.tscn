@@ -192,6 +192,15 @@ drag_horizontal_enabled = true
 position = Vector2(-8, 0)
 texture = ExtResource("4_uhrti")
 
+[node name="Bonus" type="Label" parent="Harpoon/Projectile"]
+unique_name_in_owner = true
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 31.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 4
+text = "letter x1"
+
 [node name="HarpoonFire" type="AudioStreamPlayer" parent="Harpoon"]
 stream = ExtResource("6_j0eht")
 volume_db = -18.108
@@ -220,3 +229,5 @@ autoplay = true
 stream = ExtResource("8_uhrti")
 volume_db = -19.572
 pitch_scale = 0.77
+
+[connection signal="tree_exiting" from="Harpoon/Projectile/Bonus" to="Harpoon" method="_on_bonus_tree_exiting"]

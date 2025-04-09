@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal on_harpoon_fired
+
 @export var MOVE_SPEED: float = 90
 
 @onready var harpoon: Harpoon = $Harpoon
@@ -60,6 +62,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("fire"):
 		harpoon.fire()
 		harpoonFire.play()
+		on_harpoon_fired.emit()
 	
 	velocity = input * MOVE_SPEED
 	move_and_slide()
