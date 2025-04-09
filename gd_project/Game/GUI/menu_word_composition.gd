@@ -184,9 +184,9 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 				display_text(target, operator + str(action.word_add_delta), color)
 				target.text = str(action.new_word_add)
 			elif target == %Multiplicateur:
-				var operator = "+" if action.new_word_mult > 0 else ""
+				var operator = "+" if action.word_mult_delta > 0 else ""
 				var color = Color('#da6175') if operator == "" else Color.WHITE_SMOKE# Color('24b8a0')
-				display_text(target, operator + str(action.new_word_mult), color)
+				display_text(target, operator + str(action.word_mult_delta), color)
 				target.text = str(action.new_word_mult)
 			await bump_ui(target)
 		await get_tree().create_timer(tween_time).timeout

@@ -161,9 +161,9 @@ class ScoreBreakdown:
 						operation.letter_mult_delta += 3
 				else:
 					if word[letter_index].bonus_type == Letter.BonusType.WordMult1:
-						operation.word_mult_delta += 2
+						operation.word_mult_delta += 1
 					elif word[letter_index].bonus_type == Letter.BonusType.WordMult2:
-						operation.word_mult_delta += 3
+						operation.word_mult_delta += 2
 			else:
 				match artefact.artefact.target:
 					Artefact.TargetType.LetterAdd:
@@ -208,11 +208,17 @@ class ScoreBreakdown:
 			current_word_add += operation.word_add_delta
 		if operation.word_mult_delta != 0:
 			current_word_mult += operation.word_mult_delta
-			
+		
 		current_word_add = max(current_word_add,0)
 		current_word_add = snapped(current_word_add, 0.01)
 		current_word_mult = max(current_word_mult,1)
 		current_word_mult = snapped(current_word_mult, 0.01)
+		
+		operation.letter_add_delta = snapped(operation.letter_add_delta, 0.01)
+		operation.letter_mult_delta = snapped(operation.letter_mult_delta, 0.01)
+		operation.word_add_delta = snapped(operation.word_add_delta, 0.01)
+		operation.word_mult_delta = snapped(operation.word_mult_delta, 0.01)
+		
 		
 		operation.new_letter_score = current_letter_score
 		operation.new_word_add = current_word_add
