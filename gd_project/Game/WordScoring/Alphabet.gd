@@ -67,7 +67,7 @@ static func get_all_characters():
 	
 static func get_character(character : String) -> Character:
 	for c in get_all_characters():
-		if c.character == character:
+		if c.character == character.to_upper():
 			return c
 	
 	#log error

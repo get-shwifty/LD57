@@ -29,9 +29,10 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 		cond_context.previous_letter = word[index_letter-1] if index_letter > 0 else null
 		cond_context.next_letter = word[index_letter+1] if index_letter < word.size()-1 else null
 		
-		var applicable_artifacts = get_applicable_artefacts(true, artefacts, var_context, cond_context)
+		breakdown.current_letter_score = 0
+		breakdown.register_operation(true, null, current_indexed_letter)
 		
-		breakdown.current_letter_score = current_letter.character.base_value
+		var applicable_artifacts = get_applicable_artefacts(true, artefacts, var_context, cond_context)
 		
 		for a in applicable_artifacts:
 			if a.artefact.target == Artefact.TargetType.LetterFishType:
@@ -53,8 +54,8 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 			if a.artefact.target == Artefact.TargetType.LetterMult:
 				breakdown.register_operation(true, a, current_indexed_letter)
 				
-		if current_letter.bonus_type == Letter.BonusType.LetterMult1 || current_letter.bonus_type == Letter.BonusType.LetterMult2:
-				breakdown.register_operation(true, null, current_indexed_letter)
+		if current_letter.bonus_type != Letter.BonusType.None:
+			breakdown.register_operation(true, null, current_indexed_letter, true)
 		
 		for a in applicable_artifacts:
 			if a.artefact.target == Artefact.TargetType.WordAdd:
@@ -63,10 +64,7 @@ static func compute_score(word : Array[Letter], artefacts : Array[Artefact], var
 		for a in applicable_artifacts:
 			if a.artefact.target == Artefact.TargetType.WordMult:
 				breakdown.register_operation(true, a, current_indexed_letter)
-		
-		if current_letter.bonus_type == Letter.BonusType.WordMult1 || current_letter.bonus_type == Letter.BonusType.WordMult2:
-				breakdown.register_operation(true, null, current_indexed_letter, true)
-	
+
 	breakdown.current_letter_score = 0
 	cond_context.reset_letter_dependant_context()
 	var applicable_artifacts = get_applicable_artefacts(false, artefacts, var_context, cond_context)
@@ -141,29 +139,25 @@ class ScoreBreakdown:
 	func fill_initial_values(word : Array[Letter]):
 		initial_word_add = 0
 		initial_word_mult = 1
-		for letter in word:
-			var letter_add = letter.character.base_value
-			initial_word_add += letter_add
-		current_word_add = initial_word_add
-		current_word_mult = initial_word_mult
 	
-	func register_operation(is_operating_on_letter : bool, artefact : ApplicableArtefact, indexed_letter : IndexedLetter, evaluate_letter_word_mult : bool = false ):
+	func register_operation(is_operating_on_letter : bool, artefact : ApplicableArtefact, indexed_letter : IndexedLetter, evaluate_letter_bonus_type : bool = false ):
 		var artefact_idx = artefact.artefact_idx if artefact != null else -1
 		var letter_index = indexed_letter.letter_idx if indexed_letter != null else -1
 		var operation = ScoreOperation.new(letter_index, artefact_idx)
 		
 		if is_operating_on_letter:
 			if artefact == null:
-				if !evaluate_letter_word_mult:
+				if evaluate_letter_bonus_type:
 					if word[letter_index].bonus_type == Letter.BonusType.LetterMult1:
 						operation.letter_mult_delta += 2
 					elif word[letter_index].bonus_type == Letter.BonusType.LetterMult2:
 						operation.letter_mult_delta += 3
-				else:
-					if word[letter_index].bonus_type == Letter.BonusType.WordMult1:
+					elif word[letter_index].bonus_type == Letter.BonusType.WordMult1:
 						operation.word_mult_delta += 1
 					elif word[letter_index].bonus_type == Letter.BonusType.WordMult2:
 						operation.word_mult_delta += 2
+				else:
+					operation.letter_add_delta = indexed_letter.letter.character.base_value
 			else:
 				match artefact.artefact.target:
 					Artefact.TargetType.LetterAdd:

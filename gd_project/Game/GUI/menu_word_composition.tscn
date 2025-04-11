@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcg877klkaxk2"]
+[gd_scene load_steps=14 format=3 uid="uid://dcg877klkaxk2"]
 
 [ext_resource type="Script" uid="uid://cndgwbvdrrkb0" path="res://Game/GUI/menu_word_composition.gd" id="1_0plho"]
 [ext_resource type="AudioStream" uid="uid://dgi6artrfut34" path="res://assets/sounds/bruitages/wordComposition/BRUIT SELECTION LETTRES.mp3" id="2_idrpg"]
@@ -7,6 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://cil8cdq6aiylu" path="res://assets/sounds/bruitages/wordComposition/COMPTE-POINTS-PARTIE-2.mp3" id="3_b1ano"]
 [ext_resource type="AudioStream" uid="uid://3mynm6ro4j45" path="res://assets/sounds/bruitages/wordComposition/malus_sound.mp3" id="6_2vdqv"]
 [ext_resource type="AudioStream" uid="uid://df4tiya4x1wig" path="res://assets/sounds/bruitages/wordComposition/upgrade_sound.mp3" id="7_gqv15"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqv15"]
+bg_color = Color(0.511178, 0.561621, 0.942746, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_511m5"]
+bg_color = Color(0.890601, 0.443825, 0.463351, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ns11"]
 atlas = ExtResource("2_li7tv")
@@ -93,7 +99,11 @@ layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Points" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gqv15")
+
+[node name="Points" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score/PanelContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
@@ -109,7 +119,11 @@ theme_override_fonts/font = ExtResource("3_7ns11")
 theme_override_font_sizes/font_size = 10
 text = "x"
 
-[node name="Multiplicateur" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
+[node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Score"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_511m5")
+
+[node name="Multiplicateur" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Score/PanelContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2

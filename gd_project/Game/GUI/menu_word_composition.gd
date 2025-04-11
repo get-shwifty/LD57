@@ -116,7 +116,7 @@ func on_letter_selected(letter: Control):
 	else:
 		can_submit = false
 		
-	update_score()
+	#update_score()
 
 func get_word():
 	if word_container.get_child_count() <= 0:
@@ -139,13 +139,13 @@ func update_score():
 	var score = 0
 	for letter in word:
 		score += letter.character.base_value
-	$CenterContainer/VBoxContainer/PanelContainer/Score/Points.text = str(score)
+	%Points.text = str(score)
 	#$CenterContainer/VBoxContainer/PanelContainer/Score/Total.text = str(score)
 	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Points)
 	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Total)
 	
 	
-func process_score(score: ScoreCalculator.ScoreBreakdown):
+func process_score_old(score: ScoreCalculator.ScoreBreakdown):
 	tween_time = 0.35
 	
 	for action in score.operations:
@@ -174,7 +174,7 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 				_play_upgrade_sound()
 			await bump_ui(target)
 			if action.new_letter_score != int(target.points.text):
-				var points = $CenterContainer/VBoxContainer/PanelContainer/Score/Points
+				var points = %Points
 				points.text = str(action.new_word_add)
 				await bump_ui(points)
 		else:
@@ -219,28 +219,78 @@ func display_text(target, string, color : Color):
 	await tween_alpha.finished
 	await tween_scale.finished
 	feedback.queue_free()
+
+func process_feedback(operation):
+	if operation.letter_add_delta != 0:
+		pass
+	elif operation.letter_mult_delta != 0:
+		pass
+	elif operation.word_add_delta != 0:
+		pass
+	elif operation.word_mult_delta != 0:
+		pass
+	elif operation.letter_fish_type_delta != null:
+		pass
+	elif operation.letter_bonus_type_delta != null:
+		pass
+	
+func process_score(score: ScoreCalculator.ScoreBreakdown):
+	var letters = word_container.get_children()
+	var artefacts = artefacts_container.get_children()
+	var current_letter_index = -1
+	var letter: UILetter
+	
+	for operation in score.operations:
+		if operation.evaluated_letter_idx >= 0:
+			# on met la lettre vers le haut 
+			if operation.evaluated_letter_idx != current_letter_index:
+				current_letter_index = operation.evaluated_letter_idx
+				letter = letters[current_letter_index]
+				letters[current_letter_index].position.y -= 5
+				await get_tree().create_timer(0.3).timeout
+			
+			bump_ui(letters[current_letter_index])
+			letter.points.text = str(operation.new_letter_score)
+
+		if operation.origin_artefact_idx > -1:
+			bump_ui(artefacts[operation.origin_artefact_idx])
+		
+		process_feedback(operation)
+		%Points.text = str(operation.new_word_add)
+		%Multiplicateur.text = str(operation.new_word_mult)
+		
+		await get_tree().create_timer(0.3).timeout
+		
+	await display_total(score)
+	on_ui_finished.emit()
+	just_confirmed = true
+	enable_mouse_inputs()
 	
 func display_total(score: ScoreCalculator.ScoreBreakdown):
-	var total = $CenterContainer/VBoxContainer/PanelContainer/Score/Total
-	var increment = 4
+	var total = %Total
+	var increment = 1
 	var temp = 0
 	while temp < score.final_score:
 		total.text = str(temp)
-		await bump_ui(total)
-		if temp + increment + 2 > score.final_score:
+		if temp % 25 == 0:
+			await bump_ui(total)
+		if temp + increment > score.final_score:
 			temp = score.final_score
 			total.text = str(temp)
 			await bump_ui(total)
 		temp += increment
-		increment += 2
+		#increment += 1
 	victory.play()
 
 
 		
 func bump_ui(target: Control):
-	target.position.y -= 5
+	
+	var tween_up: Tween = get_tree().create_tween()
+	tween_up.tween_property(target, "position", target.position - Vector2(0, 5), 0.1)
+	await tween_up.finished
 	var tween_source: Tween = get_tree().create_tween()
-	tween_source.tween_property(target, "position", target.position + Vector2(0, 5), tween_time)
+	tween_source.tween_property(target, "position", target.position + Vector2(0, 5), 0.2)
 	_play_bubble_sound()
 	await tween_source.finished
 	if tween_time > 0.2:
@@ -256,9 +306,9 @@ func resolve_target(action: ScoreCalculator.ScoreOperation):
 	if action.letter_add_delta != 0 or action.letter_mult_delta or action.letter_fish_type_delta or action.letter_bonus_type_delta:
 		return word_container.get_children()[action.evaluated_letter_idx]
 	elif action.word_add_delta != 0:
-		return $CenterContainer/VBoxContainer/PanelContainer/Score/Points
+		return %Points
 	elif action.word_mult_delta != 0:
-		return $CenterContainer/VBoxContainer/PanelContainer/Score/Multiplicateur
+		return %Multiplicateur
 	
 func _play_bubble_sound(malus: bool = false):
 	if malus:

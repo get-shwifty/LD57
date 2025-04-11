@@ -33,8 +33,18 @@ func setup_level(objective, artefacts : Array[Artefact]):
 	word_composing_menu.setup_artefacts_grid()
 
 	var letters = Alphabet.get_random_characters().map(func(c): return Letter.new(c))
-
+	
 	room.set_letters(letters)
+	
+	letters_pool.append(Letter.new(Alphabet.get_character("b")))
+	letters_pool.append(Letter.new(Alphabet.get_character("o")))
+	letters_pool.append(Letter.new(Alphabet.get_character("n")))
+	letters_pool.append(Letter.new(Alphabet.get_character("j")))
+	letters_pool.append(Letter.new(Alphabet.get_character("o"), Letter.FishType.Clown, Letter.BonusType.LetterMult1))
+	letters_pool.append(Letter.new(Alphabet.get_character("u")))
+	letters_pool.append(Letter.new(Alphabet.get_character("r")))
+	
+	word_composing_menu.set_letters(letters_pool)
 
 
 func fish_captured(bonus_type: Letter.BonusType, letter: Letter):
