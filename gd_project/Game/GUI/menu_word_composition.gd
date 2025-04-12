@@ -285,12 +285,12 @@ func display_total(score: ScoreCalculator.ScoreBreakdown):
 
 		
 func bump_ui(target: Control):
-	
+	#target.pivot_offset = target.position + Vector2(target.size.x / 2, target.size.y / 2)
 	var tween_up: Tween = get_tree().create_tween()
-	tween_up.tween_property(target, "position", target.position - Vector2(0, 5), 0.1)
+	tween_up.tween_property(target, "scale", Vector2(1.3, 1.3), 0.1)
 	await tween_up.finished
 	var tween_source: Tween = get_tree().create_tween()
-	tween_source.tween_property(target, "position", target.position + Vector2(0, 5), 0.2)
+	tween_source.tween_property(target, "scale", Vector2(1, 1), 0.1)
 	_play_bubble_sound()
 	await tween_source.finished
 	if tween_time > 0.2:

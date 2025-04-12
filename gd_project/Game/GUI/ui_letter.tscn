@@ -31,6 +31,9 @@ region = Rect2(20, 11, 11, 9)
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 28.0
+offset_bottom = 28.0
+pivot_offset = Vector2(13, 11)
 script = ExtResource("1_xaksk")
 
 [node name="Button" type="TextureButton" parent="."]
