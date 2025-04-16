@@ -4,8 +4,15 @@ class_name UILetter
 signal on_letter_selected
 
 var letter: Letter
+var offset = randi()
+@onready var pos0 = position.y
 @onready var points: Label = %Points
 
+	
+func _process(delta: float) -> void:
+	offset += delta
+	#position.y = pos0 + sin(offset) 
+	
 func initialize(letter_ : Letter):
 	letter = letter_
 	%Letter.text = letter.character.character
@@ -61,7 +68,7 @@ func _on_button_pressed():
 
 
 func _on_button_mouse_entered() -> void:
-	position.y -= 5
+	position.y -= 3
 
 
 func _on_button_mouse_exited() -> void:

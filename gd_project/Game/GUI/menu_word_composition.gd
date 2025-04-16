@@ -16,6 +16,9 @@ class_name MenuWordComposition
 @onready var lettersScoring: AudioStreamPlayer = $LettersScoring
 @onready var victory: AudioStreamPlayer = $SoundJackpooooot
 
+@onready var score_color = Color("#24b8a0")
+@export var mult_color = Color("#ff8e58")
+
 var artefacts: Array[Artefact]
 
 var sound_bank := [
@@ -197,14 +200,26 @@ func process_score_old(score: ScoreCalculator.ScoreBreakdown):
 	
 func display_text(target, string, color : Color):
 	var feedback = Label.new()
+	var rect = ColorRect.new()
+	rect.color = color
+	rect.size = Vector2(10, 10)
 	feedback.text = string
+	color = Color.WHITE
 	feedback.set("theme_override_colors/font_color", color)
-	feedback.set("theme_override_constants/outline_size", 2)
+	#feedback.set("theme_override_constants/outline_size", 2)
 	feedback.set("theme_override_colors/font_outline", Color.BLACK)
-	feedback.add_theme_font_override("font", load("res://assets/fonts/Square.ttf"))
-	feedback.scale = Vector2(1.1, 1.3)
-	feedback.position.y -= 5
+	feedback.add_theme_font_override("font", load("res://assets/fonts/CutePixel.ttf"))
+	feedback.scale = Vector2(1.1, 1.1)
+	target.add_child(rect)
 	target.add_child(feedback)
+	if target is UILetter:
+		rect.position.y -= 10
+		rect.position.x += target.size.x / 3
+		feedback.position.y -= 10
+		feedback.position.x += target.size.x / 3
+	else:
+		rect.position.x += target.size.x + 5
+		feedback.position.x += target.size.x + 5
 	var malus = string[0] == "-"
 	if malus:
 		_play_bubble_sound(malus)
@@ -219,16 +234,30 @@ func display_text(target, string, color : Color):
 	await tween_alpha.finished
 	await tween_scale.finished
 	feedback.queue_free()
+	rect.queue_free()
 
 func process_feedback(operation):
+	var target = resolve_target(operation)
+	var source = resolve_source(operation)
+	var operator
+	var text
+	
 	if operation.letter_add_delta != 0:
-		pass
+		operator = "+" if operation.letter_add_delta > 0 else ""
+		text = operator + str(operation.letter_add_delta)
+		display_text(target, text, score_color)
 	elif operation.letter_mult_delta != 0:
-		pass
+		operator = "x"
+		text = operator + str(operation.letter_mult_delta)
+		display_text(target, text, score_color)
 	elif operation.word_add_delta != 0:
-		pass
+		operator = "+" if operation.word_add_delta > 0 else ""
+		text = operator + str(operation.word_add_delta)
+		display_text(source, text, score_color)
 	elif operation.word_mult_delta != 0:
-		pass
+		operator = "x"
+		text = operator + str(operation.word_mult_delta)
+		display_text(source, text, mult_color)
 	elif operation.letter_fish_type_delta != null:
 		pass
 	elif operation.letter_bonus_type_delta != null:
@@ -242,7 +271,7 @@ func process_score(score: ScoreCalculator.ScoreBreakdown):
 	
 	for operation in score.operations:
 		if operation.evaluated_letter_idx >= 0:
-			# on met la lettre vers le haut 
+			# on met la lettre vers le haut quand l'opération fait passer à une nouvelle lettre
 			if operation.evaluated_letter_idx != current_letter_index:
 				current_letter_index = operation.evaluated_letter_idx
 				letter = letters[current_letter_index]

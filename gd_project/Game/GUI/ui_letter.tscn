@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvj6y7xphbmgn"]
+[gd_scene load_steps=10 format=3 uid="uid://bvj6y7xphbmgn"]
 
 [ext_resource type="Script" uid="uid://dd5f66eyg5gry" path="res://Game/GUI/ui_letter.gd" id="1_xaksk"]
 [ext_resource type="Texture2D" uid="uid://4xwep1fcd4fx" path="res://assets/images/letter_tile.png" id="2_uo1cg"]
 [ext_resource type="Texture2D" uid="uid://c5kk0nbhr6c6c" path="res://assets/images/cadres.png" id="3_8wao3"]
 [ext_resource type="Texture2D" uid="uid://dl1qhe6hnve41" path="res://GUI/fish_types.png" id="3_rat18"]
+[ext_resource type="FontFile" uid="uid://c1nsxhtprfabx" path="res://assets/fonts/CutePixel.ttf" id="3_t7o2i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rat18"]
 resource_local_to_scene = true
@@ -51,10 +52,13 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -2.5
-offset_right = 2.5
+offset_left = -3.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_t7o2i")
 text = "J"
 
 [node name="Points" type="Label" parent="Button"]
