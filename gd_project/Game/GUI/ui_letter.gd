@@ -25,8 +25,10 @@ func _input(event: InputEvent) -> void:
 				for i in range(len(container.get_children())):
 					var letter = container.get_child(i)
 					if letter.global_position.x > global_position.x:
-						letter.add_sibling(self)
+						reparent(container)
+						container.move_child(self, i)
 						break
+				reparent(container)
 				is_holded = false
 				timer = 0
 			
