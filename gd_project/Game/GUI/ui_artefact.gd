@@ -3,7 +3,10 @@ class_name UIArtefact
 
 @onready var panel: Panel = $Panel
 
-var artefact: Artefact
+var timer := 0.0
+var is_holded := false
+const HOLD_TIMER := 0.2
+
 
 func initialize(artefact : Artefact):
 	var texture_x = 0
@@ -36,8 +39,33 @@ func initialize(artefact : Artefact):
 	#$Button.scale.y = 0.3
 	#$Button.scale.x = 0.6
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == 1:
+		if not event.is_pressed() and is_holded:
+			if timer > HOLD_TIMER:
+				get_parent().queue_sort()
+			is_holded = false
+			timer = 0
+			
+			
+func _process(delta):
+	if is_holded:
+		timer += delta
+		if timer > HOLD_TIMER:
+			global_position = get_global_mouse_position()
+			#if get_index() - 1 >= 0 and get_index() + 1 <= len(container.get_children()) - 1:
+			var next_child = null if get_index() == len(get_parent().get_children()) - 1 else get_parent().get_child(get_index() + 1)
+			var previous_child = null if get_index() == 0 else get_parent().get_child(get_index() - 1)
+			if next_child and next_child.global_position.y < global_position.y:
+				get_parent().move_child(self, get_index() + 1)
+			if previous_child and previous_child.global_position.y > global_position.y:
+				get_parent().move_child(self, get_index() - 1)
+				
 func _on_button_mouse_entered():
 	panel.show()
 
 func hide_artefact_popup():
 	panel.hide()
+
+func _on_button_button_down() -> void:
+	is_holded = true

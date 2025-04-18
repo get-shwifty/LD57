@@ -6,13 +6,9 @@ var letter: Letter
 
 # variables for the drag
 var timer := 0.0
-var hold_timer := 0.0
 var is_holded := false
-var last_mouse:Vector2
-var is_not_moving := false
 const HOLD_TIMER := 0.2
 
-@onready var pos0 = position.y
 @onready var points: Label = %Points
 
 func _input(event: InputEvent) -> void:
