@@ -38,14 +38,6 @@ func initialize(artefact : Artefact):
 	%Description.text = artefact.description
 	#$Button.scale.y = 0.3
 	#$Button.scale.x = 0.6
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == 1:
-		if not event.is_pressed() and is_holded:
-			if timer > HOLD_TIMER:
-				get_parent().queue_sort()
-			is_holded = false
-			timer = 0
 			
 			
 func _process(delta):
@@ -69,3 +61,10 @@ func hide_artefact_popup():
 
 func _on_button_button_down() -> void:
 	is_holded = true
+
+func _on_button_button_up() -> void:
+	if is_holded:
+		if timer > HOLD_TIMER:
+			get_parent().queue_sort()
+		is_holded = false
+		timer = 0

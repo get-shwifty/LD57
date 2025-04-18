@@ -10,16 +10,6 @@ var is_holded := false
 const HOLD_TIMER := 0.2
 
 @onready var points: Label = %Points
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == 1:
-		if not event.is_pressed() and is_holded:
-			if timer < HOLD_TIMER:
-				on_letter_selected.emit()
-			else:
-				get_parent().queue_sort()
-			is_holded = false
-			timer = 0
 		
 			
 func _process(delta: float) -> void:
@@ -106,8 +96,11 @@ func _on_button_button_down() -> void:
 
 
 func _on_button_button_up() -> void:
-	pass
-	#if timer < HOLD_TIMER:
-		#print("test")
-		#on_letter_selected.emit()
+	if is_holded:
+		if timer < HOLD_TIMER:
+			on_letter_selected.emit()
+		else:
+			get_parent().queue_sort()
+		is_holded = false
+		timer = 0
 	

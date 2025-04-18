@@ -78,5 +78,6 @@ autowrap_mode = 2
 text_overrun_behavior = 2
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="hide_artefact_popup"]
