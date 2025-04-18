@@ -6,7 +6,10 @@ var letter: Letter
 
 # variables for the drag
 var timer := 0.0
+var hold_timer := 0.0
 var is_holded := false
+var last_mouse:Vector2
+var is_not_moving := false
 const HOLD_TIMER := 0.2
 
 @onready var pos0 = position.y
@@ -15,8 +18,26 @@ const HOLD_TIMER := 0.2
 @onready var root = container.owner
 
 func _input(event: InputEvent) -> void:
+	var mouse_pos = get_viewport().get_mouse_position()
+	if event is InputEventMouseMotion:
+		#print(event.relative)
+		if is_holded and abs(event.relative) < Vector2(0.5,0.5):
+			is_not_moving = true
+		elif is_holded and abs(event.relative) > Vector2(0.5,0.5):
+			is_not_moving = false
+			hold_timer = 0
+		if is_holded and hold_timer > 0.2 and get_parent() != container:
+			print("creating space")
+			for i in range(len(container.get_children())):
+				var letter = container.get_child(i)
+				if letter.global_position.x > global_position.x:
+					print("adding at index", i)
+					reparent(container)
+					container.move_child(self, i)
+					break
+		last_mouse = mouse_pos
 	if event is InputEventMouseButton and event.button_index == 1:
-		var mouse_pos = get_viewport().get_mouse_position()
+
 		if not event.is_pressed():
 			if is_holded:
 
@@ -33,9 +54,11 @@ func _input(event: InputEvent) -> void:
 				timer = 0
 			
 func _process(delta: float) -> void:
+	if is_holded and is_not_moving:
+		hold_timer += delta
 	if is_holded:
 		timer += delta
-		if timer > HOLD_TIMER:
+		if timer > HOLD_TIMER and hold_timer < 0.2:
 			var viewport = get_viewport()
 			if get_parent() == container:
 				reparent(root)
