@@ -234,7 +234,7 @@ func display_text(target, string, color : Color):
 	await tween_alpha.finished
 	await tween_scale.finished
 	feedback.queue_free()
-	rect.queue_free()
+	rect.queue_free() 
 
 func process_feedback(operation):
 	var target = resolve_target(operation)

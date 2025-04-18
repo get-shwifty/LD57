@@ -2,16 +2,43 @@ extends Control
 class_name UILetter
 
 signal on_letter_selected
-
 var letter: Letter
-var offset = randi()
+
+# variables for the drag
+var timer := 0.0
+var is_holded := false
+const HOLD_TIMER := 0.2
+
 @onready var pos0 = position.y
 @onready var points: Label = %Points
+@onready var container = get_parent()
+@onready var root = container.owner
 
-	
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == 1:
+		var mouse_pos = get_viewport().get_mouse_position()
+		if not event.is_pressed():
+			if is_holded:
+
+				#reparent(container)
+
+				for i in range(len(container.get_children())):
+					var letter = container.get_child(i)
+					if letter.global_position.x > global_position.x:
+						letter.add_sibling(self)
+						break
+				is_holded = false
+				timer = 0
+			
 func _process(delta: float) -> void:
-	offset += delta
-	#position.y = pos0 + sin(offset) 
+	if is_holded:
+		timer += delta
+		if timer > HOLD_TIMER:
+			var viewport = get_viewport()
+			if get_parent() == container:
+				reparent(root)
+			global_position = viewport.get_mouse_position()
+
 	
 func initialize(letter_ : Letter):
 	letter = letter_
@@ -73,4 +100,14 @@ func _on_button_mouse_entered() -> void:
 
 func _on_button_mouse_exited() -> void:
 	position.y += 5 # Replace with function body.
+	
+
+
+func _on_button_button_down() -> void:
+	is_holded = true
+
+
+func _on_button_button_up() -> void:
+	if timer < HOLD_TIMER:
+		on_letter_selected.emit()
 	
