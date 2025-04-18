@@ -77,6 +77,7 @@ offset_left = -2.0
 offset_top = -2.0
 offset_right = 25.0
 offset_bottom = 29.0
+pivot_offset = Vector2(13, 11)
 mouse_filter = 2
 texture = SubResource("AtlasTexture_t7o2i")
 

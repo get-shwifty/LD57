@@ -14,55 +14,31 @@ const HOLD_TIMER := 0.2
 
 @onready var pos0 = position.y
 @onready var points: Label = %Points
-@onready var container = get_parent()
-@onready var root = container.owner
 
 func _input(event: InputEvent) -> void:
-	var mouse_pos = get_viewport().get_mouse_position()
-	if event is InputEventMouseMotion:
-		#print(event.relative)
-		if is_holded and abs(event.relative) < Vector2(0.5,0.5):
-			is_not_moving = true
-		elif is_holded and abs(event.relative) > Vector2(0.5,0.5):
-			is_not_moving = false
-			hold_timer = 0
-		if is_holded and hold_timer > 0.2 and get_parent() != container:
-			print("creating space")
-			for i in range(len(container.get_children())):
-				var letter = container.get_child(i)
-				if letter.global_position.x > global_position.x:
-					print("adding at index", i)
-					reparent(container)
-					container.move_child(self, i)
-					break
-		last_mouse = mouse_pos
 	if event is InputEventMouseButton and event.button_index == 1:
-
-		if not event.is_pressed():
-			if is_holded:
-
-				#reparent(container)
-
-				for i in range(len(container.get_children())):
-					var letter = container.get_child(i)
-					if letter.global_position.x > global_position.x:
-						reparent(container)
-						container.move_child(self, i)
-						break
-				reparent(container)
-				is_holded = false
-				timer = 0
+		if not event.is_pressed() and is_holded:
+			if timer < HOLD_TIMER:
+				on_letter_selected.emit()
+			else:
+				get_parent().queue_sort()
+			is_holded = false
+			timer = 0
+		
 			
 func _process(delta: float) -> void:
-	if is_holded and is_not_moving:
-		hold_timer += delta
 	if is_holded:
 		timer += delta
-		if timer > HOLD_TIMER and hold_timer < 0.2:
-			var viewport = get_viewport()
-			if get_parent() == container:
-				reparent(root)
-			global_position = viewport.get_mouse_position()
+		if timer > HOLD_TIMER:
+			global_position = get_global_mouse_position()
+			#if get_index() - 1 >= 0 and get_index() + 1 <= len(container.get_children()) - 1:
+			var next_child = null if get_index() == len(get_parent().get_children()) - 1 else get_parent().get_child(get_index() + 1)
+			var previous_child = null if get_index() == 0 else get_parent().get_child(get_index() - 1)
+			if next_child and next_child.global_position.x < global_position.x:
+				get_parent().move_child(self, get_index() + 1)
+			if previous_child and previous_child.global_position.x > global_position.x:
+				get_parent().move_child(self, get_index() - 1)
+			
 
 	
 func initialize(letter_ : Letter):
@@ -115,8 +91,8 @@ func update_bonus(bonus: Letter.BonusType):
 func get_letter() -> Letter:
 	return letter
 	
-func _on_button_pressed():
-	on_letter_selected.emit()
+#func _on_button_pressed():
+	#on_letter_selected.emit()
 
 
 func _on_button_mouse_entered() -> void:
@@ -124,7 +100,8 @@ func _on_button_mouse_entered() -> void:
 
 
 func _on_button_mouse_exited() -> void:
-	position.y += 5 # Replace with function body.
+	position.y += 5
+	get_parent().queue_sort()
 	
 
 
@@ -133,6 +110,8 @@ func _on_button_button_down() -> void:
 
 
 func _on_button_button_up() -> void:
-	if timer < HOLD_TIMER:
-		on_letter_selected.emit()
+	pass
+	#if timer < HOLD_TIMER:
+		#print("test")
+		#on_letter_selected.emit()
 	
