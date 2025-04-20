@@ -16,7 +16,9 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
+ArtefactManager_old="*res://Game/WordScoring/ArtefactRepository.gd"
 Popups="*res://GUI/Popups.tscn"
+ArtefactManager="*res://artefact_manager.gd"
 
 [display]
 

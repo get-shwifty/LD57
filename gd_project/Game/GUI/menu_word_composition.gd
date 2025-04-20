@@ -19,7 +19,6 @@ class_name MenuWordComposition
 @onready var score_color = Color("#24b8a0")
 @export var mult_color = Color("#ff8e58")
 
-var artefacts: Array[Artefact]
 
 var sound_bank := [
 	preload("res://assets/sounds/bruitages/wordComposition/bubble-score-1.ogg"),
@@ -85,7 +84,7 @@ func enable_mouse_inputs():
 	$MouseBlock.hide()
 
 func setup_artefacts_grid():
-	for art in artefacts:
+	for art in ArtefactManager.get_artefacts():
 		var artefact_ui = UI_ARTEFACT.instantiate()
 		artefact_ui.initialize(art)
 		artefacts_container.add_child(artefact_ui)
@@ -119,8 +118,6 @@ func on_letter_selected(letter: Control):
 	else:
 		can_submit = false
 		
-	#update_score()
-
 func get_word():
 	if word_container.get_child_count() <= 0:
 		return []
@@ -136,67 +133,7 @@ func confirm_word():
 		can_submit = false
 		var word = get_word()
 		on_word_confirmed.emit(word)
-
-func update_score():
-	var word = get_word()
-	var score = 0
-	for letter in word:
-		score += letter.character.base_value
-	%Points.text = str(score)
-	#$CenterContainer/VBoxContainer/PanelContainer/Score/Total.text = str(score)
-	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Points)
-	#bump_ui($CenterContainer/VBoxContainer/PanelContainer/Score/Total)
 	
-	
-func process_score_old(score: ScoreCalculator.ScoreBreakdown):
-	tween_time = 0.35
-	
-	for action in score.operations:
-		
-		var source = resolve_source(action)
-		var target = resolve_target(action)
-		
-		await bump_ui(source)
-		if target is UILetter:
-			if action.new_letter_score != int(target.points.text):
-				var operator = "x"
-				if action.letter_add_delta != 0:
-					if action.letter_add_delta > 0:
-						operator = "+"
-					else:
-						operator = "-"
-				var value = action.letter_mult_delta if action.letter_mult_delta != 0 else action.letter_add_delta
-				var color = Color('#da6175') if (operator == "x" && value < 1) || (operator == "+" && value < 0) else Color.WHITE#Color('24b8a0')
-				display_text(target.points, operator + str(value), color)
-				target.points.text = str(action.new_letter_score)
-			elif action.letter_fish_type_delta:
-				target.update_type(action.letter_fish_type_delta)
-				_play_upgrade_sound()
-			if action.letter_bonus_type_delta:
-				target.update_bonus(action.letter_bonus_type_delta)
-				_play_upgrade_sound()
-			await bump_ui(target)
-			if action.new_letter_score != int(target.points.text):
-				var points = %Points
-				points.text = str(action.new_word_add)
-				await bump_ui(points)
-		else:
-			if target == %Points:
-				var operator = "+" if action.word_add_delta > 0 else ""
-				var color = Color('#da6175') if operator == "" else Color.WHITE_SMOKE # Color('24b8a0')
-				display_text(target, operator + str(action.word_add_delta), color)
-				target.text = str(action.new_word_add)
-			elif target == %Multiplicateur:
-				var operator = "+" if action.word_mult_delta > 0 else ""
-				var color = Color('#da6175') if operator == "" else Color.WHITE_SMOKE# Color('24b8a0')
-				display_text(target, operator + str(action.word_mult_delta), color)
-				target.text = str(action.new_word_mult)
-			await bump_ui(target)
-		await get_tree().create_timer(tween_time).timeout
-	await display_total(score)
-	on_ui_finished.emit()
-	just_confirmed = true
-	enable_mouse_inputs()
 	
 func display_text(target, string, color : Color):
 	var feedback = Label.new()

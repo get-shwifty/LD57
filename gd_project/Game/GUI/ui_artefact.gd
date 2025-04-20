@@ -5,12 +5,14 @@ class_name UIArtefact
 
 var timer := 0.0
 var is_holded := false
+var artefact_object: Artefact
 const HOLD_TIMER := 0.2
 
 
 func initialize(artefact : Artefact):
 	var texture_x = 0
 	var texture_y = 0
+	artefact_object = artefact
 	#
 	match artefact.target:
 		artefact.TargetType.LetterAdd:
@@ -66,5 +68,9 @@ func _on_button_button_up() -> void:
 	if is_holded:
 		if timer > HOLD_TIMER:
 			get_parent().queue_sort()
+			var new_artefacts: Array[Artefact] = []
+			for artefact:UIArtefact in get_parent().get_children():
+				new_artefacts.append(artefact.artefact_object)
+			ArtefactManager.set_artefacts(new_artefacts)
 		is_holded = false
 		timer = 0

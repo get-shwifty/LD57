@@ -16,9 +16,9 @@ func initialize(artefacts: Array[Artefact]):
 func initialize_bonus(current_artefacts: Array[Artefact], bonus=true):
 	var all_artefacts
 	if bonus:
-		all_artefacts = ArtefactRepository.bonuses.slice(0)
+		all_artefacts = ArtefactManager.bonuses.slice(0)
 	else:
-		all_artefacts = ArtefactRepository.maluses.slice(0)
+		all_artefacts = ArtefactManager.maluses.slice(0)
 
 	for artefact in current_artefacts:
 		all_artefacts.erase(artefact)

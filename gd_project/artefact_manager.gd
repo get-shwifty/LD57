@@ -1,8 +1,9 @@
-class_name ArtefactRepository
+extends Node
 
-static var starting = generate_starting()
 static var bonuses = generate_bonuses()
 static var maluses = generate_maluses()
+var current_artefacts: Array[Artefact] = generate_starting()
+var starting = current_artefacts
 
 static func generate_bonuses() -> Array[Artefact]:
 	var artefacts : Array[Artefact] = []
@@ -318,7 +319,7 @@ static func generate_maluses() -> Array[Artefact]:
 	
 	return artefacts
 
-static func generate_starting() -> Array[Artefact]:
+func generate_starting() -> Array[Artefact]:
 	var artefacts : Array[Artefact] = []
 	var artefact : Artefact = null
 	
@@ -331,7 +332,7 @@ static func generate_starting() -> Array[Artefact]:
 		return vc.remaining_oxygen
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return vc.remaining_oxygen > 0
-	artefacts.append(artefact)
+	current_artefacts.append(artefact)
 	
 	artefact = Artefact.new()
 	artefact.name = "Size matters"
@@ -342,12 +343,11 @@ static func generate_starting() -> Array[Artefact]:
 		return pow(cc.word.size(), 2) 
 	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
 		return true;
-	artefacts.append(artefact)
-
-
-	return artefacts
+	current_artefacts.append(artefact)
+	print(current_artefacts)
+	return current_artefacts
 	
-static func get_artefact(name : String):
+func get_artefact(name : String):
 	for a in bonuses:
 		if a.name == name:
 			return a;
@@ -357,3 +357,12 @@ static func get_artefact(name : String):
 	for a in starting:
 		if a.name == name:
 			return a;
+
+func get_artefacts() -> Array[Artefact]:
+	return current_artefacts
+
+func set_artefacts(artefacts: Array[Artefact]):
+	current_artefacts = artefacts
+	
+func add_artefact(artefact: Artefact):
+	current_artefacts.append(artefact)

@@ -47,10 +47,8 @@ func setup_game():
 
 	is_boss = false
 	current_room_idx = 0
-	artefacts = []
 	total_points = 0
-	for starting_artefact in ArtefactRepository.starting:
-		artefacts.append(starting_artefact)
+
 	#
 	#artefacts.append(ArtefactRepository.get_artefact("Against all odds"))
 	#artefacts.append(ArtefactRepository.get_artefact("Jellymorphism"))
@@ -84,7 +82,7 @@ func start_shop():
 
 func on_score_menu_closed(new_artefact):
 	if new_artefact != null:
-		artefacts.append(new_artefact)
+		ArtefactManager.add_artefact(new_artefact)
 	clean()
 	map_menu.show_map()
 	#map_menu.camera_2d.enabled = true
@@ -108,7 +106,7 @@ func start_new_level(level_coeff : int):
 	current_level.level_finished.connect(on_level_finished)
 	add_child(current_level)
 	current_level.restart_button.get_popup().index_pressed.connect(ended_manually)
-	current_level.setup_level(score_to_do, artefacts.slice(0))
+	current_level.setup_level(score_to_do)
 
 func ended_manually(idx):
 	total_points += current_level.score.current

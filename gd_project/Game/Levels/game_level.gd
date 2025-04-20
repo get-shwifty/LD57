@@ -13,23 +13,20 @@ var room: LevelRoom
 @onready var restart_button = $UIContainer/ScoreUI/MenuButton
 var letters_pool : Array[Letter] = []
 var waiting_for_ui = false
-var artefacts : Array[Artefact]
 var fish_captured_count : int
 var harpoon_fired_count : int
 
 func _ready():
+	print(ArtefactManager.get_artefacts())
 	assert(player != null)
 	room.on_captured.connect(fish_captured)
 	word_composing_menu.on_word_confirmed.connect(confirm_word)
 	player.oxygen.on_oxygen_depleted.connect(on_oxygen_depleted)
 	player.on_harpoon_fired.connect(on_harpoon_fired)
 
-
-func setup_level(objective, artefacts : Array[Artefact]):
+func setup_level(objective):
 	score.objective = objective
 	word_composing_menu.set_letters(letters_pool)
-	self.artefacts = artefacts
-	word_composing_menu.artefacts = artefacts
 	word_composing_menu.setup_artefacts_grid()
 
 	var letters = Alphabet.get_random_characters().map(func(c): return Letter.new(c))
@@ -73,7 +70,7 @@ func confirm_word(word: Array[Letter]):
 	variable_context.fish_captured_count = fish_captured_count
 	for letter in word:
 		letters_pool.erase(letter)
-	var breakdown = ScoreCalculator.compute_score(word, artefacts, variable_context, letters_pool)
+	var breakdown = ScoreCalculator.compute_score(word, variable_context, letters_pool)
 
 	waiting_for_ui = true
 	player.oxygen.paused = true
