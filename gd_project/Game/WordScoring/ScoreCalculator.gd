@@ -33,50 +33,39 @@ static func compute_score(word : Array[Letter], var_context : VariableContext, l
 		breakdown.current_letter_score = 0
 		breakdown.register_operation(true, null, current_indexed_letter)
 		
-		var applicable_artifacts = get_applicable_artefacts(true, artefacts, var_context, cond_context)
-		
-		for a in applicable_artifacts:
-			if a.artefact.target == Artefact.TargetType.LetterFishType:
-				breakdown.register_operation(true, a, current_indexed_letter)
-		
-		applicable_artifacts = get_applicable_artefacts(true, artefacts, var_context, cond_context)
-		
-		for a in applicable_artifacts:
-			if a.artefact.target == Artefact.TargetType.LetterBonusType:
-				breakdown.register_operation(true, a, current_indexed_letter)
-
-		applicable_artifacts = get_applicable_artefacts(true, artefacts, var_context, cond_context)
-		
-		for a in applicable_artifacts:
-			if a.artefact.target == Artefact.TargetType.LetterAdd:
-				breakdown.register_operation(true, a, current_indexed_letter)
-		
-		for a in applicable_artifacts:
-			if a.artefact.target == Artefact.TargetType.LetterMult:
-				breakdown.register_operation(true, a, current_indexed_letter)
-				
 		if current_letter.bonus_type != Letter.BonusType.None:
 			breakdown.register_operation(true, null, current_indexed_letter, true)
 		
-		for a in applicable_artifacts:
-			if a.artefact.target == Artefact.TargetType.WordAdd:
-				breakdown.register_operation(true, a, current_indexed_letter)
-		
-		for a in applicable_artifacts:
-			if a.artefact.target == Artefact.TargetType.WordMult:
-				breakdown.register_operation(true, a, current_indexed_letter)
+		var artefact_idx = 0
+		for a in artefacts:
+			if a.trigger != Artefact.TriggerType.Letter:
+				artefact_idx += 1
+				continue
+
+			if !a.are_conditions_valid(var_context, cond_context):
+				artefact_idx += 1
+				continue
+			
+			var applicable_artefact = ApplicableArtefact.new(a, artefact_idx)
+			artefact_idx += 1
+			
+			breakdown.register_operation(true, applicable_artefact, current_indexed_letter)
 
 	breakdown.current_letter_score = 0
 	cond_context.reset_letter_dependant_context()
-	var applicable_artifacts = get_applicable_artefacts(false, artefacts, var_context, cond_context)
-	
-	for a in applicable_artifacts:
-		if a.artefact.target == Artefact.TargetType.WordAdd:
-			breakdown.register_operation(false, a, null)
+	var artefact_idx = 0
+	for a in artefacts:
+		if a.trigger != Artefact.TriggerType.Word:
+			artefact_idx += 1
+			continue
+
+		if !a.are_conditions_valid(var_context, cond_context):
+			artefact_idx += 1
+			continue
 		
-	for a in applicable_artifacts:
-		if a.artefact.target == Artefact.TargetType.WordMult:
-			breakdown.register_operation(false, a, null)
+		var applicable_artefact = ApplicableArtefact.new(a, artefact_idx)
+		artefact_idx += 1
+		breakdown.register_operation(false, applicable_artefact, null)
 	
 	breakdown.finish_breakdown()
 	
@@ -89,23 +78,6 @@ static func is_palidrom(word : Array[Letter]) -> bool:
 		if left_letter != right_letter:
 			return false
 	return true
-
-static func get_applicable_artefacts(is_evaluating_letter : bool, artefacts : Array[Artefact], var_context : VariableContext, cond_context : ConditionContext) -> Array[ApplicableArtefact]:
-	var applicable_artefacts : Array[ApplicableArtefact] = []
-	var artefact_idx = 0
-	for a in artefacts:
-		if (a.trigger == Artefact.TriggerType.Letter) != is_evaluating_letter:
-			artefact_idx += 1
-			continue
-
-		if !a.are_conditions_valid(var_context, cond_context):
-			artefact_idx += 1
-			continue
-		
-		applicable_artefacts.append(ApplicableArtefact.new(a, artefact_idx))
-		artefact_idx += 1
-		
-	return applicable_artefacts
 
 class ApplicableArtefact:
 	var artefact : Artefact
