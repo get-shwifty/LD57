@@ -222,6 +222,17 @@ static func generate_bonuses() -> Array[Artefact]:
 		return true;
 	artefacts.append(artefact)
 	
+	artefact = Artefact.new()
+	artefact.name = "Size matters"
+	artefact.description = "Add letter count squared to word points"
+	artefact.trigger = Artefact.TriggerType.Word
+	artefact.target = Artefact.TargetType.WordAdd
+	artefact.value = func(vc: VariableContext, cc: ConditionContext):
+		return pow(cc.word.size(), 2) 
+	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
+		return true;
+	artefacts.append(artefact)
+	
 	return artefacts
 
 static func generate_maluses() -> Array[Artefact]:
@@ -334,17 +345,6 @@ func generate_starting() -> Array[Artefact]:
 		return vc.remaining_oxygen > 0
 	current_artefacts.append(artefact)
 	
-	artefact = Artefact.new()
-	artefact.name = "Size matters"
-	artefact.description = "Add letter count squared to word points"
-	artefact.trigger = Artefact.TriggerType.Word
-	artefact.target = Artefact.TargetType.WordAdd
-	artefact.value = func(vc: VariableContext, cc: ConditionContext):
-		return pow(cc.word.size(), 2) 
-	artefact.condition = func(vc: VariableContext, cc: ConditionContext) -> bool:
-		return true;
-	current_artefacts.append(artefact)
-	print(current_artefacts)
 	return current_artefacts
 	
 func get_artefact(name : String):

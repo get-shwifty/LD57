@@ -106,6 +106,7 @@ func on_letter_selected(letter: Control):
 	if just_confirmed:
 		%Multiplicateur.text = "1"
 		%Total.text = "..."
+		%WordLength.text = ""
 		just_confirmed = false
 	sound_click_on_letter.play()
 	if grid_container.get_children().has(letter):
@@ -114,8 +115,15 @@ func on_letter_selected(letter: Control):
 		letter.reparent(grid_container)
 	var word = get_word()
 	if (len(word) and dico.is_word_valid(word)):
+		var score = UpgradesManager.get_word_score(word)
+		%Multiplicateur.text = str(score["mult"])
+		%Points.text = str(score["points"])
+		%WordLength.text = str(len(word)) + " letters!"
 		can_submit = true
 	else:
+		%Multiplicateur.text = "1"
+		%Points.text = "0"
+		%WordLength.text = ""
 		can_submit = false
 		
 func get_word():

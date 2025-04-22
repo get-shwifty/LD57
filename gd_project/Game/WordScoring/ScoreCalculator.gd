@@ -96,8 +96,6 @@ class IndexedLetter:
 		self.letter_idx = idx
 		
 class ScoreBreakdown:
-	var initial_word_add : int
-	var initial_word_mult : int
 	var operations : Array[ScoreOperation]
 	var final_score : float
 	
@@ -110,8 +108,9 @@ class ScoreBreakdown:
 	var current_word_mult : float
 	
 	func fill_initial_values(word : Array[Letter]):
-		initial_word_add = 0
-		initial_word_mult = 1
+		var initial_score = UpgradesManager.get_word_score(word)
+		current_word_add = initial_score["points"]
+		current_word_mult = initial_score["mult"]
 	
 	func register_operation(is_operating_on_letter : bool, artefact : ApplicableArtefact, indexed_letter : IndexedLetter, evaluate_letter_bonus_type : bool = false ):
 		var artefact_idx = artefact.artefact_idx if artefact != null else -1
